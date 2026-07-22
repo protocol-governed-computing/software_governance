@@ -11,3 +11,6 @@ __pycache__/
 .idea/
 .vscode/
 CLAUDE.md
+compiled/
+**/compiled/
+snapshot/
