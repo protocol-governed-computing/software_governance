@@ -51,6 +51,11 @@ structure: fb.topology::STRUCTURE_RUNTIME_EXECUTION_V0
 core:
   summary: Compute and verify Collatz sequences — domain-blind PGC execution (pure, Phase 1)
 
+  # Authority concern: the actor context this workflow executes under. Bound here, propagated by the
+  # runtime into the execution context, and attributed in the trace. (Declaration/binding only — no
+  # authorization enforcement; that belongs to the authority model.)
+  actor_context: workload::AC_REFERENCE_ACTOR_V0
+
   start_node: IN_COLLATZ_INPUT_VALIDATED_V0
 
   nodes:
@@ -82,10 +87,13 @@ core:
     EXIT_CONJECTURE_PROVEN:
       type: EXIT
       reason: COMPLETED
+      # Observation concern: emit a governed domain event when the conjecture has been evaluated.
+      emit: workload::EV_CONJECTURE_EVALUATED_V0
 
     EXIT_CONJECTURE_VIOLATED:
       type: EXIT
       reason: COMPLETED
+      emit: workload::EV_CONJECTURE_EVALUATED_V0
 
     EXIT_REJECTED:
       type: EXIT

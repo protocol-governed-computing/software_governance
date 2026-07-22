@@ -72,6 +72,8 @@ artifact_discovery:
     - IN
     - CC
     - CT
+    - EV
+    - AC
 
 output_configuration:
 
