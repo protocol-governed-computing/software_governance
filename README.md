@@ -29,9 +29,24 @@ execute this surface are the Reference Implementation authority (RI-0), hosted s
 
 ## What this repository is **not**
 
-- Not a code repository — no compiler, runtime, handlers, executors, or tests.
+- The **normative surface** (`registry/`, `capability_transforms/`, `capability_side_effects/`)
+  carries no code — no compiler, runtime, handlers, or executors. (The runnable **reference
+  material** under `reference_workloads/` and `reference_surface/` is a separate, clearly-scoped
+  demonstration — see below.)
 - Not a place for domain artifacts — `blockchain`, `ai_governance`, and any
   `fb.blockchain` / `fb.ai_governance` boundary belong to `pgs::`, not here.
+
+## Reference material (runnable)
+
+Separate from the normative surface, the repo carries a small **reference-implementation
+demonstration**, versioned independently of `pgc::`:
+
+| Path | Contents |
+|------|----------|
+| `reference_workloads/collatz/` | The Collatz reference workload — governed artifacts, its `implementation/` (CT/CS), boundary declarations (`transport/` TI/TE), compiled snapshot |
+| `reference_surface/` | **Platform Reference Surface v1.0.0** — a runnable web client exercising the execution path through the governed transport boundary (see `reference_surface/README.md`) |
+
+These demonstrate the platform; they are not part of the normative `pgc::` closure.
 
 ## Immutability
 
