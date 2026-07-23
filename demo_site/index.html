@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Protocol-Governed Computing — Platform Demo</title>
+    <link rel="stylesheet" href="/css/base.css">
+</head>
+<body>
+    <header class="app-header">
+        <div class="header-inner">
+            <h1 class="app-title">Protocol&#8209;Governed&nbsp;Computing <span class="accent">Platform</span></h1>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h2>Welcome to the PGC Platform</h2>
+        <p>
+            A demonstration surface over platform-resident material. Every interaction below
+            crosses the <strong>governed transport boundary</strong>: an external protocol binds to a
+            stable <em>operation identity</em>, which resolves to a governed invocation — the wire
+            protocol is replaceable, the governed interaction is not.
+        </p>
+    </section>
+
+    <div class="card-grid">
+        <a href="/collatz" class="card">
+            <span class="tag">Reference Workload</span>
+            <h3>Collatz Conjecture</h3>
+            <p>
+                Compute a Collatz sequence through the governed boundary
+                (<code>collatz.compute</code> &rarr; TI &rarr; workflow &rarr; TE). The runtime
+                traverses an independently-authored domain graph with zero domain knowledge.
+            </p>
+        </a>
+
+        <div class="card disabled">
+            <span class="badge-soon">Coming soon</span>
+            <span class="tag">Protocol Inspector</span>
+            <h3>pi &mdash; Inspect the Snapshot (PPS)</h3>
+            <p>
+                Query the current platform-resident snapshot: domains, artifact closure,
+                vocabulary, and content hashes. Introduces a second boundary handler kind
+                (<code>SNAPSHOT_QUERY</code>) alongside workflow invocation.
+            </p>
+        </div>
+
+        <div class="card disabled">
+            <span class="badge-soon">Coming soon</span>
+            <span class="tag">Domain Demos</span>
+            <h3>Workload Demos in lieu of CLIs</h3>
+            <p>
+                Additional platform-resident workloads surfaced through the same governed
+                transport boundary &mdash; each a new tenant, no transport-engine change.
+            </p>
+        </div>
+    </div>
+
+    <footer class="app-footer">
+        PGC Transport Standard V0 &mdash; governed, protocol-neutral interaction boundary
+    </footer>
+</body>
+</html>
