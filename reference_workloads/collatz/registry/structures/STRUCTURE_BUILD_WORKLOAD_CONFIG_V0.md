@@ -74,6 +74,8 @@ artifact_discovery:
     - CT
     - EV
     - AC
+    - RB
+    - STRUCTURE
 
 output_configuration:
 

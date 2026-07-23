@@ -299,7 +299,7 @@ core:
       notes: "filter={field:value,...} AND semantics; updates={field:value,...} applied to all matched records; null value removes field; VIOLATION when no records match; load+filter+update+save serialized under per-file threading lock"
 
 implementation:
-  module: pgs_side_effects.implementation.side_effects.persistent.CS_MUTABLE_JSON_V0.runtime
+  module: capability_side_effects.implementation.CS_MUTABLE_JSON_V0.runtime
   callable: MutableJsonRuntime
 
 extensions:

@@ -48,8 +48,11 @@ governed_by: fb.topology::CONSTITUTION_WORKFLOW_V0
 subdomain: collatz
 structure: fb.topology::STRUCTURE_RUNTIME_EXECUTION_V0
 
+# Capability Side Effect concern: binds the platform CS_MUTABLE_JSON (imported) for the store step.
+runtime_binding: workload::RB_COLLATZ_V0
+
 core:
-  summary: Compute and verify Collatz sequences — domain-blind PGC execution (pure, Phase 1)
+  summary: Compute, verify, and persist Collatz sequences — domain-blind PGC execution
 
   # Authority concern: the actor context this workflow executes under. Bound here, propagated by the
   # runtime into the execution context, and attributed in the trace. (Declaration/binding only — no
@@ -81,8 +84,20 @@ core:
       inputs:
         sequences: $.results.CC_COMPUTE_SEQUENCES_V0.sequences
       next:
-        SUCCESS: EXIT_CONJECTURE_PROVEN
+        SUCCESS: CC_STORE_RESULTS_V0
         VIOLATION: EXIT_CONJECTURE_VIOLATED
+
+    CC_STORE_RESULTS_V0:
+      type: CC
+      code: CC_STORE_RESULTS_V0
+      inputs:
+        sequences: $.results.CC_COMPUTE_SEQUENCES_V0.sequences
+        all_terminate: $.results.CC_VERIFY_TERMINATION_V0.all_terminate
+        non_terminating: $.results.CC_VERIFY_TERMINATION_V0.non_terminating
+      next:
+        SUCCESS: EXIT_CONJECTURE_PROVEN
+        VIOLATION: EXIT_ERROR
+        BACKEND_ERROR: EXIT_ERROR
 
     EXIT_CONJECTURE_PROVEN:
       type: EXIT
