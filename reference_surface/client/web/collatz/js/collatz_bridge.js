@@ -64,8 +64,18 @@ function renderResult(el, envelope, n) {
     let html = '<span class="status-badge">' + escapeHtml(envelope.result_class || 'ERROR') + '</span>';
 
     if (Array.isArray(envelope.evidence) && envelope.evidence.length) {
+        const items = envelope.evidence.map(function (ev) {
+            // A "trace:<path>" reference is resolvable via the /traces mount; link it live.
+            if (typeof ev === 'string' && ev.indexOf('trace:') === 0) {
+                const ref = ev.slice('trace:'.length);          // traces/<domain>/<wf>/<id>/<id>.jsonl
+                const id = ref.replace(/\.jsonl$/, '').split('/').pop();
+                return '<a href="/' + encodeURI(ref) + '" target="_blank" rel="noopener">trace:'
+                     + escapeHtml(id) + '</a>';
+            }
+            return escapeHtml(String(ev));
+        }).join(', ');
         html += '<div class="result-field"><span class="label">Evidence</span> '
-             +  '<span class="value">' + escapeHtml(envelope.evidence.join(', ')) + '</span></div>';
+             +  '<span class="value">' + items + '</span></div>';
     }
 
     if (isSuccess && envelope.result) {

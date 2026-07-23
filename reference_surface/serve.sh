@@ -25,11 +25,15 @@ export PGC_RUNTIME_ROOT="$UMBRELLA/protocol_runtime"
 export PGC_IMPL_ROOTS="$PLATFORM"                          # reference_workloads.*.implementation.*
 # Boundary declarations (TI/TE): reference workloads + surface-native operations.
 export PGC_OPERATIONS_ROOTS="$PLATFORM/reference_workloads:$SURFACE/transport"
-# One static mount: shell + all screens live under the single web client root.
-export PGC_STATIC_MOUNTS="/=$SURFACE/client/web"
 export PGC_HTTP_BINDINGS="$SURFACE/bindings/http.json"
 export PGC_SNAPSHOT_ROOT="${PGC_SNAPSHOT_ROOT:-$UMBRELLA/snapshot}"   # Reference Platform Snapshot V0
 export PGC_DATA_ROOT="${PGC_DATA_ROOT:-$UMBRELLA/data/reference_surface}"
+# Static mounts (all READ-ONLY, config-driven). Three roots:
+#   /          the web client (shell + all screens)
+#   /traces    live per-run evidence from the instance data root (transient)
+#   /snapshot  live inspection of the Reference Platform Snapshot (compiled artifacts, PNGs)
+# Live means never stale; a missing artifact fails soft via the adapter's friendly 404.
+export PGC_STATIC_MOUNTS="/=$SURFACE/client/web;/traces=$PGC_DATA_ROOT/traces;/snapshot=$PGC_SNAPSHOT_ROOT"
 export PGC_HTTP_PORT="${PGC_HTTP_PORT:-8000}"
 
 echo "PGC reference surface (stable, snapshot-bound)"
