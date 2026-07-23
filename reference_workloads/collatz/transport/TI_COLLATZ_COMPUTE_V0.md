@@ -8,7 +8,7 @@
 Declares the admission semantics for the operation `collatz.compute`: its input
 contract, the handler it binds to, and how the canonical input maps onto that handler.
 The public identity `collatz.compute` is stable; the bound workflow
-`workload::WF_DEMO_COLLATZ_CONJECTURE_V0` is an implementation detail and may be
+`workload::WF_COLLATZ_CONJECTURE_V0` is an implementation detail and may be
 re-pointed without any adapter change (`OPERATION_IDENTITY_INDEPENDENCE`, Patch 1).
 
 `handler.kind` is the generalization point: `WF_INVOCATION` here; a future
@@ -37,7 +37,7 @@ context_requirements: []
 # Operation binding: operation identity -> handler.
 handler:
   kind: WF_INVOCATION
-  workflow: workload::WF_DEMO_COLLATZ_CONJECTURE_V0
+  workflow: workload::WF_COLLATZ_CONJECTURE_V0
   # Canonical input -> WF payload. `${input.KEY}` substitutes the canonical input value
   # (type-preserving). The list wrapper is literal: scalar number -> {"numbers": [number]}.
   payload_template:

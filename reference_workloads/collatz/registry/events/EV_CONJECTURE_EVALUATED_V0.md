@@ -8,7 +8,7 @@
 - **Version:** v0
 - **Status:** draft
 - **Supersedes:** NONE
-- **Dependencies:** WF_DEMO_COLLATZ_CONJECTURE_V0
+- **Dependencies:** WF_COLLATZ_CONJECTURE_V0
 
 ---
 

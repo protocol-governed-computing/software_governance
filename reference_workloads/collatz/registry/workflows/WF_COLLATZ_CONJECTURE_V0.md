@@ -1,8 +1,8 @@
-# WF_DEMO_COLLATZ_CONJECTURE_V0
+# WF_COLLATZ_CONJECTURE_V0
 
 ## Header (Mandatory)
 
-- **Artifact Code:** WF_DEMO_COLLATZ_CONJECTURE_V0
+- **Artifact Code:** WF_COLLATZ_CONJECTURE_V0
 - **Artifact Kind:** workflow
 - **Governed By:** CONSTITUTION_WORKFLOW_V0
 - **Version:** v0
@@ -41,7 +41,7 @@ IN_COLLATZ_INPUT_VALIDATED_V0
 ## Machine
 
 ```yaml
-wf_code: WF_DEMO_COLLATZ_CONJECTURE_V0
+wf_code: WF_COLLATZ_CONJECTURE_V0
 version: v0
 governed_by: fb.topology::CONSTITUTION_WORKFLOW_V0
 

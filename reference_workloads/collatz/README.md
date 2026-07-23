@@ -35,7 +35,7 @@ Collatz is removed there to avoid duplication. The RI-0 web demo UI (`collatz.cs
 ```
 reference_workloads/collatz/
   registry/
-    workflows/            WF_DEMO_COLLATZ_CONJECTURE_V0.md
+    workflows/            WF_COLLATZ_CONJECTURE_V0.md
     intents/              IN_COLLATZ_INPUT_VALIDATED_V0.md
     capability_contracts/ CC_COMPUTE_SEQUENCES_V0.md  CC_VERIFY_TERMINATION_V0.md
     capability_transforms/CT_PURE_COLLATZ_STEP_V0.md  CT_PURE_TERMINATION_CHECK_V0.md

@@ -8,7 +8,7 @@
 - **Version:** v0
 - **Status:** draft
 - **Supersedes:** NONE
-- **Dependencies:** WF_DEMO_COLLATZ_CONJECTURE_V0
+- **Dependencies:** WF_COLLATZ_CONJECTURE_V0
 
 ---
 
@@ -27,7 +27,7 @@ governed_by: fb.topology::CONSTITUTION_INTENT_V0
 
 core:
   summary: Validate Collatz input — non-empty list of positive integers
-  workflow: WF_DEMO_COLLATZ_CONJECTURE_V0
+  workflow: WF_COLLATZ_CONJECTURE_V0
 
   inputs:
     numbers:
