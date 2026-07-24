@@ -86,7 +86,7 @@ output_configuration:
       subpath: compiled/canonical
   bootstrap_search_roots:
   - layer: GOVERNANCE
-    subpath: FB_CONSTITUTION/structures
+    subpath: declaration/structure/structures
 build_phases:
 - phase: discover
   description: Discover workload artifacts via STRUCTURE

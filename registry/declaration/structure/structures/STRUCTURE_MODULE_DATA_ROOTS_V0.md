@@ -19,8 +19,8 @@ layer_directories:
   execution_machine_subdir: machine
   execution_host_subdir: host
   execution_conformance_subdir: conformance
-  vocabulary_reserved_subdir: FB_VOCABULARY/reserved
-  schemas_subdir: registry/FB_CONSTITUTION/schemas
+  vocabulary_reserved_subdir: declaration/vocabulary/reserved
+  schemas_subdir: registry/declaration/schema
   tooling_experimental_subdir: experimental
 module_data_roots:
   governance:
