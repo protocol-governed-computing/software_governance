@@ -3,68 +3,22 @@
 ## Machine
 
 ```yaml
-constitution_code: CONSTITUTION_CRYPTOGRAPHIC_TRUST_V0
 artifact_kind: CONSTITUTION
 version: V0
 governed_by: fb.constitution::CONSTITUTION_GOVERNANCE_V0
-fqdn: fb.cryptographic_trust::CONSTITUTION_CRYPTOGRAPHIC_TRUST_V0
-
 core:
-  summary: Governs snapshot signing, payload sealing, runtime attestation, encrypted transport, and trust admissibility
-  description: |
-    Declares the cryptographic trust regime active for a compiled snapshot.
-    Governs whether snapshots must be signed, payloads sealed, runtimes attested,
-    and transport encrypted. Trust mode is a compile-time declaration — runtimes
-    execute under the declared trust posture rather than negotiating it.
-
-    In V0, the trust mode is LOCAL_DEV_UNSIGNED: no cryptographic verification
-    is required. This seeds the governance axis for future signed, sealed, and
-    attested execution without any protocol redesign.
-  scope: system
   enforcement_model: compiler_enforced
-
 rules:
-  - rule_id: TRUST_MODE_MUST_BE_DECLARED
-    applies_to: compiled_snapshot
-    constraint: >
-      Every compiled snapshot MUST declare exactly one active trust contract.
-      A snapshot with no trust declaration is a compiler validation failure.
-    enforced_by: compiler_validation
-
-  - rule_id: TRUST_MODES_ARE_ADDITIVE
-    applies_to: compiled_snapshot
-    constraint: >
-      Trust modes are cumulative. SIGNED_SNAPSHOT requires signing but not
-      payload encryption. SEALED_PAYLOAD requires both signing and payload
-      encryption. ATTESTED_RUNTIME additionally requires runtime attestation.
-      Each mode is a superset of the previous.
-    enforced_by: process_enforced
-
-  - rule_id: UNSIGNED_SNAPSHOTS_LOCAL_ONLY
-    applies_to: compiled_snapshot
-    constraint: >
-      Snapshots compiled with LOCAL_DEV_UNSIGNED trust mode MUST NOT be deployed
-      to non-local execution substrates. This is enforced by governance process
-      at V0; future compiler validation will assert this mechanically.
-    enforced_by: process_enforced
-
-  - rule_id: TRUST_IS_NOT_TRANSPORT
-    applies_to: federation_boundary
-    constraint: >
-      FB_CRYPTOGRAPHIC_TRUST governs cryptographic trust posture only.
-      It MUST NOT govern transport protocols, network routing, or TLS configuration.
-      Transport security is an infrastructure concern; trust posture is a
-      governance concern.
-    enforced_by: process_enforced
-
-  - rule_id: RUNTIME_READS_TRUST_PASSIVELY
-    applies_to: runtime
-    constraint: >
-      Runtime MAY read the active trust contract for trace metadata emission.
-      Runtime MUST NOT branch on trust mode or perform signature verification,
-      payload decryption, or attestation checks. In V0, all such checks are absent.
-      Future trust enforcement is a runtime evolution concern (V3+).
-    enforced_by: process_enforced
+- applies_to: compiled_snapshot
+  enforced_by: compiler_validation
+- applies_to: compiled_snapshot
+  enforced_by: PROCESS_ENFORCED
+- applies_to: compiled_snapshot
+  enforced_by: PROCESS_ENFORCED
+- applies_to: federation_boundary
+  enforced_by: PROCESS_ENFORCED
+- applies_to: runtime
+  enforced_by: PROCESS_ENFORCED
 ```
 
 ---
@@ -143,3 +97,59 @@ with Runtime V3+.
 ## §6. Versioning
 
 Changes to trust semantics require a new constitution version and migration rationale.
+
+---
+
+## Rule Statement
+
+```yaml
+core:
+  description: 'Declares the cryptographic trust regime active for a compiled snapshot.
+
+    Governs whether snapshots must be signed, payloads sealed, runtimes attested,
+
+    and transport encrypted. Trust mode is a compile-time declaration — runtimes
+
+    execute under the declared trust posture rather than negotiating it.
+
+
+    In V0, the trust mode is LOCAL_DEV_UNSIGNED: no cryptographic verification
+
+    is required. This seeds the governance axis for future signed, sealed, and
+
+    attested execution without any protocol redesign.
+
+    '
+  summary: Governs snapshot signing, payload sealing, runtime attestation, encrypted transport, and trust
+    admissibility
+rules:
+- rule_id: TRUST_MODE_MUST_BE_DECLARED
+  constraint: 'Every compiled snapshot MUST declare exactly one active trust contract. A snapshot with
+    no trust declaration is a compiler validation failure.
+
+    '
+- rule_id: TRUST_MODES_ARE_ADDITIVE
+  constraint: 'Trust modes are cumulative. SIGNED_SNAPSHOT requires signing but not payload encryption.
+    SEALED_PAYLOAD requires both signing and payload encryption. ATTESTED_RUNTIME additionally requires
+    runtime attestation. Each mode is a superset of the previous.
+
+    '
+- rule_id: UNSIGNED_SNAPSHOTS_LOCAL_ONLY
+  constraint: 'Snapshots compiled with LOCAL_DEV_UNSIGNED trust mode MUST NOT be deployed to non-local
+    execution substrates. This is enforced by governance process at V0; future compiler validation will
+    assert this mechanically.
+
+    '
+- rule_id: TRUST_IS_NOT_TRANSPORT
+  constraint: 'FB_CRYPTOGRAPHIC_TRUST governs cryptographic trust posture only. It MUST NOT govern transport
+    protocols, network routing, or TLS configuration. Transport security is an infrastructure concern;
+    trust posture is a governance concern.
+
+    '
+- rule_id: RUNTIME_READS_TRUST_PASSIVELY
+  constraint: 'Runtime MAY read the active trust contract for trace metadata emission. Runtime MUST NOT
+    branch on trust mode or perform signature verification, payload decryption, or attestation checks.
+    In V0, all such checks are absent. Future trust enforcement is a runtime evolution concern (V3+).
+
+    '
+```

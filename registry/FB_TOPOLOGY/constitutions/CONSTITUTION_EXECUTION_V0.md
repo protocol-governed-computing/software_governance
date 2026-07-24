@@ -2,42 +2,22 @@
 
 ## Machine
 ```yaml
-fqdn: fb.topology::CONSTITUTION_EXECUTION_V0
-constitution_code: CONSTITUTION_EXECUTION_V0
 artifact_kind: CONSTITUTION
 version: V0
 governed_by: fb.vocabulary::CONSTITUTION_VOCABULARY_V0
-
 core:
-  description: Governs workflow execution semantics — phases, dispatch, determinism, and error propagation
-  scope: system
   enforcement_model: compiler_enforced
-
 rules:
-  - rule_id: EXECUTION_PHASE_ORDER
-    applies_to: system
-    constraint: execution MUST proceed through phases INTERPRET→ADMIT→DISPATCH→EVALUATE→EXIT in order; no phase may be skipped
-    enforced_by: TBD
-
-  - rule_id: EXECUTION_NO_BUSINESS_LOGIC
-    applies_to: system
-    constraint: execution MUST NOT encode business rules or domain logic
-    enforced_by: TBD
-
-  - rule_id: EXECUTION_NO_SILENT_FAILURE
-    applies_to: system
-    constraint: all violations MUST emit explicit trace; no silent failures or swallowed exceptions
-    enforced_by: TBD
-
-  - rule_id: EXECUTION_DECLARED_SIDE_EFFECTS_ONLY
-    applies_to: system
-    constraint: side effects MUST only occur through declared CS artifacts
-    enforced_by: TBD
-
-  - rule_id: EXECUTION_DETERMINISM
-    applies_to: system
-    constraint: given identical inputs and policy, execution MUST produce identical trace
-    enforced_by: TBD
+- applies_to: system
+  enforced_by: TBD
+- applies_to: system
+  enforced_by: TBD
+- applies_to: system
+  enforced_by: TBD
+- applies_to: system
+  enforced_by: TBD
+- applies_to: system
+  enforced_by: TBD
 ```
 
 ---
@@ -209,3 +189,24 @@ Changes to this constitution require:
 - All dependent schemas updated
 
 No backward compatibility assumed.
+
+---
+
+## Rule Statement
+
+```yaml
+core:
+  description: Governs workflow execution semantics — phases, dispatch, determinism, and error propagation
+rules:
+- rule_id: EXECUTION_PHASE_ORDER
+  constraint: execution MUST proceed through phases INTERPRET→ADMIT→DISPATCH→EVALUATE→EXIT in order; no
+    phase may be skipped
+- rule_id: EXECUTION_NO_BUSINESS_LOGIC
+  constraint: execution MUST NOT encode business rules or domain logic
+- rule_id: EXECUTION_NO_SILENT_FAILURE
+  constraint: all violations MUST emit explicit trace; no silent failures or swallowed exceptions
+- rule_id: EXECUTION_DECLARED_SIDE_EFFECTS_ONLY
+  constraint: side effects MUST only occur through declared CS artifacts
+- rule_id: EXECUTION_DETERMINISM
+  constraint: given identical inputs and policy, execution MUST produce identical trace
+```

@@ -5,23 +5,13 @@ Architectural Invariant
 ## Machine
 
 ```yaml
-invariant_code: INVARIANT_FQDN_ONLY_REFERENCES_V0
 artifact_kind: INVARIANT
 version: V0
 governed_by: fb.constitution::CONSTITUTION_INVARIANTS_V0
-
 core:
-  summary: All artifact references must use FQDN (layer::code), never short names
-  rule: All cross-artifact references must use fully qualified domain names in format layer::artifact_code
-  scope:
-    - CC
-    - CT
-    - CS
-    - WF
-    - IN
-    - RB
-    - STRUCTURE
-    - TEST_DATA
+  enforcement_stage:
+  - compiler_assertion
+  violation_response: FAIL_IMMEDIATELY
 ```
 
 ## Summary
@@ -104,3 +94,13 @@ Scan all artifact Machine sections for:
 
 - `governance::STRUCTURE_FQDN_TREE_V0` - Defines FQDN format
 - `fb.constitution::CONSTITUTION_ARTIFACT_SCHEMA_V0` - Defines reference fields
+
+---
+
+## Rule Statement
+
+```yaml
+core:
+  rule: All cross-artifact references must use fully qualified domain names in format layer::artifact_code
+  summary: All artifact references must use FQDN (layer::code), never short names
+```

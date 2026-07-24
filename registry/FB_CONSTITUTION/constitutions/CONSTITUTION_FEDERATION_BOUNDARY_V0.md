@@ -2,102 +2,28 @@
 
 ## Machine
 ```yaml
-fqdn: fb.constitution::CONSTITUTION_FEDERATION_BOUNDARY_V0
-constitution_code: CONSTITUTION_FEDERATION_BOUNDARY_V0
 artifact_kind: CONSTITUTION
 version: V0
 governed_by: fb.constitution::CONSTITUTION_GOVERNANCE_V0
-
 core:
-  description: >
-    Governs the existence, semantics, and placement rules of federation boundaries.
-    Defines sovereign vs delegated authority, governance locality doctrine, cross-boundary
-    legality, and the anti-sprawl rule that prevents boundary proliferation.
-  scope: system
   enforcement_model: process_enforced
-
-doctrine: >
-  A federation boundary is a semantic sovereignty construct, not an implementation
-  packaging construct. A boundary exists only when a distinct governance authority exists.
-
 rules:
-  - rule_id: BOUNDARY_SEMANTIC_SOVEREIGNTY
-    applies_to: federation_boundary
-    constraint: >
-      A federation boundary MUST correspond to a distinct, named semantic governance
-      authority. A boundary MUST NOT be introduced to represent a packaging unit,
-      deployment boundary, runtime unit, or repository boundary. The existence of a
-      boundary is justified only by the existence of governance authority, not by
-      implementation convenience.
-    enforced_by: PROCESS_ENFORCED
-
-  - rule_id: BOUNDARY_EXISTS_WHEN_AUTHORITY_EXISTS
-    applies_to: federation_boundary
-    constraint: >
-      A federation boundary MUST NOT be created unless at least one governance artifact
-      (constitution, invariant, or assertion) exists within it. Empty or placeholder
-      boundaries are constitutional violations. The first governance law triggers boundary
-      creation; boundary creation does not precede governance law.
-    enforced_by: PROCESS_ENFORCED
-
-  - rule_id: BOUNDARY_SOVEREIGNTY_LEVELS
-    applies_to: federation_boundary
-    constraint: >
-      Exactly one sovereign boundary exists: FB_CONSTITUTION. All other boundaries are
-      delegated. Delegated boundaries derive authority from FB_CONSTITUTION and MUST NOT
-      exceed that delegation. A second sovereign boundary is a constitutional violation.
-    enforced_by: PROCESS_ENFORCED
-
-  - rule_id: BOUNDARY_OPEN_ENDED
-    applies_to: federation_boundary
-    constraint: >
-      Federation boundaries are open-ended. New boundaries MAY be introduced as distinct
-      governance authorities emerge. There is no fixed or closed set of federation
-      boundaries. This contrasts with Functional Layers (closed) and Execution Concerns
-      (closed), which have fixed membership.
-    enforced_by: PROCESS_ENFORCED
-
-  - rule_id: BOUNDARY_GOVERNANCE_LOCALITY
-    applies_to: governance_artifact
-    constraint: >
-      A governance artifact belongs in pgs_governance (central) if and only if it governs
-      all PGS systems universally. A governance artifact belongs in a domain repository
-      (local) if it exists because of domain-specific semantics. Placing domain-specific
-      governance centrally is a governance locality violation. Placing universal governance
-      locally is also a violation.
-    enforced_by: PROCESS_ENFORCED
-
-  - rule_id: BOUNDARY_NO_CROSS_OWNERSHIP
-    applies_to: federation_boundary
-    constraint: >
-      No federation boundary MAY declare governance authority over artifacts owned by
-      another boundary without explicit delegation. Cross-boundary references MUST be
-      declared. Implicit authority inheritance and ambient cross-boundary governance are
-      prohibited.
-    enforced_by: PROCESS_ENFORCED
-
-  - rule_id: BOUNDARY_ANTI_SPRAWL
-    applies_to: federation_boundary
-    constraint: >
-      Boundaries MUST NOT be introduced to mirror: organizational structure, repository
-      topology, deployment units, runtime packaging, or implementation convenience.
-      The only valid justification for a new boundary is a new distinct semantic governance
-      authority that cannot be expressed within existing boundaries.
-    enforced_by: PROCESS_ENFORCED
-
-  - rule_id: BOUNDARY_ONBOARDING_REQUIRED
-    applies_to: federation_boundary
-    constraint: >
-      Every new FB_* introduced into PGS MUST complete four onboarding steps before
-      the boundary is considered compiler-admissible: (1) governance registration —
-      directory created under pgs_governance/registry/FB_*/; (2) namespace derivation rule
-      declared in STRUCTURE_IDENTITY_V0 mapping the registry module path to a fb.*
-      namespace; (3) all governed artifacts within the boundary contain a valid ## Machine
-      declaration parseable by S1_EXTRACT; (4) governance compilation succeeds without
-      errors for all affected build structures. Omitting any step is a constitutional
-      violation — the compiler will fail with E901 or E101 and the boundary is not
-      admissible until all steps are satisfied.
-    enforced_by: PROCESS_ENFORCED
+- applies_to: federation_boundary
+  enforced_by: PROCESS_ENFORCED
+- applies_to: federation_boundary
+  enforced_by: PROCESS_ENFORCED
+- applies_to: federation_boundary
+  enforced_by: PROCESS_ENFORCED
+- applies_to: federation_boundary
+  enforced_by: PROCESS_ENFORCED
+- applies_to: governance_artifact
+  enforced_by: PROCESS_ENFORCED
+- applies_to: federation_boundary
+  enforced_by: PROCESS_ENFORCED
+- applies_to: federation_boundary
+  enforced_by: PROCESS_ENFORCED
+- applies_to: federation_boundary
+  enforced_by: PROCESS_ENFORCED
 ```
 
 ---
@@ -325,3 +251,77 @@ Boundaries do not justify governance authority.
 ---
 
 ## End of Constitution
+
+---
+
+## Rule Statement
+
+```yaml
+doctrine: 'A federation boundary is a semantic sovereignty construct, not an implementation packaging
+  construct. A boundary exists only when a distinct governance authority exists.
+
+  '
+core:
+  description: 'Governs the existence, semantics, and placement rules of federation boundaries. Defines
+    sovereign vs delegated authority, governance locality doctrine, cross-boundary legality, and the anti-sprawl
+    rule that prevents boundary proliferation.
+
+    '
+rules:
+- rule_id: BOUNDARY_SEMANTIC_SOVEREIGNTY
+  constraint: 'A federation boundary MUST correspond to a distinct, named semantic governance authority.
+    A boundary MUST NOT be introduced to represent a packaging unit, deployment boundary, runtime unit,
+    or repository boundary. The existence of a boundary is justified only by the existence of governance
+    authority, not by implementation convenience.
+
+    '
+- rule_id: BOUNDARY_EXISTS_WHEN_AUTHORITY_EXISTS
+  constraint: 'A federation boundary MUST NOT be created unless at least one governance artifact (constitution,
+    invariant, or assertion) exists within it. Empty or placeholder boundaries are constitutional violations.
+    The first governance law triggers boundary creation; boundary creation does not precede governance
+    law.
+
+    '
+- rule_id: BOUNDARY_SOVEREIGNTY_LEVELS
+  constraint: 'Exactly one sovereign boundary exists: FB_CONSTITUTION. All other boundaries are delegated.
+    Delegated boundaries derive authority from FB_CONSTITUTION and MUST NOT exceed that delegation. A
+    second sovereign boundary is a constitutional violation.
+
+    '
+- rule_id: BOUNDARY_OPEN_ENDED
+  constraint: 'Federation boundaries are open-ended. New boundaries MAY be introduced as distinct governance
+    authorities emerge. There is no fixed or closed set of federation boundaries. This contrasts with
+    Functional Layers (closed) and Execution Concerns (closed), which have fixed membership.
+
+    '
+- rule_id: BOUNDARY_GOVERNANCE_LOCALITY
+  constraint: 'A governance artifact belongs in pgs_governance (central) if and only if it governs all
+    PGS systems universally. A governance artifact belongs in a domain repository (local) if it exists
+    because of domain-specific semantics. Placing domain-specific governance centrally is a governance
+    locality violation. Placing universal governance locally is also a violation.
+
+    '
+- rule_id: BOUNDARY_NO_CROSS_OWNERSHIP
+  constraint: 'No federation boundary MAY declare governance authority over artifacts owned by another
+    boundary without explicit delegation. Cross-boundary references MUST be declared. Implicit authority
+    inheritance and ambient cross-boundary governance are prohibited.
+
+    '
+- rule_id: BOUNDARY_ANTI_SPRAWL
+  constraint: 'Boundaries MUST NOT be introduced to mirror: organizational structure, repository topology,
+    deployment units, runtime packaging, or implementation convenience. The only valid justification for
+    a new boundary is a new distinct semantic governance authority that cannot be expressed within existing
+    boundaries.
+
+    '
+- rule_id: BOUNDARY_ONBOARDING_REQUIRED
+  constraint: 'Every new FB_* introduced into PGS MUST complete four onboarding steps before the boundary
+    is considered compiler-admissible: (1) governance registration — directory created under pgs_governance/registry/FB_*/;
+    (2) namespace derivation rule declared in STRUCTURE_IDENTITY_V0 mapping the registry module path to
+    a fb.* namespace; (3) all governed artifacts within the boundary contain a valid ## Machine declaration
+    parseable by S1_EXTRACT; (4) governance compilation succeeds without errors for all affected build
+    structures. Omitting any step is a constitutional violation — the compiler will fail with E901 or
+    E101 and the boundary is not admissible until all steps are satisfied.
+
+    '
+```

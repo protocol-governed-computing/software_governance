@@ -3,17 +3,13 @@
 ## Machine
 
 ```yaml
-invariant_code: INVARIANT_TOPOLOGY_TRANSPORT_ORTHOGONAL_V0
 artifact_kind: INVARIANT
 version: V0
 governed_by: fb.topology::CONSTITUTION_EXECUTION_TOPOLOGY_V0
-
 core:
-  summary: Execution topology must not encode transport semantics — no HTTP routing, endpoint dispatch, transport conditions, or TE projection rules inside steps
-  rule: Execution topology steps must not declare fields that carry transport semantics (http_method, endpoint, transport_target, response_code, content_type, headers, projection_rules); transport governs boundaries and topology governs traversal; these are orthogonal planes
-  scope:
-    - CC
-
+  enforcement_stage:
+  - compiler_assertion
+  violation_response: FAIL_IMMEDIATELY
 ```
 
 ---
@@ -58,3 +54,16 @@ Once a step knows its transport context, the execution graph is no longer pure �
 transport state through the governance surface. This invariant prevents that collapse.
 
 This is a Phase 1 stub. Field name detection is implemented in Phase 3.
+
+---
+
+## Rule Statement
+
+```yaml
+core:
+  rule: Execution topology steps must not declare fields that carry transport semantics (http_method,
+    endpoint, transport_target, response_code, content_type, headers, projection_rules); transport governs
+    boundaries and topology governs traversal; these are orthogonal planes
+  summary: Execution topology must not encode transport semantics — no HTTP routing, endpoint dispatch,
+    transport conditions, or TE projection rules inside steps
+```

@@ -5,16 +5,13 @@ Architectural Invariant
 ## Machine
 
 ```yaml
-invariant_code: INVARIANT_TEST_DATA_MATCH_CT_OUTPUT_V0
 artifact_kind: INVARIANT
 version: V0
 governed_by: fb.constitution::CONSTITUTION_INVARIANTS_V0
-
 core:
-  summary: TEST_DATA expected outputs must match CT output contract
-  rule: All TEST_DATA artifacts must declare expected outputs matching their target CT output keys
-  scope:
-    - TEST_DATA
+  enforcement_stage:
+  - compiler_assertion
+  violation_response: FAIL_IMMEDIATELY
 ```
 
 ## Summary
@@ -85,3 +82,13 @@ TEST_DATA contract matching ensures:
 
 - `governance::INVARIANT_CT_OUTPUT_CONTRACT_MATCH_V0` - Complementary check
 - `fb.conformance::CONSTITUTION_TEST_DATA_V0` - Governs TEST_DATA structure
+
+---
+
+## Rule Statement
+
+```yaml
+core:
+  rule: All TEST_DATA artifacts must declare expected outputs matching their target CT output keys
+  summary: TEST_DATA expected outputs must match CT output contract
+```

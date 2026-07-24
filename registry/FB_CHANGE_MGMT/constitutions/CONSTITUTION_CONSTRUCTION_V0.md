@@ -2,82 +2,38 @@
 
 ## Machine
 ```yaml
-fqdn: fb.change_mgmt::CONSTITUTION_CONSTRUCTION_V0
-constitution_code: CONSTITUTION_CONSTRUCTION_V0
 artifact_kind: CONSTITUTION
 version: V0
 governed_by: fb.constitution::CONSTITUTION_GOVERNANCE_V0
-
 core:
-  description: Governs the PGS construction phase — the deterministic transformation of the governed Execution Specification (S6b/S7) into protocol artifacts (S8 Build Sheet Set), their compiler-gated promotion, and the S9 Construction Record. Construction consists of Lowering (deterministic expansion of uniquely-derivable information) and Serialization (deterministic encoding into governed artifact form); it is never authoring — the builder decides nothing.
-  scope: construction
   enforcement_model: process_and_compiler_enforced
-
 rules:
-  - rule_id: PROJECTION_COMPLETENESS
-    applies_to: all_construction_stages
-    constraint: every downstream stage consumes only declared structured projections (gov_projection handoffs); no stage may recover information by re-parsing a narrative document
-    enforced_by: PROCESS_ENFORCED
-
-  - rule_id: PROJECTION_FIDELITY
-    applies_to: stage_8
-    constraint: a projection is valid only if Projection(markdown) == Projection(JSON) over the stage's emit-fields; a projection that does not equal its governed source over the intended fields is invalid, not merely incomplete
-    enforced_by: PROCESS_ENFORCED
-
-  - rule_id: PROJECTION_SEMANTIC_CONSISTENCY
-    applies_to: stage_8
-    constraint: the S8 Build Sheet Set must preserve the S7 semantic graph with no addition, loss, or mutation of semantic entities; structural closure alone can pass a semantically-drifted artifact, so semantic preservation across the S7 to S8 projection is a distinct gate
-    enforced_by: PROCESS_ENFORCED
-
-  - rule_id: UNIQUELY_DETERMINED_OR_STOP
-    applies_to: construction
-    constraint: the primitive construction theorem. Construction may introduce information into a protocol artifact ONLY when that information is uniquely determined by governed inputs and constitutional rules; if zero or more than one valid outcome exists, construction SHALL STOP and report a gap — selecting among alternatives is design, owned upstream by the Execution Specification (S6b). Construction realizes this as deterministic LOWERING (expansion of a governed default where the graph is silent, plus propagation of declared information along edges) followed by SERIALIZATION (encoding the result; it introduces no information). Every lowering rule is an instance of this theorem (exactly-one-or-STOP); CONSTRUCTION_IS_NON_AUTHORIAL_TRANSCRIPTION and the default-expansion guardrail derive from it; it interlocks with PROJECTION_COMPLETENESS — a closed projection is one where every construction step has exactly one answer, so a multi-outcome ambiguity is exactly a gap. The catalog of lowering rules (DEFAULT_EXECUTION_EXPANSION, BINDING_PROPAGATION, TYPE_PROPAGATION, …) lives in CONSTRUCTION_MODEL_V0 and extends the doctrine, never this constitution.
-    enforced_by: PROCESS_ENFORCED
-
-  - rule_id: CONSTRUCTION_IS_NON_AUTHORIAL_TRANSCRIPTION
-    applies_to: construction
-    constraint: a derivation of UNIQUELY_DETERMINED_OR_STOP. Construction is transcription of a complete specification, not authoring. Sub-rule (no design in construction) — the S8 Build Sheet is assembled not authored; a decision required during construction is a GAP resolved upstream (S5-S7); a missing element is a STOP, never a guess. Enforcement outcome (no invention) — zero design invention is demonstrated empirically by independent-builder convergence, never proven statically
-    enforced_by: PROCESS_ENFORCED
-
-  - rule_id: CONSTRUCTION_CLOSURE_STATIC
-    applies_to: stage_8
-    constraint: a Build Sheet reaches CONSTRUCTION_READY only when three statically-checkable asserts hold — ASSERT_STRUCTURE_COMPLETE, ASSERT_PROVENANCE_COMPLETE, ASSERT_DECISION_COMPLETE (no GAP of any class remains); a set is CONSTRUCTION_READY when every sheet passes all three
-    enforced_by: compiler_validation
-
-  - rule_id: BUILDER_NON_AUTHORITATIVE
-    applies_to: construction
-    constraint: the builder produces an artifact but never self-reports conformance; conformance is measured externally — structural invention against the sheet, convergence against a second builder, admissibility by the compiler. Authority lives in the specification and the gates, not in the builder; builders are interchangeable
-    enforced_by: PROCESS_ENFORCED
-
-  - rule_id: SINGLE_COMPILATION_CONTEXT
-    applies_to: construction_validation
-    constraint: all construction validation MUST occur against a read-only canonical snapshot plus an ephemeral overlay, never against mutable registry state; a single truth context is required so validation is deterministic and a candidate cannot be valid in staging yet invalid in canonical
-    enforced_by: PROCESS_ENFORCED
-
-  - rule_id: COMPILER_GATED_PROMOTION
-    applies_to: promotion
-    constraint: only a candidate the compiler admits (compile clean plus pi validate strict) may be promoted into the canonical registry; a non-admissible candidate is rolled back and its diagnostics recorded for regeneration; the registry only ever retains validated artifacts; generate, never patch; promotion follows validation, never precedes it
-    enforced_by: compiler_validation
-
-  - rule_id: PROMOTION_SEMANTICS_GOVERNED_BY_CM
-    applies_to: promotion
-    constraint: this constitution is the law of promotion — what may land, the preconditions (a green candidate), rollback-on-red, and generate-never-patch are governed here
-    enforced_by: PROCESS_ENFORCED
-
-  - rule_id: PROMOTION_EXECUTION_IMPLEMENTED_BY_SDLC
-    applies_to: promotion
-    constraint: the mechanics of the cross-repo registry mutation are executed by the SDLC promotion layer, not by change management; change management is the law, the SDLC layer is the execution system; the present bridge is a transitional executor and change management MUST NOT own the mutation
-    enforced_by: PROCESS_ENFORCED
-
-  - rule_id: CONSTRUCTION_RECORD_EVIDENCE_ONLY
-    applies_to: stage_9
-    constraint: the S9 Construction Record records what actually happened during construction — evidence only; it contains no new design, schema, routing, binding, or composition decision; a deviation from the Build Sheet is explicit and approved, never silent; a missing design decision discovered during construction is returned upstream (S5-S7) and re-enters through S8, never resolved in S9
-    enforced_by: PROCESS_ENFORCED
-
-  - rule_id: CONSTRUCTION_LADDER_ENDS_AT_CLOSED
-    applies_to: construction
-    constraint: the construction readiness ladder is DESIGNED to BUILDABLE to CONSTRUCTION_READY to CONSTRUCTION_CLOSED; runtime lifecycle (DEPLOYED, RUNTIME_VALIDATED) is out of this constitution's authority and is governed downstream by fb.topology::CONSTITUTION_EXECUTION_V0 and fb.topology::CONSTITUTION_TRACE_EXECUTION_V0
-    enforced_by: PROCESS_ENFORCED
+- applies_to: all_construction_stages
+  enforced_by: PROCESS_ENFORCED
+- applies_to: stage_8
+  enforced_by: PROCESS_ENFORCED
+- applies_to: stage_8
+  enforced_by: PROCESS_ENFORCED
+- applies_to: construction
+  enforced_by: PROCESS_ENFORCED
+- applies_to: construction
+  enforced_by: PROCESS_ENFORCED
+- applies_to: stage_8
+  enforced_by: compiler_validation
+- applies_to: construction
+  enforced_by: PROCESS_ENFORCED
+- applies_to: construction_validation
+  enforced_by: PROCESS_ENFORCED
+- applies_to: promotion
+  enforced_by: compiler_validation
+- applies_to: promotion
+  enforced_by: PROCESS_ENFORCED
+- applies_to: promotion
+  enforced_by: PROCESS_ENFORCED
+- applies_to: stage_9
+  enforced_by: PROCESS_ENFORCED
+- applies_to: construction
+  enforced_by: PROCESS_ENFORCED
 ```
 
 ---
@@ -231,3 +187,80 @@ V0 intentionally governs the human-reviewed, agent-assisted construction phase w
 ---
 
 ## End of Constitution
+
+---
+
+## Rule Statement
+
+```yaml
+core:
+  description: Governs the PGS construction phase — the deterministic transformation of the governed Execution
+    Specification (S6b/S7) into protocol artifacts (S8 Build Sheet Set), their compiler-gated promotion,
+    and the S9 Construction Record. Construction consists of Lowering (deterministic expansion of uniquely-derivable
+    information) and Serialization (deterministic encoding into governed artifact form); it is never authoring
+    — the builder decides nothing.
+rules:
+- rule_id: PROJECTION_COMPLETENESS
+  constraint: every downstream stage consumes only declared structured projections (gov_projection handoffs);
+    no stage may recover information by re-parsing a narrative document
+- rule_id: PROJECTION_FIDELITY
+  constraint: a projection is valid only if Projection(markdown) == Projection(JSON) over the stage's
+    emit-fields; a projection that does not equal its governed source over the intended fields is invalid,
+    not merely incomplete
+- rule_id: PROJECTION_SEMANTIC_CONSISTENCY
+  constraint: the S8 Build Sheet Set must preserve the S7 semantic graph with no addition, loss, or mutation
+    of semantic entities; structural closure alone can pass a semantically-drifted artifact, so semantic
+    preservation across the S7 to S8 projection is a distinct gate
+- rule_id: UNIQUELY_DETERMINED_OR_STOP
+  constraint: the primitive construction theorem. Construction may introduce information into a protocol
+    artifact ONLY when that information is uniquely determined by governed inputs and constitutional rules;
+    if zero or more than one valid outcome exists, construction SHALL STOP and report a gap — selecting
+    among alternatives is design, owned upstream by the Execution Specification (S6b). Construction realizes
+    this as deterministic LOWERING (expansion of a governed default where the graph is silent, plus propagation
+    of declared information along edges) followed by SERIALIZATION (encoding the result; it introduces
+    no information). Every lowering rule is an instance of this theorem (exactly-one-or-STOP); CONSTRUCTION_IS_NON_AUTHORIAL_TRANSCRIPTION
+    and the default-expansion guardrail derive from it; it interlocks with PROJECTION_COMPLETENESS — a
+    closed projection is one where every construction step has exactly one answer, so a multi-outcome
+    ambiguity is exactly a gap. The catalog of lowering rules (DEFAULT_EXECUTION_EXPANSION, BINDING_PROPAGATION,
+    TYPE_PROPAGATION, …) lives in CONSTRUCTION_MODEL_V0 and extends the doctrine, never this constitution.
+- rule_id: CONSTRUCTION_IS_NON_AUTHORIAL_TRANSCRIPTION
+  constraint: a derivation of UNIQUELY_DETERMINED_OR_STOP. Construction is transcription of a complete
+    specification, not authoring. Sub-rule (no design in construction) — the S8 Build Sheet is assembled
+    not authored; a decision required during construction is a GAP resolved upstream (S5-S7); a missing
+    element is a STOP, never a guess. Enforcement outcome (no invention) — zero design invention is demonstrated
+    empirically by independent-builder convergence, never proven statically
+- rule_id: CONSTRUCTION_CLOSURE_STATIC
+  constraint: a Build Sheet reaches CONSTRUCTION_READY only when three statically-checkable asserts hold
+    — ASSERT_STRUCTURE_COMPLETE, ASSERT_PROVENANCE_COMPLETE, ASSERT_DECISION_COMPLETE (no GAP of any class
+    remains); a set is CONSTRUCTION_READY when every sheet passes all three
+- rule_id: BUILDER_NON_AUTHORITATIVE
+  constraint: the builder produces an artifact but never self-reports conformance; conformance is measured
+    externally — structural invention against the sheet, convergence against a second builder, admissibility
+    by the compiler. Authority lives in the specification and the gates, not in the builder; builders
+    are interchangeable
+- rule_id: SINGLE_COMPILATION_CONTEXT
+  constraint: all construction validation MUST occur against a read-only canonical snapshot plus an ephemeral
+    overlay, never against mutable registry state; a single truth context is required so validation is
+    deterministic and a candidate cannot be valid in staging yet invalid in canonical
+- rule_id: COMPILER_GATED_PROMOTION
+  constraint: only a candidate the compiler admits (compile clean plus pi validate strict) may be promoted
+    into the canonical registry; a non-admissible candidate is rolled back and its diagnostics recorded
+    for regeneration; the registry only ever retains validated artifacts; generate, never patch; promotion
+    follows validation, never precedes it
+- rule_id: PROMOTION_SEMANTICS_GOVERNED_BY_CM
+  constraint: this constitution is the law of promotion — what may land, the preconditions (a green candidate),
+    rollback-on-red, and generate-never-patch are governed here
+- rule_id: PROMOTION_EXECUTION_IMPLEMENTED_BY_SDLC
+  constraint: the mechanics of the cross-repo registry mutation are executed by the SDLC promotion layer,
+    not by change management; change management is the law, the SDLC layer is the execution system; the
+    present bridge is a transitional executor and change management MUST NOT own the mutation
+- rule_id: CONSTRUCTION_RECORD_EVIDENCE_ONLY
+  constraint: the S9 Construction Record records what actually happened during construction — evidence
+    only; it contains no new design, schema, routing, binding, or composition decision; a deviation from
+    the Build Sheet is explicit and approved, never silent; a missing design decision discovered during
+    construction is returned upstream (S5-S7) and re-enters through S8, never resolved in S9
+- rule_id: CONSTRUCTION_LADDER_ENDS_AT_CLOSED
+  constraint: the construction readiness ladder is DESIGNED to BUILDABLE to CONSTRUCTION_READY to CONSTRUCTION_CLOSED;
+    runtime lifecycle (DEPLOYED, RUNTIME_VALIDATED) is out of this constitution's authority and is governed
+    downstream by fb.topology::CONSTITUTION_EXECUTION_V0 and fb.topology::CONSTITUTION_TRACE_EXECUTION_V0
+```

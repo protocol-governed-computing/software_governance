@@ -3,17 +3,13 @@
 ## Machine
 
 ```yaml
-invariant_code: INVARIANT_NO_RUNTIME_TOPOLOGY_SYNTHESIS_V0
 artifact_kind: INVARIANT
 version: V0
 governed_by: fb.topology::CONSTITUTION_EXECUTION_TOPOLOGY_V0
-
 core:
-  summary: execution topology MUST NOT be synthesized, generated, or inferred at runtime; all topology steps must be explicitly declared in the compiled artifact before execution begins
-  rule: no runtime component may construct topology steps from dynamic inputs, environment state, payload content, authority grants, or any form of runtime inference; the complete topology graph must exist in the compiled artifact
-  scope:
-    - CC
-
+  enforcement_stage:
+  - compiler_assertion
+  violation_response: FAIL_IMMEDIATELY
 ```
 
 ---
@@ -53,3 +49,16 @@ destroys the governance model. Runtime topology synthesis is not a performance c
 a style concern: it is an architectural violation.
 
 This is a Phase 1 stub. Full enforcement is implemented in Phase 3.
+
+---
+
+## Rule Statement
+
+```yaml
+core:
+  rule: no runtime component may construct topology steps from dynamic inputs, environment state, payload
+    content, authority grants, or any form of runtime inference; the complete topology graph must exist
+    in the compiled artifact
+  summary: execution topology MUST NOT be synthesized, generated, or inferred at runtime; all topology
+    steps must be explicitly declared in the compiled artifact before execution begins
+```

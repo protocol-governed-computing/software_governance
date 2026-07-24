@@ -3,25 +3,13 @@
 ## Machine
 
 ```yaml
-invariant_code: INVARIANT_UNIQUE_ARTIFACT_ID_V0
 artifact_kind: INVARIANT
 version: V0
 governed_by: fb.constitution::CONSTITUTION_INVARIANTS_V0
-
 core:
-  description: Each fqdn_id must be unique across compilation graph
-
   enforcement_stage:
-    - compiler_validation
-
-  scope:
-    - ALL_ARTIFACT_KINDS
-
+  - compiler_validation
   violation_response: FAIL_IMMEDIATELY
-
-
-  anti_patterns:
-    - duplicate_fqdn: "Multiple artifacts share same fqdn_id"
 ```
 
 ---
@@ -30,3 +18,14 @@ core:
 
 Ensures that every artifact in the compilation graph has a globally unique identity (FQDN).
 Prevents silent overwrites where multiple physical files claim the same logical identity.
+
+---
+
+## Rule Statement
+
+```yaml
+core:
+  description: Each fqdn_id must be unique across compilation graph
+  anti_patterns:
+  - duplicate_fqdn: Multiple artifacts share same fqdn_id
+```

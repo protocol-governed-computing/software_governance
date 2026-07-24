@@ -3,43 +3,13 @@
 ## Machine
 
 ```yaml
-invariant_code: INVARIANT_CC_CAPABILITY_BINDING_VALID_V0
 artifact_kind: INVARIANT
 version: V0
 governed_by: fb.constitution::CONSTITUTION_INVARIANTS_V0
-
 core:
-  description: >
-    Each CC pipeline step must bind exactly ONE capability:
-    - Either CT (transform) for pure computation
-    - Or CS (side_effect) for I/O operations
-    - Never both (violates single responsibility)
-    - Never zero (step has no implementation)
-
-    Binding must use valid FQDN that resolves to existing artifact.
-
   enforcement_stage:
-    - compiler_validation
-
-  scope:
-    - CAPABILITY_CONTRACTS
-
+  - compiler_validation
   violation_response: FAIL_IMMEDIATELY
-
-
-  anti_patterns:
-    - zero_bindings: "Pipeline step has no capability binding (neither transform nor side_effect)"
-    - dual_bindings: "Pipeline step binds both CT and CS (violates single responsibility)"
-    - invalid_fqdn: "Capability FQDN does not resolve to existing artifact"
-
-  clarification:
-    single_responsibility: >
-      Each pipeline step is atomic capability invocation.
-      One step = one capability = one CT or one CS.
-      Multiple capabilities = multiple steps.
-    fqdn_resolution: >
-      Capability binding validation delegates to INVARIANT_FQDN_ONLY_REFERENCES_V0.
-      This invariant validates cardinality (exactly one), that invariant validates resolution.
 ```
 
 ---
@@ -158,3 +128,29 @@ pipeline:
 ## Version History
 
 - **V0**: Initial implementation (2026-04-12) - CC Capability Binding Validation
+
+---
+
+## Rule Statement
+
+```yaml
+core:
+  description: 'Each CC pipeline step must bind exactly ONE capability: - Either CT (transform) for pure
+    computation - Or CS (side_effect) for I/O operations - Never both (violates single responsibility)
+    - Never zero (step has no implementation)
+
+    Binding must use valid FQDN that resolves to existing artifact.
+
+    '
+  anti_patterns:
+  - zero_bindings: Pipeline step has no capability binding (neither transform nor side_effect)
+  - dual_bindings: Pipeline step binds both CT and CS (violates single responsibility)
+  - invalid_fqdn: Capability FQDN does not resolve to existing artifact
+  clarification:
+    single_responsibility: 'Each pipeline step is atomic capability invocation. One step = one capability
+      = one CT or one CS. Multiple capabilities = multiple steps.
+
+      '
+    fqdn_resolution: Capability binding validation delegates to INVARIANT_FQDN_ONLY_REFERENCES_V0. This
+      invariant validates cardinality (exactly one), that invariant validates resolution.
+```

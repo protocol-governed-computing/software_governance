@@ -23,21 +23,25 @@ exhaustive across all mutable storage capabilities.
 ## Machine
 
 ```yaml
-surface_contract_code: SURFACE_CONTRACT_STORAGE_READ_V0
 artifact_kind: SURFACE_CONTRACT
 version: V0
 governed_by: fb.topology::CONSTITUTION_EXECUTION_TOPOLOGY_V0
-
-capability_family: STORAGE
-op: READ
-
-canonical_surface:
-  - SUCCESS
-  - NOT_FOUND
-  - VIOLATION
-  - BACKEND_ERROR
-
+surface_contract_code: SURFACE_CONTRACT_STORAGE_READ_V0
 governs:
-  - CS_MUTABLE_JSON_V0
-  - CS_NAME_REGISTRY_V0
+- CS_MUTABLE_JSON_V0
+- CS_NAME_REGISTRY_V0
+op: READ
+canonical_surface:
+- SUCCESS
+- NOT_FOUND
+- VIOLATION
+- BACKEND_ERROR
+```
+
+---
+
+## Rule Statement
+
+```yaml
+capability_family: STORAGE
 ```

@@ -3,61 +3,22 @@
 ## Machine
 
 ```yaml
-constitution_code: CONSTITUTION_EXECUTION_PLACEMENT_V0
 artifact_kind: CONSTITUTION
 version: V0
 governed_by: fb.constitution::CONSTITUTION_GOVERNANCE_V0
-fqdn: fb.execution_placement::CONSTITUTION_EXECUTION_PLACEMENT_V0
-
 core:
-  summary: Governs execution substrate legality, locality, isolation, and placement admissibility
-  description: |
-    Declares which execution substrates are legal, how execution locality is
-    constrained, and what placement modes a compiled snapshot may authorize.
-    Placement is a compile-time governance declaration — not a runtime decision.
-    The runtime executes the already-governed placement; it does not negotiate it.
-  scope: system
   enforcement_model: compiler_enforced
-
 rules:
-  - rule_id: PLACEMENT_MUST_BE_DECLARED
-    applies_to: compiled_snapshot
-    constraint: >
-      Every compiled snapshot MUST declare exactly one active placement contract.
-      A snapshot with no placement declaration is a compiler validation failure.
-    enforced_by: compiler_validation
-
-  - rule_id: PLACEMENT_IMMUTABLE_AFTER_COMPILE
-    applies_to: compiled_snapshot
-    constraint: >
-      Placement mode is resolved at compile time and is immutable.
-      Runtime MUST NOT select, override, or negotiate placement mode.
-    enforced_by: compiler_validation
-
-  - rule_id: REMOTE_EXECUTION_REQUIRES_CONTRACT
-    applies_to: compiled_snapshot
-    constraint: >
-      Remote execution is not permitted unless an explicit placement contract
-      authorizing a remote-capable placement mode is present.
-      In V0, only LOCAL_SINGLE_NODE is authorized.
-    enforced_by: compiler_validation
-
-  - rule_id: PLACEMENT_IS_NOT_INFRASTRUCTURE
-    applies_to: federation_boundary
-    constraint: >
-      FB_EXECUTION_PLACEMENT governs semantic placement legality only.
-      It MUST NOT be bound to any infrastructure technology (Kubernetes, AWS,
-      containers, FPGAs). Technology-specific placement is a future runtime
-      concern, not a governance concern.
-    enforced_by: process_enforced
-
-  - rule_id: RUNTIME_READS_PLACEMENT_PASSIVELY
-    applies_to: runtime
-    constraint: >
-      Runtime MAY read the active placement contract for trace metadata emission.
-      Runtime MUST NOT branch on placement mode or alter execution behavior
-      based on placement values.
-    enforced_by: process_enforced
+- applies_to: compiled_snapshot
+  enforced_by: compiler_validation
+- applies_to: compiled_snapshot
+  enforced_by: compiler_validation
+- applies_to: compiled_snapshot
+  enforced_by: compiler_validation
+- applies_to: federation_boundary
+  enforced_by: PROCESS_ENFORCED
+- applies_to: runtime
+  enforced_by: PROCESS_ENFORCED
 ```
 
 ---
@@ -121,3 +82,48 @@ No runtime changes are needed until the runtime evolution model is engaged (V3+)
 ## §5. Versioning
 
 Changes to placement semantics require a new constitution version and migration rationale.
+
+---
+
+## Rule Statement
+
+```yaml
+core:
+  description: 'Declares which execution substrates are legal, how execution locality is
+
+    constrained, and what placement modes a compiled snapshot may authorize.
+
+    Placement is a compile-time governance declaration — not a runtime decision.
+
+    The runtime executes the already-governed placement; it does not negotiate it.
+
+    '
+  summary: Governs execution substrate legality, locality, isolation, and placement admissibility
+rules:
+- rule_id: PLACEMENT_MUST_BE_DECLARED
+  constraint: 'Every compiled snapshot MUST declare exactly one active placement contract. A snapshot
+    with no placement declaration is a compiler validation failure.
+
+    '
+- rule_id: PLACEMENT_IMMUTABLE_AFTER_COMPILE
+  constraint: 'Placement mode is resolved at compile time and is immutable. Runtime MUST NOT select, override,
+    or negotiate placement mode.
+
+    '
+- rule_id: REMOTE_EXECUTION_REQUIRES_CONTRACT
+  constraint: 'Remote execution is not permitted unless an explicit placement contract authorizing a remote-capable
+    placement mode is present. In V0, only LOCAL_SINGLE_NODE is authorized.
+
+    '
+- rule_id: PLACEMENT_IS_NOT_INFRASTRUCTURE
+  constraint: 'FB_EXECUTION_PLACEMENT governs semantic placement legality only. It MUST NOT be bound to
+    any infrastructure technology (Kubernetes, AWS, containers, FPGAs). Technology-specific placement
+    is a future runtime concern, not a governance concern.
+
+    '
+- rule_id: RUNTIME_READS_PLACEMENT_PASSIVELY
+  constraint: 'Runtime MAY read the active placement contract for trace metadata emission. Runtime MUST
+    NOT branch on placement mode or alter execution behavior based on placement values.
+
+    '
+```

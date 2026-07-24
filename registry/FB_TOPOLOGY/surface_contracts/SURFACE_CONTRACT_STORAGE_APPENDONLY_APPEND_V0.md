@@ -23,19 +23,23 @@ append-only storage grows monotonically. These three outcomes are exhaustive.
 ## Machine
 
 ```yaml
-surface_contract_code: SURFACE_CONTRACT_STORAGE_APPENDONLY_APPEND_V0
 artifact_kind: SURFACE_CONTRACT
 version: V0
 governed_by: fb.topology::CONSTITUTION_EXECUTION_TOPOLOGY_V0
-
-capability_family: STORAGE_APPENDONLY
-op: APPEND
-
-canonical_surface:
-  - SUCCESS
-  - VIOLATION
-  - BACKEND_ERROR
-
+surface_contract_code: SURFACE_CONTRACT_STORAGE_APPENDONLY_APPEND_V0
 governs:
-  - CS_APPENDONLY_JSONL_V0
+- CS_APPENDONLY_JSONL_V0
+op: APPEND
+canonical_surface:
+- SUCCESS
+- VIOLATION
+- BACKEND_ERROR
+```
+
+---
+
+## Rule Statement
+
+```yaml
+capability_family: STORAGE_APPENDONLY
 ```

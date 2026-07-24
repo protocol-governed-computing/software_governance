@@ -2,34 +2,20 @@
 
 ## Machine
 ```yaml
-fqdn: fb.transport::CONSTITUTION_ADMISSION_V0
-constitution_code: CONSTITUTION_ADMISSION_V0
 artifact_kind: CONSTITUTION
 version: V0
 governed_by: fb.vocabulary::CONSTITUTION_VOCABULARY_V0
-
 core:
-  description: Governs the pre-DAG admission gate declared within workflow artifacts
-  scope: artifact
-  governs:
-    - WF
   enforcement_model: compiler_enforced
-
+  governs:
+  - WF
 rules:
-  - rule_id: ADMISSION_READ_ONLY
-    applies_to: WF
-    constraint: admission phase MUST NOT mutate payload or emit side effects
-    enforced_by: TBD
-
-  - rule_id: ADMISSION_PRECONDITION_ONLY
-    applies_to: WF
-    constraint: admission determines workflow admissibility only; it MUST NOT influence execution behavior
-    enforced_by: TBD
-
-  - rule_id: ADMISSION_DENIAL_IS_GOVERNED
-    applies_to: WF
-    constraint: admission denial MUST emit trace with error_code ADMISSION_DENIED and exit_reason_code ADMISSION_DENIED
-    enforced_by: TBD
+- applies_to: WF
+  enforced_by: TBD
+- applies_to: WF
+  enforced_by: TBD
+- applies_to: WF
+  enforced_by: TBD
 ```
 
 ---
@@ -137,3 +123,19 @@ Changes to this constitution require:
 - All dependent schemas updated
 
 No backward compatibility assumed.
+
+---
+
+## Rule Statement
+
+```yaml
+core:
+  description: Governs the pre-DAG admission gate declared within workflow artifacts
+rules:
+- rule_id: ADMISSION_READ_ONLY
+  constraint: admission phase MUST NOT mutate payload or emit side effects
+- rule_id: ADMISSION_PRECONDITION_ONLY
+  constraint: admission determines workflow admissibility only; it MUST NOT influence execution behavior
+- rule_id: ADMISSION_DENIAL_IS_GOVERNED
+  constraint: admission denial MUST emit trace with error_code ADMISSION_DENIED and exit_reason_code ADMISSION_DENIED
+```

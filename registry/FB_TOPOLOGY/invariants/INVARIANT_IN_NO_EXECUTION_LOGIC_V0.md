@@ -5,16 +5,13 @@ Architectural Invariant
 ## Machine
 
 ```yaml
-invariant_code: INVARIANT_IN_NO_EXECUTION_LOGIC_V0
 artifact_kind: INVARIANT
 version: V0
 governed_by: fb.topology::CONSTITUTION_INTENT_V0
-
 core:
-  summary: IN artifacts must not contain execution logic fields
-  rule: IN artifacts must not declare execute, callable, implementation, logic, transform, code, or handler fields
-  scope:
-    - IN
+  enforcement_stage:
+  - compiler_assertion
+  violation_response: FAIL_IMMEDIATELY
 ```
 
 ## Summary
@@ -48,3 +45,14 @@ If an IN artifact contains execution logic fields, it has begun to absorb respon
 that belong in the execution layer. This violates separation of concerns and makes the
 intent's role ambiguous. The compiler must reject any IN artifact that declares execution
 fields so that this boundary remains crisp.
+
+---
+
+## Rule Statement
+
+```yaml
+core:
+  rule: IN artifacts must not declare execute, callable, implementation, logic, transform, code, or handler
+    fields
+  summary: IN artifacts must not contain execution logic fields
+```

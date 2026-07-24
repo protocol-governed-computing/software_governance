@@ -5,16 +5,13 @@ Architectural Invariant
 ## Machine
 
 ```yaml
-invariant_code: INVARIANT_CT_OUTPUT_CONTRACT_MATCH_V0
 artifact_kind: INVARIANT
 version: V0
 governed_by: fb.constitution::CONSTITUTION_INVARIANTS_V0
-
 core:
-  summary: CT output structure must match declared capability contract
-  rule: All CT artifacts must produce outputs matching their CC declaration keys and types
-  scope:
-    - CT
+  enforcement_stage:
+  - compiler_assertion
+  violation_response: FAIL_IMMEDIATELY
 ```
 
 ## Summary
@@ -81,3 +78,13 @@ Output contract matching ensures:
 
 - `fb.topology::CONSTITUTION_CAPABILITY_TRANSFORMS_V0` - Governs CT behavior
 - `fb.topology::CONSTITUTION_CAPABILITY_CONTRACT_V0` - Defines CC schema
+
+---
+
+## Rule Statement
+
+```yaml
+core:
+  rule: All CT artifacts must produce outputs matching their CC declaration keys and types
+  summary: CT output structure must match declared capability contract
+```

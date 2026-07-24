@@ -3,17 +3,13 @@
 ## Machine
 
 ```yaml
-invariant_code: INVARIANT_TOPOLOGY_AUTHORITY_ORTHOGONAL_V0
 artifact_kind: INVARIANT
 version: V0
 governed_by: fb.topology::CONSTITUTION_EXECUTION_TOPOLOGY_V0
-
 core:
-  summary: Execution topology must not encode authority semantics — no role branching, permission routing, actor-dependent topology, or authorization field names inside steps
-  rule: Execution topology steps must not declare fields that carry authority semantics (role, permissions, authorized_by, on_role, required_role, authorization, execution_rights); authority is evaluated before topology traversal begins and topology must not reproduce or replicate that surface
-  scope:
-    - CC
-
+  enforcement_stage:
+  - compiler_assertion
+  violation_response: FAIL_IMMEDIATELY
 ```
 
 ---
@@ -58,3 +54,16 @@ Authority is resolved before topology begins. Topology receives a binary: admitt
 It does not receive authority state for consumption.
 
 This is a Phase 1 stub. Field name detection is implemented in Phase 3.
+
+---
+
+## Rule Statement
+
+```yaml
+core:
+  rule: Execution topology steps must not declare fields that carry authority semantics (role, permissions,
+    authorized_by, on_role, required_role, authorization, execution_rights); authority is evaluated before
+    topology traversal begins and topology must not reproduce or replicate that surface
+  summary: Execution topology must not encode authority semantics — no role branching, permission routing,
+    actor-dependent topology, or authorization field names inside steps
+```

@@ -2,57 +2,28 @@
 
 ## Machine
 ```yaml
-fqdn: fb.change_mgmt::CONSTITUTION_CHANGE_MGMT_V0
-constitution_code: CONSTITUTION_CHANGE_MGMT_V0
 artifact_kind: CONSTITUTION
 version: V0
 governed_by: fb.constitution::CONSTITUTION_GOVERNANCE_V0
-
 core:
-  description: Governs the PGS change management design and authoring pipeline (Stages 0–7) — from Change Request through the Authoring Mandate; the S8/S9 construction phase is governed by fb.change_mgmt::CONSTITUTION_CONSTRUCTION_V0
-  scope: change_management
   enforcement_model: process_enforced
-
 rules:
-  - rule_id: STAGE_GATE_MANDATORY
-    applies_to: all_stages
-    constraint: no stage may begin before the prior stage gate is satisfied; no stage may be skipped
-    enforced_by: PROCESS_ENFORCED
-
-  - rule_id: DOSSIER_FIRST
-    applies_to: all_change_requests
-    constraint: the primary unit is the governed change dossier; all stage documents for one CR live flat inside change_mgmt/dossiers/[domain]/[subdomain]/
-    enforced_by: PROCESS_ENFORCED
-
-  - rule_id: PURITY_FILTER_MANDATORY
-    applies_to: stages_1_through_4
-    constraint: business analysis must contain WHAT only; HOW decisions must be deferred to Design Intent; purity filter enforced by authoring agent throughout
-    enforced_by: PROCESS_ENFORCED
-
-  - rule_id: CONSTRUCTION_PHASE_DELEGATED
-    applies_to: stages_8_and_9
-    constraint: the S8 Build Sheet Set, artifact construction, compiler-gated promotion, and the S9 Construction Record are governed by fb.change_mgmt::CONSTITUTION_CONSTRUCTION_V0, not here; a Change Request closes only after the S9 Construction Record is complete and its artifacts compile clean
-    enforced_by: PROCESS_ENFORCED
-
-  - rule_id: GROUNDING_NOT_INHERITED
-    applies_to: all_stages
-    constraint: a stage that introduces a new claim about an existing artifact must establish grounding against authoritative sources (PI/PPS); grounding does not carry from prior-stage narrative; legitimate synthesis or distillation stages may make zero queries and remain conformant
-    enforced_by: PROCESS_ENFORCED
-
-  - rule_id: DISCOVERY_FINDINGS_REQUIRE_PI_VALIDATION
-    applies_to: all_stages
-    constraint: a newly discovered concern, constraint, assumption, dependency, architectural requirement, or gap shall be confirmed with PI before promotion into governed artifacts; discovery may propose, PI authorizes applicability
-    enforced_by: PROCESS_ENFORCED
-
-  - rule_id: CONCERN_TRACEABILITY_REQUIRED
-    applies_to: all_stages
-    constraint: a concern promoted into later stages must remain traceable to its originating finding, validation, or governing constraint (concern identity, not only artifact identity), so audits of immutability, chain-state, genesis, or integrity need not replay entire dossiers
-    enforced_by: PROCESS_ENFORCED
-
-  - rule_id: IDENTITY_PRESERVING_REFERENCE_VALIDATION
-    applies_to: all_stages
-    constraint: artifact references are validated by resolving identity against the artifact index before classifying; exact, typo-alias, wrong-domain, and proposed-new all preserve identity; only no-identity-anywhere is a fabrication; aggregate not-found counts are inadmissible
-    enforced_by: PROCESS_ENFORCED
+- applies_to: all_stages
+  enforced_by: PROCESS_ENFORCED
+- applies_to: all_change_requests
+  enforced_by: PROCESS_ENFORCED
+- applies_to: stages_1_through_4
+  enforced_by: PROCESS_ENFORCED
+- applies_to: stages_8_and_9
+  enforced_by: PROCESS_ENFORCED
+- applies_to: all_stages
+  enforced_by: PROCESS_ENFORCED
+- applies_to: all_stages
+  enforced_by: PROCESS_ENFORCED
+- applies_to: all_stages
+  enforced_by: PROCESS_ENFORCED
+- applies_to: all_stages
+  enforced_by: PROCESS_ENFORCED
 ```
 
 ---
@@ -185,3 +156,42 @@ V0 intentionally defers:
 ---
 
 ## End of Constitution
+
+---
+
+## Rule Statement
+
+```yaml
+core:
+  description: Governs the PGS change management design and authoring pipeline (Stages 0–7) — from Change
+    Request through the Authoring Mandate; the S8/S9 construction phase is governed by fb.change_mgmt::CONSTITUTION_CONSTRUCTION_V0
+rules:
+- rule_id: STAGE_GATE_MANDATORY
+  constraint: no stage may begin before the prior stage gate is satisfied; no stage may be skipped
+- rule_id: DOSSIER_FIRST
+  constraint: the primary unit is the governed change dossier; all stage documents for one CR live flat
+    inside change_mgmt/dossiers/[domain]/[subdomain]/
+- rule_id: PURITY_FILTER_MANDATORY
+  constraint: business analysis must contain WHAT only; HOW decisions must be deferred to Design Intent;
+    purity filter enforced by authoring agent throughout
+- rule_id: CONSTRUCTION_PHASE_DELEGATED
+  constraint: the S8 Build Sheet Set, artifact construction, compiler-gated promotion, and the S9 Construction
+    Record are governed by fb.change_mgmt::CONSTITUTION_CONSTRUCTION_V0, not here; a Change Request closes
+    only after the S9 Construction Record is complete and its artifacts compile clean
+- rule_id: GROUNDING_NOT_INHERITED
+  constraint: a stage that introduces a new claim about an existing artifact must establish grounding
+    against authoritative sources (PI/PPS); grounding does not carry from prior-stage narrative; legitimate
+    synthesis or distillation stages may make zero queries and remain conformant
+- rule_id: DISCOVERY_FINDINGS_REQUIRE_PI_VALIDATION
+  constraint: a newly discovered concern, constraint, assumption, dependency, architectural requirement,
+    or gap shall be confirmed with PI before promotion into governed artifacts; discovery may propose,
+    PI authorizes applicability
+- rule_id: CONCERN_TRACEABILITY_REQUIRED
+  constraint: a concern promoted into later stages must remain traceable to its originating finding, validation,
+    or governing constraint (concern identity, not only artifact identity), so audits of immutability,
+    chain-state, genesis, or integrity need not replay entire dossiers
+- rule_id: IDENTITY_PRESERVING_REFERENCE_VALIDATION
+  constraint: artifact references are validated by resolving identity against the artifact index before
+    classifying; exact, typo-alias, wrong-domain, and proposed-new all preserve identity; only no-identity-anywhere
+    is a fabrication; aggregate not-found counts are inadmissible
+```

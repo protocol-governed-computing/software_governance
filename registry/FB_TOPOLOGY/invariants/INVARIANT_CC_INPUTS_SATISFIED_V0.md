@@ -3,53 +3,13 @@
 ## Machine
 
 ```yaml
-invariant_code: INVARIANT_CC_INPUTS_SATISFIED_V0
 artifact_kind: INVARIANT
 version: V0
 governed_by: fb.constitution::CONSTITUTION_INVARIANTS_V0
-
 core:
-  description: >
-    For each CC node in WF execution graph:
-    - All $.payload.* references must exist in IN payload schema
-    - All $.results.CC_XXX.* references must satisfy:
-      - CC_XXX appears earlier in execution path (dependency ordering)
-      - Field exists in CC_XXX outputs
-      - CC_XXX is reachable (on same execution path, not different branch)
-
-    This validates AVAILABILITY only, not TYPE SAFETY.
-    Field existence ≠ field type correctness.
-
   enforcement_stage:
-    - compiler_validation
-
-  scope:
-    - WORKFLOWS
-    - CAPABILITY_CONTRACTS
-
+  - compiler_validation
   violation_response: FAIL_IMMEDIATELY
-
-
-  anti_patterns:
-    - undefined_payload_field: "CC references $.payload.field that does not exist in IN schema"
-    - undefined_cc_output: "CC references $.results.CC_XXX.field where field does not exist in CC_XXX outputs"
-    - forward_reference: "CC references $.results.CC_XXX.* where CC_XXX appears later in execution path"
-    - unreachable_reference: "CC references $.results.CC_XXX.* where CC_XXX is on different branch (unreachable)"
-
-  clarification:
-    availability_not_type_safety: >
-      This invariant validates that referenced fields EXIST.
-      It does NOT validate that field TYPES match.
-      Example: $.payload.user_id exists ✓, but string vs int is NOT checked.
-    per_path_validation: >
-      Each execution path validated independently.
-      Dependency valid in path A may be invalid in path B.
-      No false positives from unreachable branches.
-    jsonpath_reference_model: >
-      CC inputs use JSONPath to reference data:
-      - $.payload.* → from IN node payload
-      - $.results.step_name.* → from prior pipeline step outputs
-      - $.inputs.* → from CC inputs (WF node bindings)
 ```
 
 ---
@@ -261,3 +221,33 @@ def validate_data_availability(wf_graph, in_node):
 ## Version History
 
 - **V0**: Initial implementation (2026-04-12) - CC Inputs Satisfied Validation
+
+---
+
+## Rule Statement
+
+```yaml
+core:
+  description: "For each CC node in WF execution graph: - All $.payload.* references must exist in IN\
+    \ payload schema - All $.results.CC_XXX.* references must satisfy:\n  - CC_XXX appears earlier in\
+    \ execution path (dependency ordering)\n  - Field exists in CC_XXX outputs\n  - CC_XXX is reachable\
+    \ (on same execution path, not different branch)\n\nThis validates AVAILABILITY only, not TYPE SAFETY.\
+    \ Field existence ≠ field type correctness.\n"
+  anti_patterns:
+  - undefined_payload_field: CC references $.payload.field that does not exist in IN schema
+  - undefined_cc_output: CC references $.results.CC_XXX.field where field does not exist in CC_XXX outputs
+  - forward_reference: CC references $.results.CC_XXX.* where CC_XXX appears later in execution path
+  - unreachable_reference: CC references $.results.CC_XXX.* where CC_XXX is on different branch (unreachable)
+  clarification:
+    availability_not_type_safety: 'This invariant validates that referenced fields EXIST. It does NOT
+      validate that field TYPES match. Example: $.payload.user_id exists ✓, but string vs int is NOT checked.
+
+      '
+    per_path_validation: 'Each execution path validated independently. Dependency valid in path A may
+      be invalid in path B. No false positives from unreachable branches.
+
+      '
+    jsonpath_reference_model: 'CC inputs use JSONPath to reference data: - $.payload.* → from IN node
+      payload - $.results.step_name.* → from prior pipeline step outputs - $.inputs.* → from CC inputs
+      (WF node bindings)'
+```

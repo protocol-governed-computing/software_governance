@@ -3,37 +3,14 @@
 ## Machine
 
 ```yaml
-invariant_code: INVARIANT_CS_SURFACE_CLOSED_V1
 artifact_kind: INVARIANT
 version: V1
 governed_by: fb.constitution::CONSTITUTION_INVARIANTS_V0
-
 core:
-  description: >
-    CS surface must be closed for this platform snapshot: every controlled side effect is
-    explicitly declared, every declared CS has a runtime implementation, and no undeclared
-    CS may execute. This closes the CS surface of PGC Platform Snapshot V1 — the snapshot's
-    complete, enumerable side-effect universe, NOT a universal catalog. An enterprise
-    extension is a new snapshot that recomputes its own closed surface.
-
   enforcement_stage:
-    - compiler_assertion
-
-  scope:
-    - CAPABILITY_SIDE_EFFECTS
-
+  - compiler_assertion
   violation_response: FAIL_IMMEDIATELY
-
-  clarification:
-    closed_surface_definition: >
-      Closed CS surface means: Declared_CS_set == Executable_CS_set for THIS snapshot.
-      No more, no less. All side effects are finite, enumerable, and auditable.
-    snapshot_scoped: >
-      Closure is snapshot-scoped, not universal. Baseline closed; extension open.
-
-# assert_projection — parameters the compiler-derived ASSERT carries (ASSERT is derived, not authored)
 assert_projection:
-  # Reuse the version-agnostic v0 handler (reads allowed-list from this descriptor).
   handler: pgs_governance.registry.handlers.assert_cs_surface_closed_v0
   scope:
     applies_to:
@@ -62,3 +39,26 @@ Ensure the CS surface is closed for PGC Platform Snapshot V1.
   Platform Snapshot V1. Replaces V0 (which enumerated RI-0's wider set, including
   `name_service` and the unimplemented fuzzy workflow/email side effects).
 - **V0**: RI-0 mixed CS surface (faithful harvest). Retained in RI-0 / git history as provenance.
+
+---
+
+## Rule Statement
+
+```yaml
+core:
+  description: 'CS surface must be closed for this platform snapshot: every controlled side effect is
+    explicitly declared, every declared CS has a runtime implementation, and no undeclared CS may execute.
+    This closes the CS surface of PGC Platform Snapshot V1 — the snapshot''s complete, enumerable side-effect
+    universe, NOT a universal catalog. An enterprise extension is a new snapshot that recomputes its own
+    closed surface.
+
+    '
+  clarification:
+    closed_surface_definition: 'Closed CS surface means: Declared_CS_set == Executable_CS_set for THIS
+      snapshot. No more, no less. All side effects are finite, enumerable, and auditable.
+
+      '
+    snapshot_scoped: 'Closure is snapshot-scoped, not universal. Baseline closed; extension open.
+
+      '
+```

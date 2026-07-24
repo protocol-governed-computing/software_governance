@@ -2,62 +2,30 @@
 
 ## Machine
 ```yaml
-fqdn: fb.constitution::CONSTITUTION_COMPILER_V0
-constitution_code: CONSTITUTION_COMPILER_V0
 artifact_kind: CONSTITUTION
 version: V0
 governed_by: fb.vocabulary::CONSTITUTION_VOCABULARY_V0
-
 core:
-  description: Governs the OmniBachi compiler pipeline — phases, surface closure, determinism, and validation obligations
-  scope: system
   enforcement_model: compiler_enforced
-
 rules:
-  - rule_id: COMPILER_DETERMINISM
-    applies_to: system
-    constraint: identical inputs MUST produce identical outputs
-    enforced_by: ASSERT_ARTIFACT_CONTENT_HASH_DECLARED_V0
-
-  - rule_id: COMPILER_SURFACE_CLOSURE
-    applies_to: system
-    constraint: all references MUST be resolved at compile time; no partial resolution permitted
-    enforced_by: ASSERT_HANDLER_REGISTRY_CLOSED_V0
-
-  - rule_id: COMPILER_NO_HEURISTICS
-    applies_to: system
-    constraint: compiler MUST NOT use heuristic resolution or implicit defaults
-    enforced_by: TBD
-
-  - rule_id: COMPILER_FQDN_ONLY
-    applies_to: system
-    constraint: all artifact references MUST use FQDN after NORMALIZE phase
-    enforced_by: ASSERT_FQDN_ONLY_REFERENCES_V0
-
-  - rule_id: COMPILER_FQDN_TREE_AUTHORITY
-    applies_to: system
-    constraint: FQDN tree is the sole discovery authority; compiler MUST NOT perform filesystem heuristics
-    enforced_by: TBD
-
-  - rule_id: COMPILER_RULE_DRIVEN_VALIDATION
-    applies_to: system
-    constraint: validation MUST be rule-driven; MUST NOT depend on execution order or side effects
-    enforced_by: TBD
-
-  - rule_id: COMPILER_NO_PARTIAL_RESOLUTION
-    applies_to: system
-    constraint: symbol resolution is all-or-nothing; partial resolution is forbidden
-    enforced_by: ASSERT_HANDLER_REGISTRY_CLOSED_V0
-
-  - rule_id: COMPILER_LOSSLESS_EMISSION
-    applies_to: system
-    constraint: materialized artifacts MUST preserve all declared semantics; no new semantics may be introduced
-    enforced_by: ASSERT_ARTIFACT_CONTENT_HASH_DECLARED_V0
-
-  - rule_id: COMPILER_SELF_APPLICABLE
-    applies_to: system
-    constraint: compiler MUST be capable of validating its own governance artifacts
-    enforced_by: ASSERT_COMPILER_GOVERNANCE_DECLARED_V0
+- applies_to: system
+  enforced_by: fb.constitution::INVARIANT_ARTIFACT_CONTENT_HASH_DECLARED_V0
+- applies_to: system
+  enforced_by: fb.constitution::INVARIANT_HANDLER_REGISTRY_CLOSED_V0
+- applies_to: system
+  enforced_by: TBD
+- applies_to: system
+  enforced_by: fb.constitution::INVARIANT_FQDN_ONLY_REFERENCES_V0
+- applies_to: system
+  enforced_by: TBD
+- applies_to: system
+  enforced_by: TBD
+- applies_to: system
+  enforced_by: fb.constitution::INVARIANT_HANDLER_REGISTRY_CLOSED_V0
+- applies_to: system
+  enforced_by: fb.constitution::INVARIANT_ARTIFACT_CONTENT_HASH_DECLARED_V0
+- applies_to: system
+  enforced_by: fb.constitution::INVARIANT_COMPILER_GOVERNANCE_DECLARED_V0
 ```
 
 ---
@@ -281,3 +249,32 @@ Backward compatibility is not assumed.
 ---
 
 *End of CONSTITUTION_COMPILER_V0*
+
+---
+
+## Rule Statement
+
+```yaml
+core:
+  description: Governs the OmniBachi compiler pipeline — phases, surface closure, determinism, and validation
+    obligations
+rules:
+- rule_id: COMPILER_DETERMINISM
+  constraint: identical inputs MUST produce identical outputs
+- rule_id: COMPILER_SURFACE_CLOSURE
+  constraint: all references MUST be resolved at compile time; no partial resolution permitted
+- rule_id: COMPILER_NO_HEURISTICS
+  constraint: compiler MUST NOT use heuristic resolution or implicit defaults
+- rule_id: COMPILER_FQDN_ONLY
+  constraint: all artifact references MUST use FQDN after NORMALIZE phase
+- rule_id: COMPILER_FQDN_TREE_AUTHORITY
+  constraint: FQDN tree is the sole discovery authority; compiler MUST NOT perform filesystem heuristics
+- rule_id: COMPILER_RULE_DRIVEN_VALIDATION
+  constraint: validation MUST be rule-driven; MUST NOT depend on execution order or side effects
+- rule_id: COMPILER_NO_PARTIAL_RESOLUTION
+  constraint: symbol resolution is all-or-nothing; partial resolution is forbidden
+- rule_id: COMPILER_LOSSLESS_EMISSION
+  constraint: materialized artifacts MUST preserve all declared semantics; no new semantics may be introduced
+- rule_id: COMPILER_SELF_APPLICABLE
+  constraint: compiler MUST be capable of validating its own governance artifacts
+```

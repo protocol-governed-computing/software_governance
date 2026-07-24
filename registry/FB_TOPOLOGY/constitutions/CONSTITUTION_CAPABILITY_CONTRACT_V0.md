@@ -2,49 +2,26 @@
 
 ## Machine
 ```yaml
-fqdn: fb.topology::CONSTITUTION_CAPABILITY_CONTRACT_V0
-constitution_code: CONSTITUTION_CAPABILITY_CONTRACT_V0
 artifact_kind: CONSTITUTION
 version: V0
 governed_by: fb.constitution::CONSTITUTION_GOVERNANCE_V0
-
 core:
-  description: Governs Capability Contract (CC) artifacts — explicit binding, determinism, and governed denial
-  scope: artifact
-  governs:
-    - CC
   enforcement_model: compiler_enforced
-
+  governs:
+  - CC
 rules:
-  - rule_id: CC_INPUTS_SATISFIED
-    applies_to: CC
-    constraint: all CC inputs MUST be satisfied by declared bindings before execution
-    enforced_by: ASSERT_CC_INPUTS_SATISFIED_V0
-
-  - rule_id: CC_CAPABILITY_BINDING_VALID
-    applies_to: CC
-    constraint: every capability reference in CC MUST resolve to a declared CT or CS artifact
-    enforced_by: ASSERT_CC_CAPABILITY_BINDING_VALID_V0
-
-  - rule_id: CC_NO_IMPLICIT_CHAINING
-    applies_to: CC
-    constraint: CC MUST NOT implicitly chain capabilities; all dataflow MUST be explicitly declared
-    enforced_by: ASSERT_CC_NO_IMPLICIT_CHAINING_V0
-
-  - rule_id: CC_NO_MISSING_DEPENDENCIES
-    applies_to: CC
-    constraint: CC MUST NOT reference undeclared inputs or capabilities
-    enforced_by: ASSERT_CC_NO_MISSING_DEPENDENCIES_V0
-
-  - rule_id: CC_NO_UNUSED_OUTPUTS
-    applies_to: CC
-    constraint: CC MUST NOT declare outputs that are never consumed or emitted
-    enforced_by: ASSERT_CC_NO_UNUSED_OUTPUTS_V0
-
-  - rule_id: CC_FQDN_REFERENCES
-    applies_to: CC
-    constraint: all artifact references in CC MUST use FQDN
-    enforced_by: ASSERT_FQDN_ONLY_REFERENCES_V0
+- applies_to: CC
+  enforced_by: fb.topology::INVARIANT_CC_INPUTS_SATISFIED_V0
+- applies_to: CC
+  enforced_by: fb.topology::INVARIANT_CC_CAPABILITY_BINDING_VALID_V0
+- applies_to: CC
+  enforced_by: fb.topology::INVARIANT_CC_NO_IMPLICIT_CHAINING_V0
+- applies_to: CC
+  enforced_by: fb.topology::INVARIANT_CC_NO_MISSING_DEPENDENCIES_V0
+- applies_to: CC
+  enforced_by: fb.topology::INVARIANT_CC_NO_UNUSED_OUTPUTS_V0
+- applies_to: CC
+  enforced_by: fb.constitution::INVARIANT_FQDN_ONLY_REFERENCES_V0
 ```
 
 ---
@@ -89,3 +66,26 @@ Capability Contracts bind pure Capability Transforms (CTs) and authorized Capabi
 ---
 
 ## End of Constitution
+
+---
+
+## Rule Statement
+
+```yaml
+core:
+  description: Governs Capability Contract (CC) artifacts — explicit binding, determinism, and governed
+    denial
+rules:
+- rule_id: CC_INPUTS_SATISFIED
+  constraint: all CC inputs MUST be satisfied by declared bindings before execution
+- rule_id: CC_CAPABILITY_BINDING_VALID
+  constraint: every capability reference in CC MUST resolve to a declared CT or CS artifact
+- rule_id: CC_NO_IMPLICIT_CHAINING
+  constraint: CC MUST NOT implicitly chain capabilities; all dataflow MUST be explicitly declared
+- rule_id: CC_NO_MISSING_DEPENDENCIES
+  constraint: CC MUST NOT reference undeclared inputs or capabilities
+- rule_id: CC_NO_UNUSED_OUTPUTS
+  constraint: CC MUST NOT declare outputs that are never consumed or emitted
+- rule_id: CC_FQDN_REFERENCES
+  constraint: all artifact references in CC MUST use FQDN
+```

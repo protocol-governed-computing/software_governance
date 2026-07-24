@@ -3,33 +3,15 @@
 ## Machine
 
 ```yaml
-constitution_code: CONSTITUTION_TRANSPORT_V0
+artifact_kind: CONSTITUTION
+version: V0
 governed_by: fb.constitution::CONSTITUTION_GOVERNANCE_V0
-version: 0
-
 core:
-  summary: Constitution governing Transport Ingress (TI) and Transport Egress (TE) artifacts
-  description: |
-    Defines the structure and semantics for Transport artifacts, which declare
-    the protocol membrane between external clients and internal workflows.
-    Covers ingress admission contracts, egress projection contracts, HTTP mapping,
-    and gateway invocation boundaries.
-  artifact_kind: TI_TE
-
-required_fields:
-  - artifact_code
-  - version
-  - governed_by
-  - core
-
-field_constraints:
-  artifact_code:
-    pattern: ^(TI|TE)_[A-Z0-9_]+_V[0-9]+$
-    description: Transport artifact identifier (TI_ or TE_ prefix)
-  core:
-    required_subfields:
-      - summary
-      - description
+  enforcement_model: process_enforced
+  governs:
+  - TI
+  - TE
+rules: []
 ```
 
 ## Purpose
@@ -301,3 +283,34 @@ Explicit migration rationale
 Backward-compatibility assessment
 
 End of CONSTITUTION_TRANSPORT_V0
+
+---
+
+## Rule Statement
+
+```yaml
+field_constraints:
+  artifact_code:
+    pattern: ^(TI|TE)_[A-Z0-9_]+_V[0-9]+$
+    description: Transport artifact identifier (TI_ or TE_ prefix)
+  core:
+    required_subfields:
+    - summary
+    - description
+required_fields:
+- artifact_code
+- version
+- governed_by
+- core
+core:
+  description: 'Defines the structure and semantics for Transport artifacts, which declare
+
+    the protocol membrane between external clients and internal workflows.
+
+    Covers ingress admission contracts, egress projection contracts, HTTP mapping,
+
+    and gateway invocation boundaries.
+
+    '
+  summary: Constitution governing Transport Ingress (TI) and Transport Egress (TE) artifacts
+```

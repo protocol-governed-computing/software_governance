@@ -3,17 +3,13 @@
 ## Machine
 
 ```yaml
-invariant_code: INVARIANT_TOPOLOGY_STEP_DECLARED_V0
 artifact_kind: INVARIANT
 version: V0
 governed_by: fb.topology::CONSTITUTION_EXECUTION_TOPOLOGY_V0
-
 core:
-  summary: every execution topology step MUST be fully and explicitly declared; implicit steps, wildcard bindings, and ambient dataflow are constitutional violations
-  rule: each step in a CC pipeline MUST appear as an explicit named entry in the pipeline array; no step may be implied by position, naming convention, field co-location, or runtime inference
-  scope:
-    - CC
-
+  enforcement_stage:
+  - compiler_assertion
+  violation_response: FAIL_IMMEDIATELY
 ```
 
 ---
@@ -49,3 +45,15 @@ the compiler cannot enumerate the execution graph, cannot validate dataflow clos
 cannot verify routing completeness. Declared steps are the compiler's unit of analysis.
 
 Full enforcement is implemented in Phase 3.
+
+---
+
+## Rule Statement
+
+```yaml
+core:
+  rule: each step in a CC pipeline MUST appear as an explicit named entry in the pipeline array; no step
+    may be implied by position, naming convention, field co-location, or runtime inference
+  summary: every execution topology step MUST be fully and explicitly declared; implicit steps, wildcard
+    bindings, and ambient dataflow are constitutional violations
+```

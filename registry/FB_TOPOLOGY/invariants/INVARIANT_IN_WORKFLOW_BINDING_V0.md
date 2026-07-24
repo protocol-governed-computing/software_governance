@@ -3,38 +3,13 @@
 ## Machine
 
 ```yaml
-invariant_code: INVARIANT_IN_WORKFLOW_BINDING_V0
 artifact_kind: INVARIANT
 version: V0
 governed_by: fb.constitution::CONSTITUTION_INVARIANTS_V0
-
 core:
-  description: >
-    Every IN artifact used as a WF entry node must resolve to a declared IN artifact,
-    and each IN artifact may be the entry point of at most one workflow. Shared entry
-    intents create ambiguous admission semantics.
-
   enforcement_stage:
-    - compiler_validation
-
-  scope:
-    - INTENTS
-    - WORKFLOWS
-
+  - compiler_validation
   violation_response: FAIL_IMMEDIATELY
-
-
-  anti_patterns:
-    - shared_entry_intent: "Same IN FQDN referenced as start_node by multiple WFs"
-    - unresolvable_in: "IN FQDN referenced by WF does not resolve to a declared IN artifact"
-
-  clarification:
-    single_binding: >
-      An IN artifact is a workflow-specific admission contract. Sharing it
-      across workflows would couple admission semantics of distinct workflows.
-    fqdn_resolution: >
-      The IN node code in the WF nodes map must resolve to a declared IN artifact
-      via FQDN. This invariant enforces both resolution and uniqueness.
 ```
 
 ---
@@ -79,3 +54,26 @@ No IN FQDN may appear as start_node in more than one workflow.
 ## Version History
 
 - **V0**: Initial implementation (2026-05-04)
+
+---
+
+## Rule Statement
+
+```yaml
+core:
+  description: 'Every IN artifact used as a WF entry node must resolve to a declared IN artifact, and
+    each IN artifact may be the entry point of at most one workflow. Shared entry intents create ambiguous
+    admission semantics.
+
+    '
+  anti_patterns:
+  - shared_entry_intent: Same IN FQDN referenced as start_node by multiple WFs
+  - unresolvable_in: IN FQDN referenced by WF does not resolve to a declared IN artifact
+  clarification:
+    single_binding: 'An IN artifact is a workflow-specific admission contract. Sharing it across workflows
+      would couple admission semantics of distinct workflows.
+
+      '
+    fqdn_resolution: The IN node code in the WF nodes map must resolve to a declared IN artifact via FQDN.
+      This invariant enforces both resolution and uniqueness.
+```

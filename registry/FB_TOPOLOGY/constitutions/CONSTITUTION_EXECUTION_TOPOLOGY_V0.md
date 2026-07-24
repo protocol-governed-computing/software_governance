@@ -2,76 +2,36 @@
 
 ## Machine
 ```yaml
-fqdn: fb.topology::CONSTITUTION_EXECUTION_TOPOLOGY_V0
-constitution_code: CONSTITUTION_EXECUTION_TOPOLOGY_V0
 artifact_kind: CONSTITUTION
 version: V0
 governed_by: fb.topology::CONSTITUTION_CAPABILITY_CONTRACT_V0
-
 core:
-  description: Governs the execution topology surface of Capability Contract artifacts — explicit step declaration, deterministic routing, dataflow closure, and governance plane orthogonality
-  scope: artifact
-  governs:
-    - CC
   enforcement_model: compiler_enforced
-
-doctrine: Execution topology governs traversal structure only. Execution topology validation is structural, not semantic. Workflow authors MAY route surfaces. Workflow authors MAY NOT define capability semantics.
-
+  governs:
+  - CC
 rules:
-  - rule_id: TOPOLOGY_STEP_DECLARED
-    applies_to: CC
-    constraint: every execution topology step MUST be fully and explicitly declared; implicit steps, wildcard references, and ambient dataflow are constitutional violations
-    enforced_by: ASSERT_TOPOLOGY_STEP_DECLARED_V0
-
-  - rule_id: TOPOLOGY_CAPABILITY_REFERENCE_UNIQUE
-    applies_to: CC
-    constraint: each execution topology step MUST reference exactly one capability — exactly one of transform or side_effect, not both, not neither
-    enforced_by: ASSERT_TOPOLOGY_CAPABILITY_REFERENCE_UNIQUE_V0
-
-  - rule_id: TOPOLOGY_INPUT_REFERENCE_DECLARED
-    applies_to: CC
-    constraint: all step input references to prior step outputs MUST resolve to a declared step ID within the same pipeline; forward references and dangling references are constitutional violations
-    enforced_by: ASSERT_TOPOLOGY_INPUT_REFERENCE_DECLARED_V0
-
-  - rule_id: TOPOLOGY_ROUTING_COMPLETE
-    applies_to: CC
-    constraint: every step MUST declare a result_surface and on_result MUST declare routing for every status code in that step's result_surface; unrouted surface codes constitute ungoverned execution paths
-    enforced_by: ASSERT_TOPOLOGY_ROUTING_COMPLETE_V0
-
-  - rule_id: TOPOLOGY_CONTRACT_CLOSED
-    applies_to: CC
-    constraint: the union of all status codes that can exit the CC execution topology (via step exit routes, last-step continue routes, and evaluation outcomes) MUST exactly match result_status_contract.allowed; uncontracted exits and unreachable contract codes are constitutional violations
-    enforced_by: ASSERT_TOPOLOGY_CONTRACT_CLOSED_V0
-
-  - rule_id: TOPOLOGY_STEP_ID_UNIQUE
-    applies_to: CC
-    constraint: step IDs MUST be unique within a CC execution topology; duplicate step IDs create ambiguous dataflow identity and are constitutional violations
-    enforced_by: ASSERT_TOPOLOGY_STEP_ID_UNIQUE_V0
-
-  - rule_id: TOPOLOGY_AUTHORITY_ORTHOGONAL
-    applies_to: CC
-    constraint: execution topology MUST NOT encode authority semantics — no role branching, permission routing, actor-dependent topology, or authorization field names inside steps
-    enforced_by: ASSERT_TOPOLOGY_AUTHORITY_ORTHOGONAL_V0
-
-  - rule_id: TOPOLOGY_TRANSPORT_ORTHOGONAL
-    applies_to: CC
-    constraint: execution topology MUST NOT encode transport semantics — no HTTP routing, endpoint dispatch, transport conditions, or TE projection rules inside steps
-    enforced_by: ASSERT_TOPOLOGY_TRANSPORT_ORTHOGONAL_V0
-
-  - rule_id: TOPOLOGY_IMMUTABLE_AFTER_COMPILATION
-    applies_to: CC
-    constraint: compiled execution topology MUST NOT be modified, extended, or overridden at runtime; the compiled step sequence and routing declarations are immutable for the lifetime of the compiled artifact
-    enforced_by: ASSERT_TOPOLOGY_IMMUTABLE_AFTER_COMPILATION_V0
-
-  - rule_id: NO_RUNTIME_TOPOLOGY_SYNTHESIS
-    applies_to: CC
-    constraint: execution topology MUST NOT be synthesized, generated, or inferred at runtime from payload content, authority grants, environment state, or any form of runtime inference
-    enforced_by: ASSERT_NO_RUNTIME_TOPOLOGY_SYNTHESIS_V0
-
-  - rule_id: TOPOLOGY_SURFACE_CANONICAL
-    applies_to: CC
-    constraint: every step's result_surface MUST exactly match the canonical_surface declared by the governing SURFACE_CONTRACT for that step's capability and operation; workflow authors MAY route surfaces, workflow authors MAY NOT define capability semantics
-    enforced_by: ASSERT_TOPOLOGY_SURFACE_CANONICAL_V0
+- applies_to: CC
+  enforced_by: fb.topology::INVARIANT_TOPOLOGY_STEP_DECLARED_V0
+- applies_to: CC
+  enforced_by: fb.topology::INVARIANT_TOPOLOGY_CAPABILITY_REFERENCE_UNIQUE_V0
+- applies_to: CC
+  enforced_by: fb.topology::INVARIANT_TOPOLOGY_INPUT_REFERENCE_DECLARED_V0
+- applies_to: CC
+  enforced_by: fb.topology::INVARIANT_TOPOLOGY_ROUTING_COMPLETE_V0
+- applies_to: CC
+  enforced_by: fb.topology::INVARIANT_TOPOLOGY_CONTRACT_CLOSED_V0
+- applies_to: CC
+  enforced_by: fb.topology::INVARIANT_TOPOLOGY_STEP_ID_UNIQUE_V0
+- applies_to: CC
+  enforced_by: fb.topology::INVARIANT_TOPOLOGY_AUTHORITY_ORTHOGONAL_V0
+- applies_to: CC
+  enforced_by: fb.topology::INVARIANT_TOPOLOGY_TRANSPORT_ORTHOGONAL_V0
+- applies_to: CC
+  enforced_by: fb.topology::INVARIANT_TOPOLOGY_IMMUTABLE_AFTER_COMPILATION_V0
+- applies_to: CC
+  enforced_by: fb.topology::INVARIANT_NO_RUNTIME_TOPOLOGY_SYNTHESIS_V0
+- applies_to: CC
+  enforced_by: fb.topology::INVARIANT_TOPOLOGY_SURFACE_CANONICAL_V0
 ```
 
 ---
@@ -229,3 +189,51 @@ topology fingerprints) is explicitly deferred to future versions. V0 governs cur
 ---
 
 ## End of Constitution
+
+---
+
+## Rule Statement
+
+```yaml
+doctrine: Execution topology governs traversal structure only. Execution topology validation is structural,
+  not semantic. Workflow authors MAY route surfaces. Workflow authors MAY NOT define capability semantics.
+core:
+  description: Governs the execution topology surface of Capability Contract artifacts — explicit step
+    declaration, deterministic routing, dataflow closure, and governance plane orthogonality
+rules:
+- rule_id: TOPOLOGY_STEP_DECLARED
+  constraint: every execution topology step MUST be fully and explicitly declared; implicit steps, wildcard
+    references, and ambient dataflow are constitutional violations
+- rule_id: TOPOLOGY_CAPABILITY_REFERENCE_UNIQUE
+  constraint: each execution topology step MUST reference exactly one capability — exactly one of transform
+    or side_effect, not both, not neither
+- rule_id: TOPOLOGY_INPUT_REFERENCE_DECLARED
+  constraint: all step input references to prior step outputs MUST resolve to a declared step ID within
+    the same pipeline; forward references and dangling references are constitutional violations
+- rule_id: TOPOLOGY_ROUTING_COMPLETE
+  constraint: every step MUST declare a result_surface and on_result MUST declare routing for every status
+    code in that step's result_surface; unrouted surface codes constitute ungoverned execution paths
+- rule_id: TOPOLOGY_CONTRACT_CLOSED
+  constraint: the union of all status codes that can exit the CC execution topology (via step exit routes,
+    last-step continue routes, and evaluation outcomes) MUST exactly match result_status_contract.allowed;
+    uncontracted exits and unreachable contract codes are constitutional violations
+- rule_id: TOPOLOGY_STEP_ID_UNIQUE
+  constraint: step IDs MUST be unique within a CC execution topology; duplicate step IDs create ambiguous
+    dataflow identity and are constitutional violations
+- rule_id: TOPOLOGY_AUTHORITY_ORTHOGONAL
+  constraint: execution topology MUST NOT encode authority semantics — no role branching, permission routing,
+    actor-dependent topology, or authorization field names inside steps
+- rule_id: TOPOLOGY_TRANSPORT_ORTHOGONAL
+  constraint: execution topology MUST NOT encode transport semantics — no HTTP routing, endpoint dispatch,
+    transport conditions, or TE projection rules inside steps
+- rule_id: TOPOLOGY_IMMUTABLE_AFTER_COMPILATION
+  constraint: compiled execution topology MUST NOT be modified, extended, or overridden at runtime; the
+    compiled step sequence and routing declarations are immutable for the lifetime of the compiled artifact
+- rule_id: NO_RUNTIME_TOPOLOGY_SYNTHESIS
+  constraint: execution topology MUST NOT be synthesized, generated, or inferred at runtime from payload
+    content, authority grants, environment state, or any form of runtime inference
+- rule_id: TOPOLOGY_SURFACE_CANONICAL
+  constraint: every step's result_surface MUST exactly match the canonical_surface declared by the governing
+    SURFACE_CONTRACT for that step's capability and operation; workflow authors MAY route surfaces, workflow
+    authors MAY NOT define capability semantics
+```

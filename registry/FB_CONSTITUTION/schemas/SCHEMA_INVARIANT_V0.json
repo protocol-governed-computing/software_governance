@@ -1,0 +1,158 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "fb.constitution.schemas.SCHEMA_INVARIANT_V0",
+  "title": "PGC Invariant Schema V0",
+  "description": "Closed machine-block contract for INVARIANT artifacts. Every accepted field has a semantic consumer or a compile-time validation role; explanatory material lives below the Machine fence.",
+  "type": "object",
+  "required": ["artifact_kind", "version", "governed_by", "core"],
+  "additionalProperties": false,
+  "properties": {
+    "artifact_kind": {
+      "const": "INVARIANT"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^V[0-9]+$"
+    },
+    "governed_by": {
+      "description": "FQDN of the governing constitution. Source of the GOVERNED_BY edge.",
+      "oneOf": [
+        { "type": "string", "pattern": "^[a-z0-9_.]+::CONSTITUTION_[A-Z0-9_]+_V[0-9]+$" },
+        {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "pattern": "^[a-z0-9_.]+::CONSTITUTION_[A-Z0-9_]+_V[0-9]+$" }
+        }
+      ]
+    },
+    "core": {
+      "type": "object",
+      "required": ["enforcement_stage", "violation_response"],
+      "additionalProperties": false,
+      "properties": {
+        "enforcement_stage": {
+          "description": "Invariant class discriminator (rule_ownership.md). compiler_* stages are evaluated by an ASSERT handler in S4; runtime_outcome is enforced by a CC violation outcome and WF routing, and verified by ASSERT_RUNTIME_INVARIANT_WIRED_V0.",
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "compiler_discovery",
+              "compiler_validation",
+              "compiler_assertion",
+              "compiler_meta_validation",
+              "runtime_outcome"
+            ]
+          }
+        },
+        "violation_response": {
+          "description": "Paired discriminator. BUSINESS_VIOLATION is admissible only for runtime_outcome invariants.",
+          "enum": ["FAIL_IMMEDIATELY", "WARN", "BUSINESS_VIOLATION"]
+        },
+        "runtime_binding": {
+          "description": "Required for runtime_outcome invariants, forbidden otherwise. Proven against the CC result surface and WF routing by ASSERT_RUNTIME_INVARIANT_WIRED_V0.",
+          "type": "object",
+          "required": [
+            "enforced_by",
+            "enforcing_workflow",
+            "violation_outcome",
+            "terminal_node",
+            "over_store"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "enforced_by": { "type": "string", "pattern": "^[a-z0-9_.]+::CC_[A-Z0-9_]+_V[0-9]+$" },
+            "enforcing_workflow": { "type": "string", "pattern": "^[a-z0-9_.]+::WF_[A-Z0-9_]+_V[0-9]+$" },
+            "violation_outcome": { "type": "string", "pattern": "^[A-Z0-9_]+$" },
+            "terminal_node": { "type": "string", "minLength": 1 },
+            "over_store": { "type": "string", "minLength": 1 }
+          }
+        }
+      }
+    },
+    "assert_projection": {
+      "description": "Parameters carried into the ASSERT descriptor derived from this invariant (S4 _derive_assert). Read by the bound handler via current_assert_artifact.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "handler": {
+          "description": "Handler module override. Omitted means convention: <prefix>.<assert_code lowercased>.",
+          "type": "string",
+          "minLength": 1
+        },
+        "enforcement": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "level": { "enum": ["ERROR", "WARNING"] },
+            "order": { "type": "integer", "minimum": 0 },
+            "phase": { "type": "string", "minLength": 1 },
+            "scope": { "type": "string", "minLength": 1 }
+          }
+        },
+        "scope": {
+          "type": "object",
+          "required": ["applies_to"],
+          "additionalProperties": false,
+          "properties": {
+            "applies_to": {
+              "type": "array",
+              "minItems": 1,
+              "items": { "type": "string", "minLength": 1 }
+            }
+          }
+        },
+        "ci_override": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "level": { "enum": ["ERROR", "WARNING"] }
+          }
+        },
+        "allowed_capability_transforms": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "allowed_capability_side_effects": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "core": {
+            "properties": {
+              "enforcement_stage": { "contains": { "const": "runtime_outcome" } }
+            },
+            "required": ["enforcement_stage"]
+          }
+        },
+        "required": ["core"]
+      },
+      "then": {
+        "properties": {
+          "core": {
+            "required": ["runtime_binding"],
+            "properties": {
+              "violation_response": { "const": "BUSINESS_VIOLATION" }
+            }
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "core": {
+            "not": { "required": ["runtime_binding"] },
+            "properties": {
+              "violation_response": { "enum": ["FAIL_IMMEDIATELY", "WARN"] }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

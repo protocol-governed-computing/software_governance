@@ -5,16 +5,13 @@ Architectural Invariant
 ## Machine
 
 ```yaml
-invariant_code: INVARIANT_RB_CS_ONLY_V0
 artifact_kind: INVARIANT
 version: V0
 governed_by: fb.topology::CONSTITUTION_RUNTIME_BINDING_V0
-
 core:
-  summary: RB bindings must reference CS artifacts only
-  rule: All binding keys in RB core.bindings must resolve to CS artifact codes (CS_ prefix)
-  scope:
-    - RB
+  enforcement_stage:
+  - compiler_assertion
+  violation_response: FAIL_IMMEDIATELY
 ```
 
 ## Summary
@@ -40,3 +37,13 @@ For every RB artifact, every key in `core.bindings`:
 RB artifacts are the configuration bridge between declared CS capabilities and physical
 host implementations. Binding a non-CS artifact confuses the execution model and indicates
 an architectural error. The compiler must catch this before the artifact reaches runtime.
+
+---
+
+## Rule Statement
+
+```yaml
+core:
+  rule: All binding keys in RB core.bindings must resolve to CS artifact codes (CS_ prefix)
+  summary: RB bindings must reference CS artifacts only
+```

@@ -2,34 +2,20 @@
 
 ## Machine
 ```yaml
-fqdn: fb.constitution::CONSTITUTION_INVARIANTS_V0
-constitution_code: CONSTITUTION_INVARIANTS_V0
 artifact_kind: CONSTITUTION
 version: V0
 governed_by: fb.vocabulary::CONSTITUTION_VOCABULARY_V0
-
 core:
-  description: Governs INVARIANT artifacts — declarative constraints that must never be violated
-  scope: artifact
-  governs:
-    - INVARIANT
   enforcement_model: compiler_enforced
-
+  governs:
+  - INVARIANT
 rules:
-  - rule_id: INVARIANT_DECLARATIVE_ONLY
-    applies_to: INVARIANT
-    constraint: INVARIANT MUST declare constraints only; MUST NOT contain executable logic
-    enforced_by: TBD
-
-  - rule_id: INVARIANT_MANDATORY_ENFORCEMENT
-    applies_to: INVARIANT
-    constraint: every INVARIANT MUST be enforced by at least one ASSERT
-    enforced_by: TBD
-
-  - rule_id: INVARIANT_FAIL_FAST
-    applies_to: INVARIANT
-    constraint: violation_response MUST be FAIL_IMMEDIATELY; no warnings, no partial success
-    enforced_by: TBD
+- applies_to: INVARIANT
+  enforced_by: TBD
+- applies_to: INVARIANT
+  enforced_by: TBD
+- applies_to: INVARIANT
+  enforced_by: TBD
 ```
 
 ---
@@ -148,3 +134,19 @@ No constraint exists without enforcement
 ## 10. One-Line Truth
 
 INVARIANT defines what must never be violated.
+
+---
+
+## Rule Statement
+
+```yaml
+core:
+  description: Governs INVARIANT artifacts — declarative constraints that must never be violated
+rules:
+- rule_id: INVARIANT_DECLARATIVE_ONLY
+  constraint: INVARIANT MUST declare constraints only; MUST NOT contain executable logic
+- rule_id: INVARIANT_MANDATORY_ENFORCEMENT
+  constraint: every INVARIANT MUST be enforced by at least one ASSERT
+- rule_id: INVARIANT_FAIL_FAST
+  constraint: violation_response MUST be FAIL_IMMEDIATELY; no warnings, no partial success
+```

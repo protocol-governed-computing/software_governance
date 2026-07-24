@@ -5,17 +5,13 @@ Architectural Invariant
 ## Machine
 
 ```yaml
-artifact_code: INVARIANT_ATOM_OUTPUT_PURITY_V0
-artifact_type: INVARIANT
 artifact_kind: INVARIANT
 version: V0
 governed_by: fb.constitution::CONSTITUTION_INVARIANTS_V0
-
 core:
-  summary: Atoms must return explicit outputs in ALL cases, never raise exceptions for business logic
-  rule: CT atom execute() functions must return dict outputs for all code paths including error states
-  scope:
-    - CT
+  enforcement_stage:
+  - compiler_assertion
+  violation_response: FAIL_IMMEDIATELY
 ```
 
 ## Summary
@@ -106,3 +102,13 @@ Scan CT atom code for:
 
 - `fb.topology::CONSTITUTION_CAPABILITY_TRANSFORMS_V0` - Defines pure transform behavior
 - `governance::CC_*_V0` - Declares required output structure
+
+---
+
+## Rule Statement
+
+```yaml
+core:
+  rule: CT atom execute() functions must return dict outputs for all code paths including error states
+  summary: Atoms must return explicit outputs in ALL cases, never raise exceptions for business logic
+```

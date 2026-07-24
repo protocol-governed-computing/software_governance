@@ -3,56 +3,13 @@
 ## Machine
 
 ```yaml
-invariant_code: INVARIANT_BINDING_SURFACE_CLOSED_V0
 artifact_kind: INVARIANT
 version: V0
 governed_by: fb.constitution::CONSTITUTION_INVARIANTS_V0
-
 core:
-  description: >
-    For each CC node in a WF execution graph, all input bindings must reference
-    only declared sources:
-
-    - $.payload.<field>        → field must exist in the WF's IN node payload_schema
-    - $.results.<NODE>.<field> → NODE must be a CC node in this WF,
-                                  field must exist in NODE's CC core.outputs
-    - <literal>                → any non-$ string or non-string value is valid
-
-    No binding may reference an undeclared field, an unknown WF node,
-    or an undeclared CC output. No unrecognized $ grammar is permitted.
-
   enforcement_stage:
-    - compiler_validation
-
-  scope:
-    - WORKFLOWS
-
+  - compiler_validation
   violation_response: FAIL_IMMEDIATELY
-
-
-  anti_patterns:
-    - unknown_payload_field: >
-        "$.payload.field where field is not in IN node payload_schema"
-    - unknown_wf_node: >
-        "$.results.NODE.field where NODE is not a CC node in this WF"
-    - unknown_cc_output: >
-        "$.results.NODE.field where field is not declared in NODE's CC core.outputs"
-    - malformed_results_ref: >
-        "$.results without the expected <NODE>.<field> suffix"
-    - unrecognized_grammar: >
-        "Any $ prefix not matching $.payload.* or $.results.*"
-
-  clarification:
-    wf_boundary_only: >
-      This invariant covers WF-level node input bindings only.
-      CC-internal pipeline step references ($.inputs.*, $.results.step.*)
-      are covered by INVARIANT_CC_INPUTS_SATISFIED_V0.
-    output_field_not_type: >
-      This invariant validates that output fields EXIST in core.outputs.
-      It does NOT validate type compatibility between binding source and target.
-    literals_always_valid: >
-      Non-string values (bool, int, null) and strings without a $ prefix
-      are treated as literal constants and are always valid.
 ```
 
 ---
@@ -127,3 +84,44 @@ outputs:
 ## Version History
 
 - **V0**: Initial implementation (2026-04-29) - WF Binding Surface Closure
+
+---
+
+## Rule Statement
+
+```yaml
+core:
+  description: "For each CC node in a WF execution graph, all input bindings must reference only declared\
+    \ sources:\n- $.payload.<field>        → field must exist in the WF's IN node payload_schema - $.results.<NODE>.<field>\
+    \ → NODE must be a CC node in this WF,\n                              field must exist in NODE's CC\
+    \ core.outputs\n- <literal>                → any non-$ string or non-string value is valid\nNo binding\
+    \ may reference an undeclared field, an unknown WF node, or an undeclared CC output. No unrecognized\
+    \ $ grammar is permitted.\n"
+  anti_patterns:
+  - unknown_payload_field: '"$.payload.field where field is not in IN node payload_schema"
+
+      '
+  - unknown_wf_node: '"$.results.NODE.field where NODE is not a CC node in this WF"
+
+      '
+  - unknown_cc_output: '"$.results.NODE.field where field is not declared in NODE''s CC core.outputs"
+
+      '
+  - malformed_results_ref: '"$.results without the expected <NODE>.<field> suffix"
+
+      '
+  - unrecognized_grammar: '"Any $ prefix not matching $.payload.* or $.results.*"
+
+      '
+  clarification:
+    wf_boundary_only: 'This invariant covers WF-level node input bindings only. CC-internal pipeline step
+      references ($.inputs.*, $.results.step.*) are covered by INVARIANT_CC_INPUTS_SATISFIED_V0.
+
+      '
+    output_field_not_type: 'This invariant validates that output fields EXIST in core.outputs. It does
+      NOT validate type compatibility between binding source and target.
+
+      '
+    literals_always_valid: Non-string values (bool, int, null) and strings without a $ prefix are treated
+      as literal constants and are always valid.
+```

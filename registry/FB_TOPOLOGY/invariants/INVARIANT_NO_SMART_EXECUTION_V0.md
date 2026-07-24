@@ -5,18 +5,13 @@ Architectural Invariant
 ## Machine
 
 ```yaml
-artifact_code: INVARIANT_NO_SMART_EXECUTION_V0
-artifact_type: INVARIANT
 artifact_kind: INVARIANT
 version: V0
 governed_by: fb.constitution::CONSTITUTION_INVARIANTS_V0
-
 core:
-  summary: Execution layer must not interpret type declarations or perform conversions
-  rule: Runtime executors must pass inputs to transforms without type-based interpretation or conversion
-  scope:
-    - CS
-    - RUNTIME
+  enforcement_stage:
+  - compiler_assertion
+  violation_response: FAIL_IMMEDIATELY
 ```
 
 ## Summary
@@ -99,3 +94,13 @@ Scan execution layer code for:
 
 - `fb.topology::CONSTITUTION_CAPABILITY_TRANSFORMS_V0` - Defines pure atom behavior
 - `fb.topology::CONSTITUTION_RUNTIME_BINDING_V0` - Defines executor boundaries
+
+---
+
+## Rule Statement
+
+```yaml
+core:
+  rule: Runtime executors must pass inputs to transforms without type-based interpretation or conversion
+  summary: Execution layer must not interpret type declarations or perform conversions
+```

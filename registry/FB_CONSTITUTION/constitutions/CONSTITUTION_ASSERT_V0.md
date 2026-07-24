@@ -2,49 +2,22 @@
 
 ## Machine
 ```yaml
-fqdn: fb.constitution::CONSTITUTION_ASSERT_V0
-constitution_code: CONSTITUTION_ASSERT_V0
 artifact_kind: CONSTITUTION
 version: V0
 governed_by: fb.vocabulary::CONSTITUTION_VOCABULARY_V0
-
 core:
-  description: >
-    Governs ASSERT — the compiler-derived executable projection of an INVARIANT.
-    ASSERT is NOT a hand-authored artifact: the compiler synthesizes ASSERT_X from
-    INVARIANT_X at governance time (S4), binding a handler by convention
-    (handlers.assert_<stem>) or an invariant `assert_projection.handler` override,
-    and drawing check parameters from the invariant's `assert_projection`. Covers
-    binding, purity, compiler-only execution, and violations output.
-  scope: artifact
-  governs:
-    - ASSERT
-  derivation:
-    authored: false
-    derived_from: INVARIANT
-    rule: "ASSERT_X is the executable projection of INVARIANT_X; parameters come from the invariant's assert_projection block"
   enforcement_model: compiler_enforced
-
+  governs:
+  - ASSERT
 rules:
-  - rule_id: ASSERT_BINDS_ONE_INVARIANT
-    applies_to: ASSERT
-    constraint: every ASSERT MUST enforce exactly one INVARIANT
-    enforced_by: TBD
-
-  - rule_id: ASSERT_COMPILER_ONLY
-    applies_to: ASSERT
-    constraint: ASSERT MUST execute during compiler ASSERT phase only; never at runtime
-    enforced_by: TBD
-
-  - rule_id: ASSERT_PURITY
-    applies_to: ASSERT
-    constraint: ASSERT MUST be pure, deterministic, and side-effect free
-    enforced_by: TBD
-
-  - rule_id: ASSERT_VIOLATIONS_OUTPUT
-    applies_to: ASSERT
-    constraint: ASSERT MUST return violations array; missing output is a constitutional violation
-    enforced_by: TBD
+- applies_to: ASSERT
+  enforced_by: TBD
+- applies_to: ASSERT
+  enforced_by: TBD
+- applies_to: ASSERT
+  enforced_by: TBD
+- applies_to: ASSERT
+  enforced_by: TBD
 ```
 
 ---
@@ -199,3 +172,32 @@ No violation survives compilation.
 ## 13. One-Line Truth
 
 ASSERT makes invariants enforceable.
+
+---
+
+## Rule Statement
+
+```yaml
+core:
+  description: 'Governs ASSERT — the compiler-derived executable projection of an INVARIANT. ASSERT is
+    NOT a hand-authored artifact: the compiler synthesizes ASSERT_X from INVARIANT_X at governance time
+    (S4), binding a handler by convention (handlers.assert_<stem>) or an invariant `assert_projection.handler`
+    override, and drawing check parameters from the invariant''s `assert_projection`. Covers binding,
+    purity, compiler-only execution, and violations output.
+
+    '
+  derivation:
+    authored: false
+    derived_from: INVARIANT
+    rule: ASSERT_X is the executable projection of INVARIANT_X; parameters come from the invariant's assert_projection
+      block
+rules:
+- rule_id: ASSERT_BINDS_ONE_INVARIANT
+  constraint: every ASSERT MUST enforce exactly one INVARIANT
+- rule_id: ASSERT_COMPILER_ONLY
+  constraint: ASSERT MUST execute during compiler ASSERT phase only; never at runtime
+- rule_id: ASSERT_PURITY
+  constraint: ASSERT MUST be pure, deterministic, and side-effect free
+- rule_id: ASSERT_VIOLATIONS_OUTPUT
+  constraint: ASSERT MUST return violations array; missing output is a constitutional violation
+```

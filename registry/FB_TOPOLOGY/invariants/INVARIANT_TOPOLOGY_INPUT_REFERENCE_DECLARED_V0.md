@@ -3,17 +3,13 @@
 ## Machine
 
 ```yaml
-invariant_code: INVARIANT_TOPOLOGY_INPUT_REFERENCE_DECLARED_V0
 artifact_kind: INVARIANT
 version: V0
 governed_by: fb.topology::CONSTITUTION_EXECUTION_TOPOLOGY_V0
-
 core:
-  summary: all step input references to prior step outputs MUST resolve to a declared step ID within the same pipeline; forward references and dangling references are constitutional violations
-  rule: every $.results.<step_id>.* reference in step inputs MUST name a step_id that is explicitly declared earlier in the same pipeline; references to undeclared or future steps are compile-time violations
-  scope:
-    - CC
-
+  enforcement_stage:
+  - compiler_assertion
+  violation_response: FAIL_IMMEDIATELY
 ```
 
 ---
@@ -51,3 +47,15 @@ from its origin to its consumption without executing the graph. This is the mech
 that eliminates runtime surprises about missing or unexpected data shapes.
 
 Full enforcement is implemented in Phase 3.
+
+---
+
+## Rule Statement
+
+```yaml
+core:
+  rule: every $.results.<step_id>.* reference in step inputs MUST name a step_id that is explicitly declared
+    earlier in the same pipeline; references to undeclared or future steps are compile-time violations
+  summary: all step input references to prior step outputs MUST resolve to a declared step ID within the
+    same pipeline; forward references and dangling references are constitutional violations
+```

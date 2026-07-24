@@ -3,51 +3,13 @@
 ## Machine
 
 ```yaml
-invariant_code: INVARIANT_CC_NO_MISSING_DEPENDENCIES_V0
 artifact_kind: INVARIANT
 version: V0
 governed_by: fb.constitution::CONSTITUTION_INVARIANTS_V0
-
 core:
-  description: >
-    No CC node may reference outputs from:
-    - Non-existent CC (FQDN resolution failure)
-    - CC that appears later in execution path (forward reference)
-    - CC that is on different branch (unreachable reference)
-
-    This validates DEPENDENCY ORDERING and REACHABILITY only.
-    Does NOT validate field existence (handled by INVARIANT_CC_INPUTS_SATISFIED_V0).
-
   enforcement_stage:
-    - compiler_validation
-
-  scope:
-    - WORKFLOWS
-    - CAPABILITY_CONTRACTS
-
+  - compiler_validation
   violation_response: FAIL_IMMEDIATELY
-
-
-  anti_patterns:
-    - nonexistent_cc: "WF node references CC that does not exist (FQDN resolution failure)"
-    - forward_reference: "WF node references $.results.CC_XXX.* where CC_XXX appears later in execution path"
-    - unreachable_reference: "WF node references $.results.CC_XXX.* where CC_XXX is on different branch"
-
-  clarification:
-    ordering_not_existence: >
-      This invariant validates DEPENDENCY ORDERING (earlier/later in execution path).
-      It does NOT validate field EXISTENCE (handled by INVARIANT_CC_INPUTS_SATISFIED_V0).
-      Example: $.results.later_cc.field violates THIS invariant (ordering).
-               $.results.earlier_cc.missing_field violates INPUTS_SATISFIED (existence).
-
-    per_path_validation: >
-      Each execution path validated independently.
-      Dependency valid in path A may be invalid in path B.
-      No false positives from unreachable branches.
-
-    fqdn_delegation: >
-      Non-existent CC detection delegated to INVARIANT_FQDN_ONLY_REFERENCES_V0.
-      This invariant focuses on ordering/reachability of VALID CCs.
 ```
 
 ---
@@ -240,3 +202,34 @@ def validate_dependency_ordering(wf_graph):
 ## Version History
 
 - **V0**: Initial implementation (2026-04-12) - CC Dependency Ordering Validation
+
+---
+
+## Rule Statement
+
+```yaml
+core:
+  description: 'No CC node may reference outputs from: - Non-existent CC (FQDN resolution failure) - CC
+    that appears later in execution path (forward reference) - CC that is on different branch (unreachable
+    reference)
+
+    This validates DEPENDENCY ORDERING and REACHABILITY only. Does NOT validate field existence (handled
+    by INVARIANT_CC_INPUTS_SATISFIED_V0).
+
+    '
+  anti_patterns:
+  - nonexistent_cc: WF node references CC that does not exist (FQDN resolution failure)
+  - forward_reference: WF node references $.results.CC_XXX.* where CC_XXX appears later in execution path
+  - unreachable_reference: WF node references $.results.CC_XXX.* where CC_XXX is on different branch
+  clarification:
+    ordering_not_existence: "This invariant validates DEPENDENCY ORDERING (earlier/later in execution\
+      \ path). It does NOT validate field EXISTENCE (handled by INVARIANT_CC_INPUTS_SATISFIED_V0). Example:\
+      \ $.results.later_cc.field violates THIS invariant (ordering).\n         $.results.earlier_cc.missing_field\
+      \ violates INPUTS_SATISFIED (existence).\n"
+    per_path_validation: 'Each execution path validated independently. Dependency valid in path A may
+      be invalid in path B. No false positives from unreachable branches.
+
+      '
+    fqdn_delegation: Non-existent CC detection delegated to INVARIANT_FQDN_ONLY_REFERENCES_V0. This invariant
+      focuses on ordering/reachability of VALID CCs.
+```

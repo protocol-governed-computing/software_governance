@@ -2,44 +2,24 @@
 
 ## Machine
 ```yaml
-fqdn: fb.topology::CONSTITUTION_WORKFLOW_V0
-constitution_code: CONSTITUTION_WORKFLOW_V0
 artifact_kind: CONSTITUTION
 version: V0
 governed_by: fb.constitution::CONSTITUTION_GOVERNANCE_V0
-
 core:
-  description: Governs workflow DAG structure and execution sequencing
-  scope: artifact
-  governs:
-    - WF
   enforcement_model: compiler_enforced
-
+  governs:
+  - WF
 rules:
-  - rule_id: WF_DAG_STRUCTURE
-    applies_to: WF
-    constraint: workflow steps MUST form a valid directed acyclic graph
-    enforced_by: ASSERT_WF_EXECUTION_PATH_VALID_V0
-
-  - rule_id: WF_CC_ONLY_NODES
-    applies_to: WF
-    constraint: workflow steps MUST reference CC artifacts only; no direct CT or CS invocation
-    enforced_by: ASSERT_WF_CC_ONLY_NODES_V0
-
-  - rule_id: WF_NO_IMPLICIT_FLOW
-    applies_to: WF
-    constraint: all transitions MUST be explicitly declared; no implicit default routing
-    enforced_by: ASSERT_WF_EXECUTION_PATH_VALID_V0
-
-  - rule_id: WF_ENTRY_INTENT_REQUIRED
-    applies_to: WF
-    constraint: every workflow MUST declare exactly one entry intent
-    enforced_by: ASSERT_WF_ENTRY_INTENT_V0
-
-  - rule_id: WF_FQDN_REFERENCES
-    applies_to: WF
-    constraint: all artifact references in workflow MUST use FQDN
-    enforced_by: ASSERT_FQDN_ONLY_REFERENCES_V0
+- applies_to: WF
+  enforced_by: fb.topology::INVARIANT_WF_EXECUTION_PATH_VALID_V0
+- applies_to: WF
+  enforced_by: fb.topology::INVARIANT_WF_CC_ONLY_NODES_V0
+- applies_to: WF
+  enforced_by: fb.topology::INVARIANT_WF_EXECUTION_PATH_VALID_V0
+- applies_to: WF
+  enforced_by: fb.topology::INVARIANT_WF_ENTRY_INTENT_V0
+- applies_to: WF
+  enforced_by: fb.constitution::INVARIANT_FQDN_ONLY_REFERENCES_V0
 ```
 
 ---
@@ -81,3 +61,23 @@ Workflows declare directed acyclic graphs of capability contract invocations. Th
 ---
 
 ## End of Constitution
+
+---
+
+## Rule Statement
+
+```yaml
+core:
+  description: Governs workflow DAG structure and execution sequencing
+rules:
+- rule_id: WF_DAG_STRUCTURE
+  constraint: workflow steps MUST form a valid directed acyclic graph
+- rule_id: WF_CC_ONLY_NODES
+  constraint: workflow steps MUST reference CC artifacts only; no direct CT or CS invocation
+- rule_id: WF_NO_IMPLICIT_FLOW
+  constraint: all transitions MUST be explicitly declared; no implicit default routing
+- rule_id: WF_ENTRY_INTENT_REQUIRED
+  constraint: every workflow MUST declare exactly one entry intent
+- rule_id: WF_FQDN_REFERENCES
+  constraint: all artifact references in workflow MUST use FQDN
+```

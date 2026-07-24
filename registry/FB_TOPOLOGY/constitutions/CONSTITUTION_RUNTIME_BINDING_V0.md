@@ -2,44 +2,24 @@
 
 ## Machine
 ```yaml
-fqdn: fb.topology::CONSTITUTION_RUNTIME_BINDING_V0
-constitution_code: CONSTITUTION_RUNTIME_BINDING_V0
 artifact_kind: CONSTITUTION
 version: V0
 governed_by: fb.constitution::CONSTITUTION_GOVERNANCE_V0
-
 core:
-  description: Governs mapping of CS capabilities to concrete host implementations
-  scope: artifact
-  governs:
-    - RB
   enforcement_model: compiler_enforced
-
+  governs:
+  - RB
 rules:
-  - rule_id: RB_DETERMINISTIC_BINDING
-    applies_to: RB
-    constraint: bindings MUST be deterministic and explicit; no dynamic resolution
-    enforced_by: ASSERT_RB_NO_LOGIC_V0
-
-  - rule_id: RB_CS_ONLY
-    applies_to: RB
-    constraint: RB MUST bind CS artifacts only; never CT or WF
-    enforced_by: ASSERT_RB_CS_ONLY_V0
-
-  - rule_id: RB_NO_BEHAVIOR_EXTENSION
-    applies_to: RB
-    constraint: binding MUST NOT alter capability semantics
-    enforced_by: ASSERT_RB_NO_LOGIC_V0
-
-  - rule_id: RB_NO_LOGIC
-    applies_to: RB
-    constraint: RB MUST NOT contain execution logic; it is a mapping declaration only
-    enforced_by: ASSERT_RB_NO_LOGIC_V0
-
-  - rule_id: RB_FQDN_KEYS
-    applies_to: RB
-    constraint: all binding keys MUST be FQDN
-    enforced_by: ASSERT_FQDN_ONLY_REFERENCES_V0
+- applies_to: RB
+  enforced_by: fb.topology::INVARIANT_RB_NO_LOGIC_V0
+- applies_to: RB
+  enforced_by: fb.topology::INVARIANT_RB_CS_ONLY_V0
+- applies_to: RB
+  enforced_by: fb.topology::INVARIANT_RB_NO_LOGIC_V0
+- applies_to: RB
+  enforced_by: fb.topology::INVARIANT_RB_NO_LOGIC_V0
+- applies_to: RB
+  enforced_by: fb.constitution::INVARIANT_FQDN_ONLY_REFERENCES_V0
 ```
 
 ---
@@ -81,3 +61,23 @@ Runtime bindings map declared CS capability artifacts to their concrete host imp
 ---
 
 ## End of Constitution
+
+---
+
+## Rule Statement
+
+```yaml
+core:
+  description: Governs mapping of CS capabilities to concrete host implementations
+rules:
+- rule_id: RB_DETERMINISTIC_BINDING
+  constraint: bindings MUST be deterministic and explicit; no dynamic resolution
+- rule_id: RB_CS_ONLY
+  constraint: RB MUST bind CS artifacts only; never CT or WF
+- rule_id: RB_NO_BEHAVIOR_EXTENSION
+  constraint: binding MUST NOT alter capability semantics
+- rule_id: RB_NO_LOGIC
+  constraint: RB MUST NOT contain execution logic; it is a mapping declaration only
+- rule_id: RB_FQDN_KEYS
+  constraint: all binding keys MUST be FQDN
+```

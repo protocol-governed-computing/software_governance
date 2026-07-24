@@ -3,17 +3,13 @@
 ## Machine
 
 ```yaml
-invariant_code: INVARIANT_TOPOLOGY_CONTRACT_CLOSED_V0
 artifact_kind: INVARIANT
 version: V0
 governed_by: fb.topology::CONSTITUTION_EXECUTION_TOPOLOGY_V0
-
 core:
-  summary: the union of all codes that can exit a CC execution topology must exactly match result_status_contract.allowed; uncontracted exits and unreachable contract codes are compile-time violations
-  rule: For every CC, the set of status codes that can actually exit the topology (via step exit routes, last-step continue routes, and evaluation outcomes) must equal exactly the set declared in result_status_contract.allowed — no uncontracted exits, no unreachable contract codes
-  scope:
-    - CC
-
+  enforcement_stage:
+  - compiler_assertion
+  violation_response: FAIL_IMMEDIATELY
 ```
 
 ---
@@ -80,3 +76,16 @@ and callers are writing dead routing branches.
 
 Contract closure is the CC-level equivalent of exhaustive match. It cannot be inferred by
 reading individual steps — it requires aggregating all exit paths across the full topology.
+
+---
+
+## Rule Statement
+
+```yaml
+core:
+  rule: For every CC, the set of status codes that can actually exit the topology (via step exit routes,
+    last-step continue routes, and evaluation outcomes) must equal exactly the set declared in result_status_contract.allowed
+    — no uncontracted exits, no unreachable contract codes
+  summary: the union of all codes that can exit a CC execution topology must exactly match result_status_contract.allowed;
+    uncontracted exits and unreachable contract codes are compile-time violations
+```

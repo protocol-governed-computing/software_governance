@@ -26,18 +26,22 @@ to steps with a `transform:` binding (no `side_effect:`).
 ## Machine
 
 ```yaml
-surface_contract_code: SURFACE_CONTRACT_CT_PURE_V0
 artifact_kind: SURFACE_CONTRACT
 version: V0
 governed_by: fb.topology::CONSTITUTION_EXECUTION_TOPOLOGY_V0
-
-capability_family: CT_PURE
-op: TRANSFORM
-
-canonical_surface:
-  - SUCCESS
-  - VIOLATION
-
-capability_id_prefix: CT_PURE_
+surface_contract_code: SURFACE_CONTRACT_CT_PURE_V0
 governs: []
+op: TRANSFORM
+canonical_surface:
+- SUCCESS
+- VIOLATION
+capability_id_prefix: CT_PURE_
+```
+
+---
+
+## Rule Statement
+
+```yaml
+capability_family: CT_PURE
 ```

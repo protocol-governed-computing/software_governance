@@ -23,18 +23,22 @@ produce VIOLATION (COUNT takes no input that can be invalid). These two outcomes
 ## Machine
 
 ```yaml
-surface_contract_code: SURFACE_CONTRACT_REGISTRY_COUNT_V0
 artifact_kind: SURFACE_CONTRACT
 version: V0
 governed_by: fb.topology::CONSTITUTION_EXECUTION_TOPOLOGY_V0
-
-capability_family: REGISTRY
-op: COUNT
-
-canonical_surface:
-  - SUCCESS
-  - BACKEND_ERROR
-
+surface_contract_code: SURFACE_CONTRACT_REGISTRY_COUNT_V0
 governs:
-  - CS_REGISTRY_V0
+- CS_REGISTRY_V0
+op: COUNT
+canonical_surface:
+- SUCCESS
+- BACKEND_ERROR
+```
+
+---
+
+## Rule Statement
+
+```yaml
+capability_family: REGISTRY
 ```

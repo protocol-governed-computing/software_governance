@@ -3,54 +3,13 @@
 ## Machine
 
 ```yaml
-invariant_code: INVARIANT_CC_NO_UNUSED_OUTPUTS_V0
 artifact_kind: INVARIANT
 version: V0
 governed_by: fb.constitution::CONSTITUTION_INVARIANTS_V0
-
 core:
-  description: >
-    CC pipeline step outputs should be consumed by downstream nodes.
-
-    Unused outputs indicate:
-    - Incomplete workflow (missing consumer)
-    - Dead code (unnecessary computation)
-    - Potential optimization opportunity
-
-    This is CODE SMELL detection, not a hard violation.
-    Enforcement level: WARNING (not FAIL_BUILD).
-
   enforcement_stage:
-    - compiler_validation
-
-  scope:
-    - WORKFLOWS
-    - CAPABILITY_CONTRACTS
-
+  - compiler_validation
   violation_response: WARN
-
-
-  anti_patterns:
-    - unused_output: "CC step produces output field that no downstream node consumes"
-    - terminal_output: "CC produces output in terminal node (no consumers possible)"
-    - dead_computation: "CC performs computation whose result is never used"
-
-  clarification:
-    warning_not_error: >
-      This invariant emits WARNINGS, not ERRORS.
-      Build succeeds even with unused outputs.
-      Warnings help identify optimization opportunities.
-
-    legitimate_unused: >
-      Some unused outputs are legitimate:
-      - Terminal state outputs (for final result)
-      - Debugging/logging outputs (for observability)
-      - Future extensibility (planned for later use)
-
-    detection_scope: >
-      Detects unused outputs within SINGLE workflow.
-      Does NOT track cross-workflow consumption.
-      Cross-WF analysis is separate concern.
 ```
 
 ---
@@ -232,3 +191,34 @@ def detect_unused_outputs(wf_graph):
 ## Version History
 
 - **V0**: Initial implementation (2026-04-12) - Unused Output Detection (Warning Level)
+
+---
+
+## Rule Statement
+
+```yaml
+core:
+  description: 'CC pipeline step outputs should be consumed by downstream nodes.
+
+    Unused outputs indicate: - Incomplete workflow (missing consumer) - Dead code (unnecessary computation)
+    - Potential optimization opportunity
+
+    This is CODE SMELL detection, not a hard violation. Enforcement level: WARNING (not FAIL_BUILD).
+
+    '
+  anti_patterns:
+  - unused_output: CC step produces output field that no downstream node consumes
+  - terminal_output: CC produces output in terminal node (no consumers possible)
+  - dead_computation: CC performs computation whose result is never used
+  clarification:
+    warning_not_error: 'This invariant emits WARNINGS, not ERRORS. Build succeeds even with unused outputs.
+      Warnings help identify optimization opportunities.
+
+      '
+    legitimate_unused: 'Some unused outputs are legitimate: - Terminal state outputs (for final result)
+      - Debugging/logging outputs (for observability) - Future extensibility (planned for later use)
+
+      '
+    detection_scope: Detects unused outputs within SINGLE workflow. Does NOT track cross-workflow consumption.
+      Cross-WF analysis is separate concern.
+```

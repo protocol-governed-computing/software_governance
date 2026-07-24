@@ -23,18 +23,22 @@ capabilities MUST NOT introduce domain-specific result codes at the step level.
 ## Machine
 
 ```yaml
-surface_contract_code: SURFACE_CONTRACT_TRANSPORT_SEND_V0
 artifact_kind: SURFACE_CONTRACT
 version: V0
 governed_by: fb.topology::CONSTITUTION_EXECUTION_TOPOLOGY_V0
-
-capability_family: TRANSPORT
-op: SEND
-
-canonical_surface:
-  - SUCCESS
-  - VIOLATION
-  - BACKEND_ERROR
-
+surface_contract_code: SURFACE_CONTRACT_TRANSPORT_SEND_V0
 governs: []
+op: SEND
+canonical_surface:
+- SUCCESS
+- VIOLATION
+- BACKEND_ERROR
+```
+
+---
+
+## Rule Statement
+
+```yaml
+capability_family: TRANSPORT
 ```

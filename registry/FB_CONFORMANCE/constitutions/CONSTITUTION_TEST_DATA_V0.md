@@ -2,29 +2,18 @@
 
 ## Machine
 ```yaml
-fqdn: fb.conformance::CONSTITUTION_TEST_DATA_V0
-constitution_code: CONSTITUTION_TEST_DATA_V0
 artifact_kind: CONSTITUTION
 version: V0
 governed_by: fb.constitution::CONSTITUTION_GOVERNANCE_V0
-
 core:
-  description: Governs Test Data (TEST_DATA) artifacts — declarative test specifications for CT conformance
-  scope: artifact
-  governs:
-    - TEST_DATA
   enforcement_model: compiler_enforced
-
+  governs:
+  - TEST_DATA
 rules:
-  - rule_id: TD_CT_OUTPUT_MATCH
-    applies_to: TEST_DATA
-    constraint: test case expected outputs MUST match the actual CT output contract
-    enforced_by: ASSERT_TEST_DATA_MATCH_CT_OUTPUT_V0
-
-  - rule_id: TD_FQDN_REFERENCES
-    applies_to: TEST_DATA
-    constraint: target artifact references in TEST_DATA MUST use FQDN
-    enforced_by: ASSERT_FQDN_ONLY_REFERENCES_V0
+- applies_to: TEST_DATA
+  enforced_by: fb.conformance::INVARIANT_TEST_DATA_MATCH_CT_OUTPUT_V0
+- applies_to: TEST_DATA
+  enforced_by: fb.constitution::INVARIANT_FQDN_ONLY_REFERENCES_V0
 ```
 
 ---
@@ -62,3 +51,17 @@ Test Data artifacts provide declarative test specifications for validating Capab
 ---
 
 ## End of Constitution
+
+---
+
+## Rule Statement
+
+```yaml
+core:
+  description: Governs Test Data (TEST_DATA) artifacts — declarative test specifications for CT conformance
+rules:
+- rule_id: TD_CT_OUTPUT_MATCH
+  constraint: test case expected outputs MUST match the actual CT output contract
+- rule_id: TD_FQDN_REFERENCES
+  constraint: target artifact references in TEST_DATA MUST use FQDN
+```

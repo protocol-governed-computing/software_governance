@@ -3,37 +3,20 @@
 ## Machine
 
 ```yaml
-fqdn: fb.topology::CONSTITUTION_TRACE_EXECUTION_V0
-constitution_code: CONSTITUTION_TRACE_EXECUTION_V0
 artifact_kind: CONSTITUTION
 version: V0
 governed_by: fb.topology::CONSTITUTION_EXECUTION_V0
-
 core:
-  description: Governs trace emission and materialization — declares trace as a mandated protocol artifact
-  scope: system
   enforcement_model: runtime_enforced
-
 rules:
-  - rule_id: TRACE_OBLIGATED
-    applies_to: system
-    constraint: trace emission is obligated; not optional
-    enforced_by: TBD
-
-  - rule_id: TRACE_EXECUTION_PURITY
-    applies_to: system
-    constraint: execution MUST NOT write trace to disk during execution loop; collection is in-memory only
-    enforced_by: TBD
-
-  - rule_id: TRACE_EGRESS_SOLE_IO
-    applies_to: system
-    constraint: TraceEgressAdapter is the sole authority for trace I/O
-    enforced_by: TBD
-
-  - rule_id: TRACE_PATH_FROM_STRUCTURE
-    applies_to: system
-    constraint: trace output path MUST be resolved from STRUCTURE; never derived from file traversal or hardcoded literals
-    enforced_by: TBD
+- applies_to: system
+  enforced_by: TBD
+- applies_to: system
+  enforced_by: TBD
+- applies_to: system
+  enforced_by: TBD
+- applies_to: system
+  enforced_by: TBD
 ```
 
 ---
@@ -183,3 +166,22 @@ No sink is injected into execution.
 ## Version History
 
 - **V0**: Initial TE layer constitution (2026-04-26)
+
+---
+
+## Rule Statement
+
+```yaml
+core:
+  description: Governs trace emission and materialization — declares trace as a mandated protocol artifact
+rules:
+- rule_id: TRACE_OBLIGATED
+  constraint: trace emission is obligated; not optional
+- rule_id: TRACE_EXECUTION_PURITY
+  constraint: execution MUST NOT write trace to disk during execution loop; collection is in-memory only
+- rule_id: TRACE_EGRESS_SOLE_IO
+  constraint: TraceEgressAdapter is the sole authority for trace I/O
+- rule_id: TRACE_PATH_FROM_STRUCTURE
+  constraint: trace output path MUST be resolved from STRUCTURE; never derived from file traversal or
+    hardcoded literals
+```

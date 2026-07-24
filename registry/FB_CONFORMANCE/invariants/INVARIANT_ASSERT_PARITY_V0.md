@@ -3,53 +3,19 @@
 ## Machine
 
 ```yaml
-invariant_code: INVARIANT_ASSERT_PARITY_V0
 artifact_kind: INVARIANT
 version: V0
 governed_by: fb.constitution::CONSTITUTION_INVARIANTS_V0
-
 core:
-  description: >
-    For every INVARIANT_*, exactly one ASSERT_* must exist (and vice versa).
-
-    Naming must match:
-    - INVARIANT_FOO_V0 ↔ ASSERT_FOO_V0
-
-    This ensures governance symmetry between declaration (invariant)
-    and enforcement (assert).
-
   enforcement_stage:
-    - compiler_meta_validation
-
-  scope:
-    - GOVERNANCE_ARTIFACTS
-
+  - compiler_meta_validation
   violation_response: FAIL_IMMEDIATELY
-
-
-  anti_patterns:
-    - orphaned_invariant: "INVARIANT without matching ASSERT (declaration without enforcement)"
-    - orphaned_assert: "ASSERT without matching INVARIANT (enforcement without declaration)"
-    - naming_mismatch: "INVARIANT and ASSERT exist but names don't match pattern"
-
-  clarification:
-    governance_symmetry: >
-      Invariants declare what must be true.
-      Asserts enforce what must be true.
-      Every declaration requires enforcement.
-      Every enforcement must have declaration.
-    meta_validation: >
-      This is meta-governance: governance validating governance.
-      Ensures governance layer is self-consistent before validating artifacts.
-
-# assert_projection — parameters the compiler-derived ASSERT carries (ASSERT is derived, not authored)
 assert_projection:
   ci_override:
     level: ERROR
   enforcement:
     phase: meta_validation
     order: 1
-    failure_mode: HARD_FAIL
     scope: GOVERNANCE_ARTIFACTS
     level: WARNING
 ```
@@ -215,3 +181,34 @@ If governance is inconsistent, artifact validation is meaningless.
 ## Version History
 
 - **V0**: Initial implementation (2026-04-12) - Meta-Invariant for Parity
+
+---
+
+## Rule Statement
+
+```yaml
+core:
+  description: 'For every INVARIANT_*, exactly one ASSERT_* must exist (and vice versa).
+
+    Naming must match: - INVARIANT_FOO_V0 ↔ ASSERT_FOO_V0
+
+    This ensures governance symmetry between declaration (invariant) and enforcement (assert).
+
+    '
+  anti_patterns:
+  - orphaned_invariant: INVARIANT without matching ASSERT (declaration without enforcement)
+  - orphaned_assert: ASSERT without matching INVARIANT (enforcement without declaration)
+  - naming_mismatch: INVARIANT and ASSERT exist but names don't match pattern
+  clarification:
+    governance_symmetry: 'Invariants declare what must be true. Asserts enforce what must be true. Every
+      declaration requires enforcement. Every enforcement must have declaration.
+
+      '
+    meta_validation: 'This is meta-governance: governance validating governance. Ensures governance layer
+      is self-consistent before validating artifacts.
+
+      '
+assert_projection:
+  enforcement:
+    failure_mode: HARD_FAIL
+```

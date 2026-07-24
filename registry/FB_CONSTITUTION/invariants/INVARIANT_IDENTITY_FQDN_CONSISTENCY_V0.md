@@ -3,47 +3,19 @@
 ## Machine
 
 ```yaml
-invariant_code: INVARIANT_IDENTITY_FQDN_CONSISTENCY_V0
 artifact_kind: INVARIANT
 version: V0
 governed_by: fb.constitution::CONSTITUTION_INVARIANTS_V0
-
 core:
-  description: >
-    Artifact FQDN must match namespace and artifact_code consistently.
-
-    FQDN format: {namespace}::{artifact_code}
-
-    This ensures identity resolution is deterministic and unambiguous.
-
   enforcement_stage:
-    - compiler_discovery
-    - compiler_validation
-
-  scope:
-    - ALL_ARTIFACTS
-
+  - compiler_discovery
+  - compiler_validation
   violation_response: FAIL_IMMEDIATELY
-
-
-  anti_patterns:
-    - fqdn_namespace_mismatch: "FQDN namespace doesn't match artifact's actual namespace"
-    - fqdn_code_mismatch: "FQDN artifact_code doesn't match artifact's declared code"
-    - malformed_fqdn: "FQDN doesn't follow {namespace}::{code} pattern"
-
-  clarification:
-    deterministic_identity: >
-      Every artifact has exactly one FQDN.
-      FQDN is derived from namespace + artifact_code (never manually set).
-      Resolution must be unambiguous and reproducible.
-
-# assert_projection — parameters the compiler-derived ASSERT carries (ASSERT is derived, not authored)
 assert_projection:
   handler: pgs_governance.registry.handlers.assert_identity_fqdn_consistency
   enforcement:
     phase: validation
     order: 5
-    failure_mode: HARD_FAIL
     scope: ALL_ARTIFACTS
 ```
 
@@ -159,3 +131,30 @@ if "fqdn_id" in frontmatter:
 ## Version History
 
 - **V0**: Initial implementation (2026-04-12) - Identity Consistency Enforcement
+
+---
+
+## Rule Statement
+
+```yaml
+core:
+  description: 'Artifact FQDN must match namespace and artifact_code consistently.
+
+    FQDN format: {namespace}::{artifact_code}
+
+    This ensures identity resolution is deterministic and unambiguous.
+
+    '
+  anti_patterns:
+  - fqdn_namespace_mismatch: FQDN namespace doesn't match artifact's actual namespace
+  - fqdn_code_mismatch: FQDN artifact_code doesn't match artifact's declared code
+  - malformed_fqdn: FQDN doesn't follow {namespace}::{code} pattern
+  clarification:
+    deterministic_identity: 'Every artifact has exactly one FQDN. FQDN is derived from namespace + artifact_code
+      (never manually set). Resolution must be unambiguous and reproducible.
+
+      '
+assert_projection:
+  enforcement:
+    failure_mode: HARD_FAIL
+```

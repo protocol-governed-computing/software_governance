@@ -3,46 +3,13 @@
 ## Machine
 
 ```yaml
-invariant_code: INVARIANT_WF_EXECUTION_PATH_VALID_V0
 artifact_kind: INVARIANT
 version: V0
 governed_by: fb.constitution::CONSTITUTION_INVARIANTS_V0
-
 core:
-  description: >
-    WF execution graph must be valid: start_node exists and is type IN or TI,
-    all nodes reachable from start_node, no cycles (DAG constraint),
-    all node.next references point to existing nodes, all EXIT nodes
-    are terminal, all CC nodes reference valid CC codes (FQDN resolution).
-
   enforcement_stage:
-    - compiler_validation
-
-  scope:
-    - WORKFLOWS
-
+  - compiler_validation
   violation_response: FAIL_IMMEDIATELY
-
-
-  anti_patterns:
-    - unreachable_node: "Node exists but not reachable from start_node"
-    - cyclic_graph: "Graph contains cycle (violates DAG constraint)"
-    - invalid_next_reference: "node.next references non-existent node"
-    - invalid_start_node: "start_node does not exist or is not type IN/TI"
-    - non_terminal_exit: "EXIT node has outbound edges"
-    - invalid_cc_reference: "CC node references non-existent CC (FQDN not found)"
-
-  clarification:
-    dag_model: >
-      WF defines execution as DAG (Directed Acyclic Graph) via nodes structure.
-      This is the authoritative execution model. Compiler derives linear paths
-      from DAG for validation purposes.
-    branching_allowed: >
-      Branching is valid and expected (SUCCESS/VIOLATION/etc paths).
-      Each branch is validated independently.
-    execution_paths: >
-      Execution paths are derived projections, not declared fields.
-      Compiler extracts all possible paths from IN → EXIT for validation.
 ```
 
 ---
@@ -225,3 +192,34 @@ Compiler MUST:
 ## Version History
 
 - **V0**: Initial implementation (2026-04-12) - WF Execution Path Validation
+
+---
+
+## Rule Statement
+
+```yaml
+core:
+  description: 'WF execution graph must be valid: start_node exists and is type IN or TI, all nodes reachable
+    from start_node, no cycles (DAG constraint), all node.next references point to existing nodes, all
+    EXIT nodes are terminal, all CC nodes reference valid CC codes (FQDN resolution).
+
+    '
+  anti_patterns:
+  - unreachable_node: Node exists but not reachable from start_node
+  - cyclic_graph: Graph contains cycle (violates DAG constraint)
+  - invalid_next_reference: node.next references non-existent node
+  - invalid_start_node: start_node does not exist or is not type IN/TI
+  - non_terminal_exit: EXIT node has outbound edges
+  - invalid_cc_reference: CC node references non-existent CC (FQDN not found)
+  clarification:
+    dag_model: 'WF defines execution as DAG (Directed Acyclic Graph) via nodes structure. This is the
+      authoritative execution model. Compiler derives linear paths from DAG for validation purposes.
+
+      '
+    branching_allowed: 'Branching is valid and expected (SUCCESS/VIOLATION/etc paths). Each branch is
+      validated independently.
+
+      '
+    execution_paths: Execution paths are derived projections, not declared fields. Compiler extracts all
+      possible paths from IN → EXIT for validation.
+```

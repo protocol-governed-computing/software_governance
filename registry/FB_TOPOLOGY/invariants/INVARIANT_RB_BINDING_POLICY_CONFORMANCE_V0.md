@@ -5,22 +5,13 @@ Architectural Invariant
 ## Machine
 
 ```yaml
-invariant_code: INVARIANT_RB_BINDING_POLICY_CONFORMANCE_V0
 artifact_kind: INVARIANT
 version: V0
 governed_by: fb.topology::CONSTITUTION_RUNTIME_BINDING_V0
-
 core:
-  summary: RB bindings for file-path CS types must declare explicit policy.path
-  rule: >
-    For every CS binding in an RB artifact where the CS type is a file-path CS
-    (CS_REGISTRY_V0 or CS_APPENDONLY_JSONL_V0), policy.path must be declared
-    and non-empty. policy: {} causes a runtime KeyError crash for these types.
-  scope:
-    - RB
-  file_path_cs_types:
-    - CS_REGISTRY_V0
-    - CS_APPENDONLY_JSONL_V0
+  enforcement_stage:
+  - compiler_assertion
+  violation_response: FAIL_IMMEDIATELY
 ```
 
 ## Summary
@@ -57,3 +48,20 @@ executable without runtime initialization failure. `policy: {}` for CS types
 that require an explicit path is a structural defect: the runtime cannot proceed,
 the trace is empty, and the error is unrelated to payload content. Catching this
 at compile time preserves the PGS invariant that Compiler PASS → Runtime executable.
+
+---
+
+## Rule Statement
+
+```yaml
+core:
+  rule: 'For every CS binding in an RB artifact where the CS type is a file-path CS (CS_REGISTRY_V0 or
+    CS_APPENDONLY_JSONL_V0), policy.path must be declared and non-empty. policy: {} causes a runtime KeyError
+    crash for these types.
+
+    '
+  summary: RB bindings for file-path CS types must declare explicit policy.path
+  file_path_cs_types:
+  - CS_REGISTRY_V0
+  - CS_APPENDONLY_JSONL_V0
+```

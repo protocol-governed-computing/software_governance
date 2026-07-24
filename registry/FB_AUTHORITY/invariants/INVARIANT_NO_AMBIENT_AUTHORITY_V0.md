@@ -5,19 +5,13 @@ Architectural Invariant
 ## Machine
 
 ```yaml
-invariant_code: INVARIANT_NO_AMBIENT_AUTHORITY_V0
 artifact_kind: INVARIANT
 version: V0
 governed_by: fb.authority::CONSTITUTION_AUTHORITY_GOVERNANCE_V0
-
 core:
-  summary: All authority must be explicit and fully declared; implicit permissions, default authority, and inferred execution rights are forbidden
-  rule: No execution artifact, authority declaration, or schema may rely on implicit permissions, default authority grants, role inference, or undeclared execution rights; authority not explicitly granted is denied
-  scope:
-    - WF
-    - CC
-    - CT
-    - CS
+  enforcement_stage:
+  - compiler_assertion
+  violation_response: FAIL_IMMEDIATELY
 ```
 
 ## Summary
@@ -47,3 +41,16 @@ For every execution artifact and authority declaration:
 Ambient authority is the root cause of privilege escalation at the architectural level. When authority is inferred from context rather than declared explicitly, the system has no way to audit what was authorized, by whom, and why. Every implicit permission is a gap in the admissibility record and the non-repudiation chain.
 
 The PGS authority model is: authority not granted is denied. Explicit grants only. This invariant enforces that constraint structurally.
+
+---
+
+## Rule Statement
+
+```yaml
+core:
+  rule: No execution artifact, authority declaration, or schema may rely on implicit permissions, default
+    authority grants, role inference, or undeclared execution rights; authority not explicitly granted
+    is denied
+  summary: All authority must be explicit and fully declared; implicit permissions, default authority,
+    and inferred execution rights are forbidden
+```

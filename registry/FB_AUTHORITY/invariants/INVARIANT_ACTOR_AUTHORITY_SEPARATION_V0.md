@@ -5,16 +5,13 @@ Architectural Invariant
 ## Machine
 
 ```yaml
-invariant_code: INVARIANT_ACTOR_AUTHORITY_SEPARATION_V0
 artifact_kind: INVARIANT
 version: V0
 governed_by: fb.authority::CONSTITUTION_AUTHORITY_GOVERNANCE_V0
-
 core:
-  summary: Identity governance and authority governance are orthogonal surfaces; neither may import semantics from the other
-  rule: No actor artifact may carry authority semantics; no authority artifact may define identity semantics; the boundary between identity governance and authority governance is inviolable
-  scope:
-    - AC
+  enforcement_stage:
+  - compiler_assertion
+  violation_response: FAIL_IMMEDIATELY
 ```
 
 ## Summary
@@ -44,3 +41,15 @@ The orthogonality boundary requires:
 This invariant enforces the same boundary from the authority governance side — the authority plane must reject identity artifacts carrying authority payload.
 
 Both invariants are required. Together they create a bilateral, cross-constitution enforcement of the same architectural law from each sovereign perspective.
+
+---
+
+## Rule Statement
+
+```yaml
+core:
+  rule: No actor artifact may carry authority semantics; no authority artifact may define identity semantics;
+    the boundary between identity governance and authority governance is inviolable
+  summary: Identity governance and authority governance are orthogonal surfaces; neither may import semantics
+    from the other
+```

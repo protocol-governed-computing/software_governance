@@ -5,16 +5,13 @@ Architectural Invariant
 ## Machine
 
 ```yaml
-invariant_code: INVARIANT_CS_TRACEABLE_V0
 artifact_kind: INVARIANT
 version: V0
 governed_by: fb.topology::CONSTITUTION_CAPABILITY_SIDE_EFFECTS_V0
-
 core:
-  summary: Every CS execution must be recorded in the execution trace
-  rule: CS executors must emit a trace entry for every side-effect execution
-  scope:
-    - CS
+  enforcement_stage:
+  - compiler_assertion
+  violation_response: FAIL_IMMEDIATELY
 ```
 
 ## Summary
@@ -45,3 +42,13 @@ analysis cannot verify executor behavior.
 Without traceability, the system cannot provide a complete audit trail. Side effects that
 occur outside the trace are indistinguishable from unrecorded mutations, undermining the
 guarantee that the trace is the definitive record of what happened.
+
+---
+
+## Rule Statement
+
+```yaml
+core:
+  rule: CS executors must emit a trace entry for every side-effect execution
+  summary: Every CS execution must be recorded in the execution trace
+```

@@ -2,34 +2,20 @@
 
 ## Machine
 ```yaml
-fqdn: fb.constitution::CONSTITUTION_EVENT_V0
-constitution_code: CONSTITUTION_EVENT_V0
 artifact_kind: CONSTITUTION
 version: V0
 governed_by: fb.constitution::CONSTITUTION_GOVERNANCE_V0
-
 core:
-  description: Governs event emission and audit integrity
-  scope: artifact
-  governs:
-    - EV
   enforcement_model: compiler_enforced
-
+  governs:
+  - EV
 rules:
-  - rule_id: EV_APPEND_ONLY
-    applies_to: EV
-    constraint: event stores MUST be append-only; records MUST NOT be mutated
-    enforced_by: ASSERT_EV_APPEND_ONLY_V0
-
-  - rule_id: EV_SCHEMA_REQUIRED
-    applies_to: EV
-    constraint: every event MUST define a schema
-    enforced_by: ASSERT_EV_SCHEMA_REQUIRED_V0
-
-  - rule_id: EV_IMMUTABLE_RECORDS
-    applies_to: EV
-    constraint: emitted event records MUST be immutable
-    enforced_by: ASSERT_EV_APPEND_ONLY_V0
+- applies_to: EV
+  enforced_by: fb.constitution::INVARIANT_EV_APPEND_ONLY_V0
+- applies_to: EV
+  enforced_by: fb.constitution::INVARIANT_EV_SCHEMA_REQUIRED_V0
+- applies_to: EV
+  enforced_by: fb.constitution::INVARIANT_EV_APPEND_ONLY_V0
 ```
 
 ---
@@ -68,3 +54,19 @@ Events are the protocol's mechanism for recording state transitions and observab
 ---
 
 ## End of Constitution
+
+---
+
+## Rule Statement
+
+```yaml
+core:
+  description: Governs event emission and audit integrity
+rules:
+- rule_id: EV_APPEND_ONLY
+  constraint: event stores MUST be append-only; records MUST NOT be mutated
+- rule_id: EV_SCHEMA_REQUIRED
+  constraint: every event MUST define a schema
+- rule_id: EV_IMMUTABLE_RECORDS
+  constraint: emitted event records MUST be immutable
+```

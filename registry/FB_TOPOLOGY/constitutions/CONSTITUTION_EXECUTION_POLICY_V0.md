@@ -2,32 +2,18 @@
 
 ## Machine
 ```yaml
-fqdn: fb.topology::CONSTITUTION_EXECUTION_POLICY_V0
-constitution_code: CONSTITUTION_EXECUTION_POLICY_V0
 artifact_kind: CONSTITUTION
 version: V0
 governed_by: fb.topology::CONSTITUTION_EXECUTION_V0
-
 core:
-  description: Governs execution policy profiles — the licensing seam between BASIC and ADVANCED machine
-  scope: system
   enforcement_model: compiler_enforced
-
 rules:
-  - rule_id: POLICY_LOAD_BEFORE_EXECUTION
-    applies_to: system
-    constraint: policy profile MUST be resolved before execution starts
-    enforced_by: TBD
-
-  - rule_id: POLICY_IMMUTABLE_DURING_EXECUTION
-    applies_to: system
-    constraint: policy profile MUST NOT change after execution begins
-    enforced_by: TBD
-
-  - rule_id: POLICY_EXPLICIT_PROFILE
-    applies_to: system
-    constraint: policy profile MUST be one of BASIC or ADVANCED; no implicit default
-    enforced_by: TBD
+- applies_to: system
+  enforced_by: TBD
+- applies_to: system
+  enforced_by: TBD
+- applies_to: system
+  enforced_by: TBD
 ```
 
 ---
@@ -148,3 +134,19 @@ Changes to policy profiles require:
 - New constitution version
 - Schema migration
 - All existing profiles validated against new schema
+
+---
+
+## Rule Statement
+
+```yaml
+core:
+  description: Governs execution policy profiles — the licensing seam between BASIC and ADVANCED machine
+rules:
+- rule_id: POLICY_LOAD_BEFORE_EXECUTION
+  constraint: policy profile MUST be resolved before execution starts
+- rule_id: POLICY_IMMUTABLE_DURING_EXECUTION
+  constraint: policy profile MUST NOT change after execution begins
+- rule_id: POLICY_EXPLICIT_PROFILE
+  constraint: policy profile MUST be one of BASIC or ADVANCED; no implicit default
+```

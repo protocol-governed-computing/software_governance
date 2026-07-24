@@ -2,37 +2,20 @@
 
 ## Machine
 ```yaml
-fqdn: fb.constitution::CONSTITUTION_GOVERNANCE_V0
-constitution_code: CONSTITUTION_GOVERNANCE_V0
 artifact_kind: CONSTITUTION
 version: V0
 governed_by: fb.vocabulary::CONSTITUTION_VOCABULARY_V0
-
 core:
-  description: Root authority for the OmniBachi governance system — governs all constitutions and the governance hierarchy
-  scope: system
   enforcement_model: compiler_enforced
-
 rules:
-  - rule_id: GOVERNANCE_SUPREMACY
-    applies_to: system
-    constraint: this constitution takes precedence over all other constitutions in any conflict
-    enforced_by: PROCESS_ENFORCED
-
-  - rule_id: GOVERNANCE_VERSION_IMMUTABILITY
-    applies_to: system
-    constraint: ratified constitutions MUST NOT be mutated; any change requires a new version
-    enforced_by: PROCESS_ENFORCED
-
-  - rule_id: GOVERNANCE_EXPLICIT_AUTHORITY
-    applies_to: system
-    constraint: all governance authority MUST be explicitly declared; no implicit authority
-    enforced_by: ASSERT_PROTOCOL_SURFACE_CLOSED_V0
-
-  - rule_id: GOVERNANCE_NO_SILENT_EVOLUTION
-    applies_to: system
-    constraint: all changes MUST be versioned and visible; undocumented changes are constitutional violations
-    enforced_by: PROCESS_ENFORCED
+- applies_to: system
+  enforced_by: PROCESS_ENFORCED
+- applies_to: system
+  enforced_by: PROCESS_ENFORCED
+- applies_to: system
+  enforced_by: fb.topology::INVARIANT_PROTOCOL_SURFACE_CLOSED_V0
+- applies_to: system
+  enforced_by: PROCESS_ENFORCED
 ```
 
 ---
@@ -256,3 +239,22 @@ The chain of authority is explicit, versioned, and immutable.
 ---
 
 ## End of Constitution
+
+---
+
+## Rule Statement
+
+```yaml
+core:
+  description: Root authority for the OmniBachi governance system — governs all constitutions and the
+    governance hierarchy
+rules:
+- rule_id: GOVERNANCE_SUPREMACY
+  constraint: this constitution takes precedence over all other constitutions in any conflict
+- rule_id: GOVERNANCE_VERSION_IMMUTABILITY
+  constraint: ratified constitutions MUST NOT be mutated; any change requires a new version
+- rule_id: GOVERNANCE_EXPLICIT_AUTHORITY
+  constraint: all governance authority MUST be explicitly declared; no implicit authority
+- rule_id: GOVERNANCE_NO_SILENT_EVOLUTION
+  constraint: all changes MUST be versioned and visible; undocumented changes are constitutional violations
+```

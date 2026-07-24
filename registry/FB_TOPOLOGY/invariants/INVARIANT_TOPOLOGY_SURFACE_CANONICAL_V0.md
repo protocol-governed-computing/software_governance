@@ -3,17 +3,13 @@
 ## Machine
 
 ```yaml
-invariant_code: INVARIANT_TOPOLOGY_SURFACE_CANONICAL_V0
 artifact_kind: INVARIANT
 version: V0
 governed_by: fb.topology::CONSTITUTION_EXECUTION_TOPOLOGY_V0
-
 core:
-  summary: every step's result_surface must match the canonical surface declared by the governing SURFACE_CONTRACT for that step's capability and operation
-  rule: For every CC pipeline step whose capability (transform or side_effect) is governed by a SURFACE_CONTRACT artifact, the step's declared result_surface MUST exactly equal the canonical_surface declared in that contract; additions, omissions, aliases, and substitutions are constitutional violations
-  scope:
-    - CC
-
+  enforcement_stage:
+  - compiler_assertion
+  violation_response: FAIL_IMMEDIATELY
 ```
 
 ---
@@ -70,3 +66,16 @@ SURFACE_CONTRACT and enforced across all CCs that bind that capability, the resu
 field stops being a claim and becomes a verified fact.
 
 Full enforcement is implemented in Phase 3.
+
+---
+
+## Rule Statement
+
+```yaml
+core:
+  rule: For every CC pipeline step whose capability (transform or side_effect) is governed by a SURFACE_CONTRACT
+    artifact, the step's declared result_surface MUST exactly equal the canonical_surface declared in
+    that contract; additions, omissions, aliases, and substitutions are constitutional violations
+  summary: every step's result_surface must match the canonical surface declared by the governing SURFACE_CONTRACT
+    for that step's capability and operation
+```

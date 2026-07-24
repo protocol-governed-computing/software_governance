@@ -3,30 +3,13 @@
 ## Machine
 
 ```yaml
-invariant_code: INVARIANT_CT_TEST_DATA_OUTCOME_DECLARED_V0
 artifact_kind: INVARIANT
 version: V0
 governed_by: fb.topology::CONSTITUTION_EXECUTION_TOPOLOGY_V0
-
 core:
-  summary: >
-    Every test case in a TEST_DATA artifact must declare an explicit expected_outcome.
-    The outcome is a contract between the test author and the CT implementation —
-    it states whether the CT is expected to succeed or raise a VIOLATION.
-    Omitting it makes the test ambiguous: a silent default cannot be audited,
-    traced, or verified as intentional by a future compiler or reviewer.
-
-  rule: >
-    For every TEST_DATA artifact in the compiled graph: each test case declared
-    in the artifact body must include an explicit expected_outcome field.
-    Valid values are SUCCESS and VIOLATION. A test case without expected_outcome
-    is an undeclared behavioral contract — the compiler MUST NOT silently assume
-    SUCCESS. The test author must state the expected outcome explicitly so that
-    the conformance test runner can verify the CT behaves as contracted.
-
-  scope:
-    - TEST_DATA
-
+  enforcement_stage:
+  - compiler_assertion
+  violation_response: FAIL_IMMEDIATELY
 ```
 
 ---
@@ -76,3 +59,24 @@ correctable at the source before any test is run.
 ## Version History
 
 - **V0**: Initial invariant requiring explicit expected_outcome in all CT test cases (2026-06-03)
+
+---
+
+## Rule Statement
+
+```yaml
+core:
+  rule: 'For every TEST_DATA artifact in the compiled graph: each test case declared in the artifact body
+    must include an explicit expected_outcome field. Valid values are SUCCESS and VIOLATION. A test case
+    without expected_outcome is an undeclared behavioral contract — the compiler MUST NOT silently assume
+    SUCCESS. The test author must state the expected outcome explicitly so that the conformance test runner
+    can verify the CT behaves as contracted.
+
+    '
+  summary: 'Every test case in a TEST_DATA artifact must declare an explicit expected_outcome. The outcome
+    is a contract between the test author and the CT implementation — it states whether the CT is expected
+    to succeed or raise a VIOLATION. Omitting it makes the test ambiguous: a silent default cannot be
+    audited, traced, or verified as intentional by a future compiler or reviewer.
+
+    '
+```

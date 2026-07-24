@@ -5,16 +5,13 @@ Architectural Invariant
 ## Machine
 
 ```yaml
-invariant_code: INVARIANT_TRACE_AUTHORITY_BINDING_REQUIRED_V0
 artifact_kind: INVARIANT
 version: V0
 governed_by: fb.authority::CONSTITUTION_AUTHORITY_GOVERNANCE_V0
-
 core:
-  summary: All execution traces must bind actor identity, workflow FQDN, authority provenance, and admissibility outcome — ungoverned execution has no audit chain
-  rule: Execution without complete authority trace binding is ungoverned execution; actor_id, workflow_fqdn, authority_provenance, and admissibility_outcome are required trace fields
-  scope:
-    - WF
+  enforcement_stage:
+  - compiler_assertion
+  violation_response: FAIL_IMMEDIATELY
 ```
 
 ## Summary
@@ -41,3 +38,15 @@ For every execution trace:
 Ambient authority has no trace. Implicit permissions produce no audit record. This invariant is the accountability complement to the no-ambient-authority rule: not only must authority be explicit, but its exercise must be recorded. The authority trace binding transforms authority governance from a pre-execution gate into a complete, deterministic accountability chain spanning execution and post-execution.
 
 Full authority trace binding enforcement is implemented in Phase 5.
+
+---
+
+## Rule Statement
+
+```yaml
+core:
+  rule: Execution without complete authority trace binding is ungoverned execution; actor_id, workflow_fqdn,
+    authority_provenance, and admissibility_outcome are required trace fields
+  summary: All execution traces must bind actor identity, workflow FQDN, authority provenance, and admissibility
+    outcome — ungoverned execution has no audit chain
+```

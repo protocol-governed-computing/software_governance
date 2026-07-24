@@ -5,19 +5,13 @@ Architectural Invariant
 ## Machine
 
 ```yaml
-invariant_code: INVARIANT_NO_RUNTIME_AUTHORIZATION_V0
 artifact_kind: INVARIANT
 version: V0
 governed_by: fb.authority::CONSTITUTION_AUTHORITY_GOVERNANCE_V0
-
 core:
-  summary: The runtime must never perform authorization evaluation; it consumes resolved authority state only
-  rule: Runtime must consume pre-resolved authority state; dynamic authorization, role inference, policy evaluation, and permission negotiation at runtime are constitutional violations
-  scope:
-    - WF
-    - CC
-    - CT
-    - CS
+  enforcement_stage:
+  - compiler_assertion
+  violation_response: FAIL_IMMEDIATELY
 ```
 
 ## Summary
@@ -42,3 +36,15 @@ For every runtime interaction with authority state:
 ## Rationale
 
 If the runtime evaluates authorization, it becomes a policy engine. Policy engines are not graph traversal engines. They are dynamic, stateful, non-deterministic, and difficult to audit. PGS explicitly forbids this evolution. The authority state envelope is the output of pre-execution authority evaluation — the runtime consumes it without contributing to it.
+
+---
+
+## Rule Statement
+
+```yaml
+core:
+  rule: Runtime must consume pre-resolved authority state; dynamic authorization, role inference, policy
+    evaluation, and permission negotiation at runtime are constitutional violations
+  summary: The runtime must never perform authorization evaluation; it consumes resolved authority state
+    only
+```

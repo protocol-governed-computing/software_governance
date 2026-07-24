@@ -5,16 +5,13 @@ Architectural Invariant
 ## Machine
 
 ```yaml
-invariant_code: INVARIANT_AUTHORITY_REQUIRED_FOR_EXECUTION_V0
 artifact_kind: INVARIANT
 version: V0
 governed_by: fb.authority::CONSTITUTION_AUTHORITY_GOVERNANCE_V0
-
 core:
-  summary: Execution may not proceed without a declared authority boundary requirement
-  rule: Every WF_ artifact must declare an authority requirement; ungoverned execution entry points are a constitutional violation
-  scope:
-    - WF
+  enforcement_stage:
+  - compiler_assertion
+  violation_response: FAIL_IMMEDIATELY
 ```
 
 ## Summary
@@ -37,3 +34,14 @@ For every WF_ artifact:
 ## Rationale
 
 Authority governance determines whether execution may exist. If that determination is optional, authority governance is advisory rather than constitutional. This invariant makes the determination mandatory at the architectural level: no authority declaration, no execution.
+
+---
+
+## Rule Statement
+
+```yaml
+core:
+  rule: Every WF_ artifact must declare an authority requirement; ungoverned execution entry points are
+    a constitutional violation
+  summary: Execution may not proceed without a declared authority boundary requirement
+```

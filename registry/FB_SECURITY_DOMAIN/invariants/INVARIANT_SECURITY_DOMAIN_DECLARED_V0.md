@@ -3,29 +3,16 @@
 ## Machine
 
 ```yaml
-artifact_code: INVARIANT_SECURITY_DOMAIN_DECLARED_V0
 artifact_kind: INVARIANT
 version: V0
 governed_by: fb.constitution::CONSTITUTION_INVARIANTS_V0
-fqdn: fb.security_domain::INVARIANT_SECURITY_DOMAIN_DECLARED_V0
-
 core:
-  summary: Every compiled snapshot must declare exactly one active security domain contract
-  rule: >
-    The compiler MUST locate exactly one active security domain contract within
-    FB_SECURITY_DOMAIN. Zero contracts is a missing declaration violation.
-    More than one active contract is an ambiguity violation.
-  scope:
-    - compiled_snapshot
   enforcement_stage:
-    - compiler_validation
-  violation_response: FAIL_COMPILE
-
-# assert_projection — parameters the compiler-derived ASSERT carries (ASSERT is derived, not authored)
+  - compiler_validation
+  violation_response: FAIL_IMMEDIATELY
 assert_projection:
   enforcement:
     phase: assert
-    failure_mode: HARD_FAIL
     scope: ALL_ARTIFACTS
 ```
 
@@ -57,3 +44,19 @@ For every compiled snapshot:
 
 - **Stage:** compiler_validation
 - **Failure Mode:** FAIL_COMPILE — no snapshot is produced if violated
+
+---
+
+## Rule Statement
+
+```yaml
+core:
+  rule: 'The compiler MUST locate exactly one active security domain contract within FB_SECURITY_DOMAIN.
+    Zero contracts is a missing declaration violation. More than one active contract is an ambiguity violation.
+
+    '
+  summary: Every compiled snapshot must declare exactly one active security domain contract
+assert_projection:
+  enforcement:
+    failure_mode: HARD_FAIL
+```

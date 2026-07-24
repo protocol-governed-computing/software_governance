@@ -3,42 +3,13 @@
 ## Machine
 
 ```yaml
-invariant_code: INVARIANT_PROTOCOL_SURFACE_CLOSED_V0
 artifact_kind: INVARIANT
 version: V0
 governed_by: fb.constitution::CONSTITUTION_INVARIANTS_V0
-
 core:
-  description: >
-    Protocol surface must be closed: all artifact references must resolve
-    to valid FQDNs in the compilation graph. No dangling references, no
-    short names in reference fields.
-
   enforcement_stage:
-    - compiler_validation
-
-  scope:
-    - ALL_ARTIFACT_KINDS
-
+  - compiler_validation
   violation_response: FAIL_IMMEDIATELY
-
-
-  anti_patterns:
-    - dangling_reference: "Reference to artifact not in compilation graph"
-    - short_name_reference: "Reference using short name instead of FQDN"
-    - unresolved_dependency: "Dependency declared but not discoverable"
-    - ambiguous_reference: "Short name resolving to multiple FQDNs"
-
-  clarification:
-    bootstrap_artifacts: >
-      Bootstrap artifacts (STRUCTURE, WF, RB for bootstrap phase) are exempt
-      from closure checks during bootstrap discovery phase only.
-    external_references: >
-      External system references (URLs, file paths outside PGS) must be
-      marked as external in artifact metadata, not treated as FQDN references.
-    transitive_closure: >
-      Closure includes transitive references. If A → B → C, all three must
-      be in compilation graph.
 ```
 
 ---
@@ -133,3 +104,31 @@ If A references B, and B references C, all three must be in the graph.
 ## Version History
 
 - **V0**: Initial invariant (2026-03-31) - ASSERT Activation Phase
+
+---
+
+## Rule Statement
+
+```yaml
+core:
+  description: 'Protocol surface must be closed: all artifact references must resolve to valid FQDNs in
+    the compilation graph. No dangling references, no short names in reference fields.
+
+    '
+  anti_patterns:
+  - dangling_reference: Reference to artifact not in compilation graph
+  - short_name_reference: Reference using short name instead of FQDN
+  - unresolved_dependency: Dependency declared but not discoverable
+  - ambiguous_reference: Short name resolving to multiple FQDNs
+  clarification:
+    bootstrap_artifacts: 'Bootstrap artifacts (STRUCTURE, WF, RB for bootstrap phase) are exempt from
+      closure checks during bootstrap discovery phase only.
+
+      '
+    external_references: 'External system references (URLs, file paths outside PGS) must be marked as
+      external in artifact metadata, not treated as FQDN references.
+
+      '
+    transitive_closure: Closure includes transitive references. If A → B → C, all three must be in compilation
+      graph.
+```

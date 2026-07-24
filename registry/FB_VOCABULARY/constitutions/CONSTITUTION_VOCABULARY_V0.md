@@ -2,36 +2,19 @@
 
 ## Machine
 ```yaml
-fqdn: fb.vocabulary::CONSTITUTION_VOCABULARY_V0
-constitution_code: CONSTITUTION_VOCABULARY_V0
 artifact_kind: CONSTITUTION
 version: V0
-
 core:
-  description: Naming authority for OmniBachi — governs reserved words, symbol admissibility, and FQDN conformance
-  scope: system
   enforcement_model: compiler_enforced
-
 rules:
-  - rule_id: VOCAB_FQDN_CONFORMANCE
-    applies_to: system
-    constraint: all FQDNs MUST conform to vocabulary naming rules
-    enforced_by: ASSERT_FQDN_ONLY_REFERENCES_V0
-
-  - rule_id: VOCAB_UNKNOWN_SYMBOL_FORBIDDEN
-    applies_to: system
-    constraint: unknown symbols are constitutional violations; no implicit symbol creation
-    enforced_by: TBD
-
-  - rule_id: VOCAB_APPEND_ONLY
-    applies_to: system
-    constraint: vocabulary is append-only; symbols MUST NOT be removed or redefined
-    enforced_by: TBD
-
-  - rule_id: VOCAB_UPPER_SNAKE_CASE
-    applies_to: system
-    constraint: all artifact symbols MUST use UPPER_SNAKE_CASE with version suffix
-    enforced_by: TBD
+- applies_to: system
+  enforced_by: fb.constitution::INVARIANT_FQDN_ONLY_REFERENCES_V0
+- applies_to: system
+  enforced_by: TBD
+- applies_to: system
+  enforced_by: TBD
+- applies_to: system
+  enforced_by: TBD
 ```
 
 ---
@@ -281,3 +264,22 @@ What is named is governed. What is unnamed does not exist.
 ---
 
 ## End of Constitution
+
+---
+
+## Rule Statement
+
+```yaml
+core:
+  description: Naming authority for OmniBachi — governs reserved words, symbol admissibility, and FQDN
+    conformance
+rules:
+- rule_id: VOCAB_FQDN_CONFORMANCE
+  constraint: all FQDNs MUST conform to vocabulary naming rules
+- rule_id: VOCAB_UNKNOWN_SYMBOL_FORBIDDEN
+  constraint: unknown symbols are constitutional violations; no implicit symbol creation
+- rule_id: VOCAB_APPEND_ONLY
+  constraint: vocabulary is append-only; symbols MUST NOT be removed or redefined
+- rule_id: VOCAB_UPPER_SNAKE_CASE
+  constraint: all artifact symbols MUST use UPPER_SNAKE_CASE with version suffix
+```

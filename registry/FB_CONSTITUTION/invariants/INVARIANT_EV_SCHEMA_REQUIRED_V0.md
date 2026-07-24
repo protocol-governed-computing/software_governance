@@ -5,16 +5,13 @@ Architectural Invariant
 ## Machine
 
 ```yaml
-invariant_code: INVARIANT_EV_SCHEMA_REQUIRED_V0
 artifact_kind: INVARIANT
 version: V0
 governed_by: fb.constitution::CONSTITUTION_EVENT_V0
-
 core:
-  summary: Every EV artifact must declare a non-empty schema
-  rule: All EV artifacts must define core.schema with at least one field declaration
-  scope:
-    - EV
+  enforcement_stage:
+  - compiler_assertion
+  violation_response: FAIL_IMMEDIATELY
 ```
 
 ## Summary
@@ -40,3 +37,13 @@ For every EV artifact:
 Events are the audit record of the system. Without a declared schema, event replay is
 impossible and cross-domain consumers cannot interpret the payload. The schema declaration
 is the binding contract between the event emitter and all downstream consumers.
+
+---
+
+## Rule Statement
+
+```yaml
+core:
+  rule: All EV artifacts must define core.schema with at least one field declaration
+  summary: Every EV artifact must declare a non-empty schema
+```

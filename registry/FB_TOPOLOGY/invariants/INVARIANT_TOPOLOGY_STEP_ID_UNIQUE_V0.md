@@ -3,17 +3,13 @@
 ## Machine
 
 ```yaml
-invariant_code: INVARIANT_TOPOLOGY_STEP_ID_UNIQUE_V0
 artifact_kind: INVARIANT
 version: V0
 governed_by: fb.topology::CONSTITUTION_EXECUTION_TOPOLOGY_V0
-
 core:
-  summary: Step IDs must be unique within a CC execution topology; duplicate step IDs create ambiguous dataflow identity and are constitutional violations
-  rule: Within a single CC pipeline, no two steps may share the same step identifier; the step identifier is the canonical dataflow address for downstream input bindings and must be unambiguous
-  scope:
-    - CC
-
+  enforcement_stage:
+  - compiler_assertion
+  violation_response: FAIL_IMMEDIATELY
 ```
 
 ---
@@ -53,3 +49,15 @@ Enforcing uniqueness at V0 ensures that future topology features can rely on ste
 stable, unambiguous canonical identifiers.
 
 Full enforcement is implemented in Phase 3.
+
+---
+
+## Rule Statement
+
+```yaml
+core:
+  rule: Within a single CC pipeline, no two steps may share the same step identifier; the step identifier
+    is the canonical dataflow address for downstream input bindings and must be unambiguous
+  summary: Step IDs must be unique within a CC execution topology; duplicate step IDs create ambiguous
+    dataflow identity and are constitutional violations
+```

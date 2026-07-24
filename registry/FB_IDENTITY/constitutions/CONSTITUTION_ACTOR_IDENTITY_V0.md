@@ -6,49 +6,26 @@ Actors are declarative identity authorities, not behavioral or execution authori
 
 ## Machine
 ```yaml
-fqdn: fb.identity::CONSTITUTION_ACTOR_IDENTITY_V0
-constitution_code: CONSTITUTION_ACTOR_IDENTITY_V0
 artifact_kind: CONSTITUTION
 version: V0
 governed_by: fb.constitution::CONSTITUTION_GOVERNANCE_V0
-
 core:
-  description: Constitution governing declarative actor identity semantics
-  scope: artifact
-  governs:
-    - AC
   enforcement_model: compiler_enforced
-
+  governs:
+  - AC
 rules:
-  - rule_id: AC_TYPE_REQUIRED
-    applies_to: AC
-    constraint: every actor MUST declare a type field from the governed actor type vocabulary
-    enforced_by: ASSERT_AC_TYPE_REQUIRED_V0
-
-  - rule_id: AC_ATTRIBUTES_TYPED
-    applies_to: AC
-    constraint: all declared attributes MUST specify an explicit type; schemaless attributes are a constitutional violation
-    enforced_by: ASSERT_AC_ATTRIBUTES_TYPED_V0
-
-  - rule_id: AC_IDENTITY_GOVERNED
-    applies_to: AC
-    constraint: actor identity is a compile-time governed declaration; runtime inference, dynamic assembly, and ambient identity are prohibited
-    enforced_by: ASSERT_AC_IDENTITY_GOVERNED_V0
-
-  - rule_id: AC_IDENTITY_ONLY
-    applies_to: AC
-    constraint: actor artifacts declare identity and attributes only; execution logic, routing semantics, and side-effect declarations are prohibited
-    enforced_by: ASSERT_AC_IDENTITY_ONLY_V0
-
-  - rule_id: AC_NO_AUTHORITY_SEMANTICS
-    applies_to: AC
-    constraint: actors may not declare permissions, workflow authority, admissibility rules, projection visibility, or execution rights
-    enforced_by: ASSERT_AC_NO_AUTHORITY_SEMANTICS_V0
-
-  - rule_id: IDENTITY_AUTHORITY_SEPARATION
-    applies_to: AC
-    constraint: identity declaration and execution authority must remain orthogonal governance surfaces; no actor artifact may conflate identity with authority
-    enforced_by: ASSERT_IDENTITY_AUTHORITY_SEPARATION_V0
+- applies_to: AC
+  enforced_by: ASSERT_AC_TYPE_REQUIRED_V0
+- applies_to: AC
+  enforced_by: ASSERT_AC_ATTRIBUTES_TYPED_V0
+- applies_to: AC
+  enforced_by: ASSERT_AC_IDENTITY_GOVERNED_V0
+- applies_to: AC
+  enforced_by: ASSERT_AC_IDENTITY_ONLY_V0
+- applies_to: AC
+  enforced_by: ASSERT_AC_NO_AUTHORITY_SEMANTICS_V0
+- applies_to: AC
+  enforced_by: fb.identity::INVARIANT_IDENTITY_AUTHORITY_SEPARATION_V0
 ```
 
 ---
@@ -140,3 +117,30 @@ This separation is foundational. Actors are identity subjects. Authority governa
 ---
 
 ## End of Constitution
+
+---
+
+## Rule Statement
+
+```yaml
+core:
+  description: Constitution governing declarative actor identity semantics
+rules:
+- rule_id: AC_TYPE_REQUIRED
+  constraint: every actor MUST declare a type field from the governed actor type vocabulary
+- rule_id: AC_ATTRIBUTES_TYPED
+  constraint: all declared attributes MUST specify an explicit type; schemaless attributes are a constitutional
+    violation
+- rule_id: AC_IDENTITY_GOVERNED
+  constraint: actor identity is a compile-time governed declaration; runtime inference, dynamic assembly,
+    and ambient identity are prohibited
+- rule_id: AC_IDENTITY_ONLY
+  constraint: actor artifacts declare identity and attributes only; execution logic, routing semantics,
+    and side-effect declarations are prohibited
+- rule_id: AC_NO_AUTHORITY_SEMANTICS
+  constraint: actors may not declare permissions, workflow authority, admissibility rules, projection
+    visibility, or execution rights
+- rule_id: IDENTITY_AUTHORITY_SEPARATION
+  constraint: identity declaration and execution authority must remain orthogonal governance surfaces;
+    no actor artifact may conflate identity with authority
+```

@@ -3,17 +3,13 @@
 ## Machine
 
 ```yaml
-invariant_code: INVARIANT_TOPOLOGY_ROUTING_COMPLETE_V0
 artifact_kind: INVARIANT
 version: V0
 governed_by: fb.topology::CONSTITUTION_EXECUTION_TOPOLOGY_V0
-
 core:
-  summary: on_result must declare routing for every status code in the step's result_surface; unrouted surface codes constitute ungoverned execution paths
-  rule: The on_result map of every step must contain an entry for every code in that step's result_surface; a status code declared in result_surface but absent from on_result is an unrouted execution path and a compile-time violation
-  scope:
-    - CC
-
+  enforcement_stage:
+  - compiler_assertion
+  violation_response: FAIL_IMMEDIATELY
 ```
 
 ---
@@ -64,3 +60,16 @@ are different scopes. ROUTING_COMPLETE governs the step scope.
 CC-level contract closure is governed by INVARIANT_TOPOLOGY_CONTRACT_CLOSED_V0.
 
 Full enforcement is implemented in Phase 3.
+
+---
+
+## Rule Statement
+
+```yaml
+core:
+  rule: The on_result map of every step must contain an entry for every code in that step's result_surface;
+    a status code declared in result_surface but absent from on_result is an unrouted execution path and
+    a compile-time violation
+  summary: on_result must declare routing for every status code in the step's result_surface; unrouted
+    surface codes constitute ungoverned execution paths
+```

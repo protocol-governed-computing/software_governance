@@ -3,41 +3,13 @@
 ## Machine
 
 ```yaml
-invariant_code: INVARIANT_BINDING_INTEGRITY_V0
 artifact_kind: INVARIANT
 version: V0
 governed_by: fb.constitution::CONSTITUTION_INVARIANTS_V0
-
 core:
-  description: >
-    Runtime Binding (RB) artifacts must declare bindings only to artifacts
-    that exist in the compiled graph, and all binding keys must use
-    fully-qualified domain names (FQDNs). Bindings to non-existent
-    artifacts or short-name references are inadmissible — they indicate
-    broken execution surface.
-
   enforcement_stage:
-    - compiler_validation
-
-  scope:
-    - RUNTIME_BINDINGS
-
+  - compiler_validation
   violation_response: FAIL_IMMEDIATELY
-
-
-  anti_patterns:
-    - short_name_binding: "RB binding key uses short name instead of FQDN"
-    - dangling_binding: "RB binding key references artifact not in compiled graph"
-
-  clarification:
-    fqdn_requirement: >
-      Binding keys must contain '::' (the FQDN separator). Short names
-      are never admissible in binding declarations — they create ambiguity
-      across domain boundaries.
-    existence_requirement: >
-      Every binding key must resolve to a node in the compiled graph.
-      Bindings to removed, renamed, or misspelled artifacts are structural
-      errors that would cause runtime failures.
 ```
 
 ---
@@ -69,3 +41,26 @@ All `core.bindings` keys must reference artifacts present in the compiled graph.
 ## Version History
 
 - **V0**: Initial implementation (2026-05-21) - Extracted from compiler S4 GOVERN hardcoded RB validation
+
+---
+
+## Rule Statement
+
+```yaml
+core:
+  description: 'Runtime Binding (RB) artifacts must declare bindings only to artifacts that exist in the
+    compiled graph, and all binding keys must use fully-qualified domain names (FQDNs). Bindings to non-existent
+    artifacts or short-name references are inadmissible — they indicate broken execution surface.
+
+    '
+  anti_patterns:
+  - short_name_binding: RB binding key uses short name instead of FQDN
+  - dangling_binding: RB binding key references artifact not in compiled graph
+  clarification:
+    fqdn_requirement: 'Binding keys must contain ''::'' (the FQDN separator). Short names are never admissible
+      in binding declarations — they create ambiguity across domain boundaries.
+
+      '
+    existence_requirement: Every binding key must resolve to a node in the compiled graph. Bindings to
+      removed, renamed, or misspelled artifacts are structural errors that would cause runtime failures.
+```

@@ -2,39 +2,22 @@
 
 ## Machine
 ```yaml
-fqdn: fb.topology::CONSTITUTION_CAPABILITY_SIDE_EFFECTS_V0
-constitution_code: CONSTITUTION_CAPABILITY_SIDE_EFFECTS_V0
 artifact_kind: CONSTITUTION
 version: V0
 governed_by: fb.vocabulary::CONSTITUTION_VOCABULARY_V0
-
 core:
-  description: Governs Capability Side Effect (CS) artifacts — explicit declaration, traceability, and isolation
-  scope: artifact
-  governs:
-    - CS
   enforcement_model: compiler_enforced
-
+  governs:
+  - CS
 rules:
-  - rule_id: CS_EXPLICIT_DECLARATION
-    applies_to: CS
-    constraint: all side effects MUST be explicitly declared in protocol; no implicit side effects
-    enforced_by: ASSERT_CS_SURFACE_CLOSED_V0
-
-  - rule_id: CS_IMPLEMENTATION_DECLARED
-    applies_to: CS
-    constraint: CS MUST declare implementation with non-empty module and callable
-    enforced_by: ASSERT_CS_SURFACE_CLOSED_V0
-
-  - rule_id: CS_TRACEABLE
-    applies_to: CS
-    constraint: every CS execution MUST be recorded in the execution trace
-    enforced_by: ASSERT_CS_TRACEABLE_V0
-
-  - rule_id: CS_ISOLATED_EXECUTION
-    applies_to: CS
-    constraint: CS MUST execute through dedicated executors only; not inline in CT or CC
-    enforced_by: ASSERT_CS_ISOLATED_EXECUTION_V0
+- applies_to: CS
+  enforced_by: ASSERT_CS_SURFACE_CLOSED_V0
+- applies_to: CS
+  enforced_by: ASSERT_CS_SURFACE_CLOSED_V0
+- applies_to: CS
+  enforced_by: fb.topology::INVARIANT_CS_TRACEABLE_V0
+- applies_to: CS
+  enforced_by: fb.topology::INVARIANT_CS_ISOLATED_EXECUTION_V0
 ```
 
 ---
@@ -73,3 +56,22 @@ Capability Side Effects are the mechanism for interacting with the outside world
 - Side effect implementations must be discoverable.
 - Input and output types must match the capability contract.
 - Side effects must be restricted to authorized layers.
+
+---
+
+## Rule Statement
+
+```yaml
+core:
+  description: Governs Capability Side Effect (CS) artifacts — explicit declaration, traceability, and
+    isolation
+rules:
+- rule_id: CS_EXPLICIT_DECLARATION
+  constraint: all side effects MUST be explicitly declared in protocol; no implicit side effects
+- rule_id: CS_IMPLEMENTATION_DECLARED
+  constraint: CS MUST declare implementation with non-empty module and callable
+- rule_id: CS_TRACEABLE
+  constraint: every CS execution MUST be recorded in the execution trace
+- rule_id: CS_ISOLATED_EXECUTION
+  constraint: CS MUST execute through dedicated executors only; not inline in CT or CC
+```

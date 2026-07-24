@@ -3,17 +3,13 @@
 ## Machine
 
 ```yaml
-invariant_code: INVARIANT_TOPOLOGY_CAPABILITY_REFERENCE_UNIQUE_V0
 artifact_kind: INVARIANT
 version: V0
 governed_by: fb.topology::CONSTITUTION_EXECUTION_TOPOLOGY_V0
-
 core:
-  summary: each execution topology step MUST reference exactly one capability — exactly one of transform or side_effect, not both, not neither
-  rule: each step must contain exactly one capability reference field (transform XOR side_effect); a step with both is an ambiguous execution unit; a step with neither is an empty execution unit; both are constitutional violations
-  scope:
-    - CC
-
+  enforcement_stage:
+  - compiler_assertion
+  violation_response: FAIL_IMMEDIATELY
 ```
 
 ---
@@ -49,3 +45,16 @@ in what order, and with what contract. This uniqueness constraint protects the c
 verifiability of the execution graph.
 
 Full enforcement is implemented in Phase 3.
+
+---
+
+## Rule Statement
+
+```yaml
+core:
+  rule: each step must contain exactly one capability reference field (transform XOR side_effect); a step
+    with both is an ambiguous execution unit; a step with neither is an empty execution unit; both are
+    constitutional violations
+  summary: each execution topology step MUST reference exactly one capability — exactly one of transform
+    or side_effect, not both, not neither
+```

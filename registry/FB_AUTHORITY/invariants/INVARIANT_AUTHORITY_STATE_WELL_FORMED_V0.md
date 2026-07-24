@@ -5,16 +5,13 @@ Architectural Invariant
 ## Machine
 
 ```yaml
-invariant_code: INVARIANT_AUTHORITY_STATE_WELL_FORMED_V0
 artifact_kind: INVARIANT
 version: V0
 governed_by: fb.authority::CONSTITUTION_AUTHORITY_GOVERNANCE_V0
-
 core:
-  summary: Authority state crossing the execution boundary must be structurally well-formed; malformed authority state is inadmissible
-  rule: Authority state must satisfy SCHEMA_AUTHENTICATED_AUTHORITY_STATE_V0; absent, partial, or structurally invalid authority state may not cross the execution boundary
-  scope:
-    - WF
+  enforcement_stage:
+  - compiler_assertion
+  violation_response: FAIL_IMMEDIATELY
 ```
 
 ## Summary
@@ -43,3 +40,15 @@ For every authority state presented at the execution boundary:
 Structural validity is the most concrete and checkable form of authority governance. Schema conformance can be verified at compile time without executing any authorization logic. This invariant makes structural conformance mandatory at the boundary: authority state that does not satisfy the schema cannot compile, and therefore cannot be presented to the runtime.
 
 This is distinct from `INVARIANT_NO_RUNTIME_AUTHORIZATION_V0`, which governs runtime behavior. This invariant governs shape. Both are required.
+
+---
+
+## Rule Statement
+
+```yaml
+core:
+  rule: Authority state must satisfy SCHEMA_AUTHENTICATED_AUTHORITY_STATE_V0; absent, partial, or structurally
+    invalid authority state may not cross the execution boundary
+  summary: Authority state crossing the execution boundary must be structurally well-formed; malformed
+    authority state is inadmissible
+```

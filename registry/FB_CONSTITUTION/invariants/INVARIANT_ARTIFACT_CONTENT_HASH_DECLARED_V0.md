@@ -3,32 +3,13 @@
 ## Machine
 
 ```yaml
-invariant_code: INVARIANT_ARTIFACT_CONTENT_HASH_DECLARED_V0
 artifact_kind: INVARIANT
 version: V0
 governed_by: fb.constitution::CONSTITUTION_COMPILER_V0
-
 core:
-  description: >
-    Every artifact in the compiled snapshot MUST have a content_hash field that is
-    non-empty. An artifact without a content_hash is not fully materialized — it
-    cannot participate in deterministic identity verification, incremental build
-    checks, or snapshot integrity audits. A snapshot with any artifact missing a
-    content_hash is incomplete and does not satisfy the materialization obligation.
-
   enforcement_stage:
-    - compiler_assert
-
-  scope:
-    - ALL_BUILD_CONTEXTS
-
+  - compiler_assertion
   violation_response: FAIL_IMMEDIATELY
-
-
-  anti_patterns:
-    - missing_content_hash: "Compiled artifact has no content_hash field"
-    - empty_content_hash: "Compiled artifact has content_hash set to empty string or null"
-    - partial_snapshot: "Some artifacts in the compiled set are content-hashed and others are not"
 ```
 
 ---
@@ -52,3 +33,21 @@ Directly enforces `COMPILER_LOSSLESS_EMISSION` (all declared semantics preserved
 materialized output) and `COMPILER_DETERMINISM` (identical inputs → identical outputs)
 by making content-hash completeness a compile-time assertion rather than a runtime
 assumption.
+
+---
+
+## Rule Statement
+
+```yaml
+core:
+  description: 'Every artifact in the compiled snapshot MUST have a content_hash field that is non-empty.
+    An artifact without a content_hash is not fully materialized — it cannot participate in deterministic
+    identity verification, incremental build checks, or snapshot integrity audits. A snapshot with any
+    artifact missing a content_hash is incomplete and does not satisfy the materialization obligation.
+
+    '
+  anti_patterns:
+  - missing_content_hash: Compiled artifact has no content_hash field
+  - empty_content_hash: Compiled artifact has content_hash set to empty string or null
+  - partial_snapshot: Some artifacts in the compiled set are content-hashed and others are not
+```

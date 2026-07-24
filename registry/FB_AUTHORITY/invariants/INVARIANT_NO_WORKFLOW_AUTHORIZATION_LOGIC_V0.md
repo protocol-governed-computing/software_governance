@@ -5,19 +5,13 @@ Architectural Invariant
 ## Machine
 
 ```yaml
-invariant_code: INVARIANT_NO_WORKFLOW_AUTHORIZATION_LOGIC_V0
 artifact_kind: INVARIANT
 version: V0
 governed_by: fb.authority::CONSTITUTION_AUTHORITY_GOVERNANCE_V0
-
 core:
-  summary: Authorization semantics belong exclusively to the authority boundary; execution artifacts must not contain authorization logic
-  rule: WF, CC, CT, CS artifacts must assume admissibility has succeeded; authorization logic, role checks, and permission branching inside execution artifacts are a constitutional violation
-  scope:
-    - WF
-    - CC
-    - CT
-    - CS
+  enforcement_stage:
+  - compiler_assertion
+  violation_response: FAIL_IMMEDIATELY
 ```
 
 ## Summary
@@ -41,3 +35,15 @@ For every WF_, CC_, CT_, and CS_ artifact:
 ## Rationale
 
 When authorization logic creeps into execution artifacts, two things happen: the authority plane becomes distributed and inconsistent (different parts of the execution graph can grant different permissions), and the execution plane becomes non-deterministic (topology varies based on authority evaluation outcomes). Both are catastrophic. This invariant enforces the boundary: authorization logic belongs to the authority boundary, not to workflow execution.
+
+---
+
+## Rule Statement
+
+```yaml
+core:
+  rule: WF, CC, CT, CS artifacts must assume admissibility has succeeded; authorization logic, role checks,
+    and permission branching inside execution artifacts are a constitutional violation
+  summary: Authorization semantics belong exclusively to the authority boundary; execution artifacts must
+    not contain authorization logic
+```

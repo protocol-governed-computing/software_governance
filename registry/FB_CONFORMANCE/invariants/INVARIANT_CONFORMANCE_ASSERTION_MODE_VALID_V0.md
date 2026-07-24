@@ -5,16 +5,13 @@ Architectural Invariant
 ## Machine
 
 ```yaml
-invariant_code: INVARIANT_CONFORMANCE_ASSERTION_MODE_VALID_V0
 artifact_kind: INVARIANT
 version: V0
 governed_by: fb.conformance::CONSTITUTION_TEST_DATA_V0
-
 core:
-  summary: Conformance assertion modes must belong to a closed declared vocabulary
-  rule: All assertion specs in TEST_DATA must use declared mode and type values; unknown modes/types are violations
-  scope:
-    - TEST_DATA
+  enforcement_stage:
+  - compiler_assertion
+  violation_response: FAIL_IMMEDIATELY
 ```
 
 ## Summary
@@ -174,3 +171,14 @@ This invariant ensures that the conformance suite's claim of correctness is enfo
 - `fb.conformance::CONSTITUTION_TEST_DATA_V0` - Governs TEST_DATA structure
 - `governance::INVARIANT_TEST_DATA_MATCH_CT_OUTPUT_V0` - Complementary: output keys must match CT contract
 - `governance::INVARIANT_CT_OUTPUT_CONTRACT_MATCH_V0` - CT output purity
+
+---
+
+## Rule Statement
+
+```yaml
+core:
+  rule: All assertion specs in TEST_DATA must use declared mode and type values; unknown modes/types are
+    violations
+  summary: Conformance assertion modes must belong to a closed declared vocabulary
+```

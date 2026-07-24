@@ -2,54 +2,28 @@
 
 ## Machine
 ```yaml
-fqdn: fb.constitution::CONSTITUTION_STRUCTURE_V0
-constitution_code: CONSTITUTION_STRUCTURE_V0
 artifact_kind: CONSTITUTION
 version: V0
 governed_by: fb.constitution::CONSTITUTION_GOVERNANCE_V0
-
 core:
-  description: Governs STRUCTURE artifacts — system configuration and artifact discovery declarations
-  scope: artifact
-  governs:
-    - STRUCTURE
   enforcement_model: compiler_enforced
-
+  governs:
+  - STRUCTURE
 rules:
-  - rule_id: STRUCTURE_EXPLICIT_PATHS
-    applies_to: STRUCTURE
-    constraint: all paths MUST be explicitly declared; no implicit defaults, heuristics, or fallback
-    enforced_by: TBD
-
-  - rule_id: STRUCTURE_NO_ABSOLUTE_PATHS
-    applies_to: STRUCTURE
-    constraint: absolute filesystem paths are forbidden; all paths MUST be layer-relative
-    enforced_by: TBD
-
-  - rule_id: STRUCTURE_NO_ESCAPE
-    applies_to: STRUCTURE
-    constraint: subpaths MUST NOT contain ".." layer escapes
-    enforced_by: TBD
-
-  - rule_id: STRUCTURE_LAYER_DECLARED
-    applies_to: STRUCTURE
-    constraint: every path declaration MUST reference a valid declared layer code
-    enforced_by: TBD
-
-  - rule_id: STRUCTURE_DETERMINISTIC_RESOLUTION
-    applies_to: STRUCTURE
-    constraint: given identical STRUCTURE artifact, path resolution MUST be deterministic
-    enforced_by: TBD
-
-  - rule_id: STRUCTURE_BOOTSTRAP_ELIGIBLE
-    applies_to: STRUCTURE
-    constraint: runtime STRUCTURE artifacts MUST be loadable without compiler
-    enforced_by: TBD
-
-  - rule_id: STRUCTURE_FQDN_REFERENCES
-    applies_to: STRUCTURE
-    constraint: all artifact references in STRUCTURE MUST use FQDN
-    enforced_by: ASSERT_FQDN_ONLY_REFERENCES_V0
+- applies_to: STRUCTURE
+  enforced_by: TBD
+- applies_to: STRUCTURE
+  enforced_by: TBD
+- applies_to: STRUCTURE
+  enforced_by: TBD
+- applies_to: STRUCTURE
+  enforced_by: TBD
+- applies_to: STRUCTURE
+  enforced_by: TBD
+- applies_to: STRUCTURE
+  enforced_by: TBD
+- applies_to: STRUCTURE
+  enforced_by: fb.constitution::INVARIANT_FQDN_ONLY_REFERENCES_V0
 ```
 
 ---
@@ -93,3 +67,27 @@ For usage examples and path patterns see: `doc/STRUCTURE_GUIDE.md`
 ---
 
 ## End of Constitution
+
+---
+
+## Rule Statement
+
+```yaml
+core:
+  description: Governs STRUCTURE artifacts — system configuration and artifact discovery declarations
+rules:
+- rule_id: STRUCTURE_EXPLICIT_PATHS
+  constraint: all paths MUST be explicitly declared; no implicit defaults, heuristics, or fallback
+- rule_id: STRUCTURE_NO_ABSOLUTE_PATHS
+  constraint: absolute filesystem paths are forbidden; all paths MUST be layer-relative
+- rule_id: STRUCTURE_NO_ESCAPE
+  constraint: subpaths MUST NOT contain ".." layer escapes
+- rule_id: STRUCTURE_LAYER_DECLARED
+  constraint: every path declaration MUST reference a valid declared layer code
+- rule_id: STRUCTURE_DETERMINISTIC_RESOLUTION
+  constraint: given identical STRUCTURE artifact, path resolution MUST be deterministic
+- rule_id: STRUCTURE_BOOTSTRAP_ELIGIBLE
+  constraint: runtime STRUCTURE artifacts MUST be loadable without compiler
+- rule_id: STRUCTURE_FQDN_REFERENCES
+  constraint: all artifact references in STRUCTURE MUST use FQDN
+```

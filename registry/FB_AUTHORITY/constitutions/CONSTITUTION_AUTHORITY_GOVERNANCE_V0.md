@@ -13,65 +13,42 @@ This distinction is critical. Authority answers: *may this actor invoke this wor
 ## Machine
 
 ```yaml
-fqdn: fb.authority::CONSTITUTION_AUTHORITY_GOVERNANCE_V0
-constitution_code: CONSTITUTION_AUTHORITY_GOVERNANCE_V0
 artifact_kind: CONSTITUTION
 version: V0
 governed_by: fb.constitution::CONSTITUTION_GOVERNANCE_V0
-
 core:
-  description: Constitution governing execution authority as a sovereign architectural concern orthogonal to execution, transport, and workflow semantics
-  scope: cross_artifact
-  governs:
-    - WF
-    - CC
-    - CT
-    - CS
-    - AC
   enforcement_model: compiler_enforced
-
+  governs:
+  - WF
+  - CC
+  - CT
+  - CS
+  - AC
 rules:
-  - rule_id: AUTHORITY_REQUIRED_FOR_EXECUTION
-    applies_to:
-      - WF
-    constraint: every workflow invocation MUST be preceded by a resolved authority boundary evaluation; execution without established authority is a constitutional violation
-    enforced_by: ASSERT_AUTHORITY_REQUIRED_FOR_EXECUTION_V0
-
-  - rule_id: NO_WORKFLOW_AUTHORIZATION_LOGIC
-    applies_to:
-      - WF
-      - CC
-      - CT
-      - CS
-    constraint: no execution artifact may contain role checks, permission branching, authorization assertions, or embedded admissibility logic
-    enforced_by: ASSERT_NO_WORKFLOW_AUTHORIZATION_LOGIC_V0
-
-  - rule_id: AUTHORITY_STATE_WELL_FORMED
-    applies_to:
-      - WF
-    constraint: authority state envelope MUST be structurally well-formed per SCHEMA_AUTHENTICATED_AUTHORITY_STATE_V0 before execution traversal begins; partial, absent, or malformed authority state is a constitutional violation
-    enforced_by: ASSERT_AUTHORITY_STATE_WELL_FORMED_V0
-
-  - rule_id: NO_AMBIENT_AUTHORITY
-    applies_to:
-      - WF
-      - CC
-      - CT
-      - CS
-    constraint: all authority references must be explicit and fully declared; runtime authority discovery, role inference, and ambient authority are forbidden
-    enforced_by: ASSERT_NO_AMBIENT_AUTHORITY_V0
-
-  - rule_id: ACTOR_AUTHORITY_SEPARATION
-    applies_to:
-      - AC
-    constraint: actor artifacts must not declare authority semantics; identity and authority are orthogonal governance surfaces; permissions, workflow eligibility, and admissibility rules are forbidden inside AC_ artifacts
-    enforced_by: ASSERT_ACTOR_AUTHORITY_SEPARATION_V0
-
-  - rule_id: IDENTITY_AUTHORITY_ORTHOGONALITY
-    applies_to:
-      - AC
-    constraint: identity governance and authority governance are orthogonal surfaces; neither may import semantics from the other; actor type must not function as an implicit authority grant
-    enforced_by: ASSERT_ACTOR_AUTHORITY_SEPARATION_V0
+- applies_to:
+  - WF
+  enforced_by: fb.authority::INVARIANT_AUTHORITY_REQUIRED_FOR_EXECUTION_V0
+- applies_to:
+  - WF
+  - CC
+  - CT
+  - CS
+  enforced_by: fb.authority::INVARIANT_NO_WORKFLOW_AUTHORIZATION_LOGIC_V0
+- applies_to:
+  - WF
+  enforced_by: fb.authority::INVARIANT_AUTHORITY_STATE_WELL_FORMED_V0
+- applies_to:
+  - WF
+  - CC
+  - CT
+  - CS
+  enforced_by: fb.authority::INVARIANT_NO_AMBIENT_AUTHORITY_V0
+- applies_to:
+  - AC
+  enforced_by: fb.authority::INVARIANT_ACTOR_AUTHORITY_SEPARATION_V0
+- applies_to:
+  - AC
+  enforced_by: fb.authority::INVARIANT_ACTOR_AUTHORITY_SEPARATION_V0
 ```
 
 ---
@@ -210,3 +187,34 @@ These are orthogonal constitutions governing orthogonal concerns. Neither may re
 ---
 
 ## End of Constitution
+
+---
+
+## Rule Statement
+
+```yaml
+core:
+  description: Constitution governing execution authority as a sovereign architectural concern orthogonal
+    to execution, transport, and workflow semantics
+rules:
+- rule_id: AUTHORITY_REQUIRED_FOR_EXECUTION
+  constraint: every workflow invocation MUST be preceded by a resolved authority boundary evaluation;
+    execution without established authority is a constitutional violation
+- rule_id: NO_WORKFLOW_AUTHORIZATION_LOGIC
+  constraint: no execution artifact may contain role checks, permission branching, authorization assertions,
+    or embedded admissibility logic
+- rule_id: AUTHORITY_STATE_WELL_FORMED
+  constraint: authority state envelope MUST be structurally well-formed per SCHEMA_AUTHENTICATED_AUTHORITY_STATE_V0
+    before execution traversal begins; partial, absent, or malformed authority state is a constitutional
+    violation
+- rule_id: NO_AMBIENT_AUTHORITY
+  constraint: all authority references must be explicit and fully declared; runtime authority discovery,
+    role inference, and ambient authority are forbidden
+- rule_id: ACTOR_AUTHORITY_SEPARATION
+  constraint: actor artifacts must not declare authority semantics; identity and authority are orthogonal
+    governance surfaces; permissions, workflow eligibility, and admissibility rules are forbidden inside
+    AC_ artifacts
+- rule_id: IDENTITY_AUTHORITY_ORTHOGONALITY
+  constraint: identity governance and authority governance are orthogonal surfaces; neither may import
+    semantics from the other; actor type must not function as an implicit authority grant
+```

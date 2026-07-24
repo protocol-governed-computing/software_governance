@@ -23,19 +23,23 @@ operation. These three outcomes are exhaustive.
 ## Machine
 
 ```yaml
-surface_contract_code: SURFACE_CONTRACT_REGISTRY_DEREGISTER_V0
 artifact_kind: SURFACE_CONTRACT
 version: V0
 governed_by: fb.topology::CONSTITUTION_EXECUTION_TOPOLOGY_V0
-
-capability_family: REGISTRY
-op: DEREGISTER
-
-canonical_surface:
-  - SUCCESS
-  - NOT_FOUND
-  - BACKEND_ERROR
-
+surface_contract_code: SURFACE_CONTRACT_REGISTRY_DEREGISTER_V0
 governs:
-  - CS_REGISTRY_V0
+- CS_REGISTRY_V0
+op: DEREGISTER
+canonical_surface:
+- SUCCESS
+- NOT_FOUND
+- BACKEND_ERROR
+```
+
+---
+
+## Rule Statement
+
+```yaml
+capability_family: REGISTRY
 ```

@@ -3,29 +3,13 @@
 ## Machine
 
 ```yaml
-invariant_code: INVARIANT_WF_NODE_KEY_BINDING_UNIQUE_V0
 artifact_kind: INVARIANT
 version: V0
 governed_by: fb.topology::CONSTITUTION_EXECUTION_TOPOLOGY_V0
-
 core:
-  summary: >
-    Within any WF, each CC node usage is identified by a unique node_key.
-    When two or more CC nodes in a WF reference the same CC fqdn_id (same capability,
-    used multiple times), each usage MUST declare its input bindings under its own
-    node_key — never collapsed into a single shared binding context.
-
-  rule: >
-    For every WF in the compiled graph: the set of node_keys with non-empty input
-    bindings must be injective with respect to (CC_fqdn_id, binding_context).
-    A compiler that keys WF-level bindings by CC address instead of node_key silently
-    collapses N distinct binding contexts into 1. This is a structural information loss
-    and a dispatch correctness violation. The compiler MUST key all WF binding entries
-    by node_key (the WF-level symbolic identifier), not by CC address.
-
-  scope:
-    - WF
-
+  enforcement_stage:
+  - compiler_assertion
+  violation_response: FAIL_IMMEDIATELY
 ```
 
 ---
@@ -76,3 +60,23 @@ at compile time rather than discovered through incorrect execution traces.
 ## Version History
 
 - **V0**: Initial invariant establishing node_key as mandatory WF binding discriminator (2026-06-03)
+
+---
+
+## Rule Statement
+
+```yaml
+core:
+  rule: 'For every WF in the compiled graph: the set of node_keys with non-empty input bindings must be
+    injective with respect to (CC_fqdn_id, binding_context). A compiler that keys WF-level bindings by
+    CC address instead of node_key silently collapses N distinct binding contexts into 1. This is a structural
+    information loss and a dispatch correctness violation. The compiler MUST key all WF binding entries
+    by node_key (the WF-level symbolic identifier), not by CC address.
+
+    '
+  summary: 'Within any WF, each CC node usage is identified by a unique node_key. When two or more CC
+    nodes in a WF reference the same CC fqdn_id (same capability, used multiple times), each usage MUST
+    declare its input bindings under its own node_key — never collapsed into a single shared binding context.
+
+    '
+```

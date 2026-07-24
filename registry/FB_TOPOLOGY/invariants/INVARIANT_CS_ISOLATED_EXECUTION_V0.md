@@ -5,16 +5,13 @@ Architectural Invariant
 ## Machine
 
 ```yaml
-invariant_code: INVARIANT_CS_ISOLATED_EXECUTION_V0
 artifact_kind: INVARIANT
 version: V0
 governed_by: fb.topology::CONSTITUTION_CAPABILITY_SIDE_EFFECTS_V0
-
 core:
-  summary: CS must execute through dedicated executors only; not inline in CT or CC
-  rule: CS artifacts must not be called directly from CT transform logic or CC wiring
-  scope:
-    - CS
+  enforcement_stage:
+  - compiler_assertion
+  violation_response: FAIL_IMMEDIATELY
 ```
 
 ## Summary
@@ -44,3 +41,13 @@ Inline CS execution in CT or CC logic bypasses the executor mechanism, breaks tr
 circumvents runtime binding, and creates implicit coupling between declared artifacts and
 implementation details. Isolated execution through the executor is the only way to guarantee
 that CS behavior matches its declared contract.
+
+---
+
+## Rule Statement
+
+```yaml
+core:
+  rule: CS artifacts must not be called directly from CT transform logic or CC wiring
+  summary: CS must execute through dedicated executors only; not inline in CT or CC
+```

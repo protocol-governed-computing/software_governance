@@ -3,53 +3,13 @@
 ## Machine
 
 ```yaml
-invariant_code: INVARIANT_CC_NO_IMPLICIT_CHAINING_V0
 artifact_kind: INVARIANT
 version: V0
 governed_by: fb.constitution::CONSTITUTION_INVARIANTS_V0
-
 core:
-  description: >
-    CC must not contain orchestration logic or flow control.
-    CCs define ONLY capability pipelines (CT/CS bindings).
-    Workflow orchestration belongs in WF artifacts, not CC.
-
-    Forbidden fields:
-    - next_step (implicit chaining)
-    - next (state transitions)
-    - transitions (workflow logic)
-    - flow (control flow)
-    - conditional (branching logic)
-    - loop (iteration control)
-
-    CC defines WHAT capability to invoke, WF defines WHEN and in what ORDER.
-
   enforcement_stage:
-    - compiler_validation
-
-  scope:
-    - CAPABILITY_CONTRACTS
-
+  - compiler_validation
   violation_response: FAIL_IMMEDIATELY
-
-
-  anti_patterns:
-    - next_step_field: "CC contains next_step field (implicit chaining)"
-    - next_field: "CC contains next field (state transitions)"
-    - transitions_field: "CC contains transitions field (workflow logic)"
-    - flow_field: "CC contains flow field (control flow)"
-    - conditional_field: "CC contains conditional field (branching logic)"
-    - loop_field: "CC contains loop field (iteration control)"
-
-  clarification:
-    cc_responsibility: >
-      CC is a capability wrapper, not a workflow fragment.
-      It binds inputs to CT/CS, produces outputs, and stops.
-      No knowledge of what happens next, no control flow.
-    wf_responsibility: >
-      WF controls execution flow via nodes graph.
-      CC nodes reference CCs, WF decides transitions.
-      Clean separation: WF = orchestration, CC = capability.
 ```
 
 ---
@@ -187,3 +147,34 @@ flow:  # ❌ Control flow
 ## Version History
 
 - **V0**: Initial implementation (2026-04-12) - CC No Implicit Chaining
+
+---
+
+## Rule Statement
+
+```yaml
+core:
+  description: 'CC must not contain orchestration logic or flow control. CCs define ONLY capability pipelines
+    (CT/CS bindings). Workflow orchestration belongs in WF artifacts, not CC.
+
+    Forbidden fields: - next_step (implicit chaining) - next (state transitions) - transitions (workflow
+    logic) - flow (control flow) - conditional (branching logic) - loop (iteration control)
+
+    CC defines WHAT capability to invoke, WF defines WHEN and in what ORDER.
+
+    '
+  anti_patterns:
+  - next_step_field: CC contains next_step field (implicit chaining)
+  - next_field: CC contains next field (state transitions)
+  - transitions_field: CC contains transitions field (workflow logic)
+  - flow_field: CC contains flow field (control flow)
+  - conditional_field: CC contains conditional field (branching logic)
+  - loop_field: CC contains loop field (iteration control)
+  clarification:
+    cc_responsibility: 'CC is a capability wrapper, not a workflow fragment. It binds inputs to CT/CS,
+      produces outputs, and stops. No knowledge of what happens next, no control flow.
+
+      '
+    wf_responsibility: 'WF controls execution flow via nodes graph. CC nodes reference CCs, WF decides
+      transitions. Clean separation: WF = orchestration, CC = capability.'
+```

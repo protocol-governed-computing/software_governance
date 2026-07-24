@@ -5,16 +5,13 @@ Architectural Invariant
 ## Machine
 
 ```yaml
-invariant_code: INVARIANT_EV_APPEND_ONLY_V0
 artifact_kind: INVARIANT
 version: V0
 governed_by: fb.constitution::CONSTITUTION_EVENT_V0
-
 core:
-  summary: EV artifacts must not declare mutation operations
-  rule: EV artifacts must not contain update/delete/patch/mutate field declarations
-  scope:
-    - EV
+  enforcement_stage:
+  - compiler_assertion
+  violation_response: FAIL_IMMEDIATELY
 ```
 
 ## Summary
@@ -42,3 +39,13 @@ Runtime append-only enforcement is provided by CS_APPENDONLY_JSONL_V0 and the ex
 Append-only event stores are the foundation of auditability and replay. Mutation operations
 on event records destroy the causal chain. This invariant ensures that no EV artifact
 accidentally declares mutation semantics that could be interpreted as permitting mutation.
+
+---
+
+## Rule Statement
+
+```yaml
+core:
+  rule: EV artifacts must not contain update/delete/patch/mutate field declarations
+  summary: EV artifacts must not declare mutation operations
+```

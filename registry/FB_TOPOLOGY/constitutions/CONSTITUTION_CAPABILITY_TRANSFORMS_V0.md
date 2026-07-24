@@ -2,39 +2,22 @@
 
 ## Machine
 ```yaml
-fqdn: fb.topology::CONSTITUTION_CAPABILITY_TRANSFORMS_V0
-constitution_code: CONSTITUTION_CAPABILITY_TRANSFORMS_V0
 artifact_kind: CONSTITUTION
 version: V0
 governed_by: fb.vocabulary::CONSTITUTION_VOCABULARY_V0
-
 core:
-  description: Governs Capability Transform (CT) artifacts — purity, determinism, and explicit IO
-  scope: artifact
-  governs:
-    - CT
   enforcement_model: compiler_enforced
-
+  governs:
+  - CT
 rules:
-  - rule_id: CT_PURITY
-    applies_to: CT
-    constraint: CT MUST be a pure function; same inputs MUST always produce same outputs
-    enforced_by: TBD
-
-  - rule_id: CT_NO_SIDE_EFFECTS
-    applies_to: CT
-    constraint: CT MUST NOT produce side effects; side effects belong in CS
-    enforced_by: TBD
-
-  - rule_id: CT_IMPLEMENTATION_DECLARED
-    applies_to: CT
-    constraint: atom CT MUST declare machine.implementation with non-empty module and callable
-    enforced_by: ASSERT_CT_SURFACE_CLOSED_V0
-
-  - rule_id: CT_EXPLICIT_IO
-    applies_to: CT
-    constraint: all CT inputs and outputs MUST be explicitly declared
-    enforced_by: TBD
+- applies_to: CT
+  enforced_by: TBD
+- applies_to: CT
+  enforced_by: TBD
+- applies_to: CT
+  enforced_by: ASSERT_CT_SURFACE_CLOSED_V0
+- applies_to: CT
+  enforced_by: TBD
 ```
 
 ---
@@ -73,3 +56,21 @@ Capability Transforms are pure functions that transform data within the protocol
 - CT implementations must be discoverable.
 - Input and output types must match the capability contract.
 - Implementation must adhere to the purity principle.
+
+---
+
+## Rule Statement
+
+```yaml
+core:
+  description: Governs Capability Transform (CT) artifacts — purity, determinism, and explicit IO
+rules:
+- rule_id: CT_PURITY
+  constraint: CT MUST be a pure function; same inputs MUST always produce same outputs
+- rule_id: CT_NO_SIDE_EFFECTS
+  constraint: CT MUST NOT produce side effects; side effects belong in CS
+- rule_id: CT_IMPLEMENTATION_DECLARED
+  constraint: atom CT MUST declare machine.implementation with non-empty module and callable
+- rule_id: CT_EXPLICIT_IO
+  constraint: all CT inputs and outputs MUST be explicitly declared
+```

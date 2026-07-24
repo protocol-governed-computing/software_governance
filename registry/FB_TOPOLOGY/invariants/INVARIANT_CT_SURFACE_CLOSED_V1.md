@@ -3,38 +3,14 @@
 ## Machine
 
 ```yaml
-invariant_code: INVARIANT_CT_SURFACE_CLOSED_V1
 artifact_kind: INVARIANT
 version: V1
 governed_by: fb.constitution::CONSTITUTION_INVARIANTS_V0
-
 core:
-  description: >
-    CT surface must be closed for this platform snapshot: every executable capability
-    transform is explicitly declared, every declared CT has a runtime implementation, and
-    no undeclared CT may execute. This closes the CT surface of PGC Platform Snapshot V1 —
-    it is the snapshot's complete, enumerable transform universe, NOT a claim that PGC has
-    enumerated every capability any enterprise may use. An enterprise extension is a new
-    snapshot that recomputes its own closed surface.
-
   enforcement_stage:
-    - compiler_assertion
-
-  scope:
-    - CAPABILITY_TRANSFORMS
-
+  - compiler_assertion
   violation_response: FAIL_IMMEDIATELY
-
-  clarification:
-    closed_surface_definition: >
-      Closed CT surface means: Declared_CT_set == Executable_CT_set for THIS snapshot.
-      No more, no less. All computation is finite, enumerable, and auditable.
-    snapshot_scoped: >
-      Closure is snapshot-scoped, not universal. Baseline closed; extension open.
-
-# assert_projection — parameters the compiler-derived ASSERT carries (ASSERT is derived, not authored)
 assert_projection:
-  # Reuse the version-agnostic v0 handler (reads allowed-list from this descriptor).
   handler: pgs_governance.registry.handlers.assert_ct_surface_closed_v0
   scope:
     applies_to:
@@ -71,3 +47,26 @@ Ensure the CT surface is closed for PGC Platform Snapshot V1.
   Platform Snapshot V1. Replaces V0 (which enumerated RI-0's mixed universe, including
   blockchain/ai domain transforms). First PGC divergence for this invariant.
 - **V0**: RI-0 mixed CT surface (faithful harvest). Retained in RI-0 / git history as provenance.
+
+---
+
+## Rule Statement
+
+```yaml
+core:
+  description: 'CT surface must be closed for this platform snapshot: every executable capability transform
+    is explicitly declared, every declared CT has a runtime implementation, and no undeclared CT may execute.
+    This closes the CT surface of PGC Platform Snapshot V1 — it is the snapshot''s complete, enumerable
+    transform universe, NOT a claim that PGC has enumerated every capability any enterprise may use. An
+    enterprise extension is a new snapshot that recomputes its own closed surface.
+
+    '
+  clarification:
+    closed_surface_definition: 'Closed CT surface means: Declared_CT_set == Executable_CT_set for THIS
+      snapshot. No more, no less. All computation is finite, enumerable, and auditable.
+
+      '
+    snapshot_scoped: 'Closure is snapshot-scoped, not universal. Baseline closed; extension open.
+
+      '
+```
