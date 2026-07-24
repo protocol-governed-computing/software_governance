@@ -15,6 +15,10 @@ assert_projection:
     level: ERROR
     order: 5
     phase: meta_validation
+  scope:
+    applies_to:
+    - CONSTITUTION
+    - INVARIANT
 ```
 
 ---

@@ -13,7 +13,8 @@ core:
 assert_projection:
   scope:
     applies_to:
-    - PLATFORM
+    - WF
+    - CC
 ```
 
 ## Summary

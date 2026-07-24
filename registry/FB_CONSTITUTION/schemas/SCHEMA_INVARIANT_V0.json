@@ -4,7 +4,7 @@
   "title": "PGC Invariant Schema V0",
   "description": "Closed machine-block contract for INVARIANT artifacts. Every accepted field has a semantic consumer or a compile-time validation role; explanatory material lives below the Machine fence.",
   "type": "object",
-  "required": ["artifact_kind", "version", "governed_by", "core"],
+  "required": ["artifact_kind", "version", "governed_by", "core", "assert_projection"],
   "additionalProperties": false,
   "properties": {
     "artifact_kind": {
@@ -71,8 +71,9 @@
       }
     },
     "assert_projection": {
-      "description": "Parameters carried into the ASSERT descriptor derived from this invariant (S4 _derive_assert). Read by the bound handler via current_assert_artifact.",
+      "description": "Parameters carried into the ASSERT descriptor derived from this invariant (S4 _derive_assert). Read by the bound handler via current_assert_artifact. scope.applies_to is the single declared authority for invariant applicability; domain vs platform is derived from it by kind intersection, never declared.",
       "type": "object",
+      "required": ["scope"],
       "additionalProperties": false,
       "properties": {
         "handler": {
@@ -91,6 +92,7 @@
           }
         },
         "scope": {
+          "description": "Closed vocabulary of concrete scope tokens. No ALL_ARTIFACTS, no PLATFORM: applicability to domain vs platform is derived by intersecting these kinds with the domain-instantiated set, never declared as a build token.",
           "type": "object",
           "required": ["applies_to"],
           "additionalProperties": false,
@@ -98,7 +100,14 @@
             "applies_to": {
               "type": "array",
               "minItems": 1,
-              "items": { "type": "string", "minLength": 1 }
+              "uniqueItems": true,
+              "items": {
+                "enum": [
+                  "WF", "CC", "CS", "CT", "RB", "AC", "IN", "EV", "TI", "TE",
+                  "INVARIANT", "CONSTITUTION", "STRUCTURE", "SURFACE", "VOCAB", "SCHEMA",
+                  "COMPILER", "TEST_DATA", "SNAPSHOT"
+                ]
+              }
             }
           }
         },

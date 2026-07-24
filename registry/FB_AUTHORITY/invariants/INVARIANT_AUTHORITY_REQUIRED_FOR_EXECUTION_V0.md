@@ -12,6 +12,11 @@ core:
   enforcement_stage:
   - compiler_assertion
   violation_response: FAIL_IMMEDIATELY
+assert_projection:
+  scope:
+    applies_to:
+    - WF
+    - CC
 ```
 
 ## Summary

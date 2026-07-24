@@ -18,6 +18,9 @@ assert_projection:
     order: 1
     scope: GOVERNANCE_ARTIFACTS
     level: WARNING
+  scope:
+    applies_to:
+    - INVARIANT
 ```
 
 ---

@@ -14,7 +14,7 @@ assert_projection:
   handler: pgs_governance.registry.handlers.assert_ct_surface_closed_v0
   scope:
     applies_to:
-    - PLATFORM
+    - CT
   allowed_capability_transforms:
   - capability_transforms::CT_EXEC_EMIT_V0
   - capability_transforms::CT_PURE_ASSEMBLE_RECORD_V0

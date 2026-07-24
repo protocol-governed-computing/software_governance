@@ -10,6 +10,11 @@ core:
   enforcement_stage:
   - compiler_validation
   violation_response: FAIL_IMMEDIATELY
+assert_projection:
+  scope:
+    applies_to:
+    - CT
+    - CS
 ```
 
 ---

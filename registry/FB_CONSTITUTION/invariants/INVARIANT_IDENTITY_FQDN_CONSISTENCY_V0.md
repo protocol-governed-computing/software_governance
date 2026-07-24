@@ -17,6 +17,24 @@ assert_projection:
     phase: validation
     order: 5
     scope: ALL_ARTIFACTS
+  scope:
+    applies_to:
+    - AC
+    - CC
+    - CONSTITUTION
+    - CS
+    - CT
+    - EV
+    - IN
+    - INVARIANT
+    - RB
+    - SCHEMA
+    - STRUCTURE
+    - SURFACE
+    - TE
+    - TI
+    - VOCAB
+    - WF
 ```
 
 ---

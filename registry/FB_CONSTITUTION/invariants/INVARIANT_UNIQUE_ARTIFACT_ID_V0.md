@@ -10,6 +10,25 @@ core:
   enforcement_stage:
   - compiler_validation
   violation_response: FAIL_IMMEDIATELY
+assert_projection:
+  scope:
+    applies_to:
+    - AC
+    - CC
+    - CONSTITUTION
+    - CS
+    - CT
+    - EV
+    - IN
+    - INVARIANT
+    - RB
+    - SCHEMA
+    - STRUCTURE
+    - SURFACE
+    - TE
+    - TI
+    - VOCAB
+    - WF
 ```
 
 ---
