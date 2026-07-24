@@ -33,52 +33,28 @@ identity:
       derivation:
         method: module_path
         rules:
-        - match: pgs_governance.registry.FB_CONSTITUTION
-          namespace: fb.constitution
-        - match: pgs_governance.registry.FB_TOPOLOGY
-          namespace: fb.topology
-        - match: pgs_governance.registry.FB_TRANSPORT
-          namespace: fb.transport
-        - match: pgs_governance.registry.FB_AUTHORITY
-          namespace: fb.authority
-        - match: pgs_governance.registry.FB_VOCABULARY
-          namespace: fb.vocabulary
-        - match: pgs_governance.registry.FB_CONFORMANCE
-          namespace: fb.conformance
-        - match: pgs_governance.registry.FB_IDENTITY
-          namespace: fb.identity
-        - match: pgs_governance.registry.FB_BLOCKCHAIN
-          namespace: fb.blockchain
-        - match: pgs_governance.registry.FB_AI_GOVERNANCE
-          namespace: fb.ai_governance
-        - match: pgs_governance.registry.FB_EXECUTION_PLACEMENT
-          namespace: fb.execution_placement
-        - match: pgs_governance.registry.FB_EXECUTION_SCHEDULING
-          namespace: fb.execution_scheduling
-        - match: pgs_governance.registry.FB_SECURITY_DOMAIN
-          namespace: fb.security_domain
-        - match: pgs_governance.registry.FB_CRYPTOGRAPHIC_TRUST
-          namespace: fb.cryptographic_trust
-        - match: pgs_governance.registry.FB_CHANGE_MGMT
-          namespace: fb.change_mgmt
-        - match: pgs_transforms
-          namespace: capability_transforms
-        - match: pgs_side_effects
-          namespace: capability_side_effects
-        - match: pgs_capabilities
-          namespace_template: '{module_path}'
-        - match: pgs_blockchain.registry
-          namespace: blockchain
-        - match: pgs_ai_governance
-          namespace: ai_governance
-        - match: pgs_structure
-          namespace: structure
-        - match: pgs_execution
-          namespace: execution
-        - match: pgs_compiler
-          namespace: compiler
-        - match: pgs_ingress
-          namespace: ingress_gateway
+        - namespace: fb.constitution
+        - namespace: fb.topology
+        - namespace: fb.transport
+        - namespace: fb.authority
+        - namespace: fb.vocabulary
+        - namespace: fb.conformance
+        - namespace: fb.identity
+        - namespace: fb.blockchain
+        - namespace: fb.ai_governance
+        - namespace: fb.execution_placement
+        - namespace: fb.execution_scheduling
+        - namespace: fb.security_domain
+        - namespace: fb.cryptographic_trust
+        - namespace: fb.change_mgmt
+        - namespace: capability_transforms
+        - namespace: capability_side_effects
+        - namespace: blockchain
+        - namespace: ai_governance
+        - namespace: structure
+        - namespace: execution
+        - namespace: compiler
+        - namespace: ingress_gateway
     uniqueness:
       scope: global
       constraint: no_duplicate_fqdn

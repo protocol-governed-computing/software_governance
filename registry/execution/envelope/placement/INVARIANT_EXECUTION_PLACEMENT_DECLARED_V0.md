@@ -31,7 +31,7 @@ requirement, not an optional annotation.
 ## Rule
 
 For every compiled snapshot:
-1. The compiler MUST scan `FB_EXECUTION_PLACEMENT/placement_contracts/` for active contracts
+1. The compiler MUST scan `execution/envelope/placement/` for active contracts
 2. Exactly one MUST be present
 3. The active contract's placement mode MUST be materialized into `federation_profile.execution_placement`
 4. Compile MUST fail if no contract is found or more than one is found

@@ -32,7 +32,7 @@ and be compiler-validated.
 ## Rule
 
 For every compiled snapshot:
-1. The compiler MUST scan `FB_SECURITY_DOMAIN/security_domain_contracts/` for active contracts
+1. The compiler MUST scan `execution/envelope/security_domain/` for active contracts
 2. Exactly one MUST be present
 3. The active contract's security domain MUST be materialized into `federation_profile.security_domain`
 4. Compile MUST fail if no contract is found or more than one is found

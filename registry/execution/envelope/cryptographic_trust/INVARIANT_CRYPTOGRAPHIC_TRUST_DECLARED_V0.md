@@ -32,7 +32,7 @@ governance axis that future signed and attested execution modes will extend.
 ## Rule
 
 For every compiled snapshot:
-1. The compiler MUST scan `FB_CRYPTOGRAPHIC_TRUST/trust_contracts/` for active contracts
+1. The compiler MUST scan `execution/envelope/cryptographic_trust/` for active contracts
 2. Exactly one MUST be present
 3. The active contract's trust mode MUST be materialized into `federation_profile.cryptographic_trust`
 4. Compile MUST fail if no contract is found or more than one is found

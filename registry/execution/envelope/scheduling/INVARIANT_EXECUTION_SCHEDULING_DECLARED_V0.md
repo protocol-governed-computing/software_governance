@@ -31,7 +31,7 @@ scheduling mode, not a default that was never articulated.
 ## Rule
 
 For every compiled snapshot:
-1. The compiler MUST scan `FB_EXECUTION_SCHEDULING/scheduling_contracts/` for active contracts
+1. The compiler MUST scan `execution/envelope/scheduling/` for active contracts
 2. Exactly one MUST be present
 3. The active contract's scheduling mode MUST be materialized into `federation_profile.execution_scheduling`
 4. Compile MUST fail if no contract is found or more than one is found
