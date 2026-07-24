@@ -14,6 +14,8 @@ rules:
   enforced_by: fb.conformance::INVARIANT_TEST_DATA_MATCH_CT_OUTPUT_V0
 - applies_to: TEST_DATA
   enforced_by: fb.constitution::INVARIANT_FQDN_ONLY_REFERENCES_V0
+- applies_to: TEST_DATA
+  enforced_by: fb.conformance::INVARIANT_CONFORMANCE_ASSERTION_MODE_VALID_V0
 ```
 
 ---

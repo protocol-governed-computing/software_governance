@@ -6,7 +6,7 @@ artifact_kind: CONSTITUTION
 version: V0
 governed_by: fb.constitution::CONSTITUTION_GOVERNANCE_V0
 core:
-  enforcement_model: process_and_compiler_enforced
+  enforcement_model: process_enforced
 rules:
 - applies_to: all_construction_stages
   enforced_by: PROCESS_ENFORCED
@@ -19,13 +19,13 @@ rules:
 - applies_to: construction
   enforced_by: PROCESS_ENFORCED
 - applies_to: stage_8
-  enforced_by: compiler_validation
+  enforced_by: PROCESS_ENFORCED
 - applies_to: construction
   enforced_by: PROCESS_ENFORCED
 - applies_to: construction_validation
   enforced_by: PROCESS_ENFORCED
 - applies_to: promotion
-  enforced_by: compiler_validation
+  enforced_by: PROCESS_ENFORCED
 - applies_to: promotion
   enforced_by: PROCESS_ENFORCED
 - applies_to: promotion

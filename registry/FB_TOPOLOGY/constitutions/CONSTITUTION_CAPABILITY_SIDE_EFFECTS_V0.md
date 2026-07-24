@@ -11,9 +11,9 @@ core:
   - CS
 rules:
 - applies_to: CS
-  enforced_by: ASSERT_CS_SURFACE_CLOSED_V0
+  enforced_by: fb.topology::INVARIANT_CS_SURFACE_CLOSED_V1
 - applies_to: CS
-  enforced_by: ASSERT_CS_SURFACE_CLOSED_V0
+  enforced_by: fb.topology::INVARIANT_IMPLEMENTATION_ADMISSIBLE_V0
 - applies_to: CS
   enforced_by: fb.topology::INVARIANT_CS_TRACEABLE_V0
 - applies_to: CS

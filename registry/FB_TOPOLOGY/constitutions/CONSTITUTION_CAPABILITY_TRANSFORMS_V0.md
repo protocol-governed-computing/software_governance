@@ -11,13 +11,13 @@ core:
   - CT
 rules:
 - applies_to: CT
-  enforced_by: TBD
+  enforced_by: fb.topology::INVARIANT_ATOM_OUTPUT_PURITY_V0
 - applies_to: CT
-  enforced_by: TBD
+  enforced_by: fb.topology::INVARIANT_ATOM_OUTPUT_PURITY_V0
 - applies_to: CT
-  enforced_by: ASSERT_CT_SURFACE_CLOSED_V0
+  enforced_by: fb.topology::INVARIANT_IMPLEMENTATION_ADMISSIBLE_V0
 - applies_to: CT
-  enforced_by: TBD
+  enforced_by: fb.topology::INVARIANT_CT_SURFACE_CLOSED_V1
 ```
 
 ---

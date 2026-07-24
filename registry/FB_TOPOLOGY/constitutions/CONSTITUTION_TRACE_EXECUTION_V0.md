@@ -10,13 +10,13 @@ core:
   enforcement_model: runtime_enforced
 rules:
 - applies_to: system
-  enforced_by: TBD
+  enforced_by: RUNTIME_ENFORCED
 - applies_to: system
-  enforced_by: TBD
+  enforced_by: RUNTIME_ENFORCED
 - applies_to: system
-  enforced_by: TBD
+  enforced_by: RUNTIME_ENFORCED
 - applies_to: system
-  enforced_by: TBD
+  enforced_by: RUNTIME_ENFORCED
 ```
 
 ---

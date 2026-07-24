@@ -11,11 +11,41 @@ core:
   - INVARIANT
 rules:
 - applies_to: INVARIANT
-  enforced_by: TBD
+  enforced_by: fb.topology::INVARIANT_SCHEMA_CONFORMANCE_V0
 - applies_to: INVARIANT
-  enforced_by: TBD
+  enforced_by: fb.conformance::INVARIANT_ASSERT_PARITY_V0
 - applies_to: INVARIANT
-  enforced_by: TBD
+  enforced_by: fb.topology::INVARIANT_SCHEMA_CONFORMANCE_V0
+- applies_to: ALL_ARTIFACTS
+  enforced_by: fb.constitution::INVARIANT_IDENTITY_FQDN_CONSISTENCY_V0
+- applies_to: INVARIANT
+  enforced_by: fb.constitution::INVARIANT_NO_SHORT_NAME_REFERENCE_V0
+- applies_to: INVARIANT
+  enforced_by: fb.constitution::INVARIANT_UNIQUE_ARTIFACT_ID_V0
+- applies_to: RB
+  enforced_by: fb.topology::INVARIANT_BINDING_INTEGRITY_V0
+- applies_to: RB
+  enforced_by: fb.topology::INVARIANT_BINDING_SURFACE_CLOSED_V0
+- applies_to: CC
+  enforced_by: fb.topology::INVARIANT_CC_STORAGE_OP_CONFORMANCE_V0
+- applies_to: CT
+  enforced_by: fb.topology::INVARIANT_CT_OUTPUT_CONTRACT_MATCH_V0
+- applies_to: INVARIANT
+  enforced_by: fb.topology::INVARIANT_NO_SMART_EXECUTION_V0
+- applies_to: INVARIANT
+  enforced_by: fb.topology::INVARIANT_NO_UNDECLARED_BEHAVIOR_SURFACE_V0
+- applies_to: INVARIANT
+  enforced_by: fb.topology::INVARIANT_RUNTIME_INVARIANT_WIRED_V0
+- applies_to: ALL_ARTIFACTS
+  enforced_by: fb.topology::INVARIANT_TOPOLOGY_ACYCLIC_V0
+- applies_to: TI_TE
+  enforced_by: fb.transport::INVARIANT_TRANSPORT_CANONICAL_NORMALIZATION_V0
+- applies_to: TI_TE
+  enforced_by: fb.transport::INVARIANT_TRANSPORT_NO_DYNAMIC_ROUTING_V0
+- applies_to: TI_TE
+  enforced_by: fb.transport::INVARIANT_TRANSPORT_NO_WORKFLOW_SEMANTICS_V0
+- applies_to: TI_TE
+  enforced_by: fb.transport::INVARIANT_TRANSPORT_TARGET_EXISTS_V0
 ```
 
 ---
@@ -148,5 +178,7 @@ rules:
 - rule_id: INVARIANT_MANDATORY_ENFORCEMENT
   constraint: every INVARIANT MUST be enforced by at least one ASSERT
 - rule_id: INVARIANT_FAIL_FAST
-  constraint: violation_response MUST be FAIL_IMMEDIATELY; no warnings, no partial success
+  constraint: 'violation_response MUST match the invariant''s enforcement class: FAIL_IMMEDIATELY (or
+    WARN where the constitution admits it) for compiler-staged invariants, BUSINESS_VIOLATION for runtime_outcome
+    invariants. The pairing is enforced by SCHEMA_INVARIANT_V0''s conditional contract.'
 ```

@@ -6,16 +6,16 @@ artifact_kind: CONSTITUTION
 version: V0
 governed_by: fb.vocabulary::CONSTITUTION_VOCABULARY_V0
 core:
-  enforcement_model: compiler_enforced
+  enforcement_model: runtime_enforced
   governs:
   - WF
 rules:
 - applies_to: WF
-  enforced_by: TBD
+  enforced_by: RUNTIME_ENFORCED
 - applies_to: WF
-  enforced_by: TBD
+  enforced_by: RUNTIME_ENFORCED
 - applies_to: WF
-  enforced_by: TBD
+  enforced_by: RUNTIME_ENFORCED
 ```
 
 ---

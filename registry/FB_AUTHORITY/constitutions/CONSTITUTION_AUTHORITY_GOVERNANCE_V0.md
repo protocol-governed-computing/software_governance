@@ -49,6 +49,10 @@ rules:
 - applies_to:
   - AC
   enforced_by: fb.authority::INVARIANT_ACTOR_AUTHORITY_SEPARATION_V0
+- applies_to: WF
+  enforced_by: fb.authority::INVARIANT_NO_RUNTIME_AUTHORIZATION_V0
+- applies_to: WF
+  enforced_by: fb.authority::INVARIANT_TRACE_AUTHORITY_BINDING_REQUIRED_V0
 ```
 
 ---

@@ -6,18 +6,18 @@ artifact_kind: CONSTITUTION
 version: V0
 governed_by: fb.vocabulary::CONSTITUTION_VOCABULARY_V0
 core:
-  enforcement_model: compiler_enforced
+  enforcement_model: process_and_compiler_enforced
   governs:
   - ASSERT
 rules:
 - applies_to: ASSERT
-  enforced_by: TBD
+  enforced_by: fb.conformance::INVARIANT_ASSERT_PARITY_V0
 - applies_to: ASSERT
-  enforced_by: TBD
+  enforced_by: fb.constitution::INVARIANT_ASSERT_NOT_RUNTIME_REFERENCED_V0
 - applies_to: ASSERT
-  enforced_by: TBD
+  enforced_by: PROCESS_ENFORCED
 - applies_to: ASSERT
-  enforced_by: TBD
+  enforced_by: PROCESS_ENFORCED
 ```
 
 ---

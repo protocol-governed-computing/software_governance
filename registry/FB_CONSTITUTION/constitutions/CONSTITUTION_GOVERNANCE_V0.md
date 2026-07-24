@@ -6,7 +6,7 @@ artifact_kind: CONSTITUTION
 version: V0
 governed_by: fb.vocabulary::CONSTITUTION_VOCABULARY_V0
 core:
-  enforcement_model: compiler_enforced
+  enforcement_model: process_and_compiler_enforced
 rules:
 - applies_to: system
   enforced_by: PROCESS_ENFORCED
@@ -16,6 +16,8 @@ rules:
   enforced_by: fb.topology::INVARIANT_PROTOCOL_SURFACE_CLOSED_V0
 - applies_to: system
   enforced_by: PROCESS_ENFORCED
+- applies_to: ALL_ARTIFACTS
+  enforced_by: fb.constitution::INVARIANT_GOVERNANCE_DECLARATION_RESOLVES_V0
 ```
 
 ---

@@ -32,6 +32,10 @@ rules:
   enforced_by: fb.topology::INVARIANT_NO_RUNTIME_TOPOLOGY_SYNTHESIS_V0
 - applies_to: CC
   enforced_by: fb.topology::INVARIANT_TOPOLOGY_SURFACE_CANONICAL_V0
+- applies_to: CT
+  enforced_by: fb.topology::INVARIANT_CT_TEST_DATA_OUTCOME_DECLARED_V0
+- applies_to: WF
+  enforced_by: fb.topology::INVARIANT_WF_NODE_KEY_BINDING_UNIQUE_V0
 ```
 
 ---

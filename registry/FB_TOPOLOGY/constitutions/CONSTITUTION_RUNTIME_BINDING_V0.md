@@ -20,6 +20,8 @@ rules:
   enforced_by: fb.topology::INVARIANT_RB_NO_LOGIC_V0
 - applies_to: RB
   enforced_by: fb.constitution::INVARIANT_FQDN_ONLY_REFERENCES_V0
+- applies_to: RB
+  enforced_by: fb.topology::INVARIANT_RB_BINDING_POLICY_CONFORMANCE_V0
 ```
 
 ---

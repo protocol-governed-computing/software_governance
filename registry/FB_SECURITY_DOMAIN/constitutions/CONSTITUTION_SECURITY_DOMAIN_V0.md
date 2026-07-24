@@ -7,12 +7,12 @@ artifact_kind: CONSTITUTION
 version: V0
 governed_by: fb.constitution::CONSTITUTION_GOVERNANCE_V0
 core:
-  enforcement_model: compiler_enforced
+  enforcement_model: process_and_compiler_enforced
 rules:
 - applies_to: compiled_snapshot
-  enforced_by: compiler_validation
+  enforced_by: fb.security_domain::INVARIANT_SECURITY_DOMAIN_DECLARED_V0
 - applies_to: compiled_snapshot
-  enforced_by: compiler_validation
+  enforced_by: fb.security_domain::INVARIANT_SECURITY_DOMAIN_DECLARED_V0
 - applies_to: federation_boundary
   enforced_by: PROCESS_ENFORCED
 - applies_to: runtime

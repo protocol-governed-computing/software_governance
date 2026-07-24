@@ -6,26 +6,28 @@ artifact_kind: CONSTITUTION
 version: V0
 governed_by: fb.vocabulary::CONSTITUTION_VOCABULARY_V0
 core:
-  enforcement_model: compiler_enforced
+  enforcement_model: process_and_compiler_enforced
 rules:
 - applies_to: system
   enforced_by: fb.constitution::INVARIANT_ARTIFACT_CONTENT_HASH_DECLARED_V0
 - applies_to: system
   enforced_by: fb.constitution::INVARIANT_HANDLER_REGISTRY_CLOSED_V0
 - applies_to: system
-  enforced_by: TBD
+  enforced_by: PROCESS_ENFORCED
 - applies_to: system
   enforced_by: fb.constitution::INVARIANT_FQDN_ONLY_REFERENCES_V0
 - applies_to: system
-  enforced_by: TBD
+  enforced_by: PROCESS_ENFORCED
 - applies_to: system
-  enforced_by: TBD
+  enforced_by: PROCESS_ENFORCED
 - applies_to: system
   enforced_by: fb.constitution::INVARIANT_HANDLER_REGISTRY_CLOSED_V0
 - applies_to: system
   enforced_by: fb.constitution::INVARIANT_ARTIFACT_CONTENT_HASH_DECLARED_V0
 - applies_to: system
   enforced_by: fb.constitution::INVARIANT_COMPILER_GOVERNANCE_DECLARED_V0
+- applies_to: SYSTEM
+  enforced_by: fb.constitution::INVARIANT_COMPILER_NO_EXECUTION_V0
 ```
 
 ---

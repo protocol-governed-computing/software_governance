@@ -15,15 +15,15 @@ core:
   - AC
 rules:
 - applies_to: AC
-  enforced_by: ASSERT_AC_TYPE_REQUIRED_V0
+  enforced_by: fb.identity::INVARIANT_AC_DECLARATION_WELL_FORMED_V0
 - applies_to: AC
-  enforced_by: ASSERT_AC_ATTRIBUTES_TYPED_V0
+  enforced_by: fb.identity::INVARIANT_AC_DECLARATION_WELL_FORMED_V0
 - applies_to: AC
-  enforced_by: ASSERT_AC_IDENTITY_GOVERNED_V0
+  enforced_by: fb.identity::INVARIANT_AC_DECLARATION_WELL_FORMED_V0
 - applies_to: AC
-  enforced_by: ASSERT_AC_IDENTITY_ONLY_V0
+  enforced_by: fb.identity::INVARIANT_AC_DECLARATION_WELL_FORMED_V0
 - applies_to: AC
-  enforced_by: ASSERT_AC_NO_AUTHORITY_SEMANTICS_V0
+  enforced_by: fb.authority::INVARIANT_ACTOR_AUTHORITY_SEPARATION_V0
 - applies_to: AC
   enforced_by: fb.identity::INVARIANT_IDENTITY_AUTHORITY_SEPARATION_V0
 ```
