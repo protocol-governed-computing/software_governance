@@ -3,18 +3,16 @@
 ## Machine
 
 ```yaml
+fqdn: fb.security_domain::STRUCTURE_SECURITY_DOMAIN_UNCLASSIFIED_LOCAL_V0
 artifact_code: STRUCTURE_SECURITY_DOMAIN_UNCLASSIFIED_LOCAL_V0
 artifact_kind: STRUCTURE
 version: V0
 governed_by: fb.security_domain::CONSTITUTION_SECURITY_DOMAIN_V0
-fqdn: fb.security_domain::STRUCTURE_SECURITY_DOMAIN_UNCLASSIFIED_LOCAL_V0
 status: active
-
 security_domain: UNCLASSIFIED_LOCAL
 classification_level: UNCLASSIFIED
 network_boundary: LOCAL
 cross_domain_transfer_allowed: false
-
 snapshot_scope:
   visibility: INTERNAL
 ```

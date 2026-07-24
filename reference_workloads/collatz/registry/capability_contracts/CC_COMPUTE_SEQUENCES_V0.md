@@ -21,38 +21,37 @@ Compute Collatz sequences for all numbers in the input list.
 ## Machine
 
 ```yaml
+fqdn: workload::CC_COMPUTE_SEQUENCES_V0
 cc_code: CC_COMPUTE_SEQUENCES_V0
 version: v0
 governed_by: fb.topology::CONSTITUTION_CAPABILITY_CONTRACT_V0
-
 core:
   summary: Compute Collatz sequences for all input numbers
-
   inputs:
     numbers:
       type: array
       required: true
-
   outputs:
     sequences:
       type: object
-
   result_status_contract:
-    allowed: [SUCCESS, VIOLATION]
+    allowed:
+    - SUCCESS
+    - VIOLATION
     on_input_failure: VIOLATION
-
   pipeline:
-    - step: compute_sequences
-      transform: workload::CT_PURE_COLLATZ_STEP_V0
-      inputs:
-        numbers: $.inputs.numbers
-      outputs:
-        sequences: $.capability_result.sequences
-      result_surface: [SUCCESS, VIOLATION]
-      on_result:
-        SUCCESS: exit
-        VIOLATION: exit
-
+  - step: compute_sequences
+    transform: workload::CT_PURE_COLLATZ_STEP_V0
+    inputs:
+      numbers: $.inputs.numbers
+    outputs:
+      sequences: $.capability_result.sequences
+    result_surface:
+    - SUCCESS
+    - VIOLATION
+    on_result:
+      SUCCESS: exit
+      VIOLATION: exit
 extensions:
   description: Computes full Collatz iteration path for each input integer
 ```

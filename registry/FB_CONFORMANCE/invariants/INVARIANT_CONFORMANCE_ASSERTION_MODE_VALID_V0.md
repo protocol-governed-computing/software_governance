@@ -5,6 +5,7 @@ Architectural Invariant
 ## Machine
 
 ```yaml
+fqdn: fb.conformance::INVARIANT_CONFORMANCE_ASSERTION_MODE_VALID_V0
 artifact_kind: INVARIANT
 version: V0
 governed_by: fb.conformance::CONSTITUTION_TEST_DATA_V0

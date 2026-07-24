@@ -23,14 +23,13 @@ concern: a governed, declared event that becomes visible in the execution trace.
 ## Machine
 
 ```yaml
+fqdn: workload::EV_CONJECTURE_EVALUATED_V0
 ev_code: EV_CONJECTURE_EVALUATED_V0
 version: v0
 governed_by: fb.constitution::CONSTITUTION_EVENT_V0
-
 core:
   summary: Conjecture Evaluated
   description: Emitted when the Collatz conjecture has been evaluated for the input set.
-
   schema:
     all_terminate:
       type: boolean

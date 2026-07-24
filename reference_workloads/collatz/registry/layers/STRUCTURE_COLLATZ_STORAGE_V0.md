@@ -23,26 +23,22 @@ STRUCTURE only (never hardcoded in a capability or the runtime).
 ## Machine
 
 ```yaml
+fqdn: workload::STRUCTURE_COLLATZ_STORAGE_V0
 structure_code: STRUCTURE_COLLATZ_STORAGE_V0
 version: v0
 governed_by: fb.constitution::CONSTITUTION_STRUCTURE_V0
-
 core:
   summary: Collatz reference-workload storage topology
   description: Maps the COLLATZ_RESULTS entity store to a path under the instance data root.
-
   domain: workload
-
   storage_roots:
-    base_path: "{{module_data_root}}"
-    description: "Root path for Collatz storage (the runtime instance data root, resolved at runtime)"
-
+    base_path: '{{module_data_root}}'
+    description: Root path for Collatz storage (the runtime instance data root, resolved at runtime)
   entity_stores:
     COLLATZ_RESULTS:
-      description: "Mutable store for Collatz sequences + conjecture verdict (last-write-wins)"
-      path: "workload/collatz/collatz_results.json"
-
+      description: Mutable store for Collatz sequences + conjecture verdict (last-write-wins)
+      path: workload/collatz/collatz_results.json
   resolution:
-    algorithm: "base_path / entity_stores[entity_type].path"
-    example: "{{module_data_root}}/workload/collatz/collatz_results.json"
+    algorithm: base_path / entity_stores[entity_type].path
+    example: '{{module_data_root}}/workload/collatz/collatz_results.json'
 ```

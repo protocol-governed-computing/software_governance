@@ -5,6 +5,7 @@ Architectural Invariant
 ## Machine
 
 ```yaml
+fqdn: fb.topology::INVARIANT_CS_TRACEABLE_V0
 artifact_kind: INVARIANT
 version: V0
 governed_by: fb.topology::CONSTITUTION_CAPABILITY_SIDE_EFFECTS_V0

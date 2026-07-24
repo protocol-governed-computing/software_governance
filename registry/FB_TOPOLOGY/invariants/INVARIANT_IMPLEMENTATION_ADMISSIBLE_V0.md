@@ -3,6 +3,7 @@
 ## Machine
 
 ```yaml
+fqdn: fb.topology::INVARIANT_IMPLEMENTATION_ADMISSIBLE_V0
 artifact_kind: INVARIANT
 version: V0
 governed_by: fb.constitution::CONSTITUTION_INVARIANTS_V0

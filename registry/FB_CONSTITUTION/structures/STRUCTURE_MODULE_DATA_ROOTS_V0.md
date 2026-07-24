@@ -3,16 +3,16 @@
 ## Machine
 
 ```yaml
+fqdn: fb.constitution::STRUCTURE_MODULE_DATA_ROOTS_V0
 structure_code: STRUCTURE_MODULE_DATA_ROOTS_V0
 version: V0
 governed_by: fb.constitution::CONSTITUTION_STRUCTURE_V0
-
 core:
   summary: Module data roots and directory structure
-  description: >
-    Defines canonical directory names and module data roots aligned with
-    current platform repository structure.
+  description: 'Defines canonical directory names and module data roots aligned with current platform
+    repository structure.
 
+    '
 layer_directories:
   compiled_root: compiled
   compiled_artifacts: compiled/artifacts
@@ -22,7 +22,6 @@ layer_directories:
   vocabulary_reserved_subdir: FB_VOCABULARY/reserved
   schemas_subdir: registry/FB_CONSTITUTION/schemas
   tooling_experimental_subdir: experimental
-
 module_data_roots:
   governance:
     _type: path
@@ -51,7 +50,6 @@ module_data_roots:
   egress:
     _type: path
     value: pgs_egress/egress
-
 module_data_roots_lifecycle:
   governance:
     _type: lifecycle
@@ -80,7 +78,6 @@ module_data_roots_lifecycle:
   egress:
     _type: lifecycle
     value: runtime
-
 directory_lifecycle:
   compiled:
     _type: lifecycle
@@ -91,7 +88,6 @@ directory_lifecycle:
   conformance:
     _type: lifecycle
     value: compiler
-
 output_configuration:
   _type: metadata
 ```

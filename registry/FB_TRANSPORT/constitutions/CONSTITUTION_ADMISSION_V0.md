@@ -2,6 +2,7 @@
 
 ## Machine
 ```yaml
+fqdn: fb.transport::CONSTITUTION_ADMISSION_V0
 artifact_kind: CONSTITUTION
 version: V0
 governed_by: fb.vocabulary::CONSTITUTION_VOCABULARY_V0

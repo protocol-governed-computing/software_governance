@@ -3,6 +3,7 @@
 ## Machine
 
 ```yaml
+fqdn: workload::INVARIANT_CT_SURFACE_CLOSED_WORKLOAD_V0
 artifact_kind: INVARIANT
 version: V0
 governed_by: fb.topology::CONSTITUTION_CAPABILITY_TRANSFORMS_V0

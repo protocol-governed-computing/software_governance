@@ -3,6 +3,7 @@
 ## Machine
 
 ```yaml
+fqdn: fb.security_domain::CONSTITUTION_SECURITY_DOMAIN_V0
 artifact_kind: CONSTITUTION
 version: V0
 governed_by: fb.constitution::CONSTITUTION_GOVERNANCE_V0

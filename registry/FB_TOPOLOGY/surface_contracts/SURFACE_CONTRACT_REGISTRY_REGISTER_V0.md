@@ -24,6 +24,7 @@ registry capability with REGISTER operation.
 ## Machine
 
 ```yaml
+fqdn: fb.topology::SURFACE_CONTRACT_REGISTRY_REGISTER_V0
 artifact_kind: SURFACE_CONTRACT
 version: V0
 governed_by: fb.topology::CONSTITUTION_EXECUTION_TOPOLOGY_V0

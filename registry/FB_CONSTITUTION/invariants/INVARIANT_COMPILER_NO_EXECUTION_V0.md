@@ -3,6 +3,7 @@
 ## Machine
 
 ```yaml
+fqdn: fb.constitution::INVARIANT_COMPILER_NO_EXECUTION_V0
 artifact_kind: INVARIANT
 version: V0
 governed_by: fb.constitution::CONSTITUTION_COMPILER_V0

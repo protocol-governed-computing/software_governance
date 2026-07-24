@@ -5,6 +5,7 @@ Architectural Invariant
 ## Machine
 
 ```yaml
+fqdn: fb.identity::INVARIANT_IDENTITY_AUTHORITY_SEPARATION_V0
 artifact_kind: INVARIANT
 version: V0
 governed_by: fb.identity::CONSTITUTION_ACTOR_IDENTITY_V0

@@ -3,6 +3,7 @@
 ## Machine
 
 ```yaml
+fqdn: fb.constitution::INVARIANT_ASSERT_NOT_RUNTIME_REFERENCED_V0
 artifact_kind: INVARIANT
 version: V0
 governed_by: fb.constitution::CONSTITUTION_ASSERT_V0

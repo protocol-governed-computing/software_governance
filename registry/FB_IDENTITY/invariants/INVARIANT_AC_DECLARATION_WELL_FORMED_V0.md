@@ -3,6 +3,7 @@
 ## Machine
 
 ```yaml
+fqdn: fb.identity::INVARIANT_AC_DECLARATION_WELL_FORMED_V0
 artifact_kind: INVARIANT
 version: V0
 governed_by: fb.identity::CONSTITUTION_ACTOR_IDENTITY_V0

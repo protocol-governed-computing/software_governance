@@ -23,18 +23,16 @@ results, and names the storage structure that resolves the path.
 ## Machine
 
 ```yaml
+fqdn: workload::RB_COLLATZ_V0
 rb_code: RB_COLLATZ_V0
 version: v0
 governed_by: fb.topology::CONSTITUTION_RUNTIME_BINDING_V0
-
 parameters:
-  - module_data_root
-
+- module_data_root
 core:
   summary: Runtime binding for Collatz result storage
   description: Binds the platform CS_MUTABLE_JSON to its host for persisting Collatz results.
   storage_structure: workload::STRUCTURE_COLLATZ_STORAGE_V0
-
   bindings:
     capability_side_effects::CS_MUTABLE_JSON_V0:
       type: CS

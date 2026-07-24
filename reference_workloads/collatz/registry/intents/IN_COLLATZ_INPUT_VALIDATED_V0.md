@@ -21,29 +21,26 @@ Admission gate for the Collatz reference workload. Accepts a non-empty list of p
 ## Machine
 
 ```yaml
+fqdn: workload::IN_COLLATZ_INPUT_VALIDATED_V0
 in_code: IN_COLLATZ_INPUT_VALIDATED_V0
 version: v0
 governed_by: fb.topology::CONSTITUTION_INTENT_V0
-
 core:
   summary: Validate Collatz input — non-empty list of positive integers
   workflow: WF_COLLATZ_CONJECTURE_V0
-
   inputs:
     numbers:
       type: array
       required: true
-      description: "List of positive integers"
-
+      description: List of positive integers
   outcomes:
     ACK:
       description: Input valid — execution proceeds
     NACK:
       description: Input invalid — execution rejected
-
 extensions:
   domain: workload.collatz
   admission_rules:
-    - "numbers must be a non-empty array"
-    - "each element must be a positive integer"
+  - numbers must be a non-empty array
+  - each element must be a positive integer
 ```

@@ -35,45 +35,38 @@ Defines execution outcome symbols: result statuses for node-level outcomes and e
 ## Machine
 
 ```yaml
+fqdn: fb.vocabulary::VOCAB_EXECUTION_STATES_V0
 vocabulary_id: fb.vocabulary::VOCAB_EXECUTION_STATES_V0
 version: v0
 governed_by: fb.vocabulary::CONSTITUTION_VOCABULARY_V0
-
 result_status:
   casing: UPPER_SNAKE
   entries:
-    # Success states
-    - SUCCESS
-    # Failure states
-    - FAILURE
-    - VIOLATION
-    - ERROR
-    # Lookup states
-    - NOT_FOUND
-    - ALREADY_EXISTS
-    # Domain outcome states
-    - ACTIVE
-    - CAP_REACHED
-    # System states
-    - BACKEND_ERROR
-    - SKIPPED
-    - HALTED
-    - TIMEOUT
-
+  - SUCCESS
+  - FAILURE
+  - VIOLATION
+  - ERROR
+  - NOT_FOUND
+  - ALREADY_EXISTS
+  - ACTIVE
+  - CAP_REACHED
+  - BACKEND_ERROR
+  - SKIPPED
+  - HALTED
+  - TIMEOUT
 exit_reasons:
   casing: UPPER_SNAKE
   entries:
-    - COMPLETED
-    - DUPLICATE_NONCE
-    - EXITED
-    - FAILED
-    - HALTED
-    - TIMEOUT
-    # Transport-domain exit reasons (HTTP_xxx) — domain-scoped, not constitutional core
-    - HTTP_200
-    - HTTP_400
-    - HTTP_404
-    - HTTP_422
-    - HTTP_500
-    - HTTP_504
+  - COMPLETED
+  - DUPLICATE_NONCE
+  - EXITED
+  - FAILED
+  - HALTED
+  - TIMEOUT
+  - HTTP_200
+  - HTTP_400
+  - HTTP_404
+  - HTTP_422
+  - HTTP_500
+  - HTTP_504
 ```

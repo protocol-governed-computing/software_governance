@@ -5,6 +5,7 @@ Architectural Invariant
 ## Machine
 
 ```yaml
+fqdn: fb.constitution::INVARIANT_EV_APPEND_ONLY_V0
 artifact_kind: INVARIANT
 version: V0
 governed_by: fb.constitution::CONSTITUTION_EVENT_V0

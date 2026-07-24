@@ -3,6 +3,7 @@
 ## Machine
 
 ```yaml
+fqdn: fb.vocabulary::INVARIANT_VOCABULARY_SYMBOLS_WELL_FORMED_V0
 artifact_kind: INVARIANT
 version: V0
 governed_by: fb.vocabulary::CONSTITUTION_VOCABULARY_V0

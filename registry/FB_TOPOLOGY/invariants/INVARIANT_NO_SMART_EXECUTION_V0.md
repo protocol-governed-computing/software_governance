@@ -5,6 +5,7 @@ Architectural Invariant
 ## Machine
 
 ```yaml
+fqdn: fb.topology::INVARIANT_NO_SMART_EXECUTION_V0
 artifact_kind: INVARIANT
 version: V0
 governed_by: fb.constitution::CONSTITUTION_INVARIANTS_V0

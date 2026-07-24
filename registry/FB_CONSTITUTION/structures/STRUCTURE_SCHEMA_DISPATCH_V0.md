@@ -3,6 +3,7 @@
 ## Machine
 
 ```yaml
+fqdn: fb.constitution::STRUCTURE_SCHEMA_DISPATCH_V0
 structure_code: STRUCTURE_SCHEMA_DISPATCH_V0
 version: V0
 governed_by: fb.constitution::CONSTITUTION_STRUCTURE_V0

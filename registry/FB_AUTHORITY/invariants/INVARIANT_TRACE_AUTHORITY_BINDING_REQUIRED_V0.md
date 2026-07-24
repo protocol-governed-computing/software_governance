@@ -5,6 +5,7 @@ Architectural Invariant
 ## Machine
 
 ```yaml
+fqdn: fb.authority::INVARIANT_TRACE_AUTHORITY_BINDING_REQUIRED_V0
 artifact_kind: INVARIANT
 version: V0
 governed_by: fb.authority::CONSTITUTION_AUTHORITY_GOVERNANCE_V0

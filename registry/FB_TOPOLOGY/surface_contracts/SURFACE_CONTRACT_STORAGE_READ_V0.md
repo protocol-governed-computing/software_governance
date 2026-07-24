@@ -23,6 +23,7 @@ exhaustive across all mutable storage capabilities.
 ## Machine
 
 ```yaml
+fqdn: fb.topology::SURFACE_CONTRACT_STORAGE_READ_V0
 artifact_kind: SURFACE_CONTRACT
 version: V0
 governed_by: fb.topology::CONSTITUTION_EXECUTION_TOPOLOGY_V0

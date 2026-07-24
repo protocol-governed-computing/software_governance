@@ -24,23 +24,22 @@ Declares the physical registry module location for REUSABLE_SIDE_EFFECTS layer a
 ## Machine
 
 ```yaml
+fqdn: fb.topology::STRUCTURE_REGISTRY_LOCATION_REUSABLE_SIDE_EFFECTS_V0
 structure_code: STRUCTURE_REGISTRY_LOCATION_REUSABLE_SIDE_EFFECTS_V0
 version: V0
 governed_by: fb.constitution::CONSTITUTION_STRUCTURE_V0
-
 core:
   layer_code: REUSABLE_SIDE_EFFECTS
   registry_module: pgs_side_effects.registry
-  module_path_pattern: "{registry_module}"
+  module_path_pattern: '{registry_module}'
+  description: 'Platform capability side effects (CS artifacts). External I/O boundary modules (network,
+    filesystem, database).
 
-  description: >
-    Platform capability side effects (CS artifacts).
-    External I/O boundary modules (network, filesystem, database).
+    '
+  notes: 'Pattern-based resolution: module_path_pattern defines how to compose registry path. No domain
+    composition for platform side effects layer.
 
-  notes: >
-    Pattern-based resolution: module_path_pattern defines how to compose registry path.
-    No domain composition for platform side effects layer.
-
+    '
 output_configuration:
   artifacts_path:
     layer: REUSABLE_SIDE_EFFECTS

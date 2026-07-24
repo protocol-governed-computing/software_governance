@@ -41,26 +41,17 @@ IN_COLLATZ_INPUT_VALIDATED_V0
 ## Machine
 
 ```yaml
+fqdn: workload::WF_COLLATZ_CONJECTURE_V0
 wf_code: WF_COLLATZ_CONJECTURE_V0
 version: v0
 governed_by: fb.topology::CONSTITUTION_WORKFLOW_V0
-
 subdomain: collatz
 structure: fb.topology::STRUCTURE_RUNTIME_EXECUTION_V0
-
-# Capability Side Effect concern: binds the platform CS_MUTABLE_JSON (imported) for the store step.
 runtime_binding: workload::RB_COLLATZ_V0
-
 core:
   summary: Compute, verify, and persist Collatz sequences — domain-blind PGC execution
-
-  # Authority concern: the actor context this workflow executes under. Bound here, propagated by the
-  # runtime into the execution context, and attributed in the trace. (Declaration/binding only — no
-  # authorization enforcement; that belongs to the authority model.)
   actor_context: workload::AC_REFERENCE_ACTOR_V0
-
   start_node: IN_COLLATZ_INPUT_VALIDATED_V0
-
   nodes:
     IN_COLLATZ_INPUT_VALIDATED_V0:
       type: IN
@@ -68,7 +59,6 @@ core:
       next:
         ACK: CC_COMPUTE_SEQUENCES_V0
         NACK: EXIT_REJECTED
-
     CC_COMPUTE_SEQUENCES_V0:
       type: CC
       code: CC_COMPUTE_SEQUENCES_V0
@@ -77,7 +67,6 @@ core:
       next:
         SUCCESS: CC_VERIFY_TERMINATION_V0
         VIOLATION: EXIT_ERROR
-
     CC_VERIFY_TERMINATION_V0:
       type: CC
       code: CC_VERIFY_TERMINATION_V0
@@ -86,7 +75,6 @@ core:
       next:
         SUCCESS: CC_STORE_RESULTS_V0
         VIOLATION: EXIT_CONJECTURE_VIOLATED
-
     CC_STORE_RESULTS_V0:
       type: CC
       code: CC_STORE_RESULTS_V0
@@ -98,22 +86,17 @@ core:
         SUCCESS: EXIT_CONJECTURE_PROVEN
         VIOLATION: EXIT_ERROR
         BACKEND_ERROR: EXIT_ERROR
-
     EXIT_CONJECTURE_PROVEN:
       type: EXIT
       reason: COMPLETED
-      # Observation concern: emit a governed domain event when the conjecture has been evaluated.
       emit: workload::EV_CONJECTURE_EVALUATED_V0
-
     EXIT_CONJECTURE_VIOLATED:
       type: EXIT
       reason: COMPLETED
       emit: workload::EV_CONJECTURE_EVALUATED_V0
-
     EXIT_REJECTED:
       type: EXIT
       reason: EXITED
-
     EXIT_ERROR:
       type: EXIT
       reason: FAILED

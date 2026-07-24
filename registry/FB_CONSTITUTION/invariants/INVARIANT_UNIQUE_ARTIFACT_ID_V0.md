@@ -3,6 +3,7 @@
 ## Machine
 
 ```yaml
+fqdn: fb.constitution::INVARIANT_UNIQUE_ARTIFACT_ID_V0
 artifact_kind: INVARIANT
 version: V0
 governed_by: fb.constitution::CONSTITUTION_INVARIANTS_V0

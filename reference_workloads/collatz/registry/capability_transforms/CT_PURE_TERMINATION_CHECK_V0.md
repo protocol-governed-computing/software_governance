@@ -21,30 +21,28 @@ Verify that every computed Collatz sequence terminates at 1. Pure, deterministic
 ## Machine
 
 ```yaml
+fqdn: workload::CT_PURE_TERMINATION_CHECK_V0
 ct_code: CT_PURE_TERMINATION_CHECK_V0
 version: v0
 governed_by: fb.topology::CONSTITUTION_CAPABILITY_TRANSFORMS_V0
-
 core:
   summary: Verify all Collatz sequences terminate at 1
-  description: Inspects last element of each sequence. Returns all_terminate boolean and list of non-terminating seeds.
-
+  description: Inspects last element of each sequence. Returns all_terminate boolean and list of non-terminating
+    seeds.
   inputs:
     sequences:
       type: object
       required: true
-      description: "Mapping from str(n) to Collatz sequence list"
-
+      description: Mapping from str(n) to Collatz sequence list
   outputs:
     all_terminate:
       type: boolean
       required: true
-      description: "True if every sequence ends at 1"
+      description: True if every sequence ends at 1
     non_terminating:
       type: array
       required: true
-      description: "List of seeds whose sequences did not end at 1"
-
+      description: List of seeds whose sequences did not end at 1
 machine:
   ct_kind: atom
   ct_purity: ct_pure

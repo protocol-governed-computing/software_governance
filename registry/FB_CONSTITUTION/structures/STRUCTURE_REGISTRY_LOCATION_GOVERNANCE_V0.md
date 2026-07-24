@@ -24,32 +24,29 @@ Declares the physical registry module location for GOVERNANCE layer artifacts. T
 ## Machine
 
 ```yaml
+fqdn: fb.constitution::STRUCTURE_REGISTRY_LOCATION_GOVERNANCE_V0
 structure_code: STRUCTURE_REGISTRY_LOCATION_GOVERNANCE_V0
 version: V0
 governed_by: fb.constitution::CONSTITUTION_STRUCTURE_V0
-
 core:
   layer_code: GOVERNANCE
   registry_module: pgs_governance.registry
-  module_path_pattern: "{registry_module}"
+  module_path_pattern: '{registry_module}'
+  description: 'Core platform governance artifacts (VOCAB, CONSTITUTION, STRUCTURE, SCHEMA). Sovereign
+    authority layer for protocol governance.
 
-  description: >
-    Core platform governance artifacts (VOCAB, CONSTITUTION, STRUCTURE, SCHEMA).
-    Sovereign authority layer for protocol governance.
+    '
+  notes: 'Pattern-based resolution: module_path_pattern defines how to compose registry path. No domain
+    composition for platform governance layer.
 
-  notes: >
-    Pattern-based resolution: module_path_pattern defines how to compose registry path.
-    No domain composition for platform governance layer.
-
+    '
 output_configuration:
   artifacts_path:
     layer: GOVERNANCE
     subpath: compiled/artifacts
-
   conformance_path:
     layer: GOVERNANCE
     subpath: compiled/conformance
-
   vocabulary_path:
     layer: GOVERNANCE
     subpath: vocabulary/compiled

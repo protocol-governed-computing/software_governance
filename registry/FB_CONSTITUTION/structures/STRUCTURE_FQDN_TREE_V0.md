@@ -104,31 +104,28 @@ Builder MUST NOT:
 ## Machine
 
 ```yaml
+fqdn: fb.constitution::STRUCTURE_FQDN_TREE_V0
 structure_code: STRUCTURE_FQDN_TREE_V0
 fqdn_tree_code: STRUCTURE_FQDN_TREE_V0
 version: V0
 governed_by: fb.constitution::CONSTITUTION_STRUCTURE_V0
-
-# Compatibility shim: structure_tree.py expects fields at root
-# Compiler expects core block. Including both for transition.
-
 core:
   summary: Authoritative logical package (FQDN) tree configuration
-  description: >
-    Defines the logical package structure, roles, and build order for the platform and domains.
+  description: 'Defines the logical package structure, roles, and build order for the platform and domains.
 
+    '
   machine:
     id: omnibachi-machine-v0
     role: protocol_executor
     authority: layers
     responsibilities:
-      - protocol_loading
-      - registry_federation
-      - compilation
-      - execution
-      - conformance
-      - observability
-      - trace_sealing
+    - protocol_loading
+    - registry_federation
+    - compilation
+    - execution
+    - conformance
+    - observability
+    - trace_sealing
     execution_model:
       determinism: strict
       replay: required
@@ -148,363 +145,335 @@ core:
       on_violation: fail_build
       on_runtime_violation: abort_execution
     forbidden:
-      - implicit_filesystem_discovery
-      - dynamic_registry_mutation
-      - undeclared_capability_execution
-
-# Fields for structure_tree.py (mandatory)
+    - implicit_filesystem_discovery
+    - dynamic_registry_mutation
+    - undeclared_capability_execution
 packages:
-
-  - package: structure
-    role: core
-    authority: foundational
-    build_order: 0
-    physical_root: ./pgs_structure
-    module_root: structure
-    contains:
-      - discovery
-      - loading
-      - resolution
-    registries: []
-    depends_on: []
-
-  - package: governance
-    role: core
-    authority: federal
-    build_order: 1
-    physical_root: ./pgs_governance
-    module_root: registry
-    contains:
-      - registry
-      - schemas
-      - vocabulary
-      - conformance
-      - constitution_validator
-    registries:
-      - path: registry/FB_CONSTITUTION
-        artifact_types:
-          - registry
-          - constitutions
-          - structures
-        notes: "Constitutional federation boundary — sovereign authority artifacts"
-      - path: registry/FB_TOPOLOGY
-        artifact_types:
-          - constitutions
-          - invariants
-        notes: "Topology federation boundary"
-      - path: registry/FB_TRANSPORT
-        artifact_types:
-          - constitutions
-          - invariants
-        notes: "Transport federation boundary"
-      - path: registry/FB_AUTHORITY
-        artifact_types:
-          - constitutions
-          - invariants
-        notes: "Authority federation boundary"
-      - path: registry/FB_VOCABULARY
-        artifact_types:
-          - constitutions
-          - invariants
-        notes: "Vocabulary federation boundary"
-      - path: registry/FB_CONFORMANCE
-        artifact_types:
-          - constitutions
-          - assertions
-          - invariants
-        notes: "Conformance federation boundary"
-      - path: registry/FB_IDENTITY
-        artifact_types:
-          - constitutions
-          - invariants
-        notes: "Identity federation boundary"
-    namespace_mappings:
-      constitution: registry/FB_CONSTITUTION
-      topology: registry/FB_TOPOLOGY
-      transport: registry/FB_TRANSPORT
-      authority: registry/FB_AUTHORITY
-      vocabulary: registry/FB_VOCABULARY
-      conformance: registry/FB_CONFORMANCE
-      identity: registry/FB_IDENTITY
-    depends_on: []
-
-  - package: execution
-    role: core
-    authority: delegated
-    build_order: 2
-    physical_root: ./pgs_execution
-    module_root: execution
-    contains:
-      - machine
-      - host
-    registries: []
-    depends_on:
-      - governance
-
-  - package: transforms
-    role: capability_pack
-    authority: delegated
-    build_order: 3
-    physical_root: ./pgs_transforms
-    module_root: transforms
-    contains:
-      - atoms
-      - molecules
-    registries:
-      - path: registry/registry
-        artifact_types:
-          - capability_transforms
-    depends_on:
-      - governance
-      - execution
-
-  - package: side_effects
-    role: capability_pack
-    authority: delegated
-    build_order: 4
-    physical_root: ./pgs_side_effects
-    module_root: side_effects
-    contains:
-      - persistent
-      - volatile
-    registries:
-      - path: registry/registry
-        artifact_types:
-          - capability_side_effects
-    depends_on:
-      - governance
-      - execution
-
-  - package: blockchain
-    role: domain_pack
-    authority: delegated
-    build_order: 5
-    physical_root: ./pgs_domains/domains/blockchain
-    module_root: pgs_domains.domains.blockchain
-    contains:
-      - registry
-      - protocol
-      - test_payloads
-      - capability_transforms
-    registries:
-      - path: domains/blockchain/registry/identity
-        artifact_types:
-          - capability_contracts
-          - intents
-          - workflows
-          - events
-          - actors
-      - path: domains/blockchain/registry/wallet
-        artifact_types:
-          - capability_contracts
-          - capability_transforms
-          - intents
-          - workflows
-          - events
-          - runtime_bindings
-      - path: domains/blockchain/registry/transaction
-        artifact_types:
-          - capability_contracts
-          - capability_transforms
-          - intents
-          - workflows
-          - events
-    depends_on:
-      - governance
-      - transforms
-      - side_effects
-
-  - package: ai_licensing
-    role: domain_pack
-    authority: delegated
-    build_order: 6
-    physical_root: ./pgs_domains/domains/ai_licensing
-    module_root: pgs_domains.domains.ai_licensing
-    contains:
-      - registry
-      - protocol
-      - test_payloads
-      - capability_transforms
-    registries:
-      - path: domains/ai_licensing/registry
-        artifact_types:
-          - capability_contracts
-          - capability_transforms
-          - intents
-          - workflows
-          - events
-          - actors
-          - runtime_bindings
-    depends_on:
-      - governance
-      - transforms
-      - side_effects
-
-  - package: agent_governance
-    role: domain_pack
-    authority: delegated
-    build_order: 7
-    physical_root: ./pgs_domains/domains/agent_governance
-    module_root: domains.agent_governance
-    contains:
-      - registry
-      - protocol
-      - testbed
-    registries:
-      - path: domains/agent_governance/registry
-        artifact_types:
-          - capability_contracts
-          - intents
-          - workflows
-          - events
-          - actors
-          - runtime_bindings
-    depends_on:
-      - governance
-      - transforms
-      - side_effects
-
-  - package: tooling
-    role: core
-    authority: delegated
-    build_order: 8
-    physical_root: ./pgs_tooling
-    module_root: tooling
-    contains:
-      - builder
-      - artifact_validation
-      - protocol_validation
-      - trace_examiner
-      - visualization
-      - experimental
-    registries: []
-    depends_on:
-      - governance
-      - execution
-
-  - package: transport
-    role: core
-    authority: delegated
-    build_order: 9
-    physical_root: ./pgs_transport
-    module_root: transport
-    conformance_generation: false
-    contains:
-      - registry
-      - gateway
-      - command_line
-      - http_rest
-    registries:
-      - path: registry/registry/http_gateway
-        artifact_types:
-          - transport_intents
-          - transport_egress
-          - workflows
-          - capability_contracts
-          - runtime_bindings
-    depends_on:
-      - governance
-      - execution
-
-role_artifact_rules:
-  core:
-    - constitutions
+- package: structure
+  role: core
+  authority: foundational
+  build_order: 0
+  physical_root: ./pgs_structure
+  module_root: structure
+  contains:
+  - discovery
+  - loading
+  - resolution
+  registries: []
+  depends_on: []
+- package: governance
+  role: core
+  authority: federal
+  build_order: 1
+  physical_root: ./pgs_governance
+  module_root: registry
+  contains:
+  - registry
+  - schemas
+  - vocabulary
+  - conformance
+  - constitution_validator
+  registries:
+  - path: registry/FB_CONSTITUTION
+    artifact_types:
     - registry
-    - schemas
+    - constitutions
+    - structures
+    notes: Constitutional federation boundary — sovereign authority artifacts
+  - path: registry/FB_TOPOLOGY
+    artifact_types:
+    - constitutions
+    - invariants
+    notes: Topology federation boundary
+  - path: registry/FB_TRANSPORT
+    artifact_types:
+    - constitutions
+    - invariants
+    notes: Transport federation boundary
+  - path: registry/FB_AUTHORITY
+    artifact_types:
+    - constitutions
+    - invariants
+    notes: Authority federation boundary
+  - path: registry/FB_VOCABULARY
+    artifact_types:
+    - constitutions
+    - invariants
+    notes: Vocabulary federation boundary
+  - path: registry/FB_CONFORMANCE
+    artifact_types:
+    - constitutions
+    - assertions
+    - invariants
+    notes: Conformance federation boundary
+  - path: registry/FB_IDENTITY
+    artifact_types:
+    - constitutions
+    - invariants
+    notes: Identity federation boundary
+  namespace_mappings:
+    constitution: registry/FB_CONSTITUTION
+    topology: registry/FB_TOPOLOGY
+    transport: registry/FB_TRANSPORT
+    authority: registry/FB_AUTHORITY
+    vocabulary: registry/FB_VOCABULARY
+    conformance: registry/FB_CONFORMANCE
+    identity: registry/FB_IDENTITY
+  depends_on: []
+- package: execution
+  role: core
+  authority: delegated
+  build_order: 2
+  physical_root: ./pgs_execution
+  module_root: execution
+  contains:
+  - machine
+  - host
+  registries: []
+  depends_on:
+  - governance
+- package: transforms
+  role: capability_pack
+  authority: delegated
+  build_order: 3
+  physical_root: ./pgs_transforms
+  module_root: transforms
+  contains:
+  - atoms
+  - molecules
+  registries:
+  - path: registry/registry
+    artifact_types:
     - capability_transforms
+  depends_on:
+  - governance
+  - execution
+- package: side_effects
+  role: capability_pack
+  authority: delegated
+  build_order: 4
+  physical_root: ./pgs_side_effects
+  module_root: side_effects
+  contains:
+  - persistent
+  - volatile
+  registries:
+  - path: registry/registry
+    artifact_types:
     - capability_side_effects
-    - transport_intents
-    - transport_egress
+  depends_on:
+  - governance
+  - execution
+- package: blockchain
+  role: domain_pack
+  authority: delegated
+  build_order: 5
+  physical_root: ./pgs_domains/domains/blockchain
+  module_root: pgs_domains.domains.blockchain
+  contains:
+  - registry
+  - protocol
+  - test_payloads
+  - capability_transforms
+  registries:
+  - path: domains/blockchain/registry/identity
+    artifact_types:
+    - capability_contracts
+    - intents
     - workflows
+    - events
+    - actors
+  - path: domains/blockchain/registry/wallet
+    artifact_types:
     - capability_contracts
+    - capability_transforms
+    - intents
+    - workflows
+    - events
     - runtime_bindings
-  capability_pack:
-    - capability_transforms
-    - capability_side_effects
-  domain_pack:
+  - path: domains/blockchain/registry/transaction
+    artifact_types:
     - capability_contracts
     - capability_transforms
-    - capability_side_effects
+    - intents
+    - workflows
+    - events
+  depends_on:
+  - governance
+  - transforms
+  - side_effects
+- package: ai_licensing
+  role: domain_pack
+  authority: delegated
+  build_order: 6
+  physical_root: ./pgs_domains/domains/ai_licensing
+  module_root: pgs_domains.domains.ai_licensing
+  contains:
+  - registry
+  - protocol
+  - test_payloads
+  - capability_transforms
+  registries:
+  - path: domains/ai_licensing/registry
+    artifact_types:
+    - capability_contracts
+    - capability_transforms
     - intents
     - workflows
     - events
     - actors
     - runtime_bindings
-
+  depends_on:
+  - governance
+  - transforms
+  - side_effects
+- package: agent_governance
+  role: domain_pack
+  authority: delegated
+  build_order: 7
+  physical_root: ./pgs_domains/domains/agent_governance
+  module_root: domains.agent_governance
+  contains:
+  - registry
+  - protocol
+  - testbed
+  registries:
+  - path: domains/agent_governance/registry
+    artifact_types:
+    - capability_contracts
+    - intents
+    - workflows
+    - events
+    - actors
+    - runtime_bindings
+  depends_on:
+  - governance
+  - transforms
+  - side_effects
+- package: tooling
+  role: core
+  authority: delegated
+  build_order: 8
+  physical_root: ./pgs_tooling
+  module_root: tooling
+  contains:
+  - builder
+  - artifact_validation
+  - protocol_validation
+  - trace_examiner
+  - visualization
+  - experimental
+  registries: []
+  depends_on:
+  - governance
+  - execution
+- package: transport
+  role: core
+  authority: delegated
+  build_order: 9
+  physical_root: ./pgs_transport
+  module_root: transport
+  conformance_generation: false
+  contains:
+  - registry
+  - gateway
+  - command_line
+  - http_rest
+  registries:
+  - path: registry/registry/http_gateway
+    artifact_types:
+    - transport_intents
+    - transport_egress
+    - workflows
+    - capability_contracts
+    - runtime_bindings
+  depends_on:
+  - governance
+  - execution
+role_artifact_rules:
+  core:
+  - constitutions
+  - registry
+  - schemas
+  - capability_transforms
+  - capability_side_effects
+  - transport_intents
+  - transport_egress
+  - workflows
+  - capability_contracts
+  - runtime_bindings
+  capability_pack:
+  - capability_transforms
+  - capability_side_effects
+  domain_pack:
+  - capability_contracts
+  - capability_transforms
+  - capability_side_effects
+  - intents
+  - workflows
+  - events
+  - actors
+  - runtime_bindings
 artifact_patterns:
-
   constitutions:
-    file_pattern: "CONSTITUTION_*.md"
+    file_pattern: CONSTITUTION_*.md
     code_key: constitution_id
-
   governance:
-    file_pattern: "*_V0.md"
+    file_pattern: '*_V0.md'
     code_key: artifact_code
-
   schemas:
-    file_pattern: "SCHEMA_*.json"
-    code_key: "$id"
-
+    file_pattern: SCHEMA_*.json
+    code_key: $id
   capability_transforms:
-    file_pattern: "CT_*.md"
+    file_pattern: CT_*.md
     code_key: ct_code
     exclude_patterns:
-      - "CONSTITUTION_*.md"
-
+    - CONSTITUTION_*.md
   capability_side_effects:
-    file_pattern: "CS_*.md"
+    file_pattern: CS_*.md
     code_key: cs_code
     exclude_patterns:
-      - "CONSTITUTION_*.md"
-
+    - CONSTITUTION_*.md
   capability_contracts:
-    file_pattern: "CC_*.md"
+    file_pattern: CC_*.md
     code_key: cc_code
     exclude_patterns:
-      - "CONSTITUTION_*.md"
-
+    - CONSTITUTION_*.md
   intents:
-    file_pattern: "IN_*.md"
+    file_pattern: IN_*.md
     code_key: in_code
     exclude_patterns:
-      - "CONSTITUTION_*.md"
-
+    - CONSTITUTION_*.md
   workflows:
-    file_pattern: "WF_*.md"
+    file_pattern: WF_*.md
     code_key: wf_code
     exclude_patterns:
-      - "CONSTITUTION_*.md"
-
+    - CONSTITUTION_*.md
   events:
-    file_pattern: "EV_*.md"
+    file_pattern: EV_*.md
     code_key: ev_code
     exclude_patterns:
-      - "CONSTITUTION_*.md"
-
+    - CONSTITUTION_*.md
   actors:
-    file_pattern: "AC_*.md"
+    file_pattern: AC_*.md
     code_key: ac_code
     exclude_patterns:
-      - "CONSTITUTION_*.md"
-
+    - CONSTITUTION_*.md
   runtime_bindings:
-    file_pattern: "RB_*.md"
+    file_pattern: RB_*.md
     code_key: rb_code
     exclude_patterns:
-      - "CONSTITUTION_*.md"
-
+    - CONSTITUTION_*.md
   transport_intents:
-    file_pattern: "TI_*.md"
+    file_pattern: TI_*.md
     code_key: ti_code
     exclude_patterns:
-      - "CONSTITUTION_*.md"
-
+    - CONSTITUTION_*.md
   transport_egress:
-    file_pattern: "TE_*.md"
+    file_pattern: TE_*.md
     code_key: te_code
     exclude_patterns:
-      - "CONSTITUTION_*.md"
-
+    - CONSTITUTION_*.md
 output_configuration:
-  _type: metadata  # This artifact defines metadata, not output paths
+  _type: metadata
 ```

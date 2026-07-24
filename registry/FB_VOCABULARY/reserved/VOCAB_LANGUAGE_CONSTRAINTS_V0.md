@@ -39,117 +39,108 @@ Defines words constrained during artifact authoring: structural keys, binding ve
 ## Machine
 
 ```yaml
+fqdn: fb.vocabulary::VOCAB_LANGUAGE_CONSTRAINTS_V0
 vocabulary_id: fb.vocabulary::VOCAB_LANGUAGE_CONSTRAINTS_V0
 version: v0
 governed_by: fb.vocabulary::CONSTITUTION_VOCABULARY_V0
-
 structural_keys:
   casing: lower_snake
   entries:
-    - bindings
-    - capability_ref
-    - cc_code
-    - code
-    - cs_code
-    - ct_code
-    - description
-    - domain
-    - guarantees
-    - inputs
-    - intent_code
-    - kind
-    - next
-    - nodes
-    - non_guarantees
-    - on_result
-    - op
-    - operations
-    - outputs
-    - pipeline
-    - properties
-    - rb_code
-    - runtime_binding
-    - start_node
-    - type
-    - version
-    - wf_code
-
+  - bindings
+  - capability_ref
+  - cc_code
+  - code
+  - cs_code
+  - ct_code
+  - description
+  - domain
+  - guarantees
+  - inputs
+  - intent_code
+  - kind
+  - next
+  - nodes
+  - non_guarantees
+  - on_result
+  - op
+  - operations
+  - outputs
+  - pipeline
+  - properties
+  - rb_code
+  - runtime_binding
+  - start_node
+  - type
+  - version
+  - wf_code
 binding_verbs_cs:
   casing: UPPER_SNAKE
   entries:
-    - APPEND
-    - COUNT
-    - DELETE
-    - DEREGISTER
-    - EXISTS
-    - FETCH
-    - LIST_KEYS
-    - READ
-    - READ_ALL
-    - REGISTER
-    - RESOLVE
-    - SEND
-    - STORE
-    - WRITE
-    - EXECUTE
-
+  - APPEND
+  - COUNT
+  - DELETE
+  - DEREGISTER
+  - EXISTS
+  - FETCH
+  - LIST_KEYS
+  - READ
+  - READ_ALL
+  - REGISTER
+  - RESOLVE
+  - SEND
+  - STORE
+  - WRITE
+  - EXECUTE
 reserved_non_authorable:
   casing: UPPER_SNAKE
   entries:
-    # Compiler / runtime concepts
-    - COMPILER
-    - ENGINE
-    - INTERNAL
-    - MACHINE
-    - RUNTIME
-    # Execution / control concepts
-    - ABORT
-    - END
-    - START
-    - STOP
-    # Future-reserved language concepts
-    - ASYNC
-    - AWAIT
-    - BRANCH
-    - CONTEXT
-    - LOOP
-    - PARALLEL
-    - STATE
-    # Protocol meta nouns
-    - ACTOR
-    - CAPABILITY
-    - EVENT
-    - INTENT
-    - OPERATION
-    - PROTOCOL
-    - WORKFLOW
-    # Semantic guarantees / non-guarantees
-    - CRYPTOGRAPHIC_STRENGTH
-    - DETERMINISTIC_OUTPUT
-    - FAIL_FAST
-    - IDEMPOTENT
-    - LOCALE_SPECIFIC_RULES
-    - ORDERING_ENFORCEMENT
-    - PURE_FUNCTION
-    - SCHEMA_VALIDATION
-    - SEMANTIC_VALIDATION
-    - SINGLE_EXIT_OPERATION
-    - TYPE_INFERENCE
-    - UNICODE_NORMALIZATION
-    # CT / capability error symbols
-    - EMPTY_INPUT
-    - INVALID_PATH
-    - INVALID_TYPE
-    - MISSING_VALUE
-    - MULTIPLE_EMIT
-    - MULTIPLE_VALUES
-    - NOT_EXIT
-    - PATH_NOT_FOUND
-
+  - COMPILER
+  - ENGINE
+  - INTERNAL
+  - MACHINE
+  - RUNTIME
+  - ABORT
+  - END
+  - START
+  - STOP
+  - ASYNC
+  - AWAIT
+  - BRANCH
+  - CONTEXT
+  - LOOP
+  - PARALLEL
+  - STATE
+  - ACTOR
+  - CAPABILITY
+  - EVENT
+  - INTENT
+  - OPERATION
+  - PROTOCOL
+  - WORKFLOW
+  - CRYPTOGRAPHIC_STRENGTH
+  - DETERMINISTIC_OUTPUT
+  - FAIL_FAST
+  - IDEMPOTENT
+  - LOCALE_SPECIFIC_RULES
+  - ORDERING_ENFORCEMENT
+  - PURE_FUNCTION
+  - SCHEMA_VALIDATION
+  - SEMANTIC_VALIDATION
+  - SINGLE_EXIT_OPERATION
+  - TYPE_INFERENCE
+  - UNICODE_NORMALIZATION
+  - EMPTY_INPUT
+  - INVALID_PATH
+  - INVALID_TYPE
+  - MISSING_VALUE
+  - MULTIPLE_EMIT
+  - MULTIPLE_VALUES
+  - NOT_EXIT
+  - PATH_NOT_FOUND
 forbidden_language:
   casing: UPPER_SNAKE
   entries:
-    - TERM
-    - TERMINAL
-    - TERMINATE
+  - TERM
+  - TERMINAL
+  - TERMINATE
 ```

@@ -3,6 +3,7 @@
 ## Machine
 
 ```yaml
+fqdn: fb.cryptographic_trust::CONSTITUTION_CRYPTOGRAPHIC_TRUST_V0
 artifact_kind: CONSTITUTION
 version: V0
 governed_by: fb.constitution::CONSTITUTION_GOVERNANCE_V0

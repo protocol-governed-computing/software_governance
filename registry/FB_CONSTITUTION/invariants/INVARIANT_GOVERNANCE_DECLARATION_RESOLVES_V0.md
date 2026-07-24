@@ -3,6 +3,7 @@
 ## Machine
 
 ```yaml
+fqdn: fb.constitution::INVARIANT_GOVERNANCE_DECLARATION_RESOLVES_V0
 artifact_kind: INVARIANT
 version: V0
 governed_by: fb.constitution::CONSTITUTION_GOVERNANCE_V0

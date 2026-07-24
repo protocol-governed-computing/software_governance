@@ -49,82 +49,59 @@ No fallback or implicit behavior is permitted.
 ## Machine
 
 ```yaml
+fqdn: fb.constitution::STRUCTURE_BUILD_PLATFORM_CONFIG_V1
 structure_code: STRUCTURE_BUILD_PLATFORM_CONFIG_V1
 version: V1
 governed_by: fb.constitution::CONSTITUTION_STRUCTURE_V0
-
-# Structure scope this build materializes — declared here, not hardcoded in the compiler.
 structure_scope: platform
-
 core:
   summary: Build-time STRUCTURE configuration (PGC normative-platform scope)
-  description: >
-    Defines artifact discovery and output paths for PGC normative-platform compilation.
-    Domain layers and implementation-layer conformance are out of scope.
+  description: 'Defines artifact discovery and output paths for PGC normative-platform compilation. Domain
+    layers and implementation-layer conformance are out of scope.
 
+    '
 artifact_discovery:
-
-  # STRICT STRUCTURE-DRIVEN DISCOVERY (PGC normative surface)
-  # Excludes domain layers (BLOCKCHAIN, AI_GOVERNANCE, CAPABILITIES/name_service) and
-  # implementation-layer conformance (TEST_DATA).
   search_layers:
-    - GOVERNANCE
-    - REUSABLE_TRANSFORMS
-    - REUSABLE_SIDE_EFFECTS
-
-  # MINIMAL COMPILER SCOPE (NORMATIVE SURFACE)
+  - GOVERNANCE
+  - REUSABLE_TRANSFORMS
+  - REUSABLE_SIDE_EFFECTS
   artifact_types:
-    - VOCAB
-    - CONSTITUTION
-    - INVARIANT
-    - ASSERT
-    - SCHEMA
-    - STRUCTURE
-    - EXECUTION_POLICY
-    - WF
-    - IN
-    - TI
-    - TE
-    - CC
-    - CT
-    - CS
-    - EV
-    - RB
-    - SURFACE
-
+  - VOCAB
+  - CONSTITUTION
+  - INVARIANT
+  - ASSERT
+  - SCHEMA
+  - STRUCTURE
+  - EXECUTION_POLICY
+  - WF
+  - IN
+  - TI
+  - TE
+  - CC
+  - CT
+  - CS
+  - EV
+  - RB
+  - SURFACE
 output_configuration:
-
-  # Compiled canonical artifacts (federated via layer_outputs below)
   artifacts:
     layer: PROTOCOL_BUILD_ROOT
     subpath: compiled/canonical
-
-  # Vocabulary projection files (global system state)
   vocabulary_projection_path:
     layer: GOVERNANCE
     subpath: compiled/vocabulary
-
-  # Tokenized topology projection files
   tokenized_projection_path:
     layer: GOVERNANCE
     subpath: compiled/tokenized
-
-  # Evidence projection files (dual-form observability substrate)
   evidence_projection_path:
     layer: GOVERNANCE
     subpath: compiled/evidence
-
-  # Trust attestation (cryptographic binding of verified tokenized projection)
   trust_attestation_path:
     layer: GOVERNANCE
     subpath: compiled/trust
-
-  # Visualization projection files
   visualization_projection_path:
     layer: GOVERNANCE
     subpath: compiled/visualization
-
-  # Federated layer outputs (each layer writes to its own repository)
   layer_outputs:
     GOVERNANCE:
       layer: GOVERNANCE
@@ -135,33 +112,23 @@ output_configuration:
     REUSABLE_SIDE_EFFECTS:
       layer: REUSABLE_SIDE_EFFECTS
       subpath: compiled/canonical
-
-  # Bootstrap artifact discovery (minimal hardcoded paths)
   bootstrap_search_roots:
-    - layer: GOVERNANCE
-      subpath: FB_CONSTITUTION/structures
-
+  - layer: GOVERNANCE
+    subpath: FB_CONSTITUTION/structures
 build_phases:
-
-  - phase: discover
-    description: Discover artifacts via STRUCTURE
-
-  - phase: parse
-    description: Parse artifacts into canonical machine form
-
-  - phase: normalize
-    description: Resolve references to FQDN with deterministic binding
-
-  - phase: validate
-    description: Validate artifacts using compiler schema rules
-
-  - phase: assert
-    description: Evaluate cross-artifact invariants (surface closure)
-
-  - phase: materialize
-    description: Emit deterministic compiled artifacts
-    target: "compiled/artifacts/"
-
+- phase: discover
+  description: Discover artifacts via STRUCTURE
+- phase: parse
+  description: Parse artifacts into canonical machine form
+- phase: normalize
+  description: Resolve references to FQDN with deterministic binding
+- phase: validate
+  description: Validate artifacts using compiler schema rules
+- phase: assert
+  description: Evaluate cross-artifact invariants (surface closure)
+- phase: materialize
+  description: Emit deterministic compiled artifacts
+  target: compiled/artifacts/
 ```
 
 ## Version History

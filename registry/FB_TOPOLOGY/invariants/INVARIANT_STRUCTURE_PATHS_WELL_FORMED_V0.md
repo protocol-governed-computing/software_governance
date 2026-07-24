@@ -3,6 +3,7 @@
 ## Machine
 
 ```yaml
+fqdn: fb.topology::INVARIANT_STRUCTURE_PATHS_WELL_FORMED_V0
 artifact_kind: INVARIANT
 version: V0
 governed_by: fb.constitution::CONSTITUTION_STRUCTURE_V0

@@ -360,78 +360,65 @@ Add validation to fail build on duplicate fqdn_id.
 ## Machine
 
 ```yaml
+fqdn: fb.constitution::STRUCTURE_ARTIFACT_IDENTITY_V0
 structure_code: STRUCTURE_ARTIFACT_IDENTITY_V0
 version: V0
 governed_by: fb.constitution::CONSTITUTION_STRUCTURE_V0
-
 core:
   summary: Canonical artifact identity system (FQDN-scoped)
-  description: >
-    Defines FQDN-scoped identity as internal system identity while preserving
-    clean, short names in human-authored artifacts. Compilation is the
-    resolution boundary between human identity and system identity.
+  description: 'Defines FQDN-scoped identity as internal system identity while preserving clean, short
+    names in human-authored artifacts. Compilation is the resolution boundary between human identity and
+    system identity.
 
+    '
   identity_model:
     human_identity:
       layer: authoring
       format: artifact_code
-      example: "CT_VALIDATE_SCHEMA_V0"
-
+      example: CT_VALIDATE_SCHEMA_V0
     system_identity:
       layer: compilation_runtime
       format: fqdn_id
-      example: "blockchain.wallet.CT_VALIDATE_SCHEMA_V0"
-
+      example: blockchain.wallet.CT_VALIDATE_SCHEMA_V0
   fqdn_schema:
-    format: "<fqdn>.<artifact_code>"
-
+    format: <fqdn>.<artifact_code>
     scope_format:
-      platform: "<package>"
-      domain: "<domain>[.<subscope>]"
-
+      platform: <package>
+      domain: <domain>[.<subscope>]
     examples:
       platform:
-        - "registry.STRUCTURE_LAYER_AUTHORITY_V0"
-        - "transforms.CT_PURE_HASH_V0"
-        - "compiler.WF_BUILD_PLATFORM_V0"
-
+      - registry.STRUCTURE_LAYER_AUTHORITY_V0
+      - transforms.CT_PURE_HASH_V0
+      - compiler.WF_BUILD_PLATFORM_V0
       domain:
-        - "blockchain.wallet.CT_VALIDATE_SIGNATURE_V0"
-        - "blockchain.identity.WF_CREATE_IDENTITY_V0"
-        - "ai_licensing.CC_LICENSE_VALIDATION_V0"
-
+      - blockchain.wallet.CT_VALIDATE_SIGNATURE_V0
+      - blockchain.identity.WF_CREATE_IDENTITY_V0
+      - ai_licensing.CC_LICENSE_VALIDATION_V0
   resolution:
     bootstrap_exception:
-      - STRUCTURE_RUNTIME_EXECUTION_V0
-      - STRUCTURE_BUILD_PLATFORM_CONFIG_V0
-      - STRUCTURE_BUILD_DOMAINS_CONFIG_V0
-      - STRUCTURE_ARTIFACT_IDENTITY_V0
-
+    - STRUCTURE_RUNTIME_EXECUTION_V0
+    - STRUCTURE_BUILD_PLATFORM_CONFIG_V0
+    - STRUCTURE_BUILD_DOMAINS_CONFIG_V0
+    - STRUCTURE_ARTIFACT_IDENTITY_V0
     search_scope_source: STRUCTURE_*_CONFIG_V0
-
     resolution_boundary: compilation
-
     runtime_resolution: fqdn_id_only
-
   uniqueness:
     fqdn_id:
       rule: strict
       violation: hard_error
-
     artifact_code:
       rule: relaxed_across_scopes
       violation: allowed
-
   enforcement:
-    - source_artifacts_unchanged
-    - discovery_computes_fqdn
-    - compilation_resolves_references
-    - runtime_uses_fqdn_only
-    - no_fallback_resolution
-    - bootstrap_exception_only_for_structure
-
+  - source_artifacts_unchanged
+  - discovery_computes_fqdn
+  - compilation_resolves_references
+  - runtime_uses_fqdn_only
+  - no_fallback_resolution
+  - bootstrap_exception_only_for_structure
 output_configuration:
-  _type: metadata  # This artifact defines identity schema, not output paths
+  _type: metadata
 ```
 
 ---

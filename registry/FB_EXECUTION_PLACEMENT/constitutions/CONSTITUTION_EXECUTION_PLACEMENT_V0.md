@@ -3,6 +3,7 @@
 ## Machine
 
 ```yaml
+fqdn: fb.execution_placement::CONSTITUTION_EXECUTION_PLACEMENT_V0
 artifact_kind: CONSTITUTION
 version: V0
 governed_by: fb.constitution::CONSTITUTION_GOVERNANCE_V0

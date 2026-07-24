@@ -3,6 +3,7 @@
 ## Machine
 
 ```yaml
+fqdn: fb.topology::INVARIANT_TOPOLOGY_TRANSPORT_ORTHOGONAL_V0
 artifact_kind: INVARIANT
 version: V0
 governed_by: fb.topology::CONSTITUTION_EXECUTION_TOPOLOGY_V0

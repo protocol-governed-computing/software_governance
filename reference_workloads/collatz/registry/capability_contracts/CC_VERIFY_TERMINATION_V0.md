@@ -22,47 +22,45 @@ protocol outcome (the conjecture was tested and failed), not an error.
 ## Machine
 
 ```yaml
+fqdn: workload::CC_VERIFY_TERMINATION_V0
 cc_code: CC_VERIFY_TERMINATION_V0
 version: v0
 governed_by: fb.topology::CONSTITUTION_CAPABILITY_CONTRACT_V0
-
 core:
   summary: Verify all Collatz sequences terminate at 1
-
   inputs:
     sequences:
       type: object
       required: true
-
   outputs:
     all_terminate:
       type: boolean
     non_terminating:
       type: array
-
   result_status_contract:
-    allowed: [SUCCESS, VIOLATION]
+    allowed:
+    - SUCCESS
+    - VIOLATION
     on_input_failure: VIOLATION
-
   pipeline:
-    - step: check_termination
-      transform: workload::CT_PURE_TERMINATION_CHECK_V0
-      inputs:
-        sequences: $.inputs.sequences
-      outputs:
-        all_terminate: $.capability_result.all_terminate
-        non_terminating: $.capability_result.non_terminating
-      result_surface: [SUCCESS, VIOLATION]
-      on_result:
-        SUCCESS: evaluate_conjecture
-        VIOLATION: exit
-
+  - step: check_termination
+    transform: workload::CT_PURE_TERMINATION_CHECK_V0
+    inputs:
+      sequences: $.inputs.sequences
+    outputs:
+      all_terminate: $.capability_result.all_terminate
+      non_terminating: $.capability_result.non_terminating
+    result_surface:
+    - SUCCESS
+    - VIOLATION
+    on_result:
+      SUCCESS: evaluate_conjecture
+      VIOLATION: exit
   evaluation:
     evaluate_conjecture:
       condition: $.capability_result.all_terminate == true
       on_true: SUCCESS
       on_false: VIOLATION
-
 extensions:
   description: Protocol gate for Collatz Conjecture — SUCCESS means conjecture holds for this input set
 ```

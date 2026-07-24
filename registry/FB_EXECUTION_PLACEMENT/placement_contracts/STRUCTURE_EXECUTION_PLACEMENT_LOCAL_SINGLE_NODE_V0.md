@@ -3,13 +3,12 @@
 ## Machine
 
 ```yaml
+fqdn: fb.execution_placement::STRUCTURE_EXECUTION_PLACEMENT_LOCAL_SINGLE_NODE_V0
 artifact_code: STRUCTURE_EXECUTION_PLACEMENT_LOCAL_SINGLE_NODE_V0
 artifact_kind: STRUCTURE
 version: V0
 governed_by: fb.execution_placement::CONSTITUTION_EXECUTION_PLACEMENT_V0
-fqdn: fb.execution_placement::STRUCTURE_EXECUTION_PLACEMENT_LOCAL_SINGLE_NODE_V0
 status: active
-
 placement_mode: LOCAL_SINGLE_NODE
 remote_execution_allowed: false
 cross_node_dispatch_allowed: false

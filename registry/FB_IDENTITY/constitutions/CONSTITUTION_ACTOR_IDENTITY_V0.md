@@ -6,6 +6,7 @@ Actors are declarative identity authorities, not behavioral or execution authori
 
 ## Machine
 ```yaml
+fqdn: fb.identity::CONSTITUTION_ACTOR_IDENTITY_V0
 artifact_kind: CONSTITUTION
 version: V0
 governed_by: fb.constitution::CONSTITUTION_GOVERNANCE_V0

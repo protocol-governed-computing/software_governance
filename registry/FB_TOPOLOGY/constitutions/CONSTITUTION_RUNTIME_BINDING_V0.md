@@ -2,6 +2,7 @@
 
 ## Machine
 ```yaml
+fqdn: fb.topology::CONSTITUTION_RUNTIME_BINDING_V0
 artifact_kind: CONSTITUTION
 version: V0
 governed_by: fb.constitution::CONSTITUTION_GOVERNANCE_V0

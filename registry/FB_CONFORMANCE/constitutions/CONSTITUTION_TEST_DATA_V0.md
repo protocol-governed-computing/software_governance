@@ -2,6 +2,7 @@
 
 ## Machine
 ```yaml
+fqdn: fb.conformance::CONSTITUTION_TEST_DATA_V0
 artifact_kind: CONSTITUTION
 version: V0
 governed_by: fb.constitution::CONSTITUTION_GOVERNANCE_V0

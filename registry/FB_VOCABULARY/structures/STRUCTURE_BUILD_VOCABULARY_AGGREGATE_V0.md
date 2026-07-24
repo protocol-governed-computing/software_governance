@@ -34,47 +34,38 @@ No per-structure STRUCTURE artifact should declare `vocabulary_artifacts_path`.
 ## Machine
 
 ```yaml
+fqdn: fb.vocabulary::STRUCTURE_BUILD_VOCABULARY_AGGREGATE_V0
 structure_code: STRUCTURE_BUILD_VOCABULARY_AGGREGATE_V0
 version: V0
 governed_by: fb.constitution::CONSTITUTION_STRUCTURE_V0
-
 aggregation_type: VOCABULARY
-
 core:
   summary: Federated vocabulary aggregation (cross-structure Phase Type B)
-  description: >
-    Aggregates CT, CS, CC, WF, and IN codes from all compiled domain outputs
-    and produces vocabulary_symbols.json and vocabulary_semantic_index.json.
-    Requires all contributing domain structures to have been compiled first.
+  description: 'Aggregates CT, CS, CC, WF, and IN codes from all compiled domain outputs and produces
+    vocabulary_symbols.json and vocabulary_semantic_index.json. Requires all contributing domain structures
+    to have been compiled first.
 
-# Declared source directories for each artifact type.
-# Each entry is a list of (layer, subpath) pairs that are unioned during aggregation.
-# Paths are resolved via path registry — no hardcoded filesystem assumptions.
+    '
 artifact_source_dirs:
   capability_transforms:
-    - layer: REUSABLE_TRANSFORMS
-      subpath: compiled/canonical/capability_transforms
-
+  - layer: REUSABLE_TRANSFORMS
+    subpath: compiled/canonical/capability_transforms
   capability_side_effects:
-    - layer: REUSABLE_SIDE_EFFECTS
-      subpath: compiled/canonical/capability_side_effects
-
+  - layer: REUSABLE_SIDE_EFFECTS
+    subpath: compiled/canonical/capability_side_effects
   capability_contracts:
-    - layer: CAPABILITIES
-      subpath: compiled/canonical/capability_contracts
-
+  - layer: CAPABILITIES
+    subpath: compiled/canonical/capability_contracts
   workflows:
-    - layer: BLOCKCHAIN
-      subpath: compiled/canonical/workflows
-    - layer: AI_GOVERNANCE
-      subpath: compiled/canonical/workflows
-
+  - layer: BLOCKCHAIN
+    subpath: compiled/canonical/workflows
+  - layer: AI_GOVERNANCE
+    subpath: compiled/canonical/workflows
   intents:
-    - layer: BLOCKCHAIN
-      subpath: compiled/canonical/intents
-    - layer: AI_GOVERNANCE
-      subpath: compiled/canonical/intents
-
+  - layer: BLOCKCHAIN
+    subpath: compiled/canonical/intents
+  - layer: AI_GOVERNANCE
+    subpath: compiled/canonical/intents
 output_configuration:
   vocabulary_projection_path:
     layer: GOVERNANCE

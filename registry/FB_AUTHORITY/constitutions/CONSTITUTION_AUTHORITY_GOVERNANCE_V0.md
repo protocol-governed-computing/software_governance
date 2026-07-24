@@ -13,6 +13,7 @@ This distinction is critical. Authority answers: *may this actor invoke this wor
 ## Machine
 
 ```yaml
+fqdn: fb.authority::CONSTITUTION_AUTHORITY_GOVERNANCE_V0
 artifact_kind: CONSTITUTION
 version: V0
 governed_by: fb.constitution::CONSTITUTION_GOVERNANCE_V0

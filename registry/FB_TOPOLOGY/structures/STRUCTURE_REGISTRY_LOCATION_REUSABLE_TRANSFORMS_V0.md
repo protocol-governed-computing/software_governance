@@ -24,28 +24,25 @@ Declares the physical registry module location for REUSABLE_TRANSFORMS layer art
 ## Machine
 
 ```yaml
+fqdn: fb.topology::STRUCTURE_REGISTRY_LOCATION_REUSABLE_TRANSFORMS_V0
 structure_code: STRUCTURE_REGISTRY_LOCATION_REUSABLE_TRANSFORMS_V0
 version: V0
 governed_by: fb.constitution::CONSTITUTION_STRUCTURE_V0
-
 core:
   layer_code: REUSABLE_TRANSFORMS
   registry_module: pgs_transforms.registry
-  module_path_pattern: "{registry_module}"
+  module_path_pattern: '{registry_module}'
+  description: 'Platform capability transforms (CT artifacts). Pure, deterministic, side-effect-free functions.
 
-  description: >
-    Platform capability transforms (CT artifacts).
-    Pure, deterministic, side-effect-free functions.
+    '
+  notes: 'Pattern-based resolution: module_path_pattern defines how to compose registry path. No domain
+    composition for platform transforms layer.
 
-  notes: >
-    Pattern-based resolution: module_path_pattern defines how to compose registry path.
-    No domain composition for platform transforms layer.
-
+    '
 output_configuration:
   artifacts_path:
     layer: REUSABLE_TRANSFORMS
     subpath: compiled/artifacts
-
   molecules_path:
     layer: REUSABLE_TRANSFORMS
     subpath: compiled/molecules
