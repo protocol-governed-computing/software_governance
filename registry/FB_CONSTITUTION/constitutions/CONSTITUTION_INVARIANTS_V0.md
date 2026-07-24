@@ -49,8 +49,6 @@ rules:
   enforced_by: fb.transport::INVARIANT_TRANSPORT_TARGET_EXISTS_V0
 - applies_to: ALL_ARTIFACTS
   enforced_by: fb.constitution::INVARIANT_FQDN_NAMESPACE_AUTHORIZED_V0
-- applies_to: ALL_ARTIFACTS
-  enforced_by: fb.constitution::INVARIANT_IDENTITY_MIGRATION_CROSSCHECK_V0
 ```
 
 ---
