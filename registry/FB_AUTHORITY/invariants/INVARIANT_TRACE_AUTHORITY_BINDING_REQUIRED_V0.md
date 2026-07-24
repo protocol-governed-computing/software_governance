@@ -13,9 +13,8 @@ core:
   - compiler_assertion
   violation_response: FAIL_IMMEDIATELY
 assert_projection:
-  scope:
-    applies_to:
-    - WF
+  applies_to_kinds:
+  - WF
 ```
 
 ## Summary

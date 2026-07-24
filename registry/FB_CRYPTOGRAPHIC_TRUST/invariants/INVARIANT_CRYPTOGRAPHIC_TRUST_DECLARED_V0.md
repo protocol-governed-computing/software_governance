@@ -14,9 +14,8 @@ assert_projection:
   enforcement:
     phase: assert
     scope: ALL_ARTIFACTS
-  scope:
-    applies_to:
-    - SNAPSHOT
+  applies_to_kinds:
+  - SNAPSHOT
 ```
 
 ---

@@ -18,12 +18,11 @@ assert_projection:
     order: 10
     level: WARNING
     scope: ALL_ARTIFACTS
-  scope:
-    applies_to:
-    - WF
-    - CC
-    - CT
-    - CS
+  applies_to_kinds:
+  - WF
+  - CC
+  - CT
+  - CS
 ```
 
 ---

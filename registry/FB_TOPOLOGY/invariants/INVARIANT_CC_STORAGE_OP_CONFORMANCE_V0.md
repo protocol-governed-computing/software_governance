@@ -14,9 +14,8 @@ assert_projection:
   enforcement:
     order: 42
     level: ERROR
-  scope:
-    applies_to:
-    - CC
+  applies_to_kinds:
+  - CC
 ```
 
 ---

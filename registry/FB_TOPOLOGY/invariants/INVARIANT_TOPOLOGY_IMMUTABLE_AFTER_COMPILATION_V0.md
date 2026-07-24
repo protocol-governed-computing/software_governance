@@ -11,13 +11,12 @@ core:
   - compiler_assertion
   violation_response: FAIL_IMMEDIATELY
 assert_projection:
-  scope:
-    applies_to:
-    - WF
-    - CC
-    - CT
-    - CS
-    - RB
+  applies_to_kinds:
+  - WF
+  - CC
+  - CT
+  - CS
+  - RB
 ```
 
 ---

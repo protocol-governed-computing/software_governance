@@ -11,11 +11,10 @@ core:
   - compiler_assertion
   violation_response: FAIL_IMMEDIATELY
 assert_projection:
-  scope:
-    applies_to:
-    - CC
-    - CT
-    - CS
+  applies_to_kinds:
+  - CC
+  - CT
+  - CS
 ```
 
 ---

@@ -14,11 +14,13 @@ assert_projection:
   handler: pgs_governance.registry.handlers.assert_cs_surface_closed_v0
   scope:
     applies_to:
-    - CS
+    - PLATFORM
   allowed_capability_side_effects:
   - capability_side_effects::CS_APPENDONLY_JSONL_V0
   - capability_side_effects::CS_MUTABLE_JSON_V0
   - capability_side_effects::CS_REGISTRY_V0
+  applies_to_kinds:
+  - CS
 ```
 
 ---

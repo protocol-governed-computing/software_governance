@@ -15,9 +15,8 @@ assert_projection:
     level: ERROR
     order: 23
     phase: validation
-  scope:
-    applies_to:
-    - STRUCTURE
+  applies_to_kinds:
+  - STRUCTURE
 ```
 
 ---

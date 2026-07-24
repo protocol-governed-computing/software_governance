@@ -11,11 +11,10 @@ core:
   - compiler_assertion
   violation_response: FAIL_IMMEDIATELY
 assert_projection:
-  scope:
-    applies_to:
-    - WF
-    - TI
-    - TE
+  applies_to_kinds:
+  - WF
+  - TI
+  - TE
 ```
 
 ---

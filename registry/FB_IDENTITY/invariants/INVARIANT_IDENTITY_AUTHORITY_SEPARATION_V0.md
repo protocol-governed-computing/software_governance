@@ -13,9 +13,8 @@ core:
   - compiler_assertion
   violation_response: FAIL_IMMEDIATELY
 assert_projection:
-  scope:
-    applies_to:
-    - AC
+  applies_to_kinds:
+  - AC
 ```
 
 ## Summary

@@ -11,10 +11,9 @@ core:
   - compiler_validation
   violation_response: FAIL_IMMEDIATELY
 assert_projection:
-  scope:
-    applies_to:
-    - TI
-    - TE
+  applies_to_kinds:
+  - TI
+  - TE
 ```
 
 ---

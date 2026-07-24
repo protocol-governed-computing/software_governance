@@ -14,7 +14,7 @@ assert_projection:
   handler: pgs_governance.registry.handlers.assert_ct_surface_closed_v0
   scope:
     applies_to:
-    - CT
+    - PLATFORM
   allowed_capability_transforms:
   - capability_transforms::CT_EXEC_EMIT_V0
   - capability_transforms::CT_PURE_ASSEMBLE_RECORD_V0
@@ -28,6 +28,8 @@ assert_projection:
   - capability_transforms::CT_PURE_VALIDATE_PARAMETER_RULES_V0
   - capability_transforms::CT_PURE_VALIDATE_RECORD_STRUCTURE_V0
   - capability_transforms::CT_PURE_VALIDATE_SET_MEMBERSHIP_V0
+  applies_to_kinds:
+  - CT
 ```
 
 ---

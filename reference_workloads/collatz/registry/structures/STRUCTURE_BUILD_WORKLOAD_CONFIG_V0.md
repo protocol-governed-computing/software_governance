@@ -76,6 +76,7 @@ artifact_discovery:
     - AC
     - RB
     - STRUCTURE
+    - INVARIANT
 
 output_configuration:
 

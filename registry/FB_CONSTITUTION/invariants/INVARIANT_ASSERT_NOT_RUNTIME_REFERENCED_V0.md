@@ -15,13 +15,12 @@ assert_projection:
     level: ERROR
     order: 22
     phase: assert
-  scope:
-    applies_to:
-    - WF
-    - CC
-    - CS
-    - CT
-    - RB
+  applies_to_kinds:
+  - WF
+  - CC
+  - CS
+  - CT
+  - RB
 ```
 
 ---

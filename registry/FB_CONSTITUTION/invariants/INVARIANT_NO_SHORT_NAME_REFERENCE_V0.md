@@ -12,24 +12,23 @@ core:
   violation_response: FAIL_IMMEDIATELY
 assert_projection:
   handler: pgs_governance.registry.handlers.assert_fqdn_only_references_v0
-  scope:
-    applies_to:
-    - AC
-    - CC
-    - CONSTITUTION
-    - CS
-    - CT
-    - EV
-    - IN
-    - INVARIANT
-    - RB
-    - SCHEMA
-    - STRUCTURE
-    - SURFACE
-    - TE
-    - TI
-    - VOCAB
-    - WF
+  applies_to_kinds:
+  - AC
+  - CC
+  - CONSTITUTION
+  - CS
+  - CT
+  - EV
+  - IN
+  - INVARIANT
+  - RB
+  - SCHEMA
+  - STRUCTURE
+  - SURFACE
+  - TE
+  - TI
+  - VOCAB
+  - WF
 ```
 
 ---
