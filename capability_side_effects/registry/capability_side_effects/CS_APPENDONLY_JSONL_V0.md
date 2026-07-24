@@ -177,19 +177,17 @@ This CS MUST emit:
 ## Machine
 
 ```yaml
+fqdn: capability_side_effects::CS_APPENDONLY_JSONL_V0
 cs_code: CS_APPENDONLY_JSONL_V0
 version: v0
 governed_by: fb.topology::CONSTITUTION_CAPABILITY_SIDE_EFFECTS_V0
-
 core:
   summary: Append-only JSONL persistence layer with ordered event history
   category: storage
-
   policy:
-    operations: [APPEND, GET_ALL]
-
-  # field_types — the semantic type of each I/O field named in `operations` (see CS_MUTABLE_JSON):
-  # a contract-owned grounded source for the Construction Compiler's typed interfaces.
+    operations:
+    - APPEND
+    - GET_ALL
   field_types:
     record: object
     stream_id: string
@@ -198,54 +196,65 @@ core:
     sequence_number: integer
     entries: array
     result_status: string
-
   operations:
     APPEND:
       summary: Append a record to the end of the log
       handler: append
-      input: [record, stream_id, actor_id]
-      output: [result_status, record_id, sequence_number]
+      input:
+      - record
+      - stream_id
+      - actor_id
+      output:
+      - result_status
+      - record_id
+      - sequence_number
       idempotent: false
-      result_status_values: [SUCCESS, VIOLATION, BACKEND_ERROR]
-
+      result_status_values:
+      - SUCCESS
+      - VIOLATION
+      - BACKEND_ERROR
     GET_ALL:
       summary: Retrieve all records from the log
       handler: read_all
-      input: [stream_id]
-      output: [result_status, entries]
+      input:
+      - stream_id
+      output:
+      - result_status
+      - entries
       idempotent: true
-      result_status_values: [SUCCESS, BACKEND_ERROR]
-
+      result_status_values:
+      - SUCCESS
+      - BACKEND_ERROR
 implementation:
   module: pgs_side_effects.implementation.side_effects.persistent.CS_APPENDONLY_JSONL_V0.runtime
   callable: AppendOnlyJsonlRuntime
-
 extensions:
   cs_kind: append_only_log
   side_effect_type: persistent
-
   properties:
     durability: persistent
     idempotent: false
     replay_policy: append_once
     transactional: false
     concurrent_safe: false
-
   constraints:
     concurrency: single_writer
     max_record_size_mb: 10
-
   vocabulary:
-    result_status: [SUCCESS, NOT_FOUND, VIOLATION, BACKEND_ERROR]
-    entry_validation_result: [VALID, INVALID]
-
+    result_status:
+    - SUCCESS
+    - NOT_FOUND
+    - VIOLATION
+    - BACKEND_ERROR
+    entry_validation_result:
+    - VALID
+    - INVALID
   configuration_schema:
     path:
       type: string
       required: true
       description: Filesystem path to JSONL storage file
-
   failure_modes:
-    - "VIOLATION: Invalid record (type, format)"
-    - "BACKEND_ERROR: Storage unavailable or corrupt"
+  - 'VIOLATION: Invalid record (type, format)'
+  - 'BACKEND_ERROR: Storage unavailable or corrupt'
 ```

@@ -15,14 +15,13 @@
 ## Machine
 
 ```yaml
+fqdn: capability_transforms::CT_PURE_LOOKUP_V0
 ct_code: CT_PURE_LOOKUP_V0
 version: V0
 governed_by: fb.topology::CONSTITUTION_CAPABILITY_TRANSFORMS_V0
-
 core:
   summary: Look up key in map
   description: Returns the value associated with a key from a provided key-value mapping object.
-  
   inputs:
     key:
       type: string
@@ -32,13 +31,11 @@ core:
       type: object
       required: true
       description: The mapping object to search in
-
   outputs:
     result:
       type: any
       required: true
       description: The value found for the given key
-
 machine:
   ct_kind: atom
   ct_purity: ct_pure

@@ -4,7 +4,13 @@
   "title": "OmniBachi Intent Schema V0",
   "description": "JSON Schema for materialized intent artifacts",
   "type": "object",
-  "required": ["in_code", "version", "governed_by", "core"],
+  "required": [
+    "fqdn",
+    "in_code",
+    "version",
+    "governed_by",
+    "core"
+  ],
   "additionalProperties": false,
   "properties": {
     "in_code": {
@@ -24,7 +30,12 @@
     },
     "core": {
       "type": "object",
-      "required": ["summary", "workflow", "inputs", "outcomes"],
+      "required": [
+        "summary",
+        "workflow",
+        "inputs",
+        "outcomes"
+      ],
       "additionalProperties": false,
       "properties": {
         "summary": {
@@ -47,9 +58,13 @@
           "type": "object",
           "additionalProperties": {
             "type": "object",
-            "required": ["description"],
+            "required": [
+              "description"
+            ],
             "properties": {
-              "description": { "type": "string" }
+              "description": {
+                "type": "string"
+              }
             }
           },
           "description": "Possible outcomes (ACK/NACK)"
@@ -65,16 +80,29 @@
           "description": "Domain namespace"
         }
       }
+    },
+    "fqdn": {
+      "type": "string",
+      "pattern": "^[a-z0-9_.]+::[A-Z][A-Z0-9_]*_V[0-9]+$",
+      "description": "Authoritative declared identity (namespace::code). Folder location has no authority over identity."
     }
   },
   "$defs": {
     "inputField": {
       "type": "object",
-      "required": ["type"],
+      "required": [
+        "type"
+      ],
       "properties": {
         "type": {
           "type": "string",
-          "enum": ["string", "number", "boolean", "object", "array"],
+          "enum": [
+            "string",
+            "number",
+            "boolean",
+            "object",
+            "array"
+          ],
           "description": "Field type"
         },
         "required": {

@@ -43,7 +43,7 @@ assert_projection:
 
 Ensure artifact identity (FQDN) is consistent with namespace and artifact_code.
 
-**Core Principle**: Identity derives from structure, never invented.
+**Core Principle**: An artifact's identity is declared by its authoritative `fqdn`; its namespace must be authorized; the filesystem location has no semantic authority over identity.
 
 ---
 

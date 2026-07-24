@@ -145,14 +145,14 @@ step_2: EXTRACT(from=id_result, path=$.id) → extracted_id
 ## Machine
 
 ```yaml
+fqdn: capability_transforms::CT_PURE_EXTRACT_V0
 ct_code: CT_PURE_EXTRACT_V0
 version: v0
 governed_by: fb.topology::CONSTITUTION_CAPABILITY_TRANSFORMS_V0
-
 core:
   summary: Extract a value using JSONPath
-  description: Extracts a single value from a structured context or object using a declarative JSONPath expression.
-  
+  description: Extracts a single value from a structured context or object using a declarative JSONPath
+    expression.
   inputs:
     from:
       type: any
@@ -166,12 +166,10 @@ core:
       type: string
       required: true
       description: Expected output type for validation
-
   outputs:
     result:
       type: any
       description: The extracted value
-
 machine:
   ct_kind: atom
   ct_purity: ct_pure

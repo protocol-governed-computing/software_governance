@@ -4,7 +4,13 @@
   "title": "OmniBachi Transport Ingress Schema V0",
   "description": "JSON Schema for materialized transport ingress (TI) artifacts",
   "type": "object",
-  "required": ["ti_code", "version", "governed_by", "core"],
+  "required": [
+    "fqdn",
+    "ti_code",
+    "version",
+    "governed_by",
+    "core"
+  ],
   "additionalProperties": false,
   "properties": {
     "ti_code": {
@@ -24,7 +30,13 @@
     },
     "core": {
       "type": "object",
-      "required": ["summary", "workflow", "route", "admission_schema", "outcomes"],
+      "required": [
+        "summary",
+        "workflow",
+        "route",
+        "admission_schema",
+        "outcomes"
+      ],
       "additionalProperties": false,
       "properties": {
         "summary": {
@@ -38,12 +50,22 @@
         },
         "route": {
           "type": "object",
-          "required": ["method", "path", "content_type"],
+          "required": [
+            "method",
+            "path",
+            "content_type"
+          ],
           "additionalProperties": false,
           "properties": {
             "method": {
               "type": "string",
-              "enum": ["GET", "POST", "PUT", "DELETE", "PATCH"],
+              "enum": [
+                "GET",
+                "POST",
+                "PUT",
+                "DELETE",
+                "PATCH"
+              ],
               "description": "HTTP method"
             },
             "path": {
@@ -68,9 +90,13 @@
           "type": "object",
           "additionalProperties": {
             "type": "object",
-            "required": ["description"],
+            "required": [
+              "description"
+            ],
             "properties": {
-              "description": { "type": "string" }
+              "description": {
+                "type": "string"
+              }
             }
           },
           "description": "Possible outcomes (ACK/NACK)"
@@ -86,12 +112,19 @@
           "description": "Domain namespace"
         }
       }
+    },
+    "fqdn": {
+      "type": "string",
+      "pattern": "^[a-z0-9_.]+::[A-Z][A-Z0-9_]*_V[0-9]+$",
+      "description": "Authoritative declared identity (namespace::code). Folder location has no authority over identity."
     }
   },
   "$defs": {
     "fieldDef": {
       "type": "object",
-      "required": ["type"],
+      "required": [
+        "type"
+      ],
       "properties": {
         "type": {
           "type": "string",

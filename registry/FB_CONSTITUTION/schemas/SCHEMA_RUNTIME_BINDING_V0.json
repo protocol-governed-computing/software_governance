@@ -2,9 +2,15 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "pgs_governance.schemas.SCHEMA_RUNTIME_BINDING_V0",
   "title": "OmniBachi Runtime Binding Schema V0",
-  "description": "JSON Schema for materialized runtime binding artifacts. Structural validation only — semantic binding correctness governed by ASSERT_RB_* handlers.",
+  "description": "JSON Schema for materialized runtime binding artifacts. Structural validation only \u2014 semantic binding correctness governed by ASSERT_RB_* handlers.",
   "type": "object",
-  "required": ["rb_code", "version", "governed_by", "core"],
+  "required": [
+    "fqdn",
+    "rb_code",
+    "version",
+    "governed_by",
+    "core"
+  ],
   "additionalProperties": false,
   "properties": {
     "rb_code": {
@@ -23,12 +29,17 @@
     },
     "parameters": {
       "type": "array",
-      "items": { "type": "string" },
+      "items": {
+        "type": "string"
+      },
       "description": "Required runtime parameters (resolved from env_facts)"
     },
     "core": {
       "type": "object",
-      "required": ["summary", "bindings"],
+      "required": [
+        "summary",
+        "bindings"
+      ],
       "additionalProperties": true,
       "properties": {
         "summary": {
@@ -58,9 +69,16 @@
       "properties": {
         "notes": {
           "type": "array",
-          "items": { "type": "string" }
+          "items": {
+            "type": "string"
+          }
         }
       }
+    },
+    "fqdn": {
+      "type": "string",
+      "pattern": "^[a-z0-9_.]+::[A-Z][A-Z0-9_]*_V[0-9]+$",
+      "description": "Authoritative declared identity (namespace::code). Folder location has no authority over identity."
     }
   },
   "$defs": {

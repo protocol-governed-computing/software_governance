@@ -2,9 +2,15 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "pgs_governance.schemas.SCHEMA_WORKFLOW_V0",
   "title": "OmniBachi Workflow Schema V0",
-  "description": "JSON Schema for materialized workflow artifacts. Structural validation only — semantic topology correctness governed by ASSERT_TOPOLOGY_* handlers.",
+  "description": "JSON Schema for materialized workflow artifacts. Structural validation only \u2014 semantic topology correctness governed by ASSERT_TOPOLOGY_* handlers.",
   "type": "object",
-  "required": ["wf_code", "version", "governed_by", "core"],
+  "required": [
+    "fqdn",
+    "wf_code",
+    "version",
+    "governed_by",
+    "core"
+  ],
   "additionalProperties": false,
   "properties": {
     "wf_code": {
@@ -35,7 +41,11 @@
     },
     "core": {
       "type": "object",
-      "required": ["summary", "start_node", "nodes"],
+      "required": [
+        "summary",
+        "start_node",
+        "nodes"
+      ],
       "additionalProperties": true,
       "properties": {
         "summary": {
@@ -48,12 +58,16 @@
           "properties": {
             "requires": {
               "type": "array",
-              "items": { "type": "string" },
+              "items": {
+                "type": "string"
+              },
               "description": "Events that must have occurred before workflow can execute"
             },
             "forbids": {
               "type": "array",
-              "items": { "type": "string" },
+              "items": {
+                "type": "string"
+              },
               "description": "Events that must NOT have occurred"
             },
             "bindings": {
@@ -80,17 +94,29 @@
       "type": "object",
       "additionalProperties": true,
       "description": "Optional extension fields"
+    },
+    "fqdn": {
+      "type": "string",
+      "pattern": "^[a-z0-9_.]+::[A-Z][A-Z0-9_]*_V[0-9]+$",
+      "description": "Authoritative declared identity (namespace::code). Folder location has no authority over identity."
     }
   },
   "$defs": {
     "node": {
       "type": "object",
-      "required": ["type"],
+      "required": [
+        "type"
+      ],
       "additionalProperties": true,
       "properties": {
         "type": {
           "type": "string",
-          "enum": ["IN", "CC", "EV", "EXIT"],
+          "enum": [
+            "IN",
+            "CC",
+            "EV",
+            "EXIT"
+          ],
           "description": "Node type"
         },
         "code": {
@@ -103,7 +129,13 @@
         },
         "reason": {
           "type": "string",
-          "enum": ["EXITED", "COMPLETED", "FAILED", "HALTED", "DUPLICATE_NONCE"],
+          "enum": [
+            "EXITED",
+            "COMPLETED",
+            "FAILED",
+            "HALTED",
+            "DUPLICATE_NONCE"
+          ],
           "description": "Exit reason (for EXIT nodes)"
         },
         "emit": {
@@ -116,7 +148,9 @@
         },
         "next": {
           "type": "object",
-          "additionalProperties": { "type": "string" },
+          "additionalProperties": {
+            "type": "string"
+          },
           "description": "Transition map from result_status to next node"
         }
       }

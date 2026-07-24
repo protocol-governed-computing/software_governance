@@ -4,7 +4,15 @@
   "title": "Execution DAG Schema",
   "description": "Schema for workflow execution DAG structure. Governed by CONSTITUTION_EXECUTION_V0.",
   "type": "object",
-  "required": ["dag_id", "workflow_code", "nodes", "edges", "entry_nodes", "terminal_nodes"],
+  "required": [
+    "fqdn",
+    "dag_id",
+    "workflow_code",
+    "nodes",
+    "edges",
+    "entry_nodes",
+    "terminal_nodes"
+  ],
   "additionalProperties": false,
   "properties": {
     "dag_id": {
@@ -33,28 +41,46 @@
     },
     "entry_nodes": {
       "type": "array",
-      "items": {"type": "string"},
+      "items": {
+        "type": "string"
+      },
       "minItems": 1,
       "description": "Nodes with no incoming edges"
     },
     "terminal_nodes": {
       "type": "array",
-      "items": {"type": "string"},
+      "items": {
+        "type": "string"
+      },
       "minItems": 1,
       "description": "Nodes with no outgoing edges"
     },
     "metadata": {
       "type": "object",
       "properties": {
-        "created_at": {"type": "string", "format": "date-time"},
-        "source_hash": {"type": "string"}
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "source_hash": {
+          "type": "string"
+        }
       }
+    },
+    "fqdn": {
+      "type": "string",
+      "pattern": "^[a-z0-9_.]+::[A-Z][A-Z0-9_]*_V[0-9]+$",
+      "description": "Authoritative declared identity (namespace::code). Folder location has no authority over identity."
     }
   },
   "$defs": {
     "node": {
       "type": "object",
-      "required": ["node_id", "node_type", "capability_code"],
+      "required": [
+        "node_id",
+        "node_type",
+        "capability_code"
+      ],
       "properties": {
         "node_id": {
           "type": "string",
@@ -62,7 +88,10 @@
         },
         "node_type": {
           "type": "string",
-          "enum": ["intent", "capability_contract"],
+          "enum": [
+            "intent",
+            "capability_contract"
+          ],
           "description": "Determines dispatch path"
         },
         "capability_code": {
@@ -71,22 +100,33 @@
         },
         "input_bindings": {
           "type": "object",
-          "additionalProperties": {"type": "string"},
+          "additionalProperties": {
+            "type": "string"
+          },
           "description": "JSONPath bindings for inputs"
         },
         "output_bindings": {
           "type": "object",
-          "additionalProperties": {"type": "string"},
+          "additionalProperties": {
+            "type": "string"
+          },
           "description": "Where to store outputs in context"
         }
       }
     },
     "edge": {
       "type": "object",
-      "required": ["from_node", "to_node"],
+      "required": [
+        "from_node",
+        "to_node"
+      ],
       "properties": {
-        "from_node": {"type": "string"},
-        "to_node": {"type": "string"},
+        "from_node": {
+          "type": "string"
+        },
+        "to_node": {
+          "type": "string"
+        },
         "condition": {
           "type": "string",
           "description": "Optional conditional expression"

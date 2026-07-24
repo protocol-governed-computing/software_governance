@@ -4,7 +4,13 @@
   "title": "OmniBachi Actor Schema V0",
   "description": "JSON Schema for materialized actor artifacts",
   "type": "object",
-  "required": ["ac_code", "version", "governed_by", "core"],
+  "required": [
+    "fqdn",
+    "ac_code",
+    "version",
+    "governed_by",
+    "core"
+  ],
   "additionalProperties": false,
   "properties": {
     "ac_code": {
@@ -24,7 +30,10 @@
     },
     "core": {
       "type": "object",
-      "required": ["summary", "role"],
+      "required": [
+        "summary",
+        "role"
+      ],
       "additionalProperties": false,
       "properties": {
         "summary": {
@@ -33,17 +42,26 @@
         },
         "role": {
           "type": "string",
-          "enum": ["enduser", "system", "service", "operator"],
+          "enum": [
+            "enduser",
+            "system",
+            "service",
+            "operator"
+          ],
           "description": "Actor role category"
         },
         "permissions": {
           "type": "array",
-          "items": { "type": "string" },
+          "items": {
+            "type": "string"
+          },
           "description": "Permitted actions for this actor type"
         },
         "constraints": {
           "type": "array",
-          "items": { "type": "string" },
+          "items": {
+            "type": "string"
+          },
           "description": "Constraints on this actor type"
         }
       }
@@ -51,6 +69,11 @@
     "extensions": {
       "type": "object",
       "additionalProperties": true
+    },
+    "fqdn": {
+      "type": "string",
+      "pattern": "^[a-z0-9_.]+::[A-Z][A-Z0-9_]*_V[0-9]+$",
+      "description": "Authoritative declared identity (namespace::code). Folder location has no authority over identity."
     }
   }
 }

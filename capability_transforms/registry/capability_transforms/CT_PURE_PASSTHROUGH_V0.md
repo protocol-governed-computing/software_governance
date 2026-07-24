@@ -24,26 +24,24 @@ Pure. No side effects, no state mutation.
 ## Machine
 
 ```yaml
+fqdn: capability_transforms::CT_PURE_PASSTHROUGH_V0
 ct_code: CT_PURE_PASSTHROUGH_V0
 version: v0
 governed_by: fb.topology::CONSTITUTION_CAPABILITY_TRANSFORMS_V0
-
 core:
   summary: Pass through value
-  description: Returns the input value unchanged. Useful for explicit payload mapping in molecules or workflows.
-  
+  description: Returns the input value unchanged. Useful for explicit payload mapping in molecules or
+    workflows.
   inputs:
     value:
       type: any
       required: true
       description: Value to pass through
-
   outputs:
     value:
       type: any
       required: true
       description: The identical input value
-
 machine:
   ct_kind: atom
   ct_purity: ct_pure

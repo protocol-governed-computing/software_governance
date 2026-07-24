@@ -233,96 +233,127 @@ Provides stable symbolic addressing layer above concrete storage
 ## Machine
 
 ```yaml
+fqdn: capability_side_effects::CS_REGISTRY_V0
 cs_code: CS_REGISTRY_V0
 version: v0
 governed_by: fb.topology::CONSTITUTION_CAPABILITY_SIDE_EFFECTS_V0
-
 core:
   summary: Registry for stable indirection by binding symbolic keys to opaque addresses
   category: storage
-
   policy:
-    operations: [REGISTER, RESOLVE, EXISTS, DEREGISTER, COUNT]
-
+    operations:
+    - REGISTER
+    - RESOLVE
+    - EXISTS
+    - DEREGISTER
+    - COUNT
   operations:
     REGISTER:
       summary: Register a new key to address binding
       handler: register
-      input: [key, target_cs, target_ref]
-      output: [result_status, address]
+      input:
+      - key
+      - target_cs
+      - target_ref
+      output:
+      - result_status
+      - address
       idempotent: false
-      result_status_values: [SUCCESS, ALREADY_EXISTS, VIOLATION, BACKEND_ERROR]
-
+      result_status_values:
+      - SUCCESS
+      - ALREADY_EXISTS
+      - VIOLATION
+      - BACKEND_ERROR
     RESOLVE:
       summary: Resolve a key or address to its storage target
       handler: resolve
-      input: [key_or_address]
-      output: [result_status, target_cs, target_ref]
+      input:
+      - key_or_address
+      output:
+      - result_status
+      - target_cs
+      - target_ref
       idempotent: true
-      result_status_values: [SUCCESS, NOT_FOUND, VIOLATION, BACKEND_ERROR]
-
+      result_status_values:
+      - SUCCESS
+      - NOT_FOUND
+      - VIOLATION
+      - BACKEND_ERROR
     EXISTS:
       summary: Check if a key or address is registered
       handler: exists
-      input: [key_or_address]
-      output: [result_status, exists]
+      input:
+      - key_or_address
+      output:
+      - result_status
+      - exists
       idempotent: true
-      result_status_values: [SUCCESS, VIOLATION, BACKEND_ERROR]
-
+      result_status_values:
+      - SUCCESS
+      - VIOLATION
+      - BACKEND_ERROR
     DEREGISTER:
       summary: Mark a key or address as deregistered via tombstone
       handler: deregister
-      input: [key_or_address]
-      output: [result_status]
+      input:
+      - key_or_address
+      output:
+      - result_status
       idempotent: true
-      result_status_values: [SUCCESS, NOT_FOUND, VIOLATION, BACKEND_ERROR]
-
+      result_status_values:
+      - SUCCESS
+      - NOT_FOUND
+      - VIOLATION
+      - BACKEND_ERROR
     COUNT:
       summary: Count active (non-tombstoned) registry entries
       handler: count
       input: []
-      output: [result_status, count]
+      output:
+      - result_status
+      - count
       idempotent: true
-      result_status_values: [SUCCESS, BACKEND_ERROR]
-
+      result_status_values:
+      - SUCCESS
+      - BACKEND_ERROR
 implementation:
   module: pgs_side_effects.implementation.side_effects.persistent.CS_REGISTRY_V0.runtime
   callable: RegistryRuntime
-
 extensions:
   cs_kind: registry
   side_effect_type: persistent
-
   properties:
     durability: persistent
     idempotent: false
     replay_policy: append_once
     transactional: false
     concurrent_safe: register_once
-
   constraints:
     mutability: append_only
     key_scope: global
     max_key_length: 256
     address_format: content_addressable_hash
     deregistration_model: tombstone
-
   vocabulary:
-    result_status: [SUCCESS, NOT_FOUND, ALREADY_EXISTS, VIOLATION, BACKEND_ERROR]
-    key_validation_result: [VALID, INVALID]
-
+    result_status:
+    - SUCCESS
+    - NOT_FOUND
+    - ALREADY_EXISTS
+    - VIOLATION
+    - BACKEND_ERROR
+    key_validation_result:
+    - VALID
+    - INVALID
   configuration_schema:
     path:
       type: string
       required: true
       description: Filesystem path to JSONL registry file (append-only)
-
   failure_modes:
-    - "VIOLATION: Invalid key (type, format, empty)"
-    - "ALREADY_EXISTS: Key already registered"
-    - "NOT_FOUND: Key or address not registered"
-    - "BACKEND_ERROR: Storage unavailable or corrupt"
-
+  - 'VIOLATION: Invalid key (type, format, empty)'
+  - 'ALREADY_EXISTS: Key already registered'
+  - 'NOT_FOUND: Key or address not registered'
+  - 'BACKEND_ERROR: Storage unavailable or corrupt'
   architecture:
     role: Meta-capability for indirection
     purpose: Provides stable symbolic addressing layer above concrete storage
@@ -331,10 +362,9 @@ extensions:
       address: Opaque content-addressable hash
       target_cs: Which storage capability holds the actual data
       target_ref: Reference within that capability
-
   use_cases:
-    - "Address book: map kyc_key to user_id in user index"
-    - "Name service: map DNS-like names to storage locations"
-    - "Content addressing: map human keys to content hashes"
-    - "Symbolic links: stable references across storage reorganization"
+  - 'Address book: map kyc_key to user_id in user index'
+  - 'Name service: map DNS-like names to storage locations'
+  - 'Content addressing: map human keys to content hashes'
+  - 'Symbolic links: stable references across storage reorganization'
 ```

@@ -116,14 +116,14 @@ This atom does NOT emit traces.
 ## Machine
 
 ```yaml
+fqdn: capability_transforms::CT_PURE_FILTER_RECORDS_V0
 ct_code: CT_PURE_FILTER_RECORDS_V0
 version: v0
 governed_by: fb.topology::CONSTITUTION_CAPABILITY_TRANSFORMS_V0
-
 core:
   summary: Filter an array of records by declared field criteria
-  description: Accepts a source array and a filter criteria object. Returns only records satisfying all criteria. Raises CTExecutionError if no records match.
-
+  description: Accepts a source array and a filter criteria object. Returns only records satisfying all
+    criteria. Raises CTExecutionError if no records match.
   inputs:
     source:
       type: array
@@ -133,12 +133,10 @@ core:
       type: object
       required: true
       description: Field criteria dict. Values are exact match or "present" for existence check.
-
   outputs:
     extracted:
       type: array
       description: Filtered records satisfying all criteria
-
 machine:
   ct_kind: atom
   ct_purity: ct_pure

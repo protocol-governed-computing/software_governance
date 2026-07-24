@@ -66,14 +66,14 @@ Parameter rule validation is a generic governance primitive:
 ## Machine
 
 ```yaml
+fqdn: capability_transforms::CT_PURE_VALIDATE_PARAMETER_RULES_V0
 ct_code: CT_PURE_VALIDATE_PARAMETER_RULES_V0
 version: v0
 governed_by: fb.topology::CONSTITUTION_CAPABILITY_TRANSFORMS_V0
-
 core:
   summary: Validate parameters against rules
-  description: Evaluates a set of declarative constraint rules (eq, gt, in, etc.) against a provided parameter map.
-  
+  description: Evaluates a set of declarative constraint rules (eq, gt, in, etc.) against a provided parameter
+    map.
   inputs:
     parameters:
       type: object
@@ -83,7 +83,6 @@ core:
       type: array
       required: true
       description: List of constraint rule objects
-
   outputs:
     valid:
       type: boolean
@@ -94,7 +93,6 @@ core:
       required: false
       nullable: true
       description: The first rule that failed validation (null if all pass)
-
 machine:
   ct_kind: atom
   ct_purity: ct_pure

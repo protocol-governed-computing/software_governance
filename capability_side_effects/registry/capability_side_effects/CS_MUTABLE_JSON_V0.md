@@ -214,20 +214,22 @@ This CS MUST emit:
 ## Machine
 
 ```yaml
+fqdn: capability_side_effects::CS_MUTABLE_JSON_V0
 cs_code: CS_MUTABLE_JSON_V0
 version: v0
 governed_by: fb.topology::CONSTITUTION_CAPABILITY_SIDE_EFFECTS_V0
-
 core:
   summary: Mutable key-addressable JSON state store with last-write-wins semantics
   category: storage
-
   policy:
-    operations: [READ, WRITE, DELETE, DELETE_MANY, EXISTS, LIST, UPDATE_WHERE]
-
-  # field_types — the semantic type of each I/O field named in `operations`. A field's type is a
-  # contract property (declared once, shared across ops); this is the grounded source the Construction
-  # Compiler reads for typed interfaces, replacing the transitional side-file.
+    operations:
+    - READ
+    - WRITE
+    - DELETE
+    - DELETE_MANY
+    - EXISTS
+    - LIST
+    - UPDATE_WHERE
   field_types:
     key: string
     value: object
@@ -239,96 +241,131 @@ core:
     matched_keys: array
     updated_count: integer
     result_status: string
-
   operations:
     READ:
       summary: Retrieve value for a given key
       handler: read
-      input: [key]
-      output: [result_status, value]
+      input:
+      - key
+      output:
+      - result_status
+      - value
       idempotent: true
-      result_status_values: [SUCCESS, NOT_FOUND, VIOLATION, BACKEND_ERROR]
-
+      result_status_values:
+      - SUCCESS
+      - NOT_FOUND
+      - VIOLATION
+      - BACKEND_ERROR
     WRITE:
       summary: Store or update a value at the given key
       handler: write
-      input: [key, value]
-      output: [result_status]
+      input:
+      - key
+      - value
+      output:
+      - result_status
       idempotent: true
-      result_status_values: [SUCCESS, VIOLATION, BACKEND_ERROR]
-
+      result_status_values:
+      - SUCCESS
+      - VIOLATION
+      - BACKEND_ERROR
     DELETE:
       summary: Remove the given key and its value
       handler: delete
-      input: [key]
-      output: [result_status]
+      input:
+      - key
+      output:
+      - result_status
       idempotent: true
-      result_status_values: [SUCCESS, NOT_FOUND, VIOLATION, BACKEND_ERROR]
-
+      result_status_values:
+      - SUCCESS
+      - NOT_FOUND
+      - VIOLATION
+      - BACKEND_ERROR
     EXISTS:
       summary: Check if a key exists in storage
       handler: exists
-      input: [key]
-      output: [result_status, exists]
+      input:
+      - key
+      output:
+      - result_status
+      - exists
       idempotent: true
-      result_status_values: [SUCCESS, VIOLATION, BACKEND_ERROR]
-
+      result_status_values:
+      - SUCCESS
+      - VIOLATION
+      - BACKEND_ERROR
     LIST:
       summary: List all keys in storage
       handler: list_keys
       input: []
-      output: [result_status, keys]
+      output:
+      - result_status
+      - keys
       idempotent: true
-      result_status_values: [SUCCESS, BACKEND_ERROR]
-
+      result_status_values:
+      - SUCCESS
+      - BACKEND_ERROR
     DELETE_MANY:
       summary: Delete a list of keys; idempotent per key (NOT_FOUND treated as already deleted)
       handler: delete_many
-      input: [keys]
-      output: [result_status, drained_count]
+      input:
+      - keys
+      output:
+      - result_status
+      - drained_count
       idempotent: true
-      result_status_values: [SUCCESS, VIOLATION, BACKEND_ERROR]
-
+      result_status_values:
+      - SUCCESS
+      - VIOLATION
+      - BACKEND_ERROR
     UPDATE_WHERE:
       summary: Atomically update all records matching ALL filter conditions; serialized per file
       handler: update_where
-      input: [filter, updates]
-      output: [result_status, matched_keys, updated_count]
+      input:
+      - filter
+      - updates
+      output:
+      - result_status
+      - matched_keys
+      - updated_count
       idempotent: false
-      result_status_values: [SUCCESS, VIOLATION, BACKEND_ERROR]
-      notes: "filter={field:value,...} AND semantics; updates={field:value,...} applied to all matched records; null value removes field; VIOLATION when no records match; load+filter+update+save serialized under per-file threading lock"
-
+      result_status_values:
+      - SUCCESS
+      - VIOLATION
+      - BACKEND_ERROR
+      notes: filter={field:value,...} AND semantics; updates={field:value,...} applied to all matched
+        records; null value removes field; VIOLATION when no records match; load+filter+update+save serialized
+        under per-file threading lock
 implementation:
   module: capability_side_effects.implementation.CS_MUTABLE_JSON_V0.runtime
   callable: MutableJsonRuntime
-
 extensions:
   cs_kind: mutable_state
   side_effect_type: persistent
-
   properties:
     durability: persistent
     idempotent: true
     replay_policy: safe_replay
     transactional: false
     concurrent_safe: true
-
   constraints:
     concurrency: single_writer
     max_key_length: 256
     max_value_size_mb: 10
-
   vocabulary:
-    result_status: [SUCCESS, NOT_FOUND, VIOLATION, BACKEND_ERROR]
-
+    result_status:
+    - SUCCESS
+    - NOT_FOUND
+    - VIOLATION
+    - BACKEND_ERROR
   configuration_schema:
     path:
       type: string
       required: true
       description: Filesystem path to JSON storage file
-
   failure_modes:
-    - "VIOLATION: Invalid key (type, format, empty)"
-    - "NOT_FOUND: Key does not exist"
-    - "BACKEND_ERROR: Storage unavailable or corrupt"
+  - 'VIOLATION: Invalid key (type, format, empty)'
+  - 'NOT_FOUND: Key does not exist'
+  - 'BACKEND_ERROR: Storage unavailable or corrupt'
 ```

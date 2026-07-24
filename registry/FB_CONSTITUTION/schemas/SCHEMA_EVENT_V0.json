@@ -4,7 +4,13 @@
   "title": "OmniBachi Event Schema V0",
   "description": "JSON Schema for materialized event artifacts",
   "type": "object",
-  "required": ["ev_code", "version", "governed_by", "core"],
+  "required": [
+    "fqdn",
+    "ev_code",
+    "version",
+    "governed_by",
+    "core"
+  ],
   "additionalProperties": false,
   "properties": {
     "ev_code": {
@@ -24,7 +30,10 @@
     },
     "core": {
       "type": "object",
-      "required": ["summary", "schema"],
+      "required": [
+        "summary",
+        "schema"
+      ],
       "additionalProperties": false,
       "properties": {
         "summary": {
@@ -47,16 +56,29 @@
     "extensions": {
       "type": "object",
       "additionalProperties": true
+    },
+    "fqdn": {
+      "type": "string",
+      "pattern": "^[a-z0-9_.]+::[A-Z][A-Z0-9_]*_V[0-9]+$",
+      "description": "Authoritative declared identity (namespace::code). Folder location has no authority over identity."
     }
   },
   "$defs": {
     "fieldDef": {
       "type": "object",
-      "required": ["type"],
+      "required": [
+        "type"
+      ],
       "properties": {
         "type": {
           "type": "string",
-          "enum": ["string", "number", "boolean", "object", "array"]
+          "enum": [
+            "string",
+            "number",
+            "boolean",
+            "object",
+            "array"
+          ]
         },
         "format": {
           "type": "string",

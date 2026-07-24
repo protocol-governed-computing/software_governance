@@ -4,7 +4,14 @@
   "title": "OmniBachi CC Pipeline Step Schema V0",
   "description": "JSON Schema for a single execution topology step within a Capability Contract pipeline. Each step is self-describing: it declares its identity, capability reference, I/O contracts, and routing inline. No global binding registry. No implicit chaining.",
   "type": "object",
-  "required": ["step", "op", "inputs", "outputs", "on_result"],
+  "required": [
+    "fqdn",
+    "step",
+    "op",
+    "inputs",
+    "outputs",
+    "on_result"
+  ],
   "additionalProperties": false,
   "properties": {
     "step": {
@@ -41,7 +48,10 @@
     },
     "on_ct_result": {
       "type": "object",
-      "required": ["on_success", "on_failure"],
+      "required": [
+        "on_success",
+        "on_failure"
+      ],
       "additionalProperties": false,
       "properties": {
         "on_success": {
@@ -59,21 +69,33 @@
       "type": "object",
       "additionalProperties": {
         "type": "string",
-        "enum": ["continue", "exit"],
+        "enum": [
+          "continue",
+          "exit"
+        ],
         "description": "Routing action: continue to next step or exit the CC with this status."
       },
       "description": "Step routing map. MUST contain an entry for every status code declared in the CC result_status_contract.allowed list. Values are exactly: continue or exit."
+    },
+    "fqdn": {
+      "type": "string",
+      "pattern": "^[a-z0-9_.]+::[A-Z][A-Z0-9_]*_V[0-9]+$",
+      "description": "Authoritative declared identity (namespace::code). Folder location has no authority over identity."
     }
   },
   "oneOf": [
     {
-      "required": ["transform"],
+      "required": [
+        "transform"
+      ],
       "properties": {
         "side_effect": false
       }
     },
     {
-      "required": ["side_effect"],
+      "required": [
+        "side_effect"
+      ],
       "properties": {
         "transform": false
       }

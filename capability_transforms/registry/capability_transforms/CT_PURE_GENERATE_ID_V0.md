@@ -14,30 +14,27 @@
 ## Machine
 
 ```yaml
+fqdn: capability_transforms::CT_PURE_GENERATE_ID_V0
 ct_code: CT_PURE_GENERATE_ID_V0
 version: V0
 governed_by: fb.topology::CONSTITUTION_CAPABILITY_TRANSFORMS_V0
-
 core:
   summary: Generate deterministic ID
   description: Generates a deterministic unique identifier based on input data using Keccak-256 hashing.
-  
   inputs:
     prefix:
       type: string
       required: true
-      description: "Identifier prefix (e.g., AC, WF, IN)"
+      description: Identifier prefix (e.g., AC, WF, IN)
     data:
       type: any
       required: true
-      description: "Input data to hash for ID generation"
-
+      description: Input data to hash for ID generation
   outputs:
     id:
       type: string
       required: true
-      description: "The generated deterministic ID"
-
+      description: The generated deterministic ID
 machine:
   ct_kind: atom
   ct_purity: ct_pure

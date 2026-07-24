@@ -14,14 +14,14 @@
 ## Machine
 
 ```yaml
+fqdn: capability_transforms::CT_PURE_MAP_RESULT_TO_HTTP_V0
 ct_code: CT_PURE_MAP_RESULT_TO_HTTP_V0
 version: V0
 governed_by: fb.topology::CONSTITUTION_CAPABILITY_TRANSFORMS_V0
-
 core:
   summary: Map result status to HTTP
-  description: Maps an execution result status code to a corresponding HTTP status code and response body using a provided mapping object.
-  
+  description: Maps an execution result status code to a corresponding HTTP status code and response body
+    using a provided mapping object.
   inputs:
     execution_result:
       type: object
@@ -31,7 +31,6 @@ core:
       type: object
       required: true
       description: Status code mapping (e.g., SUCCESS -> 200)
-
   outputs:
     http_status:
       type: integer
@@ -45,7 +44,6 @@ core:
       type: string
       required: true
       description: Original execution status
-
 machine:
   ct_kind: atom
   ct_purity: ct_pure

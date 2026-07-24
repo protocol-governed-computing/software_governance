@@ -120,30 +120,28 @@ Validation results MAY be logged for diagnostics.
 ## Machine
 
 ```yaml
+fqdn: capability_transforms::CT_PURE_VALIDATE_RECORD_STRUCTURE_V0
 ct_code: CT_PURE_VALIDATE_RECORD_STRUCTURE_V0
 version: v0
 governed_by: fb.topology::CONSTITUTION_CAPABILITY_TRANSFORMS_V0
-
 core:
   summary: Validate record structure
-  description: Validates an arbitrary record object against a provided schema of field rules (type, pattern, required, etc.).
-  
+  description: Validates an arbitrary record object against a provided schema of field rules (type, pattern,
+    required, etc.).
   inputs:
     record:
       type: object
       required: true
-      description: "The record to validate"
+      description: The record to validate
     schema:
       type: object
       required: true
-      description: "Validation rules keyed by field name"
-
+      description: Validation rules keyed by field name
   outputs:
     violations:
       type: array
       required: true
-      description: "List of violation objects with field, rule, and message"
-
+      description: List of violation objects with field, rule, and message
 machine:
   ct_kind: atom
   ct_purity: ct_pure

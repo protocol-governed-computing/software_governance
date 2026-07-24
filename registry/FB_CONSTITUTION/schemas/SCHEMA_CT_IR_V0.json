@@ -4,7 +4,14 @@
   "title": "OmniBachi CT-IR Schema V0",
   "description": "JSON Schema for lowered CT-IR artifacts (compiler output). Governed by CONSTITUTION_COMPILER_V0.",
   "type": "object",
-  "required": ["ct_composition_version", "ct_code", "inputs", "atom_stream", "outputs"],
+  "required": [
+    "fqdn",
+    "ct_composition_version",
+    "ct_code",
+    "inputs",
+    "atom_stream",
+    "outputs"
+  ],
   "additionalProperties": false,
   "properties": {
     "ct_composition_version": {
@@ -27,11 +34,20 @@
       "description": "Input parameter definitions",
       "additionalProperties": {
         "type": "object",
-        "required": ["type"],
+        "required": [
+          "type"
+        ],
         "properties": {
           "type": {
             "type": "string",
-            "enum": ["string", "number", "boolean", "object", "array", "any"]
+            "enum": [
+              "string",
+              "number",
+              "boolean",
+              "object",
+              "array",
+              "any"
+            ]
           }
         }
       }
@@ -39,14 +55,19 @@
     "atom_stream": {
       "type": "array",
       "description": "Ordered sequence of atom instructions (execution order)",
-      "items": { "$ref": "#/$defs/atomInstruction" }
+      "items": {
+        "$ref": "#/$defs/atomInstruction"
+      }
     },
     "outputs": {
       "type": "object",
       "description": "Output definitions with source symbol references",
       "additionalProperties": {
         "type": "object",
-        "required": ["from", "type"],
+        "required": [
+          "from",
+          "type"
+        ],
         "properties": {
           "from": {
             "type": "string",
@@ -54,16 +75,32 @@
           },
           "type": {
             "type": "string",
-            "enum": ["string", "number", "boolean", "object", "array", "any"]
+            "enum": [
+              "string",
+              "number",
+              "boolean",
+              "object",
+              "array",
+              "any"
+            ]
           }
         }
       }
+    },
+    "fqdn": {
+      "type": "string",
+      "pattern": "^[a-z0-9_.]+::[A-Z][A-Z0-9_]*_V[0-9]+$",
+      "description": "Authoritative declared identity (namespace::code). Folder location has no authority over identity."
     }
   },
   "$defs": {
     "atomInstruction": {
       "type": "object",
-      "required": ["atom", "args", "out"],
+      "required": [
+        "atom",
+        "args",
+        "out"
+      ],
       "additionalProperties": false,
       "properties": {
         "atom": {
@@ -76,18 +113,31 @@
           "additionalProperties": true
         },
         "out": {
-          "type": ["string", "null"],
+          "type": [
+            "string",
+            "null"
+          ],
           "description": "Output symbol name"
         },
         "loop": {
           "type": "object",
           "description": "Loop configuration (for loop atoms only)",
           "properties": {
-            "over": { "type": "string" },
-            "iterator": { "type": "string" },
-            "accumulator": { "type": "object" },
-            "inputs": { "type": "object" },
-            "update_accumulator": { "type": "object" }
+            "over": {
+              "type": "string"
+            },
+            "iterator": {
+              "type": "string"
+            },
+            "accumulator": {
+              "type": "object"
+            },
+            "inputs": {
+              "type": "object"
+            },
+            "update_accumulator": {
+              "type": "object"
+            }
           }
         }
       }

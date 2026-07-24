@@ -65,14 +65,13 @@ Set membership validation is a generic governance primitive:
 ## Machine
 
 ```yaml
+fqdn: capability_transforms::CT_PURE_VALIDATE_SET_MEMBERSHIP_V0
 ct_code: CT_PURE_VALIDATE_SET_MEMBERSHIP_V0
 version: v0
 governed_by: fb.topology::CONSTITUTION_CAPABILITY_TRANSFORMS_V0
-
 core:
   summary: Validate set membership
   description: Checks whether a specific value exists within a provided array of allowed values.
-  
   inputs:
     value:
       type: string
@@ -82,13 +81,11 @@ core:
       type: array
       required: true
       description: The list of permitted values
-
   outputs:
     is_member:
       type: boolean
       required: true
       description: True if value is found in allowed_set
-
 machine:
   ct_kind: atom
   ct_purity: ct_pure

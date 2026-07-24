@@ -14,26 +14,23 @@
 ## Machine
 
 ```yaml
+fqdn: capability_transforms::CT_PURE_ASSEMBLE_RECORD_V0
 ct_code: CT_PURE_ASSEMBLE_RECORD_V0
 version: V0
 governed_by: fb.topology::CONSTITUTION_CAPABILITY_TRANSFORMS_V0
-
 core:
   summary: Assemble record object
   description: Combines multiple input values into a single structured record object.
-  
   inputs:
     fields:
       type: object
       required: true
       description: Key-value map of fields to include in the record
-
   outputs:
     record:
       type: object
       required: true
       description: The assembled record object
-
 machine:
   ct_kind: atom
   ct_purity: ct_pure
