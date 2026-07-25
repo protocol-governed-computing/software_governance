@@ -18,8 +18,10 @@ added without touching the transport engine.
 ## Machine
 
 ```yaml
-ti_code: TI_COLLATZ_COMPUTE_V0
+fqdn: workload::TI_COLLATZ_COMPUTE_V0
+artifact_kind: TRANSPORT_INGRESS
 version: v0
+governed_by: fb.transport::CONSTITUTION_TRANSPORT_INGRESS_V0
 operation: collatz.compute
 
 # Input contract — a declared, named contract (not inline schema logic executed at

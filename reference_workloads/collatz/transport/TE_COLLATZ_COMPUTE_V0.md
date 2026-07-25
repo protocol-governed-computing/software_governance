@@ -13,8 +13,10 @@ Result Class onto a wire representation (`RESPONSE_PROJECTION_EXTERNAL`).
 ## Machine
 
 ```yaml
-te_code: TE_COLLATZ_COMPUTE_V0
+fqdn: workload::TE_COLLATZ_COMPUTE_V0
+artifact_kind: TRANSPORT_EGRESS
 version: v0
+governed_by: fb.transport::CONSTITUTION_TRANSPORT_EGRESS_V0
 operation: collatz.compute
 
 # Result classification: runtime terminal status -> governed Result Class.

@@ -43,12 +43,19 @@ layer_definitions:
     registry_module: workload.registry
     implementation_namespace: reference_workloads.collatz.implementation.capability_transforms.atoms
     layer_category: workload
+  WORKLOAD_TRANSPORT:
+    platform_subpath: reference_workloads/collatz/transport
+    registry_module: workload.transport
+    layer_category: workload
 identity_rules:
 - match: workload.registry
+  namespace: workload
+- match: workload.transport
   namespace: workload
 artifact_discovery:
   search_layers:
   - WORKLOAD
+  - WORKLOAD_TRANSPORT
   import_surface:
     domain: platform
   artifact_types:
@@ -61,6 +68,8 @@ artifact_discovery:
   - RB
   - STRUCTURE
   - INVARIANT
+  - TI
+  - TE
 output_configuration:
   artifacts:
     layer: PROTOCOL_BUILD_ROOT
@@ -82,6 +91,9 @@ output_configuration:
     subpath: compiled/visualization
   layer_outputs:
     WORKLOAD:
+      layer: WORKLOAD
+      subpath: compiled/canonical
+    WORKLOAD_TRANSPORT:
       layer: WORKLOAD
       subpath: compiled/canonical
   bootstrap_search_roots:
