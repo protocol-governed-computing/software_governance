@@ -19,6 +19,8 @@ rules:
 - applies_to: TI
   enforced_by: fb.transport::INVARIANT_TRANSPORT_NO_WORKFLOW_SEMANTICS_V0
 - applies_to: TI
+  enforced_by: fb.transport::INVARIANT_TRANSPORT_OPERATION_IDENTITY_INDEPENDENCE_V0
+- applies_to: TI
   enforced_by: PROCESS_ENFORCED
 ```
 
@@ -50,11 +52,11 @@ compiler, never interpreted at request time.
   execution state. Enforced by `INVARIANT_TRANSPORT_NO_WORKFLOW_SEMANTICS_V0`.
 - **Operation Identity independence.** The Operation Identity a `TI` admits MUST be uniquely
   resolvable within the governance universe and MUST NOT equal a workflow (or other target)
-  identity; the target is re-pointable without any adapter change. *(Process-enforced pending
-  its Phase-3 invariant.)*
+  identity; the target is re-pointable without any adapter change. Enforced by
+  `INVARIANT_TRANSPORT_OPERATION_IDENTITY_INDEPENDENCE_V0`.
 - **Input contract by reference.** A `TI` MUST reference an existing governed input contract
-  and MUST NOT define operation input semantics inline. *(Process-enforced pending its
-  Phase-3 invariant.)*
+  and MUST NOT define operation input semantics inline. *(Process-enforced: the reference-vs-
+  inline distinction awaits a governed input-contract kind.)*
 - **Domain separation.** A `TI` MUST NOT define domain state-transition, resource, or result
   semantics; domain meaning enters only through declared execution artifacts. *(Process-
   enforced pending its Phase-3 invariant.)*

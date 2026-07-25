@@ -17,6 +17,10 @@ rules:
 - applies_to: TE
   enforced_by: fb.transport::INVARIANT_TRANSPORT_NO_WORKFLOW_SEMANTICS_V0
 - applies_to: TE
+  enforced_by: fb.transport::INVARIANT_TRANSPORT_RESULT_CLASS_PROTOCOL_INDEPENDENCE_V0
+- applies_to: TE
+  enforced_by: fb.transport::INVARIANT_TRANSPORT_RESPONSE_PROJECTION_EXTERNAL_V0
+- applies_to: TE
   enforced_by: PROCESS_ENFORCED
 ```
 
@@ -46,11 +50,11 @@ independently of any transport boundary; the `TE` projects it, it does not own i
   `INVARIANT_TRANSPORT_NO_WORKFLOW_SEMANTICS_V0`.
 - **Result Class protocol independence.** A Result Class
   (`SUCCESS | VIOLATION | UNAUTHORIZED | EXECUTION_FAILURE | OPERATION_NOT_FOUND`) MUST carry
-  no protocol semantics (no HTTP status, no RPC error code). *(Process-enforced pending its
-  Phase-3 invariant.)*
+  no protocol semantics (no HTTP status, no RPC error code). Enforced by
+  `INVARIANT_TRANSPORT_RESULT_CLASS_PROTOCOL_INDEPENDENCE_V0`.
 - **Response projection is external.** Mapping a Result Class to an external representation
   (HTTP status, RPC error, CLI exit code) MUST occur in the adapter, never in a `TE`.
-  *(Process-enforced pending its Phase-3 invariant.)*
+  Enforced by `INVARIANT_TRANSPORT_RESPONSE_PROJECTION_EXTERNAL_V0`.
 - **Domain separation.** A `TE` MUST NOT define domain-specific result interpretation; result
   meaning is governed, not domain-encoded at the boundary. *(Process-enforced pending its
   Phase-3 invariant.)*

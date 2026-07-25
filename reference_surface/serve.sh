@@ -23,8 +23,7 @@ UMBRELLA="$(cd "$PLATFORM/.." && pwd)"                     # protocol-governed-c
 
 export PGC_RUNTIME_ROOT="$UMBRELLA/protocol_runtime"
 export PGC_IMPL_ROOTS="$PLATFORM"                          # reference_workloads.*.implementation.*
-# Boundary declarations (TI/TE) for reference workloads (Collatz).
-export PGC_OPERATIONS_ROOTS="$PLATFORM/reference_workloads"
+# TI/TE boundary contracts are read from the sealed snapshot (compiled TI_/TE_ kinds).
 export PGC_HTTP_BINDINGS="$SURFACE/bindings/http.json"
 export PGC_SNAPSHOT_ROOT="${PGC_SNAPSHOT_ROOT:-$UMBRELLA/snapshot}"   # Reference Platform Snapshot V0
 export PGC_DATA_ROOT="${PGC_DATA_ROOT:-$UMBRELLA/data/reference_surface}"
