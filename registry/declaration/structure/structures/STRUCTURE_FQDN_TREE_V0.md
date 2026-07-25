@@ -105,8 +105,7 @@ Builder MUST NOT:
 
 ```yaml
 fqdn: fb.constitution::STRUCTURE_FQDN_TREE_V0
-structure_code: STRUCTURE_FQDN_TREE_V0
-fqdn_tree_code: STRUCTURE_FQDN_TREE_V0
+artifact_kind: STRUCTURE
 version: V0
 governed_by: fb.constitution::CONSTITUTION_STRUCTURE_V0
 core:

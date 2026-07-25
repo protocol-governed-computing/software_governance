@@ -6,17 +6,16 @@
   "type": "object",
   "required": [
     "fqdn",
-    "rb_code",
+    "artifact_kind",
     "version",
     "governed_by",
     "core"
   ],
   "additionalProperties": false,
   "properties": {
-    "rb_code": {
-      "type": "string",
-      "pattern": "^RB_[A-Z0-9_]+_V[0-9]+$",
-      "description": "Unique runtime binding identifier"
+    "artifact_kind": {
+      "const": "RUNTIME_BINDING",
+      "description": "Canonical artifact kind discriminator (Kind Vocabulary)."
     },
     "version": {
       "type": "string",

@@ -35,7 +35,7 @@ No per-structure STRUCTURE artifact should declare `vocabulary_artifacts_path`.
 
 ```yaml
 fqdn: fb.vocabulary::STRUCTURE_BUILD_VOCABULARY_AGGREGATE_V0
-structure_code: STRUCTURE_BUILD_VOCABULARY_AGGREGATE_V0
+artifact_kind: STRUCTURE
 version: V0
 governed_by: fb.constitution::CONSTITUTION_STRUCTURE_V0
 aggregation_type: VOCABULARY

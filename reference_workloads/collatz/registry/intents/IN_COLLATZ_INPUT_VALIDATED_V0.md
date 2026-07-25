@@ -22,7 +22,7 @@ Admission gate for the Collatz reference workload. Accepts a non-empty list of p
 
 ```yaml
 fqdn: workload::IN_COLLATZ_INPUT_VALIDATED_V0
-in_code: IN_COLLATZ_INPUT_VALIDATED_V0
+artifact_kind: INTENT
 version: v0
 governed_by: fb.topology::CONSTITUTION_INTENT_V0
 core:

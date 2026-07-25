@@ -16,7 +16,7 @@
 
 ```yaml
 fqdn: capability_transforms::CT_PURE_LOOKUP_V0
-ct_code: CT_PURE_LOOKUP_V0
+artifact_kind: CAPABILITY_TRANSFORM
 version: V0
 governed_by: fb.topology::CONSTITUTION_CAPABILITY_TRANSFORMS_V0
 core:

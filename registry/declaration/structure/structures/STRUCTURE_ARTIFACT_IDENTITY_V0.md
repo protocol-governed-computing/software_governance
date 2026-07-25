@@ -361,7 +361,7 @@ Add validation to fail build on duplicate fqdn_id.
 
 ```yaml
 fqdn: fb.constitution::STRUCTURE_ARTIFACT_IDENTITY_V0
-structure_code: STRUCTURE_ARTIFACT_IDENTITY_V0
+artifact_kind: STRUCTURE
 version: V0
 governed_by: fb.constitution::CONSTITUTION_STRUCTURE_V0
 core:

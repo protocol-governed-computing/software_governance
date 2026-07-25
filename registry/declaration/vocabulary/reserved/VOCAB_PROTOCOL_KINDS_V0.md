@@ -37,7 +37,7 @@ Defines what things ARE in the protocol: node type prefixes and artifact kind na
 
 ```yaml
 fqdn: fb.vocabulary::VOCAB_PROTOCOL_KINDS_V0
-vocabulary_id: fb.vocabulary::VOCAB_PROTOCOL_KINDS_V0
+artifact_kind: VOCABULARY
 version: v0
 governed_by: fb.vocabulary::CONSTITUTION_VOCABULARY_V0
 node_types:

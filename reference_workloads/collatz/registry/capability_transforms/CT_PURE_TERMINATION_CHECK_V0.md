@@ -22,7 +22,7 @@ Verify that every computed Collatz sequence terminates at 1. Pure, deterministic
 
 ```yaml
 fqdn: workload::CT_PURE_TERMINATION_CHECK_V0
-ct_code: CT_PURE_TERMINATION_CHECK_V0
+artifact_kind: CAPABILITY_TRANSFORM
 version: v0
 governed_by: fb.topology::CONSTITUTION_CAPABILITY_TRANSFORMS_V0
 core:

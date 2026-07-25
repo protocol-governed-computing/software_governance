@@ -6,17 +6,16 @@
   "type": "object",
   "required": [
     "fqdn",
-    "ev_code",
+    "artifact_kind",
     "version",
     "governed_by",
     "core"
   ],
   "additionalProperties": false,
   "properties": {
-    "ev_code": {
-      "type": "string",
-      "pattern": "^EV_[A-Z0-9_]+_V[0-9]+$",
-      "description": "Unique event identifier"
+    "artifact_kind": {
+      "const": "EVENT",
+      "description": "Canonical artifact kind discriminator (Kind Vocabulary)."
     },
     "version": {
       "type": "string",

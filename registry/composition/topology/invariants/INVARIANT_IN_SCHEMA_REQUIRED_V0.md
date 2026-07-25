@@ -32,7 +32,7 @@ IN artifact must have a top-level schema field.
 
 **Violation**:
 ```yaml
-in_code: IN_EXAMPLE_V0
+artifact_kind: INTENT
 core:
   summary: Entry intent
 # No schema field

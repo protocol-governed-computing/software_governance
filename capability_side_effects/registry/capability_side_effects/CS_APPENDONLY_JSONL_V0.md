@@ -178,7 +178,7 @@ This CS MUST emit:
 
 ```yaml
 fqdn: capability_side_effects::CS_APPENDONLY_JSONL_V0
-cs_code: CS_APPENDONLY_JSONL_V0
+artifact_kind: CAPABILITY_SIDE_EFFECT
 version: v0
 governed_by: fb.topology::CONSTITUTION_CAPABILITY_SIDE_EFFECTS_V0
 core:

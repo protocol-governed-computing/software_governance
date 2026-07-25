@@ -24,7 +24,7 @@ concern: a governed, declared event that becomes visible in the execution trace.
 
 ```yaml
 fqdn: workload::EV_CONJECTURE_EVALUATED_V0
-ev_code: EV_CONJECTURE_EVALUATED_V0
+artifact_kind: EVENT
 version: v0
 governed_by: fb.constitution::CONSTITUTION_EVENT_V0
 core:

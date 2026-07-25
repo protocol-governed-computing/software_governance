@@ -24,7 +24,7 @@ STRUCTURE only (never hardcoded in a capability or the runtime).
 
 ```yaml
 fqdn: workload::STRUCTURE_COLLATZ_STORAGE_V0
-structure_code: STRUCTURE_COLLATZ_STORAGE_V0
+artifact_kind: STRUCTURE
 version: v0
 governed_by: fb.constitution::CONSTITUTION_STRUCTURE_V0
 core:

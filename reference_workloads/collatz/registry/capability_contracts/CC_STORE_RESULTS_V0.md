@@ -23,7 +23,7 @@ concern, consuming the platform's `capability_side_effects::CS_MUTABLE_JSON_V0` 
 
 ```yaml
 fqdn: workload::CC_STORE_RESULTS_V0
-cc_code: CC_STORE_RESULTS_V0
+artifact_kind: CAPABILITY_CONTRACT
 version: v0
 governed_by: fb.topology::CONSTITUTION_CAPABILITY_CONTRACT_V0
 core:

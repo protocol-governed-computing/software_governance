@@ -75,7 +75,7 @@ ASSERT MUST return violations array.
 ## 4. Required Fields (Documentation)
 
 ```yaml
-assert_code: ASSERT_<NAME>_V<N>
+fqdn: <namespace>::ASSERT_<NAME>_V<N>
 artifact_kind: ASSERT
 version: V<N>
 governed_by: fb.constitution::CONSTITUTION_ASSERT_V0

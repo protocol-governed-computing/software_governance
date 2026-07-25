@@ -9,7 +9,6 @@
     "artifact_kind",
     "version",
     "governed_by",
-    "surface_contract_code",
     "governs",
     "op",
     "canonical_surface"

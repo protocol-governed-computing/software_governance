@@ -50,7 +50,7 @@ No fallback or implicit behavior is permitted.
 
 ```yaml
 fqdn: fb.constitution::STRUCTURE_BUILD_PLATFORM_CONFIG_V1
-structure_code: STRUCTURE_BUILD_PLATFORM_CONFIG_V1
+artifact_kind: STRUCTURE
 version: V1
 governed_by: fb.constitution::CONSTITUTION_STRUCTURE_V0
 structure_scope: platform

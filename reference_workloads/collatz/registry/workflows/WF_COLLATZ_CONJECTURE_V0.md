@@ -42,7 +42,7 @@ IN_COLLATZ_INPUT_VALIDATED_V0
 
 ```yaml
 fqdn: workload::WF_COLLATZ_CONJECTURE_V0
-wf_code: WF_COLLATZ_CONJECTURE_V0
+artifact_kind: WORKFLOW
 version: v0
 governed_by: fb.topology::CONSTITUTION_WORKFLOW_V0
 subdomain: collatz

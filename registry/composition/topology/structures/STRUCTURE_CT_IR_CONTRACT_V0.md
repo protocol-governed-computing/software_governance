@@ -10,10 +10,9 @@ All CT artifacts MUST conform to this structure at compile time.
 
 ```yaml
 fqdn: fb.topology::STRUCTURE_CT_IR_CONTRACT_V0
-artifact:
-  artifact_type: STRUCTURE
-  fqdn_id: fb.topology::STRUCTURE_CT_IR_CONTRACT_V0
-  governed_by: fb.constitution::CONSTITUTION_STRUCTURE_V0
+artifact_kind: STRUCTURE
+version: V0
+governed_by: fb.constitution::CONSTITUTION_STRUCTURE_V0
 contract:
   name: CT_IR
   version: V0

@@ -25,7 +25,7 @@ Declares the physical registry module location for REUSABLE_TRANSFORMS layer art
 
 ```yaml
 fqdn: fb.topology::STRUCTURE_REGISTRY_LOCATION_REUSABLE_TRANSFORMS_V0
-structure_code: STRUCTURE_REGISTRY_LOCATION_REUSABLE_TRANSFORMS_V0
+artifact_kind: STRUCTURE
 version: V0
 governed_by: fb.constitution::CONSTITUTION_STRUCTURE_V0
 core:

@@ -6,17 +6,16 @@
   "type": "object",
   "required": [
     "fqdn",
-    "wf_code",
+    "artifact_kind",
     "version",
     "governed_by",
     "core"
   ],
   "additionalProperties": false,
   "properties": {
-    "wf_code": {
-      "type": "string",
-      "pattern": "^WF_[A-Z0-9_]+_V[0-9]+$",
-      "description": "Unique workflow identifier"
+    "artifact_kind": {
+      "const": "WORKFLOW",
+      "description": "Canonical artifact kind discriminator (Kind Vocabulary)."
     },
     "version": {
       "type": "string",

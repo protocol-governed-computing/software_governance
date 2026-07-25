@@ -121,7 +121,7 @@ Validation results MAY be logged for diagnostics.
 
 ```yaml
 fqdn: capability_transforms::CT_PURE_VALIDATE_RECORD_STRUCTURE_V0
-ct_code: CT_PURE_VALIDATE_RECORD_STRUCTURE_V0
+artifact_kind: CAPABILITY_TRANSFORM
 version: v0
 governed_by: fb.topology::CONSTITUTION_CAPABILITY_TRANSFORMS_V0
 core:

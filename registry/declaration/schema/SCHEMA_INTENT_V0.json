@@ -6,17 +6,16 @@
   "type": "object",
   "required": [
     "fqdn",
-    "in_code",
+    "artifact_kind",
     "version",
     "governed_by",
     "core"
   ],
   "additionalProperties": false,
   "properties": {
-    "in_code": {
-      "type": "string",
-      "pattern": "^IN_[A-Z0-9_]+_V[0-9]+$",
-      "description": "Unique intent identifier"
+    "artifact_kind": {
+      "const": "INTENT",
+      "description": "Canonical artifact kind discriminator (Kind Vocabulary)."
     },
     "version": {
       "type": "string",

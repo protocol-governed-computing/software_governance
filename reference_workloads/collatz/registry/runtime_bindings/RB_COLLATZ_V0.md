@@ -24,7 +24,7 @@ results, and names the storage structure that resolves the path.
 
 ```yaml
 fqdn: workload::RB_COLLATZ_V0
-rb_code: RB_COLLATZ_V0
+artifact_kind: RUNTIME_BINDING
 version: v0
 governed_by: fb.topology::CONSTITUTION_RUNTIME_BINDING_V0
 parameters:

@@ -6,17 +6,16 @@
   "type": "object",
   "required": [
     "fqdn",
-    "ac_code",
+    "artifact_kind",
     "version",
     "governed_by",
     "core"
   ],
   "additionalProperties": false,
   "properties": {
-    "ac_code": {
-      "type": "string",
-      "pattern": "^AC_[A-Z0-9_]+_V[0-9]+$",
-      "description": "Unique actor identifier"
+    "artifact_kind": {
+      "const": "ACTOR",
+      "description": "Canonical artifact kind discriminator (Kind Vocabulary)."
     },
     "version": {
       "type": "string",

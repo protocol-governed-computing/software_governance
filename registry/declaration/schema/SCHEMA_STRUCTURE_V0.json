@@ -130,10 +130,9 @@
   "machine_required_fields": {
     "description": "Fields required in the Machine YAML section of every STRUCTURE artifact",
     "fields": {
-      "structure_code": {
-        "type": "string",
-        "pattern": "^STRUCTURE_[A-Z0-9_]+_V[0-9]+$",
-        "description": "Unique identifier. MUST follow UPPER_SNAKE_CASE with version suffix."
+      "artifact_kind": {
+        "const": "STRUCTURE",
+        "description": "Canonical artifact kind discriminator (Kind Vocabulary)."
       },
       "version": {
         "type": "string",

@@ -27,7 +27,7 @@ Runtime execution STRUCTURE. Defines WHERE the runtime searches for workflow art
 
 ```yaml
 fqdn: fb.topology::STRUCTURE_RUNTIME_EXECUTION_V0
-structure_code: STRUCTURE_RUNTIME_EXECUTION_V0
+artifact_kind: STRUCTURE
 version: V0
 governed_by: fb.constitution::CONSTITUTION_STRUCTURE_V0
 core:

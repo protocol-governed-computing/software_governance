@@ -6,17 +6,16 @@
   "type": "object",
   "required": [
     "fqdn",
-    "cc_code",
+    "artifact_kind",
     "version",
     "governed_by",
     "core"
   ],
   "additionalProperties": false,
   "properties": {
-    "cc_code": {
-      "type": "string",
-      "pattern": "^CC_[A-Z0-9_]+_V[0-9]+$",
-      "description": "Unique capability contract identifier"
+    "artifact_kind": {
+      "const": "CAPABILITY_CONTRACT",
+      "description": "Canonical artifact kind discriminator (Kind Vocabulary)."
     },
     "version": {
       "type": "string",

@@ -99,7 +99,7 @@ No debug modes, no environment toggles.
 ## 4. Required Fields (Documentation)
 
 ```yaml
-invariant_code: INVARIANT_<NAME>_V<N>
+fqdn: <namespace>::INVARIANT_<NAME>_V<N>
 artifact_kind: INVARIANT
 version: V<N>
 governed_by: fb.constitution::CONSTITUTION_INVARIANTS_V0

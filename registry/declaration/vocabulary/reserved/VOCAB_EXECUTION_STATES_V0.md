@@ -36,7 +36,7 @@ Defines execution outcome symbols: result statuses for node-level outcomes and e
 
 ```yaml
 fqdn: fb.vocabulary::VOCAB_EXECUTION_STATES_V0
-vocabulary_id: fb.vocabulary::VOCAB_EXECUTION_STATES_V0
+artifact_kind: VOCABULARY
 version: v0
 governed_by: fb.vocabulary::CONSTITUTION_VOCABULARY_V0
 result_status:

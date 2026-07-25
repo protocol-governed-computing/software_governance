@@ -6,7 +6,7 @@
   "type": "object",
   "required": [
     "fqdn",
-    "cs_code",
+    "artifact_kind",
     "version",
     "governed_by",
     "implementation",
@@ -14,10 +14,9 @@
   ],
   "additionalProperties": false,
   "properties": {
-    "cs_code": {
-      "type": "string",
-      "pattern": "^CS_[A-Z0-9_]+_V[0-9]+$",
-      "description": "Unique capability side effect identifier"
+    "artifact_kind": {
+      "const": "CAPABILITY_SIDE_EFFECT",
+      "description": "Canonical artifact kind discriminator (Kind Vocabulary)."
     },
     "version": {
       "type": "string",

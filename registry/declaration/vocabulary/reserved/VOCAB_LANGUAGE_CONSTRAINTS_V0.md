@@ -40,7 +40,7 @@ Defines words constrained during artifact authoring: structural keys, binding ve
 
 ```yaml
 fqdn: fb.vocabulary::VOCAB_LANGUAGE_CONSTRAINTS_V0
-vocabulary_id: fb.vocabulary::VOCAB_LANGUAGE_CONSTRAINTS_V0
+artifact_kind: VOCABULARY
 version: v0
 governed_by: fb.vocabulary::CONSTITUTION_VOCABULARY_V0
 structural_keys:

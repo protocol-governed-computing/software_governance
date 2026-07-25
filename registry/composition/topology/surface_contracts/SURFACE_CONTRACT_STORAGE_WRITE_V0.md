@@ -27,7 +27,6 @@ fqdn: fb.topology::SURFACE_CONTRACT_STORAGE_WRITE_V0
 artifact_kind: SURFACE_CONTRACT
 version: V0
 governed_by: fb.topology::CONSTITUTION_EXECUTION_TOPOLOGY_V0
-surface_contract_code: SURFACE_CONTRACT_STORAGE_WRITE_V0
 governs:
 - CS_MUTABLE_JSON_V0
 - CS_NAME_REGISTRY_V0

@@ -29,7 +29,7 @@ out of scope here. The reference value is the lifecycle it demonstrates:
 
 ```yaml
 fqdn: workload::AC_REFERENCE_ACTOR_V0
-ac_code: AC_REFERENCE_ACTOR_V0
+artifact_kind: ACTOR
 version: v0
 governed_by: fb.identity::CONSTITUTION_ACTOR_IDENTITY_V0
 core:
