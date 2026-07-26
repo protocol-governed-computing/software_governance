@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "fb.constitution.schemas.SCHEMA_SURFACE_CONTRACT_V0",
+  "title": "PGC Surface Contract Schema V0",
+  "description": "Closed machine-block contract for SURFACE_CONTRACT artifacts. Every field is read by assert_topology_surface_canonical_v0 when building the exact and prefix lookups that canonicalize a capability surface.",
+  "type": "object",
+  "required": [
+    "fqdn",
+    "artifact_kind",
+    "version",
+    "governed_by",
+    "governs",
+    "op",
+    "canonical_surface"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "artifact_kind": {
+      "const": "SURFACE_CONTRACT"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^V[0-9]+$"
+    },
+    "governed_by": {
+      "type": "string",
+      "pattern": "^[a-z0-9_.]+::CONSTITUTION_[A-Z0-9_]+_V[0-9]+$"
+    },
+    "surface_contract_code": {
+      "description": "Reported as the governing contract in canonical-surface violations.",
+      "type": "string",
+      "pattern": "^SURFACE_CONTRACT_[A-Z0-9_]+_V[0-9]+$"
+    },
+    "governs": {
+      "description": "Capability ids governed by this contract; the exact-lookup key together with op. May be empty when the contract is reached by capability_id_prefix instead.",
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "op": {
+      "description": "Operation this contract canonicalizes.",
+      "type": "string",
+      "minLength": 1
+    },
+    "canonical_surface": {
+      "description": "The closed set of result statuses admissible for this capability/op pair.",
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^[A-Z0-9_]+$"
+      }
+    },
+    "capability_id_prefix": {
+      "description": "Optional prefix-lookup key, applied when no exact (capability_id, op) match exists.",
+      "type": "string",
+      "minLength": 1
+    },
+    "fqdn": {
+      "type": "string",
+      "pattern": "^[a-z0-9_.]+::[A-Z][A-Z0-9_]*_V[0-9]+$",
+      "description": "Authoritative declared identity (namespace::code). Folder location has no authority over identity."
+    }
+  },
+  "anyOf": [
+    {
+      "description": "Reachable by exact (capability_id, op) lookup.",
+      "properties": {
+        "governs": {
+          "minItems": 1
+        }
+      }
+    },
+    {
+      "description": "Reachable by prefix lookup.",
+      "required": [
+        "capability_id_prefix"
+      ]
+    }
+  ]
+}
