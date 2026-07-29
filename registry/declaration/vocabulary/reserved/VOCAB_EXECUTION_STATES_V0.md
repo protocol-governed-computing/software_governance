@@ -63,10 +63,4 @@ exit_reasons:
   - FAILED
   - HALTED
   - TIMEOUT
-  - HTTP_200
-  - HTTP_400
-  - HTTP_404
-  - HTTP_422
-  - HTTP_500
-  - HTTP_504
 ```
