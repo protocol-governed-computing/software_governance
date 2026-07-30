@@ -36,10 +36,26 @@ Defines execution outcome symbols: result statuses for node-level outcomes and e
 
 ### Domain extension
 
-This artifact declares the **platform** outcome space — the statuses the platform compiler and
-runtime interpret. A domain requiring a domain-specific outcome SHALL declare its own `VOCABULARY`
-artifact in its own namespace, or map the outcome onto a platform status; it SHALL NOT add domain
-symbols here.
+This artifact is the **reserving declaration** for the outcome space — the statuses the platform
+compiler and runtime interpret. A domain requiring a domain-specific outcome SHALL declare its own
+`VOCABULARY` artifact in its own namespace, or map the outcome onto a declared status; it SHALL
+NOT add domain symbols here.
+
+Extension is authorized per category, by this artifact, and is machine-checked:
+
+| Category | `domain_extensible` | Why |
+|---|---|---|
+| `result_status` | `true` | A CC may report a domain-specific outcome; the workflow routes on it. The platform does not need to interpret it. |
+| `exit_reasons` | `false` | Terminal dispositions are interpreted by the runtime scheduler. A reason it cannot interpret has no meaning. |
+
+An extending vocabulary declares `extends: fb.vocabulary::VOCAB_EXECUTION_STATES_V0` and lists
+only the categories it contributes to. Contributing to a category that is not
+`domain_extensible: true` is a compile-time violation, as is a symbol colliding with
+`VOCAB_LANGUAGE_CONSTRAINTS_V0.reserved_non_authorable`.
+
+The compiled result is one **vocabulary closure** per build — reserved vocabulary plus imported
+governance plus authorized extensions. There is no separate "domain vocabulary" that rules are
+evaluated against; there is one closure, and every symbol rule is evaluated against it.
 
 ---
 
@@ -52,6 +68,7 @@ version: v0
 governed_by: fb.vocabulary::CONSTITUTION_VOCABULARY_V0
 result_status:
   casing: UPPER_SNAKE
+  domain_extensible: true
   entries:
   - SUCCESS
   - FAILURE
@@ -63,6 +80,7 @@ result_status:
   - TIMEOUT
 exit_reasons:
   casing: UPPER_SNAKE
+  domain_extensible: false
   entries:
   - COMPLETED
   - EXITED
