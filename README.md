@@ -11,10 +11,9 @@ It contains **normative artifacts only** — it declares *what the platform is a
 be*. It contains no reference-implementation code. The compiler and runtime that read and
 execute this surface are the Reference Implementation authority (RI-0), hosted separately.
 
-> **Orientation:** the standard, its authorities, and the harvest strategy live in
-> [`pgc-charter`](https://github.com/protocol-governed-computing/pgc-charter) —
-> see `doc/NORMATIVE_PLATFORM_SURFACE.md`, `doc/HARVEST_LEDGER.md`,
-> `doc/ORGANIZATION_TOPOLOGY.md`.
+> **Orientation:** the standard and its authorities live in
+> [`standards`](https://github.com/protocol-governed-computing/standards) —
+> see `doc/spec/` and `doc/NAMESPACE_MODEL.md`.
 
 ---
 
