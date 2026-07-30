@@ -17,6 +17,15 @@ assert_projection:
     scope: ALL_ARTIFACTS
   applies_to_kinds:
   - SNAPSHOT
+  composition_check:
+    rule: exactly_one
+    subject: active security domain contract
+    selector:
+      namespace: fb.security_domain
+      artifact_type: STRUCTURE
+      artifact_code_prefix: STRUCTURE_SECURITY_DOMAIN_
+      where:
+        status: active
 ```
 
 ---

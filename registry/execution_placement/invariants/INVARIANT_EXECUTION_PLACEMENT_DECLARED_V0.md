@@ -17,6 +17,15 @@ assert_projection:
     scope: ALL_ARTIFACTS
   applies_to_kinds:
   - SNAPSHOT
+  composition_check:
+    rule: exactly_one
+    subject: active execution placement contract
+    selector:
+      namespace: fb.execution_placement
+      artifact_type: STRUCTURE
+      artifact_code_prefix: STRUCTURE_EXECUTION_PLACEMENT_
+      where:
+        status: active
 ```
 
 ---

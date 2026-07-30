@@ -17,6 +17,15 @@ assert_projection:
     scope: ALL_ARTIFACTS
   applies_to_kinds:
   - SNAPSHOT
+  composition_check:
+    rule: exactly_one
+    subject: active execution scheduling contract
+    selector:
+      namespace: fb.execution_scheduling
+      artifact_type: STRUCTURE
+      artifact_code_prefix: STRUCTURE_EXECUTION_SCHEDULING_
+      where:
+        status: active
 ```
 
 ---

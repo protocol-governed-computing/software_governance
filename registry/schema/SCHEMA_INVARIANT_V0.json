@@ -215,6 +215,65 @@
             "type": "string",
             "minLength": 1
           }
+        },
+        "composition_check": {
+          "description": "Declarative specification for evaluating this invariant against an assembled composition (Composition Conformance phase). Encoding- and language-neutral: a selector over canonical artifacts plus a cardinality rule. Present iff the invariant is composition-scoped; its presence is what admits the invariant into the phase. Carries no implementation reference.",
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "rule",
+            "selector"
+          ],
+          "properties": {
+            "rule": {
+              "description": "Cardinality rule the selected artifact set must satisfy.",
+              "enum": [
+                "exactly_one",
+                "at_most_one",
+                "none"
+              ]
+            },
+            "selector": {
+              "description": "Predicate selecting canonical artifacts from the assembled snapshot. All declared fields must match (logical AND). An empty selector is invalid.",
+              "type": "object",
+              "additionalProperties": false,
+              "minProperties": 1,
+              "properties": {
+                "namespace": {
+                  "description": "Exact match on the artifact's namespace.",
+                  "type": "string",
+                  "minLength": 1
+                },
+                "artifact_type": {
+                  "description": "Exact match on the artifact's compiled type token.",
+                  "type": "string",
+                  "minLength": 1
+                },
+                "artifact_code_prefix": {
+                  "description": "Artifact code must start with this string.",
+                  "type": "string",
+                  "minLength": 1
+                },
+                "where": {
+                  "description": "Exact-match constraints on the artifact's declaration fields.",
+                  "type": "object",
+                  "minProperties": 1,
+                  "additionalProperties": {
+                    "type": [
+                      "string",
+                      "boolean",
+                      "number"
+                    ]
+                  }
+                }
+              }
+            },
+            "subject": {
+              "description": "Human-readable name of what is being constrained, used in diagnostics.",
+              "type": "string",
+              "minLength": 1
+            }
+          }
         }
       }
     },

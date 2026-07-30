@@ -17,6 +17,15 @@ assert_projection:
     scope: ALL_ARTIFACTS
   applies_to_kinds:
   - SNAPSHOT
+  composition_check:
+    rule: exactly_one
+    subject: active cryptographic trust contract
+    selector:
+      namespace: fb.cryptographic_trust
+      artifact_type: STRUCTURE
+      artifact_code_prefix: STRUCTURE_CRYPTOGRAPHIC_TRUST_
+      where:
+        status: active
 ```
 
 ---
