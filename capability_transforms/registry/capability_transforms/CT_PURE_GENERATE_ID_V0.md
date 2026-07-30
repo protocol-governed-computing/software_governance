@@ -4,7 +4,7 @@
 
 - **Artifact Code:** CT_PURE_GENERATE_ID_V0
 - **Artifact Kind:** atom
-- **Governed By:** fb.topology::CONSTITUTION_CAPABILITY_TRANSFORMS_V0
+- **Governed By:** fb.capability_transforms::CONSTITUTION_CAPABILITY_TRANSFORMS_V0
 - **Version:** v0
 - **Supersedes:** NONE
 - **Dependencies:** Keccak-256 (SHA-3)
@@ -17,7 +17,7 @@
 fqdn: capability_transforms::CT_PURE_GENERATE_ID_V0
 artifact_kind: CAPABILITY_TRANSFORM
 version: V0
-governed_by: fb.topology::CONSTITUTION_CAPABILITY_TRANSFORMS_V0
+governed_by: fb.capability_transforms::CONSTITUTION_CAPABILITY_TRANSFORMS_V0
 core:
   summary: Generate deterministic ID
   description: Generates a deterministic unique identifier based on input data using Keccak-256 hashing.

@@ -4,7 +4,7 @@
 
 - **Artifact Code:** CT_PURE_VALIDATE_RECORD_STRUCTURE_V0
 - **Artifact Kind:** atom
-- **Governed By:** fb.topology::CONSTITUTION_CAPABILITY_TRANSFORMS_V0
+- **Governed By:** fb.capability_transforms::CONSTITUTION_CAPABILITY_TRANSFORMS_V0
 - **Version:** v0
 - **Supersedes:** NONE
 - **Dependencies:** NONE
@@ -123,7 +123,7 @@ Validation results MAY be logged for diagnostics.
 fqdn: capability_transforms::CT_PURE_VALIDATE_RECORD_STRUCTURE_V0
 artifact_kind: CAPABILITY_TRANSFORM
 version: v0
-governed_by: fb.topology::CONSTITUTION_CAPABILITY_TRANSFORMS_V0
+governed_by: fb.capability_transforms::CONSTITUTION_CAPABILITY_TRANSFORMS_V0
 core:
   summary: Validate record structure
   description: Validates an arbitrary record object against a provided schema of field rules (type, pattern,

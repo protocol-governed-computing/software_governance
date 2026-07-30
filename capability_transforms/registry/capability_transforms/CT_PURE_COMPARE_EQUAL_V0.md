@@ -39,7 +39,7 @@ Compare two values for equality.
 fqdn: capability_transforms::CT_PURE_COMPARE_EQUAL_V0
 artifact_kind: CAPABILITY_TRANSFORM
 version: v0
-governed_by: fb.topology::CONSTITUTION_CAPABILITY_TRANSFORMS_V0
+governed_by: fb.capability_transforms::CONSTITUTION_CAPABILITY_TRANSFORMS_V0
 core:
   summary: Compare two values for equality.
   inputs:

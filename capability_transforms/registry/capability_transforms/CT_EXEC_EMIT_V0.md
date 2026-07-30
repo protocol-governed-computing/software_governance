@@ -4,7 +4,7 @@
 
 - **Artifact Code:** CT_EXEC_EMIT_V0
 - **Artifact Kind:** atom
-- **Governed By:** fb.topology::CONSTITUTION_CAPABILITY_TRANSFORMS_V0
+- **Governed By:** fb.capability_transforms::CONSTITUTION_CAPABILITY_TRANSFORMS_V0
 - **Version:** v0
 - **Supersedes:** NONE
 - **Dependencies:** NONE
@@ -17,7 +17,7 @@
 fqdn: capability_transforms::CT_EXEC_EMIT_V0
 artifact_kind: CAPABILITY_TRANSFORM
 version: V0
-governed_by: fb.topology::CONSTITUTION_CAPABILITY_TRANSFORMS_V0
+governed_by: fb.capability_transforms::CONSTITUTION_CAPABILITY_TRANSFORMS_V0
 core:
   summary: Emit terminal value
   description: Mark the explicit termination point of a transform pipeline and return the final result
