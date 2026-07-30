@@ -226,7 +226,7 @@ core:
       - SUCCESS
       - BACKEND_ERROR
 implementation:
-  module: pgs_side_effects.implementation.side_effects.persistent.CS_APPENDONLY_JSONL_V0.runtime
+  module: capability_side_effects.implementation.CS_APPENDONLY_JSONL_V0.runtime
   callable: AppendOnlyJsonlRuntime
 extensions:
   cs_kind: append_only_log

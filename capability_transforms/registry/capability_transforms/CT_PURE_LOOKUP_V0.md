@@ -40,6 +40,6 @@ machine:
   ct_kind: atom
   ct_purity: ct_pure
   implementation:
-    module: pgs_transforms.implementation.transforms.atoms.ct_pure_lookup_v0
+    module: capability_transforms.implementation.ct_pure_lookup_v0
     callable: execute
 ```

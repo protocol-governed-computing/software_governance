@@ -147,6 +147,6 @@ machine:
   ct_purity: ct_pure
   operation: VALIDATE_RECORD_STRUCTURE
   implementation:
-    module: pgs_transforms.implementation.transforms.atoms.ct_pure_validate_record_structure_v0
+    module: capability_transforms.implementation.ct_pure_validate_record_structure_v0
     callable: execute
 ```

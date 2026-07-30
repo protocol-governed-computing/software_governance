@@ -36,6 +36,6 @@ machine:
   ct_purity: ct_pure
   operation: ASSEMBLE_RECORD
   implementation:
-    module: pgs_transforms.implementation.transforms.atoms.ct_pure_assemble_record_v0
+    module: capability_transforms.implementation.ct_pure_assemble_record_v0
     callable: execute
 ```

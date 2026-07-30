@@ -57,6 +57,6 @@ machine:
   ct_purity: ct_pure
   operation: COMPUTE
   implementation:
-    module: pgs_transforms.implementation.transforms.atoms.ct_pure_compare_equal_v0
+    module: capability_transforms.implementation.ct_pure_compare_equal_v0
     callable: execute
 ```

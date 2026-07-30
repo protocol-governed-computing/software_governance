@@ -49,6 +49,6 @@ machine:
   ct_purity: ct_pure
   operation: MAP_RESULT_TO_HTTP
   implementation:
-    module: pgs_transforms.implementation.transforms.atoms.ct_pure_map_result_to_http_v0
+    module: capability_transforms.implementation.ct_pure_map_result_to_http_v0
     callable: execute
 ```

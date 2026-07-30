@@ -47,6 +47,6 @@ machine:
   ct_purity: ct_pure
   operation: PASSTHROUGH
   implementation:
-    module: pgs_transforms.implementation.transforms.atoms.ct_pure_passthrough_v0
+    module: capability_transforms.implementation.ct_pure_passthrough_v0
     callable: execute
 ```

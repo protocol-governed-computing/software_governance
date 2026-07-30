@@ -317,7 +317,7 @@ core:
       - SUCCESS
       - BACKEND_ERROR
 implementation:
-  module: pgs_side_effects.implementation.side_effects.persistent.CS_REGISTRY_V0.runtime
+  module: capability_side_effects.implementation.CS_REGISTRY_V0.runtime
   callable: RegistryRuntime
 extensions:
   cs_kind: registry

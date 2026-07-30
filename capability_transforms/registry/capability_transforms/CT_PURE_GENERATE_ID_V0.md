@@ -40,6 +40,6 @@ machine:
   ct_purity: ct_pure
   operation: GENERATE_ID
   implementation:
-    module: pgs_transforms.implementation.transforms.atoms.ct_pure_generate_id_v0
+    module: capability_transforms.implementation.ct_pure_generate_id_v0
     callable: execute
 ```

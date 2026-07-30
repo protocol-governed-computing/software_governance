@@ -37,6 +37,6 @@ machine:
   ct_purity: ct_exec
   operation: EMIT
   implementation:
-    module: pgs_transforms.implementation.transforms.atoms.ct_exec_emit_v0
+    module: capability_transforms.implementation.ct_exec_emit_v0
     callable: execute
 ```
