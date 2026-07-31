@@ -236,7 +236,7 @@ Provides stable symbolic addressing layer above concrete storage
 fqdn: capability_side_effects::CS_REGISTRY_V0
 artifact_kind: CAPABILITY_SIDE_EFFECT
 version: v0
-governed_by: fb.topology::CONSTITUTION_CAPABILITY_SIDE_EFFECTS_V0
+governed_by: fb.capability_side_effects::CONSTITUTION_CAPABILITY_SIDE_EFFECTS_V0
 core:
   summary: Registry for stable indirection by binding symbolic keys to opaque addresses
   category: storage
@@ -317,7 +317,7 @@ core:
       - SUCCESS
       - BACKEND_ERROR
 implementation:
-  module: pgs_side_effects.implementation.side_effects.persistent.CS_REGISTRY_V0.runtime
+  module: capability_side_effects.implementation.CS_REGISTRY_V0.runtime
   callable: RegistryRuntime
 extensions:
   cs_kind: registry

@@ -4,7 +4,7 @@
 
 - **Artifact Code:** CT_PURE_FILTER_RECORDS_V0
 - **Artifact Kind:** atom
-- **Governed By:** fb.topology::CONSTITUTION_CAPABILITY_TRANSFORMS_V0
+- **Governed By:** fb.capability_transforms::CONSTITUTION_CAPABILITY_TRANSFORMS_V0
 - **Version:** v0
 - **Supersedes:** NONE
 - **Dependencies:** NONE
@@ -119,7 +119,7 @@ This atom does NOT emit traces.
 fqdn: capability_transforms::CT_PURE_FILTER_RECORDS_V0
 artifact_kind: CAPABILITY_TRANSFORM
 version: v0
-governed_by: fb.topology::CONSTITUTION_CAPABILITY_TRANSFORMS_V0
+governed_by: fb.capability_transforms::CONSTITUTION_CAPABILITY_TRANSFORMS_V0
 core:
   summary: Filter an array of records by declared field criteria
   description: Accepts a source array and a filter criteria object. Returns only records satisfying all
@@ -142,6 +142,6 @@ machine:
   ct_purity: ct_pure
   operation: FILTER_RECORDS
   implementation:
-    module: pgs_transforms.implementation.transforms.atoms.ct_pure_filter_records_v0
+    module: capability_transforms.implementation.ct_pure_filter_records_v0
     callable: execute
 ```

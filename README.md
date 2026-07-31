@@ -11,10 +11,9 @@ It contains **normative artifacts only** — it declares *what the platform is a
 be*. It contains no reference-implementation code. The compiler and runtime that read and
 execute this surface are the Reference Implementation authority (RI-0), hosted separately.
 
-> **Orientation:** the standard, its authorities, and the harvest strategy live in
-> [`pgc-charter`](https://github.com/protocol-governed-computing/pgc-charter) —
-> see `doc/NORMATIVE_PLATFORM_SURFACE.md`, `doc/HARVEST_LEDGER.md`,
-> `doc/ORGANIZATION_TOPOLOGY.md`.
+> **Orientation:** the standard and its authorities live in
+> [`standards`](https://github.com/protocol-governed-computing/standards) —
+> see `doc/spec/` and `doc/NAMESPACE_MODEL.md`.
 
 ---
 
@@ -30,23 +29,18 @@ execute this surface are the Reference Implementation authority (RI-0), hosted s
 ## What this repository is **not**
 
 - The **normative surface** (`registry/`, `capability_transforms/`, `capability_side_effects/`)
-  carries no code — no compiler, runtime, handlers, or executors. (The runnable **reference
-  material** under `reference_workloads/` and `reference_surface/` is a separate, clearly-scoped
-  demonstration — see below.)
+  carries no code — no compiler, runtime, handlers, or executors.
+- Not a platform. A **Profiled Normative Platform (PNP)** is the *composition* of this governance
+  surface with selected workloads (`conformance_workloads`) and optionally a business domain
+  (`business_domains`), per a conformance profile.
 - Not a place for domain artifacts — `blockchain`, `ai_governance`, and any
   `fb.blockchain` / `fb.ai_governance` boundary belong to `pgs::`, not here.
 
-## Reference material (runnable)
+## Runnable demonstration
 
-Separate from the normative surface, the repo carries a small **reference-implementation
-demonstration**, versioned independently of `pgc::`:
-
-| Path | Contents |
-|------|----------|
-| `reference_workloads/collatz/` | The Collatz reference workload — governed artifacts, its `implementation/` (CT/CS), boundary declarations (`transport/` TI/TE), compiled snapshot |
-| `reference_surface/` | **Platform Reference Surface v1.0.0** — a runnable web client exercising the execution path through the governed transport boundary (see `reference_surface/README.md`) |
-
-These demonstrate the platform; they are not part of the normative `pgc::` closure.
+Conformance workloads live in the sibling `conformance_workloads` repo — the Collatz workload
+(governed artifacts, `implementation/` CT/CS, `transport/` TI/TE boundary declarations) and its web
+client. They exercise this surface; they are not part of the normative `pgc::` closure.
 
 ## Immutability
 

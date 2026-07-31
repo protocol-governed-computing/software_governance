@@ -39,7 +39,7 @@ Compare two values for equality.
 fqdn: capability_transforms::CT_PURE_COMPARE_EQUAL_V0
 artifact_kind: CAPABILITY_TRANSFORM
 version: v0
-governed_by: fb.topology::CONSTITUTION_CAPABILITY_TRANSFORMS_V0
+governed_by: fb.capability_transforms::CONSTITUTION_CAPABILITY_TRANSFORMS_V0
 core:
   summary: Compare two values for equality.
   inputs:
@@ -57,6 +57,6 @@ machine:
   ct_purity: ct_pure
   operation: COMPUTE
   implementation:
-    module: pgs_transforms.implementation.transforms.atoms.ct_pure_compare_equal_v0
+    module: capability_transforms.implementation.ct_pure_compare_equal_v0
     callable: execute
 ```

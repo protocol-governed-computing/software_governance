@@ -4,7 +4,7 @@
 
 - **Artifact Code:** CT_PURE_ASSEMBLE_RECORD_V0
 - **Artifact Kind:** atom
-- **Governed By:** fb.topology::CONSTITUTION_CAPABILITY_TRANSFORMS_V0
+- **Governed By:** fb.capability_transforms::CONSTITUTION_CAPABILITY_TRANSFORMS_V0
 - **Version:** v0
 - **Supersedes:** NONE
 - **Dependencies:** NONE
@@ -17,7 +17,7 @@
 fqdn: capability_transforms::CT_PURE_ASSEMBLE_RECORD_V0
 artifact_kind: CAPABILITY_TRANSFORM
 version: V0
-governed_by: fb.topology::CONSTITUTION_CAPABILITY_TRANSFORMS_V0
+governed_by: fb.capability_transforms::CONSTITUTION_CAPABILITY_TRANSFORMS_V0
 core:
   summary: Assemble record object
   description: Combines multiple input values into a single structured record object.
@@ -36,6 +36,6 @@ machine:
   ct_purity: ct_pure
   operation: ASSEMBLE_RECORD
   implementation:
-    module: pgs_transforms.implementation.transforms.atoms.ct_pure_assemble_record_v0
+    module: capability_transforms.implementation.ct_pure_assemble_record_v0
     callable: execute
 ```
