@@ -21,6 +21,8 @@ rules:
   enforced_by: PROCESS_ENFORCED
 - applies_to: TE
   enforced_by: PROCESS_ENFORCED
+- applies_to: compiled_snapshot
+  enforced_by: fb.transport::INVARIANT_INSPECTION_BOUNDARY_COMPOSED_V0
 ```
 
 ---

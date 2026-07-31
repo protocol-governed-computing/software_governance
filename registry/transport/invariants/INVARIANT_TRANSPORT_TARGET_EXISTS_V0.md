@@ -22,18 +22,27 @@ assert_projection:
 
 ## Purpose
 
-Every transport ingress must have a verified, static workflow target. A TI_ artifact
-with no resolvable workflow binding is a dead letter — a boundary with no destination.
-The compiler enforces this at build time so runtime never encounters an unroutable payload.
+Every transport ingress must have a verified, static invocation target. A TI_ artifact with
+no declared target is a dead letter — a boundary with no destination. The compiler enforces
+this at build time so the boundary never admits an unroutable request.
+
+What a "target" is depends on the handler KIND, and the check is as strong as each kind
+admits. `WF_INVOCATION` names `handler.workflow`, an artifact, so it is checked for
+resolvability against the compiled set. `SNAPSHOT_READ` / `SNAPSHOT_QUERY` name
+`handler.operation`, an Operation Identity belonging to the inspector's own internal registry
+— which is in no compiled artifact set, and which the compiler cannot consult without
+importing an implementation. For those kinds the enforced check is that the target is
+**declared and static**; nothing stronger is claimed. The kind set is closed: an unrecognised
+handler kind is a violation.
 
 ---
 
 ## Scope
 
-**Applies to:** All TI_ artifacts
+**Applies to:** All TI_ artifacts, of every handler kind.
 
 **Does NOT apply to:**
-- TE_ artifacts (egress has no workflow binding)
+- TE_ artifacts (egress declares no invocation target)
 - WF_ artifacts (workflows declare their own steps, not transport bindings)
 
 ---
@@ -42,19 +51,25 @@ The compiler enforces this at build time so runtime never encounters an unroutab
 
 ```yaml
 core:
-  description: 'Every TI_ artifact MUST declare an explicit workflow binding, and the declared workflow
-    MUST exist in the compiled artifact set.
+  description: 'Every TI_ artifact MUST declare an explicit, static invocation target for its
+    declared handler kind, and where that target is an artifact it MUST exist in the compiled
+    artifact set.
 
-    Transport ingress is the system boundary. It must be fully closed at compile time: - The target workflow
-    is declared statically (no inference, no fallback resolution) - The declared workflow FQDN resolves
-    to an existing WF artifact - No TI_ artifact may be admitted without a resolvable target
+    Transport ingress is the system boundary. It must be fully closed at compile time: - The
+    handler kind is one of the governed kinds (WF_INVOCATION, SNAPSHOT_READ, SNAPSHOT_QUERY) -
+    The kind''s target field is declared (handler.workflow for WF_INVOCATION, handler.operation
+    for the inspection kinds) - The target is static; no inference, no fallback, no request-time
+    resolution - For WF_INVOCATION the declared workflow resolves to an existing WF artifact
 
-    This invariant ensures that no transport ingress point leads to a dead end at runtime. Every admitted
-    payload has a guaranteed, verified execution target.
+    This invariant ensures no transport ingress point leads to a dead end. Every admitted request
+    has a declared, verified destination.
 
     '
   anti_patterns:
-  - missing_workflow_binding: 'TI artifact omits core.workflow field
+  - missing_target_binding: 'TI artifact omits the target field its handler kind declares
+
+      '
+  - ungoverned_handler_kind: 'TI declares a handler kind outside the governed set
 
       '
   - unresolvable_workflow_ref: 'TI core.workflow declares a WF FQDN that does not exist in the snapshot
