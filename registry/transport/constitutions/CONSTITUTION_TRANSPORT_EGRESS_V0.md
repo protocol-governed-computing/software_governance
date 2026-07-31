@@ -49,9 +49,17 @@ independently of any transport boundary; the `TE` projects it, it does not own i
   (`CC`/`CT`/`CS`), or side effects; it MUST NOT alter execution state. Enforced by
   `INVARIANT_TRANSPORT_NO_WORKFLOW_SEMANTICS_V0`.
 - **Result Class protocol independence.** A Result Class
-  (`SUCCESS | VIOLATION | UNAUTHORIZED | EXECUTION_FAILURE | OPERATION_NOT_FOUND`) MUST carry
-  no protocol semantics (no HTTP status, no RPC error code). Enforced by
+  (`SUCCESS | VIOLATION | UNAUTHORIZED | NOT_FOUND | OPERATION_NOT_FOUND | EXECUTION_FAILURE`)
+  MUST carry no protocol semantics (no HTTP status, no RPC error code). Enforced by
   `INVARIANT_TRANSPORT_RESULT_CLASS_PROTOCOL_INDEPENDENCE_V0`.
+
+  `NOT_FOUND` and `OPERATION_NOT_FOUND` are distinct and MUST NOT be conflated.
+  `OPERATION_NOT_FOUND` means the submitted Operation Identity resolves to no registered
+  TI/TE pair — the boundary could not admit the request at all. `NOT_FOUND` means the request
+  WAS admitted and answered, and the **subject** it named does not exist. A caller must be
+  able to tell "I asked for something that isn't there" from "I asked in a way this boundary
+  does not recognise", because the first is a normal answer and the second is a caller defect.
+  Neither is a `VIOLATION`: nothing was violated.
 - **Response projection is external.** Mapping a Result Class to an external representation
   (HTTP status, RPC error, CLI exit code) MUST occur in the adapter, never in a `TE`.
   Enforced by `INVARIANT_TRANSPORT_RESPONSE_PROJECTION_EXTERNAL_V0`.

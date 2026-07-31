@@ -31,8 +31,13 @@ error code). Protocol meaning enters only in the adapter's response projection.
 
 **Applies to:** all `TE_` artifacts.
 
-Governed classes: `SUCCESS`, `VIOLATION`, `UNAUTHORIZED`, `EXECUTION_FAILURE`,
-`OPERATION_NOT_FOUND`.
+Governed classes: `SUCCESS`, `VIOLATION`, `UNAUTHORIZED`, `NOT_FOUND`,
+`OPERATION_NOT_FOUND`, `EXECUTION_FAILURE`.
+
+`NOT_FOUND` names an **admitted request whose subject does not exist** (an artifact, store, or
+other named thing the snapshot does not carry). `OPERATION_NOT_FOUND` names an Operation Identity
+that resolves to no registered TI/TE pair. The two are not interchangeable — see
+`CONSTITUTION_TRANSPORT_EGRESS_V0`.
 
 ---
 

@@ -47,9 +47,14 @@ core:
   description: 'Transport artifacts MUST declare explicit normalization schemas. No passthrough of raw
     payloads or raw execution results is permitted.
 
-    (1) TI_ admission normalization: Every TI_ artifact must declare an explicit admission_schema that
+    (1) TI_ admission normalization: Every TI_ artifact must declare an explicit input_contract that
     specifies which fields are accepted. Raw payload passthrough (forwarding the entire incoming payload
     without schema enforcement) is a boundary violation.
+
+    PRESENCE of the contract is the declaration. An EMPTY contract is legal and meaningful: it declares
+    that the operation admits no input whatsoever, which is the strongest normalization available, not
+    the absence of one. A parameterless operation must never be made to invent a field in order to be
+    governed.
 
     (2) TE_ projection normalization: Every TE_ artifact must declare an explicit projection schema (response_schema,
     projection_schema, or projection) that specifies which execution result fields are emitted. Raw execution
