@@ -54,6 +54,7 @@ artifact_kind: STRUCTURE
 version: V1
 governed_by: fb.structure::CONSTITUTION_STRUCTURE_V0
 structure_scope: platform
+reuse_visibility: substrate
 core:
   summary: Build-time STRUCTURE configuration (PGC normative-platform scope)
   description: 'Defines artifact discovery and output paths for PGC normative-platform compilation. Domain

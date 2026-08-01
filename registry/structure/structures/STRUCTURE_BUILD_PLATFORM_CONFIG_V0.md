@@ -43,6 +43,7 @@ artifact_kind: STRUCTURE
 version: V0
 governed_by: fb.structure::CONSTITUTION_STRUCTURE_V0
 structure_scope: platform
+reuse_visibility: substrate
 core:
   summary: Build-time STRUCTURE configuration (platform scope)
   description: 'Defines artifact discovery and output paths for platform compilation.
