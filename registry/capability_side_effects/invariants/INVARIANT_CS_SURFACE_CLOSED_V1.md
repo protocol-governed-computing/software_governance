@@ -21,6 +21,7 @@ assert_projection:
   - capability_side_effects::CS_MUTABLE_JSON_V0
   - capability_side_effects::CS_REGISTRY_V0
   - capability_side_effects::CS_SNAPSHOT_QUERY_V0
+  - capability_side_effects::CS_TEXT_ARTIFACT_V0
   applies_to_kinds:
   - CS
 ```
