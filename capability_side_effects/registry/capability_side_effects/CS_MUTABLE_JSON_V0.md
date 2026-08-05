@@ -154,7 +154,20 @@ List all keys in storage.
 - **Idempotent:** true
 - **Result Status Values:** SUCCESS, BACKEND_ERROR
 
-### 9.6 DELETE_MANY
+### 9.6 SELECT
+Read every record in storage, so a caller can select among them by content.
+
+- **Input:** (none)
+- **Output:** `result_status`, `records` (array of objects), `keys` (array of strings)
+- **Idempotent:** true
+- **Result Status Values:** SUCCESS, BACKEND_ERROR
+
+`LIST` publishes keys alone. A caller that must find records by what they contain — a catalog search
+by subject, say — cannot do so from keys, and the store has no operation that filters by content, so
+the selection belongs to the caller and the records must be published for it. An empty store is
+SUCCESS with no records; `NOT_FOUND` stays reserved for a keyed read of one absent key.
+
+### 9.7 DELETE_MANY
 Delete a list of keys in a single operation. Idempotent per key — NOT_FOUND is treated as already deleted.
 
 - **Input:** `keys` (array of string, required)
@@ -229,6 +242,7 @@ core:
     - DELETE_MANY
     - EXISTS
     - LIST
+    - SELECT
     - UPDATE_WHERE
   field_types:
     key: string
@@ -306,6 +320,21 @@ core:
       result_status_values:
       - SUCCESS
       - BACKEND_ERROR
+    SELECT:
+      summary: Read every record in storage, for a caller that selects among them by content
+      handler: list
+      input: []
+      output:
+      - result_status
+      - records
+      - keys
+      idempotent: true
+      result_status_values:
+      - SUCCESS
+      - BACKEND_ERROR
+      notes: LIST publishes keys alone, which a caller cannot select by content; SELECT publishes
+        the records themselves. An empty store is SUCCESS with no records — NOT_FOUND is reserved
+        for a keyed READ of one absent key.
     DELETE_MANY:
       summary: Delete a list of keys; idempotent per key (NOT_FOUND treated as already deleted)
       handler: delete_many
