@@ -87,12 +87,25 @@ class MutableJsonRuntime:
         """
 
         try:
-            handler = getattr(self._engine, op.lower(), None)
+            # The operation declares which engine method serves it. Deriving the method from the
+            # op name instead is a guess, and it was wrong twice: SELECT had no `select` to find
+            # and failed BACKEND_ERROR, while LIST found `list` — the records-returning read — when
+            # its declaration publishes keys only and names `list_keys`. An operation's handler is
+            # part of its declaration; reading it is the only binding that cannot drift from it.
+            declared = self._ops_spec.get(op) or {}
+            handler_name = declared.get("handler")
+            if handler_name is None:
+                return self._error(
+                    "BACKEND_ERROR",
+                    f"{op} declares no handler — an operation must name the method that serves it",
+                )
+
+            handler = getattr(self._engine, handler_name, None)
             if handler is None:
                 # Machine bug — protocol_validator allowed an op with no backend support
                 return self._error(
                     "BACKEND_ERROR",
-                    f"No backend handler for op: {op}",
+                    f"No backend handler {handler_name!r} for op: {op}",
                 )
 
             return handler(payload)
