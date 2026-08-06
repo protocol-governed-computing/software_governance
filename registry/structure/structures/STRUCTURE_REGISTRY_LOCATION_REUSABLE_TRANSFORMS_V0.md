@@ -28,6 +28,11 @@ fqdn: fb.structure::STRUCTURE_REGISTRY_LOCATION_REUSABLE_TRANSFORMS_V0
 artifact_kind: STRUCTURE
 version: V0
 governed_by: fb.structure::CONSTITUTION_STRUCTURE_V0
+# The shared mechanism every domain composes with. Declared here because a reusable
+# layer has no build manifest of its own, and substrate that declares nothing would
+# have to have its eligibility inferred.
+structure_scope: capability_transforms
+reuse_visibility: substrate
 core:
   layer_code: REUSABLE_TRANSFORMS
   registry_module: pgs_transforms.registry

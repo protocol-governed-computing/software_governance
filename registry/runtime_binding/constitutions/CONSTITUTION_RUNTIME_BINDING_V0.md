@@ -23,6 +23,8 @@ rules:
   enforced_by: fb.artifact::INVARIANT_FQDN_ONLY_REFERENCES_V0
 - applies_to: RB
   enforced_by: fb.runtime_binding::INVARIANT_RB_BINDING_POLICY_CONFORMANCE_V0
+- applies_to: RB
+  enforced_by: fb.runtime_binding::INVARIANT_RB_PARAMETERS_DECLARED_V0
 ```
 
 ---

@@ -3,53 +3,142 @@
   "version": "v0",
   "category": "storage",
   "description": "Mutable key-addressable JSON capability with last-write-wins semantics.",
-
   "operations": {
-    "GET": {
+    "READ": {
       "summary": "Retrieve value for a given key",
-      "input": ["key"],
-      "output": ["result_status", "value"],
       "handler": "read",
+      "input": [
+        "key"
+      ],
+      "output": [
+        "result_status",
+        "value"
+      ],
       "idempotent": true,
-      "result_status_values": ["SUCCESS", "NOT_FOUND", "VIOLATION", "BACKEND_ERROR"]
+      "result_status_values": [
+        "SUCCESS",
+        "NOT_FOUND",
+        "VIOLATION",
+        "BACKEND_ERROR"
+      ]
     },
-
-    "PUT": {
+    "WRITE": {
       "summary": "Store or update a value at the given key",
-      "input": ["key", "value"],
-      "output": ["result_status"],
       "handler": "write",
+      "input": [
+        "key",
+        "value"
+      ],
+      "output": [
+        "result_status"
+      ],
       "idempotent": true,
-      "result_status_values": ["SUCCESS", "VIOLATION", "BACKEND_ERROR"],
-      "notes": "Last-write-wins - overwrites existing value"
+      "result_status_values": [
+        "SUCCESS",
+        "VIOLATION",
+        "BACKEND_ERROR"
+      ]
     },
-
     "DELETE": {
       "summary": "Remove the given key and its value",
-      "input": ["key"],
-      "output": ["result_status"],
       "handler": "delete",
+      "input": [
+        "key"
+      ],
+      "output": [
+        "result_status"
+      ],
       "idempotent": true,
-      "result_status_values": ["SUCCESS", "NOT_FOUND", "VIOLATION", "BACKEND_ERROR"]
+      "result_status_values": [
+        "SUCCESS",
+        "NOT_FOUND",
+        "VIOLATION",
+        "BACKEND_ERROR"
+      ]
     },
-
     "EXISTS": {
       "summary": "Check if a key exists in storage",
-      "input": ["key"],
-      "output": ["result_status", "exists"],
       "handler": "exists",
+      "input": [
+        "key"
+      ],
+      "output": [
+        "result_status",
+        "exists"
+      ],
       "idempotent": true,
-      "result_status_values": ["SUCCESS", "VIOLATION", "BACKEND_ERROR"]
+      "result_status_values": [
+        "SUCCESS",
+        "VIOLATION",
+        "BACKEND_ERROR"
+      ]
     },
-
     "LIST": {
       "summary": "List all keys in storage",
-      "input": [],
-      "output": ["result_status", "keys"],
       "handler": "list_keys",
+      "input": [],
+      "output": [
+        "result_status",
+        "keys"
+      ],
       "idempotent": true,
-      "result_status_values": ["SUCCESS", "BACKEND_ERROR"],
-      "notes": "Returns array of key strings"
+      "result_status_values": [
+        "SUCCESS",
+        "BACKEND_ERROR"
+      ]
+    },
+    "SELECT": {
+      "summary": "Read every record in storage, for a caller that selects among them by content",
+      "handler": "list",
+      "input": [],
+      "output": [
+        "result_status",
+        "records",
+        "keys"
+      ],
+      "idempotent": true,
+      "result_status_values": [
+        "SUCCESS",
+        "BACKEND_ERROR"
+      ],
+      "notes": "LIST publishes keys alone, which a caller cannot select by content; SELECT publishes the records themselves. An empty store is SUCCESS with no records \u2014 NOT_FOUND is reserved for a keyed READ of one absent key."
+    },
+    "DELETE_MANY": {
+      "summary": "Delete a list of keys; idempotent per key (NOT_FOUND treated as already deleted)",
+      "handler": "delete_many",
+      "input": [
+        "keys"
+      ],
+      "output": [
+        "result_status",
+        "drained_count"
+      ],
+      "idempotent": true,
+      "result_status_values": [
+        "SUCCESS",
+        "VIOLATION",
+        "BACKEND_ERROR"
+      ]
+    },
+    "UPDATE_WHERE": {
+      "summary": "Atomically update all records matching ALL filter conditions; serialized per file",
+      "handler": "update_where",
+      "input": [
+        "filter",
+        "updates"
+      ],
+      "output": [
+        "result_status",
+        "matched_keys",
+        "updated_count"
+      ],
+      "idempotent": false,
+      "result_status_values": [
+        "SUCCESS",
+        "VIOLATION",
+        "BACKEND_ERROR"
+      ],
+      "notes": "filter={field:value,...} AND semantics; updates={field:value,...} applied to all matched records; null value removes field; VIOLATION when no records match; load+filter+update+save serialized under per-file threading lock"
     }
   }
 }

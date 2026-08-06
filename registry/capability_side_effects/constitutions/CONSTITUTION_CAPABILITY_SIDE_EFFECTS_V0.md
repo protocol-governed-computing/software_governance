@@ -19,6 +19,8 @@ rules:
   enforced_by: fb.capability_side_effects::INVARIANT_CS_TRACEABLE_V0
 - applies_to: CS
   enforced_by: fb.capability_side_effects::INVARIANT_CS_ISOLATED_EXECUTION_V0
+- applies_to: CS
+  enforced_by: fb.capability_side_effects::INVARIANT_INSPECTION_CAPABILITY_READ_ONLY_V0
 ```
 
 ---

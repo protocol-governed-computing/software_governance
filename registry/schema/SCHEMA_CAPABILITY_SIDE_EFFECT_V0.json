@@ -68,7 +68,8 @@
             "storage",
             "external",
             "ephemeral",
-            "execution_gateway"
+            "execution_gateway",
+            "inspection"
           ],
           "description": "Side effect category"
         },
