@@ -11,9 +11,8 @@ It contains **normative artifacts only** — it declares *what the platform is a
 be*. It contains no reference-implementation code. The compiler and runtime that read and
 execute this surface are the Reference Implementation authority (RI-0), hosted separately.
 
-> **Orientation:** the standard and its authorities live in
-> [`standards`](https://github.com/protocol-governed-computing/standards) —
-> see `doc/spec/` and `doc/NAMESPACE_MODEL.md`.
+> **Orientation:** for what PGC is, how the repositories compose, and the papers that develop
+> the architecture, see <https://github.com/protocol-governed-computing>.
 
 ---
 

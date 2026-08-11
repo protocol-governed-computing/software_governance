@@ -197,6 +197,49 @@ class MutableJsonEngine:
             backend.save(data)
         return {"result_status": "SUCCESS", "drained_count": drained_count}
 
+    def update(self, payload: Dict[str, Any]) -> Dict[str, Any]:
+        """Set named fields on the record at one key, leaving its other fields as they are.
+
+        Under a per-file lock: load → merge → save. The point counterpart of `update_where`.
+        A caller changing part of a record it did not create needs neither `write`, which replaces
+        the whole value and so destroys every field the caller did not supply, nor a filter, which
+        addresses a set where the caller means one record.
+
+        Absent key → VIOLATION, matching `update_where` on an empty match. Updating what is not
+        there would otherwise create it, and a caller that meant to create a record has `write`.
+
+        Args:
+            key:     the record to change
+            updates: {field: value, ...} — fields to set; None value removes the field
+
+        Returns:
+            SUCCESS   when the key was held and its named fields were set
+            VIOLATION when no record is held at that key
+        """
+        storage_path = self._resolve_storage_path(payload)
+        file_lock = _get_file_lock(str(storage_path))
+        key = self._require_key(payload)
+        updates: Dict[str, Any] = payload.get("updates") or {}
+
+        with file_lock:
+            backend = JsonFileBackend(str(storage_path))
+            data = backend.load()
+
+            record = data.get(key)
+            if not isinstance(record, dict):
+                return {"result_status": "VIOLATION"}
+
+            for field, value in updates.items():
+                if value is None:
+                    record.pop(field, None)
+                else:
+                    record[field] = value
+
+            data[key] = record
+            backend.save(data)
+
+        return {"result_status": "SUCCESS"}
+
     def update_where(self, payload: Dict[str, Any]) -> Dict[str, Any]:
         """
         Atomically update all records matching ALL filter conditions.

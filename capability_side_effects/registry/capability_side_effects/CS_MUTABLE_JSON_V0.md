@@ -238,6 +238,7 @@ core:
     operations:
     - READ
     - WRITE
+    - UPDATE
     - DELETE
     - DELETE_MANY
     - EXISTS
@@ -276,6 +277,22 @@ core:
       input:
       - key
       - value
+      output:
+      - result_status
+      idempotent: true
+      result_status_values:
+      - SUCCESS
+      - VIOLATION
+      - BACKEND_ERROR
+    UPDATE:
+      summary: Set named fields on the record at the given key, leaving its other fields as they
+        are; serialized per file. The point counterpart of UPDATE_WHERE — WRITE replaces a whole
+        value, and a caller changing part of a record it did not create needs neither a replacement
+        nor a filter.
+      handler: update
+      input:
+      - key
+      - updates
       output:
       - result_status
       idempotent: true
