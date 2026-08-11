@@ -54,8 +54,8 @@ value = config["protocol_required_field"]
 **Violation Pattern**:
 ```python
 # ❌ WRONG
-output_path = "/Users/bp/pgs/pgs_compiler/compiled/artifacts"
-output_path = Path("pgs_domains/domains/blockchain/outputs")
+output_path = "/abs/path/to/compiled/artifacts"
+output_path = Path("domains/blockchain/outputs")
 ```
 
 **Correct Pattern**:
