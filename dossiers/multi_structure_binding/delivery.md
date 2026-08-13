@@ -3,7 +3,7 @@
 **Authorized by:** Gate 1, closed at P6 against composition `dd8da7a04010…`
 **Delivered:** the governance surface, and the mechanism — an act may declare a reach, the
 composition resolves it, and a write through it is refused
-**Not adopted:** no act declares one yet. The first adoption is `cr_05_wallet_reach` in `blockchain`
+**First adoption:** `blockchain::WF_CREATE_WALLET_V0`, which declares the binding it consults
 
 ---
 
@@ -111,14 +111,14 @@ CREATE WALLET for an accepted actor                    VIOLATION
 
 **The hand edit was then reverted.** The act's declaration is a change to a domain artifact, and a
 domain change goes through the lifecycle this mechanism exists to enable — it is raised as
-`blockchain/cr_dossiers/cr_05_wallet_reach`. The run above is evidence that the platform capability
+`blockchain/cr_dossiers/cr_04_wallet`. The run above is evidence that the platform capability
 works, not a delivery of the domain's adoption of it. With the edit reverted the act stops again, at
 the same step, with the same message, which is correct until that change request lands.
 
 ## What remains
 
 **The design language.** `transformation`'s P7 register states where an act's records live and
-cannot yet state a reach, so `cr_05` will declare its reach in a document the phase rules cannot
+cannot yet state a reach, so the wallet will declare its reach in a document the phase rules cannot
 check and construction cannot render. That is the last piece, and it is the one the wallet's change
 request will run into.
 
