@@ -47,19 +47,28 @@ Parameter rule validation is a generic governance primitive:
 
 ## 5. Outputs
 
+Produced only when every rule passes. A failed rule is refused rather than reported, so there is no
+call in which `valid` is false or `failed_rule` is populated.
+
 | Field | Type | Description |
 |-------|------|-------------|
-| valid | boolean | Whether all rules passed |
-| failed_rule | object | First failed rule object (null if all passed) |
+| valid | boolean | Always true — the transform returns only when all rules passed |
+| failed_rule | object | Always null, for the same reason |
 
 ---
 
 ## 6. Result Status
 
+This transform **refuses by raising** (`refusal: raises`): the failed rule is carried in the raised
+error, not in a returned value. That is what lets a step route on the judgement — a `CT` step yields
+`SUCCESS` when its transform returns and `VIOLATION` when it raises, so a transform that returned
+`valid=false` would succeed on a rule that failed, and every branch declared for VIOLATION would be
+unreachable.
+
 | Status | Condition |
 |--------|-----------|
-| SUCCESS | All rules pass (valid=true) |
-| VIOLATION | First failed rule (valid=false, failed_rule populated) |
+| SUCCESS | All rules pass; `valid=true`, `failed_rule=null` |
+| VIOLATION | The first rule that fails, named in the raised error. No outputs are returned |
 
 ---
 
@@ -88,12 +97,13 @@ core:
     valid:
       type: boolean
       required: true
-      description: True if all rules passed
+      description: Always true — a failed rule is raised, so the transform returns only when all
+        rules passed
     failed_rule:
       type: object
       required: false
       nullable: true
-      description: The first rule that failed validation (null if all pass)
+      description: Always null — the rule that failed is carried in the raised error, never returned
 machine:
   ct_kind: atom
   ct_purity: ct_pure
