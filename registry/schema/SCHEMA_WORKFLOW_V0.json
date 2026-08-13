@@ -28,7 +28,16 @@
     },
     "runtime_binding": {
       "type": "string",
-      "description": "FQDN of the runtime binding artifact (RB_) that resolves CS implementations for this workflow"
+      "description": "FQDN of the runtime binding artifact (RB_) this act owns \u2014 the one that resolves CS implementations for its own records. Exactly one: an act writes what it owns, and ownership that is shared is not ownership."
+    },
+    "consults": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "uniqueItems": true,
+      "description": "FQDNs of runtime bindings this act reads and never writes \u2014 the records another subdomain of this domain owns and this act must consult. Each stays owned and maintained by the subdomain that wrote it; naming one here is a declared reach, not a copy. Absent where an act reads only what it owns, which is most acts."
     },
     "structure": {
       "type": "string",
