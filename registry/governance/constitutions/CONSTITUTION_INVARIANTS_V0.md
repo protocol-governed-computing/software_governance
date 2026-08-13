@@ -19,6 +19,8 @@ rules:
   enforced_by: fb.artifact::INVARIANT_SCHEMA_CONFORMANCE_V0
 - applies_to: ALL_ARTIFACTS
   enforced_by: fb.artifact::INVARIANT_IDENTITY_FQDN_CONSISTENCY_V0
+- applies_to: ALL_ARTIFACTS
+  enforced_by: fb.artifact::INVARIANT_SUPERSEDED_NOT_REFERENCED_V0
 - applies_to: INVARIANT
   enforced_by: fb.artifact::INVARIANT_NO_SHORT_NAME_REFERENCE_V0
 - applies_to: INVARIANT
