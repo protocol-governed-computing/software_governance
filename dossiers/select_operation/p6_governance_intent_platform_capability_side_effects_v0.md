@@ -93,9 +93,26 @@ be claiming what it does not own.
 
 ---
 
+## Gate 1 — Design Approval
+
+**Gate 1 closes at this stage for this dossier.** The governance surface is authored, not
+constructed, so this change is terminal at P6, and the gate that reviews a dossier as a body belongs
+at the end of the dossier. Stages 0 through 6 are presented for review as a body; approval
+authorizes the authoring of the record of why the capability offers the operation, and of the boundary the change crossed.
+
+Gate 2 has no subject here: no mandate is drafted, so there is none to lock.
+
+**Status: CLOSED.** Approved by the business author, as a body, against the composition
+`dd8da7a04010…` — the same composition every grounded register of this dossier was re-read against
+and attested to in `baseline.json`. What the approval authorizes is the authoring described above,
+and nothing else: a clause that appears in the governance surface beyond what this dossier argues for
+is an ungoverned change, and the dossier is what that statement points at.
+
+---
+
 ## Pipeline Provenance
 
 | Stage | Output | Status |
 |-------|--------|--------|
 | Stage 5 — Business Intent | Purpose, scope, invariants, actions | COMPLETE |
-| Stage 6 — Governance Intent | This document | COMPLETE |
+| Stage 6 — Governance Intent | This document | COMPLETE — APPROVED |

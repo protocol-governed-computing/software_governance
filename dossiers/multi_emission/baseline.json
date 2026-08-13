@@ -9,5 +9,24 @@
     "platform",
     "transformation",
     "workload"
-  ]
+  ],
+  "approved_registers": {
+    "p2": {
+      "belief_verification": "business author",
+      "pps_baseline_fqdns": "business author"
+    },
+    "p3": {
+      "authoring_decisions": "business author"
+    },
+    "p4": {
+      "dependency_graph": "business author"
+    },
+    "p5": {
+      "cross_subdomain_refs": "business author"
+    },
+    "p6": {
+      "ownership": "business author",
+      "pps_artifacts_requiring_action": "business author"
+    }
+  }
 }

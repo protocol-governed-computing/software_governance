@@ -3,6 +3,7 @@
 **Phases reached:** P0 – P6, every one admissible
 **Status:** COMPLETE. P6 is this dossier's terminal phase, by ruling
 **Delivery:** already delivered. This dossier is the record that was missing
+**Gate 1:** CLOSED at P6 by the business author, against composition `dd8da7a04010…`
 **Subject:** `SELECT` on `capability_side_effects::CS_MUTABLE_JSON_V0`
 
 ---

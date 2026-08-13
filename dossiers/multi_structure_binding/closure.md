@@ -3,6 +3,7 @@
 **Phases reached:** P0 – P6, every one admissible
 **Status:** COMPLETE. P6 is this dossier's terminal phase, by ruling
 **Delivery:** authored, by a person, under this dossier
+**Gate 1:** CLOSED at P6 by the business author, against composition `dd8da7a04010…`
 **Do not:** author a P7 that inventories a constitution or an invariant as an artifact this design amends
 
 ---
@@ -65,8 +66,8 @@ ruling is recorded in `transformation/doc/THE_SHAPE_OF_A_CHANGE_V0.md` §7 and e
 `AMENDED_ARTIFACT_NOT_AUTHORABLE`.
 
 So this dossier is **complete**, not halted. Its six capabilities are settled, its eight boundary
-rules are stated, Gate 1 is approvable on the record as it stands, and delivery is the authoring of
-the clause and the invariant it argues for.
+rules are stated, Gate 1 is closed at P6 — where a governance change closes it, by ruling — and
+delivery is the authoring of the clause and the invariant it argues for.
 
 The cost is stated where the ruling is: a governance artifact cannot be re-rendered from its dossier
 and compared, so nothing mechanically catches a document that drifts from the design that argued for

@@ -3,6 +3,7 @@
 **Phases reached:** P0 – P6, every one admissible
 **Status:** COMPLETE. P6 is this dossier's terminal phase, by ruling
 **Delivery:** authored, by a person, under this dossier
+**Gate 1:** CLOSED at P6 by the business author, against composition `dd8da7a04010…`
 **Unblocks:** `cr_03_catalog`, halted at P2, and the six declared moments announced by nothing
 
 ---
