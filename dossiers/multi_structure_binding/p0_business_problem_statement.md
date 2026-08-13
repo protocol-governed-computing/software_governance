@@ -7,16 +7,19 @@
 
 ## 1. Context
 
-A subdomain owns what it holds. The catalog owns its books, identity owns its people, and each
-declares where its own records live.
+A subdomain owns what it holds, and declares where its own records live. That declaration is the
+subdomain's, maintained by whoever answers for the records it describes.
 
-An act performed in one subdomain may need to read what another holds. Creating a wallet for a person
-means first establishing that the person exists and has been accepted — a fact identity owns and
-identity alone should state. The wallet does not want to keep its own copy of who exists; a second
-copy of one truth can disagree with the thing it describes.
+An act performed in one subdomain routinely needs to establish something another subdomain owns. The
+act does not want a copy of that fact: a second copy of one truth can disagree with the thing it
+describes, and then the business holds two answers and can defend neither. So the act reuses the
+owning subdomain's capability for establishing it, rather than restating what the fact is.
 
-So the wallet reuses identity's capability for resolving a person, rather than restating what a
-person is. That is the arrangement the composition is meant to encourage.
+**That arrangement is the one the composition exists to encourage**, and it is not particular to any
+domain. Wherever one part of a business must confirm something another part is answerable for —
+that a party is known before it may be transacted with, that a resource exists before it may be
+committed, that a permission was granted before it may be exercised — the same shape appears: an act
+here, a fact owned there, and a capability already written to establish it.
 
 ---
 
@@ -30,11 +33,20 @@ resolves its records against that one place. An act that reuses a capability bel
 subdomain therefore asks for a record its own binding has never heard of, and is refused at the
 moment it runs.
 
-**The requirement is confirmed, not hypothetical.** `blockchain::WF_CREATE_WALLET_V0` reuses
-identity's `CC_RESOLVE_ACTOR_V0` to establish that the holder exists. Its binding names the wallet's
-storage, which describes three wallet records and no people. The act is admissible at every phase of
-design, complete at every fact construction requires, compiles, verifies and attests — and stops on
-its second step:
+The reuse the composition encourages is therefore the thing it cannot carry out. An act may compose
+another subdomain's capability, and the moment that capability reaches for the records it was
+written to read, the act stops.
+
+**The requirement is confirmed rather than anticipated, and one composition is where it surfaced.**
+The instance below belongs to a business domain this platform does not require and a later
+composition may not contain. It is evidence that the shape occurs and costs what it is claimed to
+cost — not the problem itself, which is a property of how any act resolves its records.
+
+In the composition that surfaced it, an act creating a wallet for a person reuses the identity
+subdomain's contract for establishing that the person exists and has been accepted. Its binding names
+the wallet subdomain's storage, which describes three wallet records and no people. The act is
+admissible at every phase of design, complete at every fact construction requires, compiles, verifies
+and attests — and stops on its second step:
 
 ```
 PROTOCOL VIOLATION: Entity 'ACTORS' not found in STRUCTURE entity_stores.
@@ -43,17 +55,17 @@ Available entities: ['WALLETS', 'WALLET_IDENTITIES', 'WALLET_OCCURRENCES']
 
 **Nothing in the design language can express the intent, so nothing refuses it either.** The design
 says which capability the act reuses and where the act's own records live. It has no way to say
-"and this act also reads what identity holds", so the omission is invisible until execution.
+"and this act also reads what another subdomain holds", so the omission is invisible until execution.
 
 Two ways of avoiding the problem were examined and rejected:
 
-- **Let the wallet describe identity's records too.** It works today and is the reason this is a
-  problem worth stating rather than a defect worth patching: it puts one subdomain's storage
-  description inside another's, so two subdomains now declare where people live, and the second copy
-  is the one nobody maintains.
-- **Stop reusing the capability, and give the wallet its own way to resolve a person.** That is a
-  second implementation of a fact identity already owns, which is the duplication the composition
-  exists to prevent.
+- **Let the reaching subdomain describe the other's records too.** It works today and is the reason
+  this is a problem worth stating rather than a defect worth patching: it puts one subdomain's
+  storage description inside another's, so two subdomains declare where one record lives, and the
+  second copy is the one nobody maintains.
+- **Stop reusing the capability, and give the reaching subdomain its own way to establish the fact.**
+  That is a second implementation of something another subdomain already owns, which is the
+  duplication the composition exists to prevent.
 
 This change shall:
 
@@ -94,9 +106,10 @@ description is authoritative for a record, and what happens when two description
 
 ## 4. Three shapes the answer could take
 
-**P0 does not choose between these.** They are recorded because the choice is not obvious, all three
-are reachable from the problem as stated, and discovering the second and third at P7 would be
-discovering them too late.
+**The business author has since ruled for B (§6).** The three are kept as authored because the
+choice was not obvious, all three were reachable from the problem as stated, and a design that
+reopens the question should meet the alternatives and the reasons rather than the conclusion alone.
+What follows is the record of what was weighed, not a question still open.
 
 What makes the choice live is that **two** declarations are singular here, not one. A runtime binding
 names one place where storage is described, and a workflow names one runtime binding — `rb_addr` is a
@@ -109,14 +122,14 @@ The binding an act operates under describes storage in more than one place, and 
 of them.
 
 *For:* the smallest change, and the act's whole storage surface is visible in one artifact.
-*Against:* the wallet's binding would name where identity's records live, so a wallet-owned artifact
-carries a statement about another subdomain's storage. Ownership survives in principle and is harder
-to see in practice.
+*Against:* the reaching subdomain's binding would name where the other's records live, so an artifact
+one subdomain owns carries a statement about another's storage. Ownership survives in principle and
+is harder to see in practice.
 
 ### B — an act operates under several bindings
 
-The act names identity's binding as well as its own, and each binding stays owned and maintained by
-the subdomain that wrote it.
+The act names the other subdomain's binding as well as its own, and each binding stays owned and
+maintained by the subdomain that wrote it.
 
 *For:* no subdomain's artifact makes a statement about another's storage; the reach is declared as a
 relationship between subdomains rather than absorbed into one.
@@ -145,7 +158,7 @@ Four repositories, in dependency order. Recorded so the scope is visible before 
 
 | # | Repository | What changes |
 |---|---|---|
-| 1 | `software_governance` | States the resolution model for the first time: what an act may reach, whose description is authoritative for a record, and what happens when two disagree. Amends whichever declaration §4's chosen shape widens — the runtime-binding schema under A, the workflow schema under B, neither under C. Adds the invariant that holds the model, because a resolution rule nothing checks is a sentence. |
+| 1 | `software_governance` | States the resolution model for the first time: what an act may reach, whose description is authoritative for a record, and what happens when two disagree. Amends the workflow schema, which is the declaration B widens — an act names the bindings it operates under, and each stays owned by the subdomain that wrote it. Adds the invariant that holds the model, because a resolution rule nothing checks is a sentence. |
 | 2 | `protocol_compiler` | Resolves each named description and seals the composed result into the binding policy. Today it looks up one (`projections/handlers.py`), and `ASSERT_RB_BINDING_POLICY_CONFORMANCE_V0` checks the one it finds. |
 | 3 | `protocol_runtime` | Nothing, if the compiler seals a composed description. The runtime reads what it is handed and never resolves for itself, and that property should survive this change rather than be spent by it. |
 | 4 | `transformation` | The design register that declares a binding's storage, so a design can name several and a reviewer can see which boundaries an act reaches across. |
@@ -157,14 +170,14 @@ a field that is declared and read by nothing.
 **Amending only the first two would leave it unsayable.** The reach would work and no design could
 state it, which is how it came to be discovered at execution in the first place.
 
-Under shape C the fourth row is empty by design, and that is the strongest argument against it: a
-reach nothing declares is a reach no reviewer sees.
+Under shape C the fourth row would be empty by design, and that was the strongest argument against
+it: a reach nothing declares is a reach no reviewer sees.
 
 ---
 
-## 6. Clarifications — answered and outstanding
+## 6. Clarifications — answered
 
-One is answered by the business author. Four remain, and no phase may proceed on a guess about them.
+All five are answered by the business author. No clarification blocks the phase run.
 
 ### Answered
 
@@ -177,6 +190,71 @@ One is answered by the business author. Four remain, and no phase may proceed on
   **The consequence, accepted deliberately:** the reach must be scoped, not merely granted. Whatever
   shape §4 takes, naming another subdomain's storage cannot be the same act as being permitted to
   write to it.
+
+- **When two descriptions name the same record differently, what happens?**
+  **The composition is refused, when it is assembled.** Not a precedence rule: this change already
+  requires every record to be described exactly once by the subdomain that owns it, so two
+  descriptions of one record is the state the change exists to prevent, and a rule for choosing
+  between them would license it. Refusal is not conflict resolution — it is the check that
+  once-only held.
+
+  The composition already answers the same question one level up and answers it this way: a platform
+  artifact is copied into every domain's compiled output, the copies can disagree, and the assembler
+  compares every copy of an identity and refuses the composition rather than answering from whichever
+  the index resolved. Refusal belongs at assembly for the same reason: descriptions are sealed, so
+  two descriptions of one record is a property of the composition, not of a run.
+
+- **May an act reach across domains, or only across subdomains of its own domain?**
+  **An act may reach what its own domain holds, and no further.** A domain is what a profile selects,
+  so an act reaching another domain's records is correct only in the compositions that happen to
+  include it: it would compile, verify and attest in one and fail at execution in another, with
+  nothing in the design showing why. That is this change's own founding defect, one level up.
+
+  A dependency on another domain is not forbidden — it is a different kind of thing, and it goes
+  through that domain's capability, which is declared and resolvable, rather than through its
+  storage, which is a private arrangement. Whether a domain may depend on another at all is a
+  question about composition profiles and is answered there.
+
+- **Is naming another subdomain's storage enough, or must that subdomain agree?**
+  **Naming is enough, and the naming is done by the act that reaches.** Consent would have to live in
+  the owner's artifact as a list of who may read, so every new reader would amend an artifact it does
+  not own, and that list would accumulate readers nothing keeps in step with the readers themselves —
+  the second-copy problem this change exists to remove, pointing the other way. A domain already
+  extends the platform by adding artifacts in its own namespace and never modifying what it does not
+  own; a reach declared by the reacher is that same shape.
+
+  Two things make this a boundary rather than a courtesy: the reach is read-only, so the owner stays
+  the only writer, and the reach is declared where a reviewer reads it.
+
+  **Not decided here:** whether a subdomain may hold records that only some readers may see. That is
+  access control, it needs its own mechanism, and no act in the composition needs it.
+
+- **Does an act's own records need to be distinguishable from those it merely reaches?**
+  **Yes, and the read-only ruling is what forces it.** If reach is read-only and ownership is write,
+  a declaration that lists places without saying which of them it owns has granted the permission and
+  hidden the distinction the permission rests on. Nothing downstream could refuse a write to a
+  reached store, because nothing downstream could tell which store was reached.
+  `CROSS_SUBDOMAIN_REACH_READ_ONLY` holds this at design time today; its runtime counterpart cannot
+  exist without the distinction.
+
+- **Which of §4's shapes shall the declaration take?**
+  **Shape B — an act operates under several bindings, each owned by the subdomain that wrote it.**
+
+  This is a business constraint rather than a design preference, and it is the same constraint stated
+  three times over: a subdomain's storage description stays in that subdomain's own artifact,
+  maintained by the people answerable for it. Shape A puts a statement about where one subdomain
+  keeps its records inside an artifact another subdomain owns, and the maintainer of that statement
+  is then not the owner of what it describes — which is the second-copy problem in §2's first rejected option,
+  arriving by a different route.
+
+  It also makes the distinction the previous ruling requires free rather than added: the binding an
+  act owns is its own, every other binding it names is reach, and no marker has to be invented to
+  tell them apart.
+
+  **The cost is accepted, and it is stated in §4:** the runtime resolves one binding per act today,
+  so this is a deeper change than widening a field. The reach is a relationship between two
+  subdomains, B is the only shape that declares it as one, and paying for that in the runtime is
+  preferred to recording it in a shape that reads as one subdomain describing another's storage.
 
 ---
 
@@ -219,25 +297,19 @@ act is permitted to do with it.
 
 ---
 
-## 8. Outstanding clarifications
+## 8. What the answers settle, and what they leave to design
 
-> **These are unanswered.** No phase may proceed on a guess about them.
+The rulings bound the change without designing it.
 
-- **When two descriptions name the same record differently, what happens?** A precedence rule — first
-  named wins, or nearest wins — makes the composition depend on the order someone wrote a list in. A
-  refusal makes a genuine conflict visible. Refusing is the stricter answer and this change should
-  not assume it.
+- **Reach is read-only, stays inside a domain, is declared by the act that reaches, and distinguishes
+  what the act owns from what it consults.** Those four bound any realisation of the ruled shape.
+- **Two descriptions of one record refuse the composition at assembly**, which places one obligation
+  outside the design layer entirely.
+- **Every operation declares its effect** — delivered, and the read-only ruling rests on it.
 
-- **May an act reach across domains, or only across subdomains of its own domain?** The case in hand
-  is one domain, two subdomains. Reaching into another domain entirely is a different question about
-  what a domain boundary means.
-
-- **Is naming another subdomain's storage enough, or must that subdomain agree?** The owner of a
-  record may reasonably expect to say who reads it. The alternative is that any binding may name any
-  description, and ownership becomes a convention rather than a boundary. The read-only ruling
-  narrows what is at stake here without settling it.
-
-- **Does an act's own records need to be distinguishable from those it merely reaches?** The ruling
-  makes this sharper rather than answering it: if reach is read-only and ownership is write, then a
-  binding that lists places without saying which it owns has stated the permission and hidden the
-  distinction it depends on.
+**The shape is ruled: B**, an act operating under several bindings, each owned by the subdomain that
+wrote it. What design still decides is everything about how B is realised — how an act names the
+bindings it operates under, how the runtime resolves more than one, which of them a step's records
+resolve against, and what a binding must say for the distinction between owned and consulted to be
+readable. The constraint is that no subdomain's artifact describes another's storage; the mechanism
+is design's.
