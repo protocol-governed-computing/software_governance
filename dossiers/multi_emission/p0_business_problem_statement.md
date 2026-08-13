@@ -10,9 +10,11 @@
 A governed act announces the moments the business declared matter. An act ends at a terminal node,
 and that node names the moment it announces.
 
-One act may complete more than one business moment. Registering a book registers three things at
-once: the work the library now carries, the first edition of it, and the first physical copy on the
-shelf. Each is a moment the business declared. The act completes all three.
+One act may complete more than one business moment, and this is ordinary rather than exotic. Wherever
+a business does one thing that establishes several — a party admitted and its first agreement recorded,
+a resource created and its first allocation made, a thing catalogued and the first instance of it
+placed — the act is one and the moments are several. Each is a moment the business declared, and the
+act completes all of them.
 
 ---
 
@@ -24,9 +26,12 @@ A terminal node names a single moment, and the running system resolves a single 
 act and outcome. An act completing three declared moments can announce one of them, and the business
 has no way to say which two go unannounced — because it never agreed that any should.
 
-**The requirement is confirmed, not hypothetical.** `book_library_mgmt::WF_REGISTER_BOOK_V0`
-registers a work, its first edition, and that edition's first physical copy. Three of the catalog's
-six declared moments name exactly those things. The act completes all three and can announce one.
+**The requirement is confirmed rather than anticipated, and one composition is where it surfaced.**
+The instance belongs to a business domain this platform does not require and a later composition may
+not contain; it is evidence that the shape occurs, not the problem itself. In that composition, one
+act registers a work, its first edition, and that edition's first physical copy. Three of the
+domain's six declared moments name exactly those things. The act completes all three and can
+announce one.
 
 **And the limit is not a rule anyone wrote.** No constitution mentions a terminal node's
 announcement — not the workflow constitution, which does not use the word, and not the event
@@ -44,8 +49,9 @@ Two ways of avoiding the problem were examined and rejected:
 
 - **Announce only one and leave the others silent.** The business declared all six; a declared moment
   that is never announced is the defect this was found while fixing.
-- **Split the act into three.** Registering a book is one thing the library does. Splitting it to fit
-  a limitation of the announcement mechanism would change the business to suit the platform.
+- **Split the act into several.** An act completing three moments is one thing the business does.
+  Splitting it to fit a limitation of the announcement mechanism would change the business to suit
+  the platform.
 
 This change shall:
 
@@ -89,16 +95,86 @@ composition cannot carry, so the model names one of them and the rest follow it.
 
 ---
 
-## 4. Clarifications for the business author
+## 4. Clarifications — answered
 
-> **These are unanswered.** No phase may proceed on a guess about them.
+All five are answered. Four by the business author; the fifth was raised for the author and turned
+out to be answerable from the composition, so it is answered by looking rather than by asking.
 
-- **What determines the order in which several moments are announced?** The order the design states,
-  or something derived from the act?
+### Answered by the business author
+
+- **What determines the order in which several moments are announced?**
+  **The order the design states, and the model declares that order normative.** There is nothing else
+  to derive it from: the moments of one act are announced at one terminal node, with no path between
+  them, no dependency to sort by and no step boundary separating them. Every derivation available
+  falls back on an incidental — the alphabetical order of codes, the order rows sit in a register,
+  the order a renderer walks a map — and each makes a business statement depend on something nobody
+  decided.
+
+  The composition already orders declarations this way: a capability contract's steps run in the
+  order they are authored, and so does a molecule's stream of atoms. What must be *said*, and is the
+  substance of this answer, is that the order **carries meaning**. Every serialization is ordered
+  incidentally; a declaration that the order is normative is what lets a reader of the trail rely on
+  it, and what makes a change to the order a change to the account of what happened.
+
 - **If one announcement of several cannot be made, is the act refused, or are the others still
   announced?**
-- **Is each moment its own evidence record, or one record naming several moments?** The requirement
-  says one record per moment; this asks whether the business agrees that is what it wants observed.
+  **The act is not refused. A moment that cannot be announced is a failure the act reports, and every
+  moment already announced stands.**
+
+  This is arithmetic about when announcement happens, not tolerance. A terminal node is reached after
+  the act's work is done: the records are written, the identities claimed, the trail appended. Refusing
+  the act there would claim to undo work nothing can undo, and a record is immutable once written —
+  there is nothing to unannounce.
+
+  So the choice is not *refuse or continue*; it is **fail loudly or fail silently**, and silence is
+  the defect this change exists to remove. The act reports that it could not complete its account of
+  what happened, and the moments it did announce remain announced, because they are true.
+
+  **Rejected: announce nothing unless all can be announced.** The platform has no two-phase anything,
+  and a commit phase fails in the middle exactly as this does — it moves the problem. It would also
+  erase moments that genuinely occurred, which is a worse falsehood than an incomplete account.
+
+- **Is each moment its own evidence record, or one record naming several moments?**
+  **One record per moment.** The trail holds one entry per event and every reader of it asks a
+  per-moment question — *was this announced?* A record naming three moments turns that into a
+  substring question, and a count of moments into a count of records that is no longer the same
+  number.
+
+  It also keeps a moment's evidence the same shape whether the act announced one moment or three. An
+  act that grows from one moment to two must not change the evidence for the moment it already had,
+  which a composite record would do and which every existing reader would then be wrong about.
+
 - **May an act announce the same moment more than once?**
-- **Does anything today rely on exactly one moment per act and outcome** — a reader, a report, a
-  count?
+  **No. A terminal node names each moment at most once, and a repeat is refused when the composition
+  is built.** Announcing one moment twice from one act says it occurred twice; for a single act that
+  is false, and a reader counting occurrences would rightly conclude something happened that did not.
+
+  The apparent exception is a different question. An act completing several instances of the same
+  *kind* of moment — three copies shelved — is completing several moments about different subjects,
+  and how an act announces a moment per member of a collection is a shape this change does not need
+  and must not smuggle in.
+
+  Refusing at build time rather than at run time follows the composition's existing treatment of a
+  declaration that says one thing about a subject: reading the first, reading the last and refusing
+  are three different behaviours, and only refusing is declared.
+
+### Answered from the composition
+
+- **Does anything today rely on exactly one moment per act and outcome — a reader, a report, a
+  count?**
+  **Almost nothing, and nothing that would break loudly.** The singular is where §2 says it is: the
+  compiler reads one name off a terminal node and re-keys it to the transition, and the scheduler
+  performs one lookup and one write. The evidence writer is already per-moment — it records one entry
+  per call.
+
+  What does *not* rely on it is the more useful half. **No invariant counts events**; the two that
+  govern them require append-only writing and a declared schema. **No inspection operation reads
+  emitted moments at all.** **No egress declaration enumerates the moments an act emits.** And the
+  occurrence counts in the domain validations count *records written by capability steps*, not
+  announced moments — a distinction easy to get wrong, and the reason those counts are unaffected by
+  this change.
+
+  **One reader must be tightened as part of the change.** The reference workload's test takes the
+  first announced moment it finds and asserts its identity. It would accept extra moments without
+  noticing, which is the one place several would arrive silently. It should assert the moments and
+  their order.
