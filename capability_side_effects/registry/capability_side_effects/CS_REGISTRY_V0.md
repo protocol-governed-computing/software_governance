@@ -251,6 +251,7 @@ core:
     REGISTER:
       summary: Register a new key to address binding
       handler: register
+      effect: write
       input:
       - key
       - target_cs
@@ -267,6 +268,7 @@ core:
     RESOLVE:
       summary: Resolve a key or address to its storage target
       handler: resolve
+      effect: read
       input:
       - key_or_address
       output:
@@ -282,6 +284,7 @@ core:
     EXISTS:
       summary: Check if a key or address is registered
       handler: exists
+      effect: read
       input:
       - key_or_address
       output:
@@ -295,6 +298,7 @@ core:
     DEREGISTER:
       summary: Mark a key or address as deregistered via tombstone
       handler: deregister
+      effect: write
       input:
       - key_or_address
       output:
@@ -308,6 +312,7 @@ core:
     COUNT:
       summary: Count active (non-tombstoned) registry entries
       handler: count
+      effect: read
       input: []
       output:
       - result_status

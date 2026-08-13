@@ -105,7 +105,8 @@
         "handler",
         "idempotent",
         "input",
-        "output"
+        "output",
+        "effect"
       ],
       "additionalProperties": true,
       "properties": {
@@ -145,6 +146,14 @@
         "notes": {
           "type": "string",
           "description": "Additional notes"
+        },
+        "effect": {
+          "type": "string",
+          "enum": [
+            "read",
+            "write"
+          ],
+          "description": "Whether the operation changes the records it addresses. Required, because read-only reach across a subdomain boundary cannot be held without it \u2014 and `idempotent` does not answer it: a last-write-wins write is idempotent."
         }
       }
     }

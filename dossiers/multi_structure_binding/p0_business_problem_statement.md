@@ -58,6 +58,7 @@ Two ways of avoiding the problem were examined and rejected:
 This change shall:
 
 - let one act reach the records of more than one subdomain, by naming each place they are described;
+- keep that reach read-only, and make the platform able to tell a read from a write so it can be held;
 - keep every record described exactly once, by the subdomain that owns it;
 - make the reach visible in the design, so that reading across a boundary is something a reviewer
   sees rather than something a run discovers.
@@ -67,8 +68,8 @@ This change shall:
 - **Which acts should reuse which capabilities.** That is each domain's business, stated in its own
   change.
 - **Whether one subdomain should read another at all.** Some do; this change follows that fact.
-- **Anything about writing across a boundary.** See the clarifications: whether reach implies the
-  right to change what is reached is the sharpest question here, and it is not assumed.
+- **Which records a subdomain owns.** Ownership is settled; this change is about reach, and reach is
+  now ruled read-only (§6). What it does not decide is how a subdomain's ownership is *declared*.
 
 ---
 
@@ -123,7 +124,7 @@ relationship between subdomains rather than absorbed into one.
 disagreement question one level up — and the runtime resolves one binding per act today, which is a
 deeper change than widening a field.
 
-### C — a reused capability resolves against its owner's binding
+### C — a reused capability resolves against its owner's binding *(pruned by §7)*
 
 Nothing is declared. A capability belonging to another subdomain resolves its records the way that
 subdomain resolves them, because the composition already knows who owns it.
@@ -161,14 +162,66 @@ reach nothing declares is a reach no reviewer sees.
 
 ---
 
-## 6. Clarifications for the business author
+## 6. Clarifications — answered and outstanding
+
+One is answered by the business author. Four remain, and no phase may proceed on a guess about them.
+
+### Answered
+
+- **Does reaching another subdomain's records permit changing them, or only reading them?**
+  **Read-only, never write.** A subdomain owns what it holds, and ownership that does not include
+  being the only writer is not ownership. An act may consult what another subdomain holds because a
+  second copy of one truth can disagree with the thing it describes; it may not change it, because
+  then two subdomains decide what is true and neither is answerable for the result.
+
+  **The consequence, accepted deliberately:** the reach must be scoped, not merely granted. Whatever
+  shape §4 takes, naming another subdomain's storage cannot be the same act as being permitted to
+  write to it.
+
+---
+
+## 7. What the answer requires that does not exist yet
+
+**The composition cannot tell a reading operation from a writing one.** The ruling above is therefore
+correct and, today, unenforceable — which is a finding rather than an objection, and it belongs in
+this dossier because it is now part of the change.
+
+What was looked for and is not there:
+
+- **`core.semantics.durability`** is declared by exactly one capability, the inspection one, as
+  `read_only` — and `INVARIANT_INSPECTION_CAPABILITY_READ_ONLY_V0` enforces it. `CS_MUTABLE_JSON_V0`
+  and `CS_APPENDONLY_JSONL_V0` declare no durability at all. It is also capability-grained, and
+  `CS_MUTABLE_JSON_V0` offers `READ` and `WRITE` from the same capability, so a capability-level
+  answer cannot scope a step.
+- **`idempotent`** is declared per operation and is not the same question. On `CS_MUTABLE_JSON_V0`,
+  `READ`, `WRITE`, `UPDATE` and `DELETE` are all `idempotent: true` — a last-write-wins write is
+  perfectly idempotent and still a write.
+- **The operation names read as reads and writes** — `READ`, `LIST`, `SELECT`, `EXISTS` against
+  `WRITE`, `UPDATE`, `DELETE`, `APPEND`, `REGISTER` — and reading intent out of a name is inference,
+  not governance. A rule resting on it would be a convention nobody declared and anybody could break
+  by naming an operation well.
+
+**So the change gains a third obligation**, alongside stating the resolution model and widening the
+declaration: **each operation declares its effect.** Without it, "read-only across a boundary" is a
+sentence rather than a rule, and this dossier would ship the same defect it exists to close — a
+statement nothing checks.
+
+There is precedent for the shape: `durability` already exists as a declared semantic, and an
+invariant already enforces it for one capability. This extends it from the capability to the
+operation, and from one capability to all.
+
+**And it prunes §4.** Shape C — a reused capability resolving against its owner's binding — declares
+nothing at all, so there is nowhere to state that the reach is read-only and nothing to check it
+against. A *writing* contract reached across a boundary would resolve and run exactly as a reading one
+does. Under this ruling, C is no longer a live option unless the effect declaration alone is
+considered sufficient scoping, which it is not: it would say what a capability does, never what this
+act is permitted to do with it.
+
+---
+
+## 8. Outstanding clarifications
 
 > **These are unanswered.** No phase may proceed on a guess about them.
-
-- **Does reaching another subdomain's records permit changing them, or only reading them?** The act
-  that raised this only reads. A binding that grants reach without distinguishing the two would let
-  one subdomain write into another's records, which is the boundary the composition holds most
-  firmly.
 
 - **When two descriptions name the same record differently, what happens?** A precedence rule — first
   named wins, or nearest wins — makes the composition depend on the order someone wrote a list in. A
@@ -181,8 +234,10 @@ reach nothing declares is a reach no reviewer sees.
 
 - **Is naming another subdomain's storage enough, or must that subdomain agree?** The owner of a
   record may reasonably expect to say who reads it. The alternative is that any binding may name any
-  description, and ownership becomes a convention rather than a boundary.
+  description, and ownership becomes a convention rather than a boundary. The read-only ruling
+  narrows what is at stake here without settling it.
 
-- **Does an act's own records need to be distinguishable from those it merely reaches?** A reviewer
-  reading a binding should be able to tell what the act is responsible for from what it consults, and
-  a flat list of places does not say which is which.
+- **Does an act's own records need to be distinguishable from those it merely reaches?** The ruling
+  makes this sharper rather than answering it: if reach is read-only and ownership is write, then a
+  binding that lists places without saying which it owns has stated the permission and hidden the
+  distinction it depends on.

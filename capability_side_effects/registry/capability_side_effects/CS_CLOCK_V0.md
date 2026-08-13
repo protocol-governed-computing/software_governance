@@ -54,6 +54,7 @@ core:
     NOW:
       summary: The current instant, as an ISO-8601 timestamp in UTC
       handler: now
+      effect: read
       input: []
       output:
       - result_status
