@@ -20,6 +20,7 @@ version: V0
 governed_by: fb.capability_transforms::CONSTITUTION_CAPABILITY_TRANSFORMS_V0
 core:
   summary: Assemble record object
+  refusal: never
   description: Combines multiple input values into a single structured record object.
   inputs:
     fields:

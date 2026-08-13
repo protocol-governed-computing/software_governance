@@ -151,6 +151,7 @@ version: v0
 governed_by: fb.capability_transforms::CONSTITUTION_CAPABILITY_TRANSFORMS_V0
 core:
   summary: Extract a value using JSONPath
+  refusal: never
   description: Extracts a single value from a structured context or object using a declarative JSONPath
     expression.
   inputs:

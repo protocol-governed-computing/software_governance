@@ -30,13 +30,23 @@
     "core": {
       "type": "object",
       "required": [
-        "summary"
+        "summary",
+        "refusal"
       ],
       "additionalProperties": false,
       "properties": {
         "summary": {
           "type": "string",
           "description": "Human-readable summary of the transform"
+        },
+        "refusal": {
+          "type": "string",
+          "enum": [
+            "raises",
+            "returns",
+            "never"
+          ],
+          "description": "How the transform expresses a judgement about its subject. `raises` refuses by raising, which the execution contract reads as VIOLATION; `returns` yields the judgement as an output, so the step SUCCEEDs whatever it found and something else must route on the value; `never` makes no judgement at all. Refusal is about the subject, never the inputs: every transform raises on missing or malformed input, so input validity would make the fact uniform and therefore empty. Required, because a step that routes on transform status when it should route on the returned judgement is otherwise uncatchable — both transforms \"raise\" and nothing distinguishes them."
         },
         "description": {
           "type": "string",

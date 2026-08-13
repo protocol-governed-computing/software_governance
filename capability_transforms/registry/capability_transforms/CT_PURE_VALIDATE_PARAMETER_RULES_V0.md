@@ -72,6 +72,7 @@ version: v0
 governed_by: fb.capability_transforms::CONSTITUTION_CAPABILITY_TRANSFORMS_V0
 core:
   summary: Validate parameters against rules
+  refusal: raises
   description: Evaluates a set of declarative constraint rules (eq, gt, in, etc.) against a provided parameter
     map.
   inputs:
