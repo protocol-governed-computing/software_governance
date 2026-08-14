@@ -161,7 +161,20 @@
           "description": "Exit reason (for EXIT nodes)"
         },
         "emit": {
-          "description": "Event code or emission declaration for this node"
+          "description": "The moments this terminal node announces, in the order they are announced. A single moment is a sequence of one, which is how every act announcing today is read. The order is normative: an account whose order varies between runs cannot be compared with another. No moment appears twice in one announcement.",
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "minItems": 1,
+              "uniqueItems": true
+            }
+          ]
         },
         "inputs": {
           "type": "object",
