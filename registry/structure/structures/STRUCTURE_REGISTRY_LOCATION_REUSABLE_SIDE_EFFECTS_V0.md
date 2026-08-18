@@ -35,8 +35,6 @@ structure_scope: capability_side_effects
 reuse_visibility: substrate
 core:
   layer_code: REUSABLE_SIDE_EFFECTS
-  registry_module: pgs_side_effects.registry
-  module_path_pattern: '{registry_module}'
   description: 'Platform capability side effects (CS artifacts). External I/O boundary modules (network,
     filesystem, database).
 

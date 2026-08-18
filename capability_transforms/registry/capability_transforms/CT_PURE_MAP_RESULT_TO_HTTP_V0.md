@@ -20,6 +20,7 @@ version: V0
 governed_by: fb.capability_transforms::CONSTITUTION_CAPABILITY_TRANSFORMS_V0
 core:
   summary: Map result status to HTTP
+  refusal: never
   description: Maps an execution result status code to a corresponding HTTP status code and response body
     using a provided mapping object.
   inputs:

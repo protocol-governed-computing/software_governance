@@ -42,6 +42,7 @@ version: v0
 governed_by: fb.capability_transforms::CONSTITUTION_CAPABILITY_TRANSFORMS_V0
 core:
   summary: Compare two values for equality.
+  refusal: returns
   inputs:
     left:
       type: string

@@ -20,6 +20,7 @@ version: V0
 governed_by: fb.capability_transforms::CONSTITUTION_CAPABILITY_TRANSFORMS_V0
 core:
   summary: Emit terminal value
+  refusal: never
   description: Mark the explicit termination point of a transform pipeline and return the final result
     value.
   inputs:

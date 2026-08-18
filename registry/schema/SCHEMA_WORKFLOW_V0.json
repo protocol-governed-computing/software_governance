@@ -28,7 +28,16 @@
     },
     "runtime_binding": {
       "type": "string",
-      "description": "FQDN of the runtime binding artifact (RB_) that resolves CS implementations for this workflow"
+      "description": "FQDN of the runtime binding artifact (RB_) this act owns \u2014 the one that resolves CS implementations for its own records. Exactly one: an act writes what it owns, and ownership that is shared is not ownership."
+    },
+    "consults": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "uniqueItems": true,
+      "description": "FQDNs of runtime bindings this act reads and never writes \u2014 the records another subdomain of this domain owns and this act must consult. Each stays owned and maintained by the subdomain that wrote it; naming one here is a declared reach, not a copy. Absent where an act reads only what it owns, which is most acts."
     },
     "structure": {
       "type": "string",
@@ -98,6 +107,20 @@
       "type": "string",
       "pattern": "^[a-z0-9_.]+::[A-Z][A-Z0-9_]*_V[0-9]+$",
       "description": "Authoritative declared identity (namespace::code). Folder location has no authority over identity."
+    },
+    "supersedes": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_.]*::[A-Z][A-Z0-9_]*_V\\d+$",
+      "description": "FQDN of the artifact this one stands in place of. A declared relation between two exact identities, not a resolution rule: references stay exact, and a superseded artifact is unreachable rather than absent."
+    },
+    "superseded_by": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9_.]*::[A-Z][A-Z0-9_]*_V\\d+$"
+      },
+      "minItems": 1,
+      "description": "FQDNs of the artifacts that stand in this one's place. Several is the ordinary case \u2014 one act split in two retires one artifact and authors two. Its presence means the artifact is superseded: unreachable from the executable projections, retained in the canonical set as history."
     }
   },
   "$defs": {
@@ -138,7 +161,20 @@
           "description": "Exit reason (for EXIT nodes)"
         },
         "emit": {
-          "description": "Event code or emission declaration for this node"
+          "description": "The moments this terminal node announces, in the order they are announced. A single moment is a sequence of one, which is how every act announcing today is read. The order is normative: an account whose order varies between runs cannot be compared with another. No moment appears twice in one announcement.",
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "minItems": 1,
+              "uniqueItems": true
+            }
+          ]
         },
         "inputs": {
           "type": "object",

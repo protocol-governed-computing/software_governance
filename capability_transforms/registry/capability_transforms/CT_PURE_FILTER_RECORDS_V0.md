@@ -122,6 +122,7 @@ version: v0
 governed_by: fb.capability_transforms::CONSTITUTION_CAPABILITY_TRANSFORMS_V0
 core:
   summary: Filter an array of records by declared field criteria
+  refusal: raises
   description: Accepts a source array and a filter criteria object. Returns only records satisfying all
     criteria. Raises CTExecutionError if no records match.
   inputs:

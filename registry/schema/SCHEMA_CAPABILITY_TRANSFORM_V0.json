@@ -30,13 +30,23 @@
     "core": {
       "type": "object",
       "required": [
-        "summary"
+        "summary",
+        "refusal"
       ],
       "additionalProperties": false,
       "properties": {
         "summary": {
           "type": "string",
           "description": "Human-readable summary of the transform"
+        },
+        "refusal": {
+          "type": "string",
+          "enum": [
+            "raises",
+            "returns",
+            "never"
+          ],
+          "description": "How the transform expresses a judgement about its subject. `raises` refuses by raising, which the execution contract reads as VIOLATION; `returns` yields the judgement as an output, so the step SUCCEEDs whatever it found and something else must route on the value; `never` makes no judgement at all. Refusal is about the subject, never the inputs: every transform raises on missing or malformed input, so input validity would make the fact uniform and therefore empty. Required, because a step that routes on transform status when it should route on the returned judgement is otherwise uncatchable — both transforms \"raise\" and nothing distinguishes them."
         },
         "description": {
           "type": "string",
@@ -135,6 +145,20 @@
       "type": "string",
       "pattern": "^[a-z0-9_.]+::[A-Z][A-Z0-9_]*_V[0-9]+$",
       "description": "Authoritative declared identity (namespace::code). Folder location has no authority over identity."
+    },
+    "supersedes": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_.]*::[A-Z][A-Z0-9_]*_V\\d+$",
+      "description": "FQDN of the artifact this one stands in place of. A declared relation between two exact identities, not a resolution rule: references stay exact, and a superseded artifact is unreachable rather than absent."
+    },
+    "superseded_by": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9_.]*::[A-Z][A-Z0-9_]*_V\\d+$"
+      },
+      "minItems": 1,
+      "description": "FQDNs of the artifacts that stand in this one's place. Several is the ordinary case \u2014 one act split in two retires one artifact and authors two. Its presence means the artifact is superseded: unreachable from the executable projections, retained in the canonical set as history."
     }
   },
   "$defs": {

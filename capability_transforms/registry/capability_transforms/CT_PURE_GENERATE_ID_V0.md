@@ -20,6 +20,7 @@ version: V0
 governed_by: fb.capability_transforms::CONSTITUTION_CAPABILITY_TRANSFORMS_V0
 core:
   summary: Generate deterministic ID
+  refusal: never
   description: Generates a deterministic unique identifier based on input data using Keccak-256 hashing.
   inputs:
     prefix:

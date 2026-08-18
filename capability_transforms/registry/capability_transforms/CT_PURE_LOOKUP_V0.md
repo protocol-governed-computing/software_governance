@@ -21,6 +21,7 @@ version: V0
 governed_by: fb.capability_transforms::CONSTITUTION_CAPABILITY_TRANSFORMS_V0
 core:
   summary: Look up key in map
+  refusal: raises
   description: Returns the value associated with a key from a provided key-value mapping object.
   inputs:
     key:

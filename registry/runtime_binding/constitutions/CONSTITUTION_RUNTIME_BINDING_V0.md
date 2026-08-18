@@ -25,6 +25,8 @@ rules:
   enforced_by: fb.runtime_binding::INVARIANT_RB_BINDING_POLICY_CONFORMANCE_V0
 - applies_to: RB
   enforced_by: fb.runtime_binding::INVARIANT_RB_PARAMETERS_DECLARED_V0
+- applies_to: RB
+  enforced_by: fb.runtime_binding::INVARIANT_RB_STORAGE_SUBDOMAIN_OWNED_V0
 ```
 
 ---
@@ -47,6 +49,35 @@ Runtime bindings map declared CS capability artifacts to their concrete host imp
 
 ---
 
+## 2a. Storage Resolution
+
+*Where an act finds the records it works on. Stated here for the first time: the singular below was
+carried by implementation and by a field's declared type, and by no rule.*
+
+An act resolves its records against the storage descriptions its bindings name. **Today an act
+operates under one binding and a binding names one description, and that is the case of one** — the
+model admits several, and what is stated here holds however many there are.
+
+- **A record is described once.** Exactly one storage description names a given record, and it is
+  written by the subdomain that owns the record. Two descriptions of one record may disagree, and
+  then what the business holds depends on which a run happened to read.
+- **A description stays with its owner.** No subdomain's artifact describes another subdomain's
+  storage. A statement maintained by someone other than the owner of what it describes is a second
+  copy, and the second copy is the one nobody maintains.
+- **The owner is the only writer.** A subdomain owns what it holds. Ownership that does not include
+  being the only writer is not ownership.
+- **A reach reads and never writes.** An act may resolve records another subdomain owns in order to
+  consult them, because a second copy of one truth can disagree with the thing it describes. It may
+  never change them: two subdomains deciding what is true leaves neither answerable.
+- **A reach stays inside its domain.** An act resolves only what its own domain holds. An act
+  reaching across a domain boundary is correct only in the compositions that include that domain,
+  and fails when it runs in the ones that do not.
+- **A reach is declared by the act that reaches**, in an artifact that act owns, and an act
+  distinguishes the records it owns from those it merely consults. A declaration that grants the
+  reach and hides that distinction cannot be held to reading.
+
+---
+
 ## 3. Required Fields
 
 - `rb_code`: Unique identifier for the runtime binding.
@@ -62,6 +93,9 @@ Runtime bindings map declared CS capability artifacts to their concrete host imp
 - Every binding key MUST be a valid CS FQDN that resolves to a declared CS artifact.
 - Binding configuration MUST supply all required fields declared in the CS configuration schema.
 - RB MUST NOT reference CT, WF, CC, or IN artifacts as binding targets.
+- A binding's `storage_structure` MUST name a structure owned by the same subdomain as the binding.
+  A binding naming another subdomain's storage description restates what that subdomain declares,
+  which is the copy this constitution's §2a forbids.
 
 ---
 
@@ -85,4 +119,12 @@ rules:
   constraint: RB MUST NOT contain execution logic; it is a mapping declaration only
 - rule_id: RB_FQDN_KEYS
   constraint: all binding keys MUST be FQDN
+- rule_id: RB_STORAGE_SUBDOMAIN_OWNED
+  constraint: a binding names storage described by its own subdomain; never another's
+- rule_id: RB_RECORD_DESCRIBED_ONCE
+  constraint: exactly one storage description names a given record, written by its owner
+- rule_id: RB_REACH_READ_ONLY
+  constraint: an act resolving records it does not own reads them and never changes them
+- rule_id: RB_REACH_WITHIN_DOMAIN
+  constraint: an act resolves only records its own domain holds
 ```

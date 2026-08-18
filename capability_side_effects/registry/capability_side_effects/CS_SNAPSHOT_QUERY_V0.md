@@ -77,6 +77,7 @@ core:
     QUERY:
       summary: Execute a published si.* inspection operation against the bound snapshot
       handler: query
+      effect: read
       input:
       - operation
       - params
@@ -92,6 +93,7 @@ core:
     CATALOG:
       summary: List the inspection operations the bound snapshot answers
       handler: catalog
+      effect: read
       input: []
       output:
       - result_status

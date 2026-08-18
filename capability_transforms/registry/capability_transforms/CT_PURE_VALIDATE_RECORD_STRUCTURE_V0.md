@@ -126,6 +126,7 @@ version: v0
 governed_by: fb.capability_transforms::CONSTITUTION_CAPABILITY_TRANSFORMS_V0
 core:
   summary: Validate record structure
+  refusal: returns
   description: Validates an arbitrary record object against a provided schema of field rules (type, pattern,
     required, etc.).
   inputs:

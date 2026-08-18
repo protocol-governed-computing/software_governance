@@ -260,6 +260,7 @@ core:
     READ:
       summary: Retrieve value for a given key
       handler: read
+      effect: read
       input:
       - key
       output:
@@ -274,6 +275,7 @@ core:
     WRITE:
       summary: Store or update a value at the given key
       handler: write
+      effect: write
       input:
       - key
       - value
@@ -290,6 +292,7 @@ core:
         value, and a caller changing part of a record it did not create needs neither a replacement
         nor a filter.
       handler: update
+      effect: write
       input:
       - key
       - updates
@@ -303,6 +306,7 @@ core:
     DELETE:
       summary: Remove the given key and its value
       handler: delete
+      effect: write
       input:
       - key
       output:
@@ -316,6 +320,7 @@ core:
     EXISTS:
       summary: Check if a key exists in storage
       handler: exists
+      effect: read
       input:
       - key
       output:
@@ -329,6 +334,7 @@ core:
     LIST:
       summary: List all keys in storage
       handler: list_keys
+      effect: read
       input: []
       output:
       - result_status
@@ -340,6 +346,7 @@ core:
     SELECT:
       summary: Read every record in storage, for a caller that selects among them by content
       handler: list
+      effect: read
       input: []
       output:
       - result_status
@@ -355,6 +362,7 @@ core:
     DELETE_MANY:
       summary: Delete a list of keys; idempotent per key (NOT_FOUND treated as already deleted)
       handler: delete_many
+      effect: write
       input:
       - keys
       output:
@@ -368,6 +376,7 @@ core:
     UPDATE_WHERE:
       summary: Atomically update all records matching ALL filter conditions; serialized per file
       handler: update_where
+      effect: write
       input:
       - filter
       - updates

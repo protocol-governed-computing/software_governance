@@ -71,6 +71,7 @@ version: v0
 governed_by: fb.capability_transforms::CONSTITUTION_CAPABILITY_TRANSFORMS_V0
 core:
   summary: Validate set membership
+  refusal: raises
   description: Checks whether a specific value exists within a provided array of allowed values.
   inputs:
     value:

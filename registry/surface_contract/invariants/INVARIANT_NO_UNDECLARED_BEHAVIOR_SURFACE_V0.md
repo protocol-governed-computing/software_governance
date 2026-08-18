@@ -54,8 +54,8 @@ value = config["protocol_required_field"]
 **Violation Pattern**:
 ```python
 # ❌ WRONG
-output_path = "/Users/bp/pgs/pgs_compiler/compiled/artifacts"
-output_path = Path("pgs_domains/domains/blockchain/outputs")
+output_path = "/abs/path/to/compiled/artifacts"
+output_path = Path("domains/blockchain/outputs")
 ```
 
 **Correct Pattern**:
@@ -214,13 +214,6 @@ examples:
       '
     reason: Static mapping, not protocol data
 extensions:
-  enforcement_locations:
-  - pgs_structure/structure/resolution/path_registry.py::resolve_output_path()
-  - pgs_structure/structure/resolution/layer_resolver.py::resolve_layer_root()
-  - pgs_execution/execution/host/runtime_loader.py::load_runtime_binding()
-  - pgs_execution/execution/host/workflow_runner.py::execute()
-  - pgs_compiler/compiler/transforms/*::validate()
-  - pgs_ingress/ingress/gateway/workflow_gateway.py::execute_workflow()
   error_codes:
   - PROTOCOL_INCOMPLETE: Required protocol field not declared
   - UNDECLARED_OUTPUT_PATH: Output path not declared in STRUCTURE

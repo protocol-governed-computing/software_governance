@@ -21,6 +21,8 @@ rules:
   enforced_by: fb.workflow::INVARIANT_WF_ENTRY_INTENT_V0
 - applies_to: WF
   enforced_by: fb.artifact::INVARIANT_FQDN_ONLY_REFERENCES_V0
+- applies_to: WF
+  enforced_by: fb.workflow::INVARIANT_WF_ANNOUNCEMENT_DISTINCT_V0
 ```
 
 ---
@@ -43,6 +45,38 @@ Workflows declare directed acyclic graphs of capability contract invocations. Th
 
 ---
 
+## 2a. Announcement
+
+A terminal node **announces** the moments the act completed. An announcement is the account the
+business keeps of what happened; it is not how the act did it, and it is not a record a capability
+step wrote. The two are different things and the composition has always treated them so — a store
+holds what the business now knows, a moment states that something occurred.
+
+**An act may complete several moments at one ending, and it announces each of them.** The singular
+was never a statement about acts: twelve announcements exist across nine acts today, and four of them
+already announce different moments on different endings. What was singular is the shape one
+*transition* carries. A registration that admits a work, its first edition and that edition's first
+copy completes three moments in one act, and there is no honest reading under which it announces one
+of them.
+
+**The order is declared and it is normative.** Moments are announced in the order the declaration
+states, and that order is what a reader of the account sees. It is not an artefact of how the
+composition was sealed or of the order a map happened to iterate: an account whose order varies
+between runs is an account nobody can compare with another.
+
+**A moment is announced at most once at one transition.** The same moment stated twice at one ending
+is either a mistake or two different moments that were not distinguished, and neither is something a
+reader can act on.
+
+**A sequence of one is the ordinary case, and it is the case that already runs.** Every act
+announcing today announces exactly what it announced before. This clause widens what may be stated;
+it changes nothing that was already true.
+
+**An announcement that cannot be made is reported, never dropped.** A moment declared for a
+transition and absent when the act reaches it is a defect in what was sealed, and the act says so.
+Silence is the failure this clause exists to end: a subdomain faced with announcing one of three
+moments announced none, and nothing anywhere noticed.
+
 ## 3. Required Fields
 
 - `wf_code`: Unique identifier for the workflow.
@@ -58,6 +92,9 @@ Workflows declare directed acyclic graphs of capability contract invocations. Th
 - Workflow node graph MUST be acyclic.
 - All node references MUST resolve to declared CC artifacts via FQDN.
 - All result status transitions from each node MUST be explicitly declared.
+- A terminal node's announcement MUST be an ordered sequence of declared moments; a single moment is
+  a sequence of one.
+- No moment MAY appear twice in the announcement of one transition.
 
 ---
 
@@ -81,4 +118,6 @@ rules:
   constraint: every workflow MUST declare exactly one entry intent
 - rule_id: WF_FQDN_REFERENCES
   constraint: all artifact references in workflow MUST use FQDN
+- rule_id: WF_ANNOUNCEMENT_DISTINCT
+  constraint: a terminal node announces each moment at most once, by FQDN, in a declared order
 ```

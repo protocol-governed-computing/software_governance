@@ -200,6 +200,7 @@ core:
     APPEND:
       summary: Append a record to the end of the log
       handler: append
+      effect: write
       input:
       - record
       - stream_id
@@ -216,6 +217,7 @@ core:
     GET_ALL:
       summary: Retrieve all records from the log
       handler: read_all
+      effect: read
       input:
       - stream_id
       output:

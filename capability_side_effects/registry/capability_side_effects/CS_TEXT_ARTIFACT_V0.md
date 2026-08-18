@@ -61,6 +61,7 @@ core:
     WRITE_ALL:
       summary: Persist every rendered document in one operation
       handler: write_all
+      effect: write
       input:
       - documents
       output:
@@ -75,6 +76,7 @@ core:
     LIST:
       summary: List the documents currently persisted beneath the root
       handler: list
+      effect: read
       input: []
       output:
       - result_status

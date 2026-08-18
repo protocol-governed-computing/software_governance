@@ -30,6 +30,7 @@ version: v0
 governed_by: fb.capability_transforms::CONSTITUTION_CAPABILITY_TRANSFORMS_V0
 core:
   summary: Pass through value
+  refusal: never
   description: Returns the input value unchanged. Useful for explicit payload mapping in molecules or
     workflows.
   inputs:
