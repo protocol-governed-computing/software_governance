@@ -1,4 +1,4 @@
-# platform
+# software_governance
 
 **The PGC Normative Platform Surface — namespace `pgc::`.**
 
@@ -8,8 +8,14 @@ vocabulary, and the neutral capability transforms (CT) and side effects (CS) tha
 conforming Protocol-Governed Computing system depends on.
 
 It contains **normative artifacts only** — it declares *what the platform is allowed to
-be*. It contains no reference-implementation code. The compiler and runtime that read and
-execute this surface are the Reference Implementation authority (RI-0), hosted separately.
+be*. It contains no code of any kind. The compiler, assembler, runtime and inspector that read this
+surface are sibling repositories of the same organisation; RI-0 (`pgs_*`) is the legacy reference
+implementation and no repository here takes a dependency on it.
+
+**Folders are discovery-only; identity is declared.** An artifact's namespace comes from the `fqdn:`
+key in its own `## Machine` block, never from the directory it sits in. The registry is organised one
+directory per namespace, so the correspondence is currently one-to-one — a navigation convenience,
+not the source of identity.
 
 > **Orientation:** for what PGC is, how the repositories compose, and the papers that develop
 > the architecture, see <https://github.com/protocol-governed-computing>.
@@ -20,10 +26,13 @@ execute this surface are the Reference Implementation authority (RI-0), hosted s
 
 | Path | Contents |
 |------|----------|
-| `registry/FB_*/` | Governance normative surface — federation boundaries: constitutions, invariants, structures, schemas, surface contracts, vocabulary |
+| `registry/<namespace>/` | Governance normative surface — one directory per namespace (`actor`, `artifact`, `authority`, `conformance`, `lifecycle`, `structure`, `transport`, `vocabulary`, …), each holding its constitutions, invariants, structures, surface contracts and reserved vocabulary. The retired `FB_*` directories no longer exist |
+| `registry/schema/` | `SCHEMA_*.json` — declaration substrate, not a namespace of its own |
 | `capability_transforms/registry/` | Neutral, domain-agnostic CT declarations |
 | `capability_side_effects/registry/` | Neutral CS declarations (storage / registry / etc.) |
+| `doc/GOVERNANCE_SURFACE_MAP.md` | The concern taxonomy, and the folder ≡ namespace map |
 | `doc/rule_ownership.md` | Governance doctrine |
+| `doc/PGS_REFERENCE_SURVEY.md` | Every surviving `pgs_*` reference in the surface, classified — which are live lookup keys, which are historical citation, and which were removed |
 
 ## What this repository is **not**
 
