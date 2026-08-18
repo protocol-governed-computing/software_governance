@@ -35,8 +35,6 @@ structure_scope: capability_transforms
 reuse_visibility: substrate
 core:
   layer_code: REUSABLE_TRANSFORMS
-  registry_module: pgs_transforms.registry
-  module_path_pattern: '{registry_module}'
   description: 'Platform capability transforms (CT artifacts). Pure, deterministic, side-effect-free functions.
 
     '

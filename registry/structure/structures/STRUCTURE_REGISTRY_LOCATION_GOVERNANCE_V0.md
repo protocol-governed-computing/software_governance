@@ -30,8 +30,6 @@ version: V0
 governed_by: fb.structure::CONSTITUTION_STRUCTURE_V0
 core:
   layer_code: GOVERNANCE
-  registry_module: pgs_governance.registry
-  module_path_pattern: '{registry_module}'
   description: 'Core platform governance artifacts (VOCAB, CONSTITUTION, STRUCTURE, SCHEMA). Sovereign
     authority layer for protocol governance.
 
