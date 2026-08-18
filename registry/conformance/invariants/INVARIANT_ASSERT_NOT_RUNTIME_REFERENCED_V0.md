@@ -15,7 +15,6 @@ assert_projection:
   enforcement:
     level: ERROR
     order: 22
-    phase: assert
   applies_to_kinds:
   - WF
   - CC

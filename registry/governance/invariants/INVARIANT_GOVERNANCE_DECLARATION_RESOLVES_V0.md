@@ -15,7 +15,6 @@ assert_projection:
   enforcement:
     level: ERROR
     order: 5
-    phase: meta_validation
   applies_to_kinds:
   - CONSTITUTION
   - INVARIANT

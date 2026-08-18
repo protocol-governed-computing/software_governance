@@ -15,7 +15,6 @@ core:
 assert_projection:
   handler: pgs_governance.registry.handlers.assert_identity_fqdn_consistency
   enforcement:
-    phase: validation
     order: 5
     scope: ALL_ARTIFACTS
   applies_to_kinds:

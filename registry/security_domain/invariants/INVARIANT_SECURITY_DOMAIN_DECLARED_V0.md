@@ -13,7 +13,6 @@ core:
   violation_response: FAIL_IMMEDIATELY
 assert_projection:
   enforcement:
-    phase: assert
     scope: ALL_ARTIFACTS
   applies_to_kinds:
   - SNAPSHOT

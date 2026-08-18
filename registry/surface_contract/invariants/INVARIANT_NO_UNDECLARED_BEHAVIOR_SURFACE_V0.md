@@ -15,7 +15,6 @@ assert_projection:
   ci_override:
     level: ERROR
   enforcement:
-    phase: validation
     order: 10
     level: WARNING
     scope: ALL_ARTIFACTS
