@@ -1,66 +1,85 @@
 # software_governance
 
-**The PGC Normative Platform Surface — namespace `pgc::`.**
+**The normative platform surface — what a conforming PGC system is allowed to be.**
 
-This repository is the authoritative closure of protocol artifacts from which `pgc::` is
-**constituted**: the constitutions, invariants, structures, schemas, surface contracts,
-vocabulary, and the neutral capability transforms (CT) and side effects (CS) that every
-conforming Protocol-Governed Computing system depends on.
+Every governed behavior in a PGC composition resolves, eventually, against a declaration in this
+repository. It holds the constitutions, invariants, structures, schemas, surface contracts,
+reserved vocabulary, and the neutral capability transforms and side effects that no single domain
+owns and every domain depends on.
 
-It contains **normative artifacts only** — it declares *what the platform is allowed to
-be*. It contains no code of any kind. The compiler, assembler, runtime and inspector that read this
-surface are sibling repositories of the same organisation; RI-0 (`pgs_*`) is the legacy reference
-implementation and no repository here takes a dependency on it.
+It contains **no code of any kind**. It declares; the sibling toolchain reads.
 
-**Folders are discovery-only; identity is declared.** An artifact's namespace comes from the `fqdn:`
-key in its own `## Machine` block, never from the directory it sits in. The registry is organised one
-directory per namespace, so the correspondence is currently one-to-one — a navigation convenience,
-not the source of identity.
+## Where it fits
 
-> **Orientation:** for what PGC is, how the repositories compose, and the papers that develop
-> the architecture, see <https://github.com/protocol-governed-computing>.
+A composition is assembled from repositories that each own one concern:
 
----
+```
+software_governance    the normative surface every composition rests on   (this repo)
+conformance_workloads  workloads that prove conformance
+business_domains       domains built on the surface
 
-## Contents
+protocol_compiler      source      → compiled projections
+snapshot_assembler     projections → assembled snapshot
+protocol_runtime       snapshot    → execution
+snapshot_inspector     snapshot    → inspection
+```
+
+This repo is the **floor** of that stack. A domain does not import it — a domain *resolves against*
+it, and the compiler is what performs the resolution. If a reference in any domain fails to resolve,
+either the platform is missing an artifact or the domain leaked one it should have declared itself.
+
+**A platform is a composition, never a repository.** A Profiled Normative Platform is this surface
+plus selected workloads plus an optional business domain, per a conformance profile. There are as
+many platforms as there are profiles.
+
+## What it holds
 
 | Path | Contents |
 |------|----------|
-| `registry/<namespace>/` | Governance normative surface — one directory per namespace (`actor`, `artifact`, `authority`, `conformance`, `lifecycle`, `structure`, `transport`, `vocabulary`, …), each holding its constitutions, invariants, structures, surface contracts and reserved vocabulary. The retired `FB_*` directories no longer exist |
-| `registry/schema/` | `SCHEMA_*.json` — declaration substrate, not a namespace of its own |
-| `capability_transforms/registry/` | Neutral, domain-agnostic CT declarations |
-| `capability_side_effects/registry/` | Neutral CS declarations (storage / registry / etc.) |
-| `doc/GOVERNANCE_SURFACE_MAP.md` | The concern taxonomy, and the folder ≡ namespace map |
-| `doc/rule_ownership.md` | Governance doctrine |
-| `doc/PGS_REFERENCE_SURVEY.md` | Every surviving `pgs_*` reference in the surface, classified — which are live lookup keys, which are historical citation, and which were removed |
+| `registry/<namespace>/` | The governance surface, one directory per namespace — `actor`, `artifact`, `authority`, `conformance`, `execution`, `governance`, `lifecycle`, `structure`, `transport`, `vocabulary` and others. Each holds its own constitutions, invariants, structures, surface contracts and reserved vocabulary |
+| `registry/schema/` | `SCHEMA_*.json` — the declaration substrate, not a namespace of its own |
+| `capability_transforms/registry/` | Neutral, domain-agnostic capability transform declarations |
+| `capability_side_effects/registry/` | Neutral capability side-effect declarations |
+| `doc/` | The surface map, the governance doctrine, and the rulings that settled contested questions |
 
-## What this repository is **not**
+Artifacts declare namespaces of the form `fb.<concern>` — `fb.structure::STRUCTURE_IDENTITY_V0`,
+`fb.authority::…`. **`fb` is a federation boundary**: a declaration that a distinct governance
+authority has jurisdiction over a named set of protocol semantics. It is not a folder, a package, or
+a deployment unit — see `registry/federation/constitutions/CONSTITUTION_FEDERATION_BOUNDARY_V0.md`.
+Domains declare their own namespaces (`blockchain::`, `book_library_mgmt::`) and never declare into a
+platform boundary.
 
-- The **normative surface** (`registry/`, `capability_transforms/`, `capability_side_effects/`)
-  carries no code — no compiler, runtime, handlers, or executors.
-- Not a platform. A **Profiled Normative Platform (PNP)** is the *composition* of this governance
-  surface with selected workloads (`conformance_workloads`) and optionally a business domain
-  (`business_domains`), per a conformance profile.
-- Not a place for domain artifacts — `blockchain`, `ai_governance`, and any
-  `fb.blockchain` / `fb.ai_governance` boundary belong to `pgs::`, not here.
+## What binds a contributor
 
-## Runnable demonstration
+**Identity is declared, not located.** An artifact's namespace comes from the `fqdn:` key in its own
+`## Machine` block, never from the directory it sits in. The registry is organised one directory per
+namespace, so the correspondence is currently one-to-one — a navigation convenience, not the source
+of identity. A file may move without changing what the artifact *is*.
 
-Conformance workloads live in the sibling `conformance_workloads` repo — the Collatz workload
-(governed artifacts, `implementation/` CT/CS, `transport/` TI/TE boundary declarations) and its web
-client. They exercise this surface; they are not part of the normative `pgc::` closure.
+**No code, ever.** Normative declarations only: `.md` protocol source and `.json` schemas. A
+directory that would hold `.py` does not belong in this repository. The compiler, assembler, runtime
+and inspector that read this surface are siblings, and none of them is vendored here.
 
-## Immutability
+**Immutable within a spec version.** A domain extends the platform by adding artifacts in its own
+namespace; it never modifies one here. A behavior change is a new version, never an in-place edit.
 
-`pgc::` is **immutable within a PGC spec version**. Domains extend the platform by adding
-artifacts in their own namespace; they never modify what is defined here. A behavior
-change is a new version, never an in-place edit.
+**A namespace is an ownership boundary.** Create one only for a first-class concern that can evolve
+independently and owns a coherent contract — never because several artifacts happen to reference the
+same artifact kind.
 
-## Verifying completeness
+## How completeness is verified
 
-The surface is complete and self-supporting **iff the external compiler compiles it to a
-closed snapshot** (every reference resolves, zero unresolved FQDNs). The engine is pointed
-*at* this repo; it never lives inside it.
+The surface is complete and self-supporting **iff the external compiler compiles it to a closed
+snapshot** — every reference resolves, zero unresolved FQDNs. Nothing inside this repository can
+establish that, which is the point: the engine is pointed *at* the surface and never lives inside it.
+
+```bash
+protocol_compiler/compile.sh <this repo>
+```
+
+Then diff the resulting closure against `doc/GOVERNANCE_SURFACE_MAP.md` §6. An unresolved reference
+is either a missing platform artifact or a leaked domain reference — resolved by adding the former
+or moving the latter into the domain that owns it.
 
 ## License
 
