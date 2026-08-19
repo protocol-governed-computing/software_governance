@@ -15,7 +15,6 @@ assert_projection:
   ci_override:
     level: ERROR
   enforcement:
-    phase: meta_validation
     order: 1
     scope: GOVERNANCE_ARTIFACTS
     level: WARNING

@@ -14,7 +14,6 @@ core:
 assert_projection:
   handler: pgs_governance.registry.handlers.assert_fqdn_namespace_authorized_v0
   enforcement:
-    phase: validation
     order: 6
   applies_to_kinds:
   - AC

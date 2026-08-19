@@ -162,10 +162,6 @@
               "type": "integer",
               "minimum": 0
             },
-            "phase": {
-              "type": "string",
-              "minLength": 1
-            },
             "scope": {
               "type": "string",
               "minLength": 1

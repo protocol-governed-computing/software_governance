@@ -12,9 +12,6 @@ core:
   - compiler_assertion
   violation_response: FAIL_IMMEDIATELY
 assert_projection:
-  scope:
-    applies_to:
-    - PLATFORM
   applies_to_kinds:
   - WF
   - CC
