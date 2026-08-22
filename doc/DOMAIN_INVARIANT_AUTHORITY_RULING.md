@@ -104,7 +104,7 @@ DECLARE, RESOLVE and PARITY must each be present by name in that build.
 
 ## The check, and what it says today
 
-`standards/process/governance_chain_closure.py` proves two relations:
+`.github/process/governance_chain_closure.py` proves two relations:
 
 1. **Every invariant authored outside the platform surface is named by a constitution rule.**
    Checked across the workspace rather than within a build, because the build cannot — a domain
