@@ -60,21 +60,11 @@ For usage examples and path patterns see: `doc/STRUCTURE_GUIDE.md`
 
 ---
 
-## Version History
-
-- **V0**: Initial rules-only constitution for STRUCTURE artifacts (2026-03-24)
-  - Establishes 7 enforcement rules: explicit paths, no absolute paths, no escape, layer declared, deterministic resolution, bootstrap eligible, FQDN references
-  - Schema extracted to SCHEMA_STRUCTURE_V0.json
-  - Examples and implementation notes extracted to doc/STRUCTURE_GUIDE.md
-
----
-
 ## End of Constitution
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   description: Governs STRUCTURE artifacts — system configuration and artifact discovery declarations

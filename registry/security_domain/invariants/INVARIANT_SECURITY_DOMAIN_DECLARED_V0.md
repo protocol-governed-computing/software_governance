@@ -39,8 +39,7 @@ In V0, `UNCLASSIFIED_LOCAL` is not a default — it is a declared governance pos
 The difference matters: future classified execution modes require this axis to already exist
 and be compiler-validated.
 
-## Rule
-
+## What this realizes
 For every compiled snapshot:
 1. The compiler MUST scan `security_domain/` for active contracts
 2. Exactly one MUST be present
@@ -60,8 +59,7 @@ For every compiled snapshot:
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   rule: 'The compiler MUST locate exactly one active security domain contract within FB_SECURITY_DOMAIN.

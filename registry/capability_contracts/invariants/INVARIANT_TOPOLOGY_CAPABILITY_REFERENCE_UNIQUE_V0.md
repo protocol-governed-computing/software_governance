@@ -31,16 +31,14 @@ would create phantom steps — declared topology entries that do nothing.
 
 Both deviations violate the principle that topology is a deterministic execution graph.
 
-## Rule
-
+## What this realizes
 For every execution topology step:
 1. Exactly one of `transform` or `side_effect` MUST be present
 2. Both `transform` and `side_effect` MUST NOT be present in the same step
 3. Neither `transform` nor `side_effect` absent from a step is a constitutional violation
 4. The capability reference MUST be a valid FQDN to a registered CT or CS artifact
 
-## Enforcement Scope
-
+## Where it applies
 - **Artifact Types**: CC
 - **Validation Phase**: compile_time
 - **Enforced By**: ASSERT_TOPOLOGY_CAPABILITY_REFERENCE_UNIQUE_V0
@@ -56,8 +54,7 @@ Full enforcement is implemented in Phase 3.
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   rule: each step must contain exactly one capability reference field (transform XOR side_effect); a step

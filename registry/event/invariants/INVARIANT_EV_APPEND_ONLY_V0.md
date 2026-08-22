@@ -25,16 +25,14 @@ assert_projection:
 Event stores are append-only. EV artifact declarations must not express mutability semantics.
 No field in an EV schema or extensions block may declare mutation intent.
 
-## Rule
-
+## What this realizes
 For every EV artifact:
 1. `core.schema` MUST NOT contain mutation-signaling field names (`_update`, `_delete`, `_patch`, `_mutate`)
 2. `extensions` MUST NOT declare mutation operation keys
 
 Runtime append-only enforcement is provided by CS_APPENDONLY_JSONL_V0 and the execution engine.
 
-## Enforcement Scope
-
+## Where it applies
 - **Artifact Types**: EV
 - **Validation Phase**: ASSERT (Phase 5, compile-time)
 - **Runtime Enforcement**: CS_APPENDONLY_JSONL_V0 (hard fail at execution time)
@@ -48,8 +46,7 @@ accidentally declares mutation semantics that could be interpreted as permitting
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   rule: EV artifacts must not contain update/delete/patch/mutate field declarations

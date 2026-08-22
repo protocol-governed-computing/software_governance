@@ -84,8 +84,7 @@ Actor identity is a **pre-execution governed concern**. Actors are declared, com
 
 ---
 
-## 4. Validation Rules
-
+## How it is checked
 - Actor MUST declare a `type` field. An absent or empty `type` is a compile-time violation.
 - Every field in `core.attributes` MUST declare an explicit `type`. Attribute type inference is prohibited.
 - Actor artifact MUST NOT contain: execution logic, routing conditions, policy rules, side-effect bindings, or authorization assertions.
@@ -123,8 +122,7 @@ This separation is foundational. Actors are identity subjects. Authority governa
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   description: Constitution governing declarative actor identity semantics

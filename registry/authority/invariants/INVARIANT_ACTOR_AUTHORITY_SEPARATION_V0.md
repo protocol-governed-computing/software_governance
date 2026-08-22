@@ -26,16 +26,14 @@ Identity governance and authority governance are two of the four orthogonal gove
 
 The orthogonality invariant is the structural guarantee that these planes will never collapse. It is the architectural foundation that allows authority systems to evolve (from static JSON to cryptographic, federated, or distributed) without altering identity governance — and identity systems to evolve without altering authority semantics.
 
-## Rule
-
+## What this realizes
 The orthogonality boundary requires:
 1. No AC_ artifact may carry authority semantics: no permissions, roles, workflow eligibility, admissibility rules, or execution rights
 2. No authority artifact may define identity structure: actor types, identity attributes, or identity lifecycle are governed by CONSTITUTION_ACTOR_IDENTITY_V0
 3. Authority evaluation MUST resolve from the authority registry — not from actor identity attributes
 4. Actor type MUST NOT function as an implicit authority grant at any level of the stack
 
-## Enforcement Scope
-
+## Where it applies
 - **Artifact Types**: AC
 - **Validation Phase**: ASSERT (compile-time)
 - **Enforced By**: ASSERT_ACTOR_AUTHORITY_SEPARATION_V0
@@ -50,8 +48,7 @@ Both invariants are required. Together they create a bilateral, cross-constituti
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   rule: No actor artifact may carry authority semantics; no authority artifact may define identity semantics;

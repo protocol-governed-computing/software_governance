@@ -195,8 +195,7 @@ No backward compatibility assumed.
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   description: Governs workflow execution semantics — phases, dispatch, determinism, and error propagation

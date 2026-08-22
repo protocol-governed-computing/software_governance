@@ -34,8 +34,7 @@ registry side-effect step cannot produce custom domain status codes. Forcing eve
 route the full CC contract would require ghost routes for codes the step's capability cannot
 produce — governance noise, not governance.
 
-## Rule
-
+## What this realizes
 For every execution topology step in a CC pipeline:
 1. Every step MUST declare a `result_surface` — the set of status codes that step's specific
    capability can actually produce
@@ -46,8 +45,7 @@ For every execution topology step in a CC pipeline:
    (unknown routes are governance noise)
 5. `on_result` is a finite lookup map — no expressions, no conditions, no dynamic predicates
 
-## Enforcement Scope
-
+## Where it applies
 - **Artifact Types**: CC
 - **Validation Phase**: compile_time
 - **Enforced By**: ASSERT_TOPOLOGY_ROUTING_COMPLETE_V0
@@ -69,8 +67,7 @@ Full enforcement is implemented in Phase 3.
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   rule: The on_result map of every step must contain an entry for every code in that step's result_surface;

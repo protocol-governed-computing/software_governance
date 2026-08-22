@@ -27,8 +27,7 @@ and validate incoming payloads. They are not executors. An IN artifact that cont
 execution logic fields has violated its constitutional role — execution belongs in CC
 and CT artifacts.
 
-## Rule
-
+## What this realizes
 For every IN artifact, the frontmatter MUST NOT contain any of the following fields
 at any nesting level:
 - `execute`
@@ -39,8 +38,7 @@ at any nesting level:
 - `code`
 - `handler`
 
-## Enforcement Scope
-
+## Where it applies
 - **Artifact Types**: IN
 - **Validation Phase**: ASSERT (Phase 5, compile-time, hard fail)
 - **Enforced By**: ASSERT_IN_NO_EXECUTION_LOGIC_V0
@@ -54,8 +52,7 @@ fields so that this boundary remains crisp.
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   rule: IN artifacts must not declare execute, callable, implementation, logic, transform, code, or handler

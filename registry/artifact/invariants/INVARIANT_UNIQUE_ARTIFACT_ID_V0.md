@@ -42,8 +42,7 @@ Prevents silent overwrites where multiple physical files claim the same logical 
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   description: Each fqdn_id must be unique across compilation graph

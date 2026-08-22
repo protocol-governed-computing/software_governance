@@ -24,8 +24,7 @@ assert_projection:
 
 Every assertion spec in a TEST_DATA artifact must use a `mode` and `type` drawn exclusively from the closed vocabularies declared in this invariant. No implicit, ad-hoc, or undeclared assertion semantics are permitted.
 
-## Rule
-
+## What this realizes
 For every assertion spec `{field: spec}` in a TEST_DATA `assertions` block:
 
 1. `spec.mode` MUST be present
@@ -67,8 +66,7 @@ schema   → type ∈ { json_schema }
 | non_zero          | (none)                  | (none)            |
 | json_schema       | schema_ref              | (none)            |
 
-## Enforcement Scope
-
+## Where it applies
 - **Artifact Types**: TEST_DATA
 - **Validation Phase**: VALIDATE_TEST_DATA (compile-time, hard fail)
 - **Defense in depth**: conformance runner (runtime, raises AssertionError)
@@ -180,8 +178,7 @@ This invariant ensures that the conformance suite's claim of correctness is enfo
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   rule: All assertion specs in TEST_DATA must use declared mode and type values; unknown modes/types are

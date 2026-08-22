@@ -1,17 +1,5 @@
 # CT_PURE_VALIDATE_SET_MEMBERSHIP_V0
 
-## Header (Mandatory)
-
-- **Artifact Code:** CT_PURE_VALIDATE_SET_MEMBERSHIP_V0
-- **Artifact Kind:** capability_transform
-- **Governed By:** capability_transforms::CONSTITUTION_CAPABILITY_TRANSFORMS_V0
-- **Version:** v0
-- **Status:** draft
-- **Supersedes:** NONE
-- **Dependencies:** NONE
-
----
-
 ## 1. Intent
 
 Validate that a value is a member of a declared set.

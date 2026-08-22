@@ -38,8 +38,7 @@ to validate that execution scheduling legality is explicitly declared for every 
 rather than assumed. In V0, `SERIAL_SINGLE_WORKER` is the declared and intentional
 scheduling mode, not a default that was never articulated.
 
-## Rule
-
+## What this realizes
 For every compiled snapshot:
 1. The compiler MUST scan `execution_scheduling/` for active contracts
 2. Exactly one MUST be present
@@ -59,8 +58,7 @@ For every compiled snapshot:
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   rule: 'The compiler MUST locate exactly one active scheduling contract within FB_EXECUTION_SCHEDULING.

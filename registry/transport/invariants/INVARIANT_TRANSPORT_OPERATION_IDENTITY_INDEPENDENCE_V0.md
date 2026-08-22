@@ -36,8 +36,7 @@ indirection.
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   description: 'Every TI MUST declare an Operation Identity, and that identity MUST NOT equal

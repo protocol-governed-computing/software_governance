@@ -178,8 +178,7 @@ INVARIANT defines what must never be violated.
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   description: Governs INVARIANT artifacts — declarative constraints that must never be violated

@@ -44,8 +44,7 @@ A symbol that no vocabulary declares is a symbol nobody agreed to. Closing the s
 
 ---
 
-## Validation Rules
-
+## How it is checked
 ### Rule 1: Artifact codes are UPPER_SNAKE_CASE with a version suffix
 
 Every artifact code MUST match `^[A-Z][A-Z0-9_]*_V[0-9]+$`.

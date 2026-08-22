@@ -43,8 +43,7 @@ routing engine.
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   description: 'Transport routing MUST be static and explicit. No conditional routing logic, dynamic target

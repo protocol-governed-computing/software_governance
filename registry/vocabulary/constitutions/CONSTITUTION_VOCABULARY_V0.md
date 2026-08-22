@@ -271,8 +271,7 @@ What is named is governed. What is unnamed does not exist.
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   description: Naming authority for OmniBachi — governs reserved words, symbol admissibility, and FQDN

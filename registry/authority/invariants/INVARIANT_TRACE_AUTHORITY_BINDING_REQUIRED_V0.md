@@ -24,8 +24,7 @@ assert_projection:
 
 Authority without trace is not accountable. Non-repudiation requires that every execution can be attributed to an actor, under a specific authority grant, at a specific time, with a recorded admissibility outcome. Authority trace binding is the accountability complement to authority evaluation: it closes the loop between the pre-execution authority decision and the post-execution audit record.
 
-## Rule
-
+## What this realizes
 For every execution trace:
 1. MUST bind `actor_id` — the identity of the actor whose authority was evaluated
 2. MUST bind `workflow_fqdn` — the fully qualified workflow that was authorized
@@ -33,8 +32,7 @@ For every execution trace:
 4. MUST bind `admissibility_outcome` — the resolved admissibility result (admitted / denied)
 5. These fields are required, not optional — absent authority trace bindings constitute ungoverned execution
 
-## Enforcement Scope
-
+## Where it applies
 - **Artifact Types**: WF (trace output)
 - **Validation Phase**: ASSERT (compile-time declaration check)
 - **Enforced By**: ASSERT_TRACE_AUTHORITY_BINDING_REQUIRED_V0
@@ -47,8 +45,7 @@ Full authority trace binding enforcement is implemented in Phase 5.
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   rule: Execution without complete authority trace binding is ungoverned execution; actor_id, workflow_fqdn,

@@ -28,8 +28,7 @@ Ensure all CC dependencies are satisfied before execution.
 
 ---
 
-## Validation Rules
-
+## How it is checked
 ### Rule 1: No Forward References
 
 CC node inputs cannot reference outputs from CCs that appear later in execution path.
@@ -205,14 +204,7 @@ def validate_dependency_ordering(wf_graph):
 
 ---
 
-## Version History
-
-- **V0**: Initial implementation (2026-04-12) - CC Dependency Ordering Validation
-
----
-
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   description: 'No CC node may reference outputs from: - Non-existent CC (FQDN resolution failure) - CC

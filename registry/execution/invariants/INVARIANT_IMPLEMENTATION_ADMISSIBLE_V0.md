@@ -29,14 +29,7 @@ Ensure every executable capability artifact has a structurally complete implemen
 
 ---
 
-## Version History
-
-- **V0**: Initial implementation (2026-05-21) - Extracted from compiler S4 GOVERN hardcoded CT/CS validation
-
----
-
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   description: 'All capability artifacts (CT atoms and CS side effects) must declare structurally complete

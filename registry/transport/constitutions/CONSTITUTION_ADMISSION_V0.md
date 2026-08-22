@@ -129,8 +129,7 @@ No backward compatibility assumed.
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   description: Governs the pre-DAG admission gate declared within workflow artifacts

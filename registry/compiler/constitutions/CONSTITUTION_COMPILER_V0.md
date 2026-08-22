@@ -35,20 +35,6 @@ rules:
 
 ---
 
-## Header (Documentation)
-
-| Field         | Value                      |
-| ------------- | -------------------------- |
-| Artifact Code | CONSTITUTION_COMPILER_V0   |
-| Artifact Kind | constitution               |
-| Tier          | Concern Authority          |
-| Governed By   | governance::CONSTITUTION_GOVERNANCE_V0 |
-| Applies To    | Builder, Compiler          |
-| Version       | v0                         |
-| Status        | active                     |
-
----
-
 ## §1. Purpose
 
 This constitution defines the authoritative behavior of the OmniBachi compiler layer.
@@ -257,8 +243,7 @@ Backward compatibility is not assumed.
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   description: Governs the OmniBachi compiler pipeline — phases, surface closure, determinism, and validation

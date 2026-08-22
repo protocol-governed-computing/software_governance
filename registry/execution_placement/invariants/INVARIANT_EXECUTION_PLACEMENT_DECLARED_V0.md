@@ -38,8 +38,7 @@ This invariant is what makes the V0 placement contract non-dead-code. Without it
 is required to find and validate it — making placement declaration a hard compile-time
 requirement, not an optional annotation.
 
-## Rule
-
+## What this realizes
 For every compiled snapshot:
 1. The compiler MUST scan `execution_placement/` for active contracts
 2. Exactly one MUST be present
@@ -59,8 +58,7 @@ For every compiled snapshot:
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   rule: 'The compiler MUST locate exactly one active placement contract within FB_EXECUTION_PLACEMENT.

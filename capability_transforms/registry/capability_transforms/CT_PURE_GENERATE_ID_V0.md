@@ -1,16 +1,5 @@
 # CT_PURE_GENERATE_ID_V0
 
-## Header (Mandatory)
-
-- **Artifact Code:** CT_PURE_GENERATE_ID_V0
-- **Artifact Kind:** atom
-- **Governed By:** capability_transforms::CONSTITUTION_CAPABILITY_TRANSFORMS_V0
-- **Version:** v0
-- **Supersedes:** NONE
-- **Dependencies:** Keccak-256 (SHA-3)
-
----
-
 ## Machine
 
 ```yaml

@@ -425,6 +425,3 @@ output_configuration:
 
 ---
 
-## Version History
-
-- **V0**: Initial canonical artifact identity definition (2026-03-27)

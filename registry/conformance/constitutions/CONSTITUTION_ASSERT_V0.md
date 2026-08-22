@@ -178,8 +178,7 @@ ASSERT makes invariants enforceable.
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   description: 'Governs ASSERT — the compiler-derived executable projection of an INVARIANT. ASSERT is

@@ -86,8 +86,7 @@ edited in place.
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   description: Governs the TI ingress boundary contract — admission for an Operation Identity,

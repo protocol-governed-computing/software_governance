@@ -28,8 +28,7 @@ Ensure WF execution graph is structurally valid and all references resolve.
 
 ---
 
-## Validation Rules
-
+## How it is checked
 ### Rule 1: Valid Start Node
 
 WF must have `start_node` field referencing existing node of type IN or TI.
@@ -195,14 +194,7 @@ Compiler MUST:
 
 ---
 
-## Version History
-
-- **V0**: Initial implementation (2026-04-12) - WF Execution Path Validation
-
----
-
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   description: 'WF execution graph must be valid: start_node exists and is type IN or TI, all nodes reachable

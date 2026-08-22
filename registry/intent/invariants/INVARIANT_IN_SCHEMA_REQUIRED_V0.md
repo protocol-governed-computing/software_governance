@@ -26,8 +26,7 @@ Ensure every admission gate declares what it expects from incoming payloads.
 
 ---
 
-## Validation Rules
-
+## How it is checked
 ### Rule: Schema Field Required
 
 IN artifact must have a top-level schema field.
@@ -70,14 +69,7 @@ schema:
 
 ---
 
-## Version History
-
-- **V0**: Initial implementation (2026-05-04)
-
----
-
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   description: 'Every IN artifact must declare a non-empty schema. Schema must contain at least one field,

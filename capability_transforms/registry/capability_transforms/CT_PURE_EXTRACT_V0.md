@@ -1,16 +1,5 @@
 # CT_PURE_EXTRACT_V0
 
-## Header (Mandatory)
-
-- **Artifact Code:** CT_PURE_EXTRACT_V0
-- **Artifact Kind:** atom
-- **Governed By:** capability_transforms::CONSTITUTION_CAPABILITY_TRANSFORMS_V0
-- **Version:** v0
-- **Supersedes:** NONE
-- **Dependencies:** NONE
-
----
-
 ## Human
 
 ### 1. Intent
@@ -37,7 +26,6 @@ Without a canonical extraction mechanism, field access would be implicit, engine
 
 ### 3. Naming Convention
 
-- **Artifact Code:** CT_PURE_EXTRACT_V0 (full versioned identifier)
 - **Operation:** EXTRACT (execution opcode used in molecules)
 
 ---

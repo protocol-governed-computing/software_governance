@@ -90,8 +90,7 @@ model admits several, and what is stated here holds however many there are.
 
 ---
 
-## 4. Validation Rules
-
+## How it is checked
 - Every binding key MUST be a valid CS FQDN that resolves to a declared CS artifact.
 - Binding configuration MUST supply all required fields declared in the CS configuration schema.
 - RB MUST NOT reference CT, WF, CC, or IN artifacts as binding targets.
@@ -105,8 +104,7 @@ model admits several, and what is stated here holds however many there are.
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   description: Governs mapping of CS capabilities to concrete host implementations

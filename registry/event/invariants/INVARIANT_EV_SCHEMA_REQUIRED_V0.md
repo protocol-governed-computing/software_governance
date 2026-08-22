@@ -26,14 +26,12 @@ Every Event (EV) artifact must declare a schema describing the data it carries.
 A schema-less event is a constitutional violation — it cannot be replayed, audited,
 or consumed by downstream systems without a declared data contract.
 
-## Rule
-
+## What this realizes
 For every EV artifact:
 1. `core.schema` MUST be present
 2. `core.schema` MUST be a non-empty mapping containing at least one field
 
-## Enforcement Scope
-
+## Where it applies
 - **Artifact Types**: EV
 - **Validation Phase**: ASSERT (Phase 5, compile-time, hard fail)
 - **Enforced By**: ASSERT_EV_SCHEMA_REQUIRED_V0
@@ -46,8 +44,7 @@ is the binding contract between the event emitter and all downstream consumers.
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   rule: All EV artifacts must define core.schema with at least one field declaration

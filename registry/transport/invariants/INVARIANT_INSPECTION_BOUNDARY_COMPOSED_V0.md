@@ -81,8 +81,7 @@ a rule authored here is always evaluated.
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   description: 'Every assembled composition MUST carry at least one transport ingress contract
@@ -108,7 +107,3 @@ core:
       '
 ```
 
-## Version History
-
-- **V0**: First composition-scoped invariant covering the inspection boundary. Introduces the
-  `at_least_one` cardinality rule, for a subject whose expected count grows with the operation set.

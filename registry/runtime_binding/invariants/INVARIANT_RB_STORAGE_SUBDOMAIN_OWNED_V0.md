@@ -26,8 +26,7 @@ A binding names the storage description its own subdomain wrote. It never names 
 subdomain's, because a description maintained by someone other than the owner of what it
 describes is a second copy of one truth, and the second copy is the one nobody maintains.
 
-## Rule
-
+## What this realizes
 For every RB artifact declaring `core.storage_structure`:
 
 1. The named structure MUST resolve to a STRUCTURE artifact in the composition.
@@ -39,8 +38,7 @@ address no records.
 Ownership is read from the artifact's module organization, which is the same source the
 composition uses everywhere else and is immutable for a given version.
 
-## Enforcement Scope
-
+## Where it applies
 - **Artifact Types**: RB
 - **Validation Phase**: ASSERT (Phase 5, compile-time, hard fail)
 - **Enforced By**: ASSERT_RB_STORAGE_SUBDOMAIN_OWNED_V0

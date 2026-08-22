@@ -30,8 +30,6 @@ rules:
 - **Constitution ID:** CONSTITUTION_GOVERNANCE_V0
 - **Tier:** Sovereign Authority
 - **Applies To:** All OmniBachi governance artifacts and constitutions
-- **Status:** Active — Foundational
-- **Supersedes:** NONE
 - **Ratified By:** [AUTHORITY]
 - **Ratification Date:** [ISO-8601]
 - **Audience:** All protocol authors, implementers, and reviewers
@@ -248,8 +246,7 @@ The chain of authority is explicit, versioned, and immutable.
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   description: Root authority for the OmniBachi governance system — governs all constitutions and the

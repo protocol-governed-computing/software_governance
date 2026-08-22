@@ -1,15 +1,5 @@
 # CS_CLOCK_V0
 
-## Header (Mandatory)
-
-- **Artifact Code:** CS_CLOCK_V0
-- **Artifact Kind:** capability_side_effect
-- **Governed By:** CONSTITUTION_CAPABILITY_SIDE_EFFECTS_V0
-- **Version:** V0
-- **Supersedes:** NONE
-
----
-
 ## Human
 
 ### 1. Intent

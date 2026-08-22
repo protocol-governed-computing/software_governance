@@ -46,8 +46,7 @@ Enforce FQDN discipline at the source.
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   description: 'All artifact references in machine frontmatter must be fully qualified (FQDN). Short names

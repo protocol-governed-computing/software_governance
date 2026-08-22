@@ -89,8 +89,7 @@ moments announced none, and nothing anywhere noticed.
 
 ---
 
-## 4. Validation Rules
-
+## How it is checked
 - Workflow node graph MUST be acyclic.
 - All node references MUST resolve to declared CC artifacts via FQDN.
 - All result status transitions from each node MUST be explicitly declared.
@@ -104,8 +103,7 @@ moments announced none, and nothing anywhere noticed.
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   description: Governs workflow DAG structure and execution sequencing

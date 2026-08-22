@@ -197,8 +197,7 @@ These are orthogonal constitutions governing orthogonal concerns. Neither may re
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   description: Constitution governing execution authority as a sovereign architectural concern orthogonal

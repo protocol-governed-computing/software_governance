@@ -29,8 +29,7 @@ Ambient authority arises when authority is assumed rather than declared — impl
 
 This invariant governs **authority declaration completeness** — a distinct concern from `INVARIANT_TRACE_AUTHORITY_BINDING_REQUIRED_V0`, which governs authority provenance recording. You can have explicit declarations without a complete trace record; you can have a trace record without having had explicit declarations. Both invariants are required.
 
-## Rule
-
+## What this realizes
 For every execution artifact and authority declaration:
 1. MUST NOT rely on implicit permissions, default authority grants, or assumed execution rights
 2. MUST NOT infer authority from actor type, actor attributes, or structural position
@@ -39,8 +38,7 @@ For every execution artifact and authority declaration:
 5. All authority references MUST resolve to explicit entries in the governed authority registry
 6. Authority not explicitly granted is implicitly denied — there is no default allow
 
-## Enforcement Scope
-
+## Where it applies
 - **Artifact Types**: WF, CC, CT, CS
 - **Validation Phase**: ASSERT (compile-time)
 - **Enforced By**: ASSERT_NO_AMBIENT_AUTHORITY_V0
@@ -53,8 +51,7 @@ The PGS authority model is: authority not granted is denied. Explicit grants onl
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   rule: No execution artifact, authority declaration, or schema may rely on implicit permissions, default

@@ -199,8 +199,7 @@ topology fingerprints) is explicitly deferred to future versions. V0 governs cur
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 doctrine: Execution topology governs traversal structure only. Execution topology validation is structural,
   not semantic. Workflow authors MAY route surfaces. Workflow authors MAY NOT define capability semantics.

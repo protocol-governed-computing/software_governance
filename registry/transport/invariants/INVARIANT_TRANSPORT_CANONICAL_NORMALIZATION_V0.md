@@ -42,8 +42,7 @@ This invariant enforces that both boundaries are explicit, governed, and closed.
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   description: 'Transport artifacts MUST declare explicit normalization schemas. No passthrough of raw

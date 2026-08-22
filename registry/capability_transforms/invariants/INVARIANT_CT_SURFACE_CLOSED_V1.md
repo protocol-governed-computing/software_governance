@@ -46,17 +46,7 @@ Ensure the CT surface is closed for PGC Platform Snapshot V1.
 
 ---
 
-## Version History
-
-- **V1**: Snapshot-scoped closed CT surface — the 12 neutral reference transforms of PGC
-  Platform Snapshot V1. Replaces V0 (which enumerated RI-0's mixed universe, including
-  blockchain/ai domain transforms). First PGC divergence for this invariant.
-- **V0**: RI-0 mixed CT surface (faithful harvest). Retained in RI-0 / git history as provenance.
-
----
-
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   description: 'CT surface must be closed for this platform snapshot: every executable capability transform

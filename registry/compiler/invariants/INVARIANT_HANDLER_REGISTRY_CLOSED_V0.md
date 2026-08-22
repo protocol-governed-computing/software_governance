@@ -38,8 +38,7 @@ to the ASSERT phase's handler surface.
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   description: 'Every ASSERT artifact present in the compiled artifact set MUST have its implementation

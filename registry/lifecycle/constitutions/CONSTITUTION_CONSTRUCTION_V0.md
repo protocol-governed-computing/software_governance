@@ -193,8 +193,7 @@ V0 intentionally governs the human-reviewed, agent-assisted construction phase w
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   description: Governs the PGS construction phase — the deterministic transformation of the governed Execution

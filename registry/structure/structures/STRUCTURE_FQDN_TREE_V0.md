@@ -1,17 +1,5 @@
 # STRUCTURE_FQDN_TREE_V0
 
-## Header
-- Artifact Code: STRUCTURE_FQDN_TREE_V0
-- Tier: Sovereign Authority
-- Artifact Kind: structure
-- Governed By: governance::CONSTITUTION_GOVERNANCE_V0
-- Version: v0
-- Status: active
-- Supersedes: NONE
-- Dependencies: []
-
----
-
 ## 1. Purpose
 
 Declare the authoritative logical package tree and the folder → namespace correspondence for the

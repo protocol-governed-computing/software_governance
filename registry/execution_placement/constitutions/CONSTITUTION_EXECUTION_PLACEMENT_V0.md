@@ -88,8 +88,7 @@ Changes to placement semantics require a new constitution version and migration 
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   description: 'Declares which execution substrates are legal, how execution locality is

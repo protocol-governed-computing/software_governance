@@ -43,8 +43,7 @@ that resolves to no registered TI/TE pair. The two are not interchangeable — s
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   description: 'Every Result Class a TE emits MUST be a governed, protocol-neutral class;

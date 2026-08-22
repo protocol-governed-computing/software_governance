@@ -111,14 +111,7 @@ If A references B, and B references C, all three must be in the graph.
 
 ---
 
-## Version History
-
-- **V0**: Initial invariant (2026-03-31) - ASSERT Activation Phase
-
----
-
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   description: 'Protocol surface must be closed: all artifact references must resolve to valid FQDNs in

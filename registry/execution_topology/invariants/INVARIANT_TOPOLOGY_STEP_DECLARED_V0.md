@@ -29,8 +29,7 @@ deterministically.
 
 Every step that executes must exist by name in the topology before compilation completes.
 
-## Rule
-
+## What this realizes
 For every CC execution topology:
 1. Every step MUST be an explicit named entry in the pipeline array
 2. Step identity is the `step` field — not position, not key name, not inference
@@ -38,8 +37,7 @@ For every CC execution topology:
 4. Wildcard bindings (`$.results.*` without a step ID) are constitutional violations
 5. Ambient dataflow (state shared across steps without explicit binding) is a constitutional violation
 
-## Enforcement Scope
-
+## Where it applies
 - **Artifact Types**: CC
 - **Validation Phase**: compile_time
 - **Enforced By**: ASSERT_TOPOLOGY_STEP_DECLARED_V0
@@ -54,8 +52,7 @@ Full enforcement is implemented in Phase 3.
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   rule: each step in a CC pipeline MUST appear as an explicit named entry in the pipeline array; no step

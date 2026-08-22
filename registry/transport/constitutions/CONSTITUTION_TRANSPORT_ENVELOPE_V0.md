@@ -81,8 +81,7 @@ This constitution is version-immutable. Any normative change requires a new vers
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   description: Governs the canonical, protocol-neutral, representation-independent transport

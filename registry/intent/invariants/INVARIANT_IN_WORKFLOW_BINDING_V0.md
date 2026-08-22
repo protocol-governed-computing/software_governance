@@ -27,8 +27,7 @@ Ensure entry intents are dedicated per-workflow and resolvable.
 
 ---
 
-## Validation Rules
-
+## How it is checked
 ### Rule: IN Resolves to Declared Artifact
 
 IN node FQDN in each WF must resolve to an IN artifact in the compilation graph.
@@ -58,14 +57,7 @@ No IN FQDN may appear as start_node in more than one workflow.
 
 ---
 
-## Version History
-
-- **V0**: Initial implementation (2026-05-04)
-
----
-
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   description: 'Every IN artifact used as a WF entry node must resolve to a declared IN artifact, and

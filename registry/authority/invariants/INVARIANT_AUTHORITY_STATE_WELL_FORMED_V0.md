@@ -26,8 +26,7 @@ This invariant governs the **structural validity** of authority state at the exe
 
 Malformed authority state is distinct from absent authority state, but both are inadmissible. Partial state that satisfies some schema fields but not others forces the runtime to infer defaults — which is ambient authority by another name.
 
-## Rule
-
+## What this realizes
 For every authority state presented at the execution boundary:
 1. MUST satisfy `SCHEMA_AUTHENTICATED_AUTHORITY_STATE_V0` — all required fields present and typed
 2. `execution_authority.authorized_workflows` MUST be a non-empty explicit list
@@ -35,8 +34,7 @@ For every authority state presented at the execution boundary:
 4. `authority_provenance` MUST be structurally present — ungoverned authority has no provenance
 5. Structural validity is a necessary but not sufficient condition for admissibility
 
-## Enforcement Scope
-
+## Where it applies
 - **Artifact Types**: WF (authority boundary declarations)
 - **Validation Phase**: ASSERT (compile-time)
 - **Enforced By**: ASSERT_AUTHORITY_STATE_WELL_FORMED_V0
@@ -49,8 +47,7 @@ This is distinct from `INVARIANT_NO_RUNTIME_AUTHORIZATION_V0`, which governs run
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   rule: Authority state must satisfy SCHEMA_AUTHENTICATED_AUTHORITY_STATE_V0; absent, partial, or structurally

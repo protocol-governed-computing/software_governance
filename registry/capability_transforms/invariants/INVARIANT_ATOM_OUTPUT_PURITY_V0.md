@@ -24,8 +24,7 @@ assert_projection:
 
 CT atom implementations must be pure functions that return explicit output dictionaries in ALL execution paths. Exceptions may only be raised for INPUT VALIDATION (missing required inputs, wrong types), never for business logic or "failure" states.
 
-## Rule
-
+## What this realizes
 For all CT atom implementations:
 1. `execute()` must return dict in ALL business logic paths
 2. Exceptions allowed ONLY for input validation (missing keys, wrong types)
@@ -33,8 +32,7 @@ For all CT atom implementations:
 4. NO exceptions for quota exhaustion, training incomplete, etc.
 5. Output structure must match CC contract in success AND "failure" cases
 
-## Enforcement Scope
-
+## Where it applies
 - **Artifact Types**: CT
 - **Code Layer**: pgs_transforms/implementation/transforms/atoms/
 - **Validation Phase**: Phase 5 (ASSERT)
@@ -111,8 +109,7 @@ Scan CT atom code for:
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   rule: CT atom execute() functions must return dict outputs for all code paths including error states

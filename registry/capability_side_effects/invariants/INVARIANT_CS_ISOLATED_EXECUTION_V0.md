@@ -27,15 +27,13 @@ executor mechanism. CS cannot be called inline from within a CT (Capability Tran
 or embedded as direct execution logic in a CC (Capability Contract). This separation
 is what makes side effects declarative, governable, and traceable.
 
-## Rule
-
+## What this realizes
 1. CT artifacts MUST NOT directly invoke CS implementations — all CS access goes through the CC execution layer
 2. CC artifacts MUST reference CS via declared binding keys — never via direct module import or inline execution
 
 This invariant is enforced at runtime by the execution engine's executor routing.
 
-## Enforcement Scope
-
+## Where it applies
 - **Artifact Types**: CS
 - **Validation Phase**: Runtime (executor routing)
 - **Compile-Time**: ASSERT_CS_ISOLATED_EXECUTION_V0 (parity stub — runtime enforcement)
@@ -50,8 +48,7 @@ that CS behavior matches its declared contract.
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   rule: CS artifacts must not be called directly from CT transform logic or CC wiring

@@ -2,17 +2,6 @@
 
 Registry location declaration for REUSABLE_SIDE_EFFECTS layer.
 
-## Header
-
-- **Artifact Code:** STRUCTURE_REGISTRY_LOCATION_REUSABLE_SIDE_EFFECTS_V0
-- **Artifact Kind:** structure
-- **Governed By:** structure::CONSTITUTION_STRUCTURE_V0
-- **Version:** V0
-- **Status:** canonical
-- **Authority:** foundational
-
----
-
 ## Purpose
 
 Declares the physical registry module location for REUSABLE_SIDE_EFFECTS layer artifacts. This artifact enables federated ownership of registry locations while maintaining deterministic resolution.
@@ -64,9 +53,3 @@ Loaded by artifact discovery during build:
 
 ---
 
-## Version History
-
-- **V0**: Initial federated registry location (2026-03-25)
-  - Extracted from central STRUCTURE_LAYER_REGISTRY_LOCATIONS_V0
-  - REUSABLE_SIDE_EFFECTS layer now owns its registry location
-  - Moved to central pgs_governance namespace (2026-03-26)

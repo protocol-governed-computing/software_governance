@@ -26,8 +26,7 @@ Enforce the WF → CC → CT/CS layering. Workflows orchestrate; capability cont
 
 ---
 
-## Validation Rules
-
+## How it is checked
 ### Rule: All Non-Structural Nodes Are CC
 
 For each node in the WF nodes map, if type is not IN or EXIT, it must be CC.
@@ -55,14 +54,7 @@ nodes:
 
 ---
 
-## Version History
-
-- **V0**: Initial implementation (2026-05-04)
-
----
-
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   description: 'All non-structural WF nodes must be of type CC. Structural nodes (IN, EXIT) are permitted.

@@ -51,8 +51,7 @@ Two directions of disagreement, both silent before this invariant:
 Neither breaks a build today, and both make the declaration untrustworthy. This invariant makes
 `parameters` a checked contract rather than documentation that happens to be nearby.
 
-## Rule
-
+## What this realizes
 For every RB artifact:
 
 1. Collect every `{{name}}` appearing in any value under `core.bindings`, at any nesting depth.
@@ -73,7 +72,3 @@ agreement, not the presence of parameters.
 - **Stage:** compiler_assertion
 - **Failure Mode:** FAIL_IMMEDIATELY
 
-## Version History
-
-- **V0**: Closes the drift between an RB's declared parameters and the templates its binding
-  policies actually expand.

@@ -94,8 +94,7 @@ edited in place.
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   description: Governs the TE egress boundary contract — declared classification of governed

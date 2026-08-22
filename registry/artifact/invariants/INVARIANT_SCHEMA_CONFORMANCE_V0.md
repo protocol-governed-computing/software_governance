@@ -35,14 +35,7 @@ Ensure every governed artifact's frontmatter is structurally valid against its d
 
 ---
 
-## Version History
-
-- **V0**: Initial implementation (2026-05-21) - Extracted from compiler S4 GOVERN schema validation
-
----
-
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   description: 'All governed artifacts with a declared JSON schema must have frontmatter that validates

@@ -35,9 +35,6 @@ rules:
 - **Constitution ID:** CONSTITUTION_FEDERATION_BOUNDARY_V0
 - **Tier:** Sovereign Authority
 - **Applies To:** All federation boundaries in the PGS governance model
-- **Status:** Active — Foundational
-- **Supersedes:** NONE
-- **Governed By:** governance::CONSTITUTION_GOVERNANCE_V0
 - **Dependencies:** CONSTITUTION_GOVERNANCE_V0
 
 ---
@@ -257,8 +254,7 @@ Boundaries do not justify governance authority.
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 doctrine: 'A federation boundary is a semantic sovereignty construct, not an implementation packaging
   construct. A boundary exists only when a distinct governance authority exists.

@@ -1,15 +1,5 @@
 # SURFACE_CONTRACT_REGISTRY_REGISTER_V0
 
-## Header
-
-- **Artifact Code:** SURFACE_CONTRACT_REGISTRY_REGISTER_V0
-- **Artifact Kind:** surface_contract
-- **Governed By:** execution_topology::CONSTITUTION_EXECUTION_TOPOLOGY_V0
-- **Version:** V0
-- **Status:** canonical
-
----
-
 ## Purpose
 
 Canonical result surface for registry REGISTER operations.
@@ -42,8 +32,7 @@ canonical_surface:
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 capability_family: REGISTRY
 ```

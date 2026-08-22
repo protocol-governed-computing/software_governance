@@ -1,16 +1,5 @@
 # CS_SNAPSHOT_QUERY_V0
 
-## Header (Mandatory)
-
-- **Artifact Code:** CS_SNAPSHOT_QUERY_V0
-- **Artifact Kind:** capability_side_effect
-- **Governed By:** CONSTITUTION_CAPABILITY_SIDE_EFFECTS_V0
-- **Version:** V0
-- **Status:** draft
-- **Supersedes:** NONE
-
----
-
 ## 1. Intent
 
 Observe an assembled snapshot through the governed inspection surface.

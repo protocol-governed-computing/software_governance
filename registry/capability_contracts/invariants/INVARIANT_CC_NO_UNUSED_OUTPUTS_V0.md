@@ -194,14 +194,7 @@ def detect_unused_outputs(wf_graph):
 
 ---
 
-## Version History
-
-- **V0**: Initial implementation (2026-04-12) - Unused Output Detection (Warning Level)
-
----
-
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   description: 'CC pipeline step outputs should be consumed by downstream nodes.

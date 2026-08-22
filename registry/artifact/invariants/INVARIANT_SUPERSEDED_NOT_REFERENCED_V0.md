@@ -51,8 +51,7 @@ to it. A caller crossing either boundary would have reached the workflow the des
 
 ---
 
-## Validation Rules
-
+## How it is checked
 ### Rule: nothing live references a superseded artifact
 
 Where `X` declares `supersedes: Y` — equivalently, where `Y` declares `superseded_by` — no artifact

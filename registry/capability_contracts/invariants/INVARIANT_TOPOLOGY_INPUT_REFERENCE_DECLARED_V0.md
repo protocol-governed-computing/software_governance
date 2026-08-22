@@ -31,8 +31,7 @@ would need to execute out of declared order to satisfy it.
 Both dangling references and forward references are compile-time violations. The compiler
 must be able to validate every input reference before the runtime executes a single step.
 
-## Rule
-
+## What this realizes
 For every execution topology step:
 1. All `$.results.<step_id>.*` input references MUST name a `step_id` declared in the same pipeline
 2. Referenced step IDs MUST be declared before the referencing step (no forward references)
@@ -40,8 +39,7 @@ For every execution topology step:
 4. Dangling references (step_id not found in any declared step) are constitutional violations
 5. Circular references are constitutional violations
 
-## Enforcement Scope
-
+## Where it applies
 - **Artifact Types**: CC
 - **Validation Phase**: compile_time
 - **Enforced By**: ASSERT_TOPOLOGY_INPUT_REFERENCE_DECLARED_V0
@@ -57,8 +55,7 @@ Full enforcement is implemented in Phase 3.
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   rule: every $.results.<step_id>.* reference in step inputs MUST name a step_id that is explicitly declared

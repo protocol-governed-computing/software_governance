@@ -30,8 +30,7 @@ topology from environment state is an ungovernatable orchestration engine — no
 
 All topology exists in the compiled artifact. The runtime reads it. The runtime does not write it.
 
-## Rule
-
+## What this realizes
 Execution topology MUST NOT be:
 1. Generated from payload content at runtime
 2. Inferred from authority grants or actor type
@@ -41,8 +40,7 @@ Execution topology MUST NOT be:
 
 The topology that executes is identical to the topology in the compiled artifact — always.
 
-## Enforcement Scope
-
+## Where it applies
 - **Artifact Types**: CC
 - **Validation Phase**: compile_time (structural constraint)
 - **Enforced By**: ASSERT_NO_RUNTIME_TOPOLOGY_SYNTHESIS_V0
@@ -59,8 +57,7 @@ This is a Phase 1 stub. Full enforcement is implemented in Phase 3.
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   rule: no runtime component may construct topology steps from dynamic inputs, environment state, payload

@@ -33,8 +33,7 @@ An ASSERT is compile-time governance. If an executable artifact can reference on
 
 ---
 
-## Validation Rules
-
+## How it is checked
 ### Rule 1: No executable artifact references an ASSERT
 
 No WF, CC, CS, CT or RB artifact may reference an `ASSERT_*` code, at any depth of its machine block.

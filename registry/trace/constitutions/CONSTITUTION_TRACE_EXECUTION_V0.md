@@ -166,14 +166,7 @@ No sink is injected into execution.
 
 ---
 
-## Version History
-
-- **V0**: Initial TE layer constitution (2026-04-26)
-
----
-
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   description: Governs trace emission and materialization — declares trace as a mandated protocol artifact

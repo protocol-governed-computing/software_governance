@@ -2,17 +2,6 @@
 
 Cross-structure vocabulary aggregation configuration.
 
-## Header
-
-- **Artifact Code:** STRUCTURE_BUILD_VOCABULARY_AGGREGATE_V0
-- **Artifact Kind:** STRUCTURE
-- **Governed By:** structure::CONSTITUTION_STRUCTURE_V0
-- **Version:** V0
-- **Status:** canonical
-- **Authority:** foundational
-
----
-
 ## Purpose
 
 Declares the federated vocabulary aggregation phase.
@@ -87,6 +76,3 @@ The compiler pipeline has two phase types:
 This artifact governs a Phase Type B aggregation. It is invoked after all Phase Type A
 builds complete. It MUST NOT be passed to the per-structure `_run_compile()` path.
 
-## Version History
-
-- **V0**: Initial federated vocabulary aggregation declaration (Option D implementation)

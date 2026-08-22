@@ -48,8 +48,7 @@ Ensure artifact identity (FQDN) is consistent with namespace and artifact_code.
 
 ---
 
-## Validation Rules
-
+## How it is checked
 ### Rule 1: FQDN Structure
 
 FQDN must follow pattern: `{namespace}::{artifact_code}`
@@ -147,14 +146,7 @@ if "fqdn_id" in frontmatter:
 
 ---
 
-## Version History
-
-- **V0**: Initial implementation (2026-04-12) - Identity Consistency Enforcement
-
----
-
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   description: 'Artifact FQDN must match namespace and artifact_code consistently.

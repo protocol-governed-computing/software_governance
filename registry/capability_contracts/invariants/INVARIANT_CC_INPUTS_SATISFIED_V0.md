@@ -28,8 +28,7 @@ Ensure all CC input references resolve to available data sources.
 
 ---
 
-## Validation Rules
-
+## How it is checked
 ### Rule 1: Payload Field Availability
 
 CC inputs referencing `$.payload.*` must match IN payload schema.
@@ -224,14 +223,7 @@ def validate_data_availability(wf_graph, in_node):
 
 ---
 
-## Version History
-
-- **V0**: Initial implementation (2026-04-12) - CC Inputs Satisfied Validation
-
----
-
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   description: "For each CC node in WF execution graph: - All $.payload.* references must exist in IN\

@@ -47,8 +47,7 @@ Test Data artifacts provide declarative test specifications for validating Capab
 
 ---
 
-## 4. Validation Rules
-
+## How it is checked
 - Each test case MUST declare input bindings that satisfy the target CT's input schema.
 - Each test case MUST declare expected outputs that match the target CT's output contract.
 - The target artifact reference MUST use FQDN and resolve to a declared CT artifact.
@@ -59,8 +58,7 @@ Test Data artifacts provide declarative test specifications for validating Capab
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   description: Governs Test Data (TEST_DATA) artifacts — declarative test specifications for CT conformance

@@ -41,17 +41,7 @@ Ensure the CS surface is closed for PGC Platform Snapshot V1.
 
 ---
 
-## Version History
-
-- **V1**: Snapshot-scoped closed CS surface — the 3 storage-contract side effects of PGC
-  Platform Snapshot V1. Replaces V0 (which enumerated RI-0's wider set, including
-  `name_service` and the unimplemented fuzzy workflow/email side effects).
-- **V0**: RI-0 mixed CS surface (faithful harvest). Retained in RI-0 / git history as provenance.
-
----
-
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   description: 'CS surface must be closed for this platform snapshot: every controlled side effect is

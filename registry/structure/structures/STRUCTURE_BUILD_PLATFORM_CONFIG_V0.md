@@ -153,6 +153,3 @@ build_phases:
   description: Blindly execute CT-IR conformance tests
 ```
 
-## Version History
-
-- **V0**: Added conformance phases and TEST_DATA artifact type

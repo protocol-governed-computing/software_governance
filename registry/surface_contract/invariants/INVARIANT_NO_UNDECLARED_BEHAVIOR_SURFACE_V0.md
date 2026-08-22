@@ -161,14 +161,7 @@ Fields that are genuinely optional:
 
 ---
 
-## Version History
-
-- **V0**: Initial invariant declaration (2026-03-24) - Protocol Surface Closure Phase 1
-
----
-
-## Rule Statement
-
+## What this realizes
 ```yaml
 examples:
   violation_1:

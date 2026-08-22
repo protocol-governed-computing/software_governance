@@ -1,16 +1,5 @@
 # CT_PURE_MAP_RESULT_TO_HTTP_V0
 
-## Header
-
-- **Artifact Code:** CT_PURE_MAP_RESULT_TO_HTTP_V0
-- **Artifact Kind:** atom
-- **Governed By:** capability_transforms::CONSTITUTION_CAPABILITY_TRANSFORMS_V0
-- **Version:** v0
-- **Status:** draft
-- **Dependencies:** NONE
-
----
-
 ## Machine
 
 ```yaml

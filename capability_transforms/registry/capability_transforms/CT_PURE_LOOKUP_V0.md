@@ -1,17 +1,5 @@
 # CT_PURE_LOOKUP_V0
 
-## Header (Mandatory)
-
-- **Artifact Code:** CT_PURE_LOOKUP_V0
-- **Artifact Kind:** capability_transform
-- **Governed By:** capability_transforms::CONSTITUTION_CAPABILITY_TRANSFORMS_V0
-- **Version:** v0
-- **Status:** draft
-- **Supersedes:** NONE
-- **Dependencies:** NONE
-
----
-
 ## Machine
 
 ```yaml

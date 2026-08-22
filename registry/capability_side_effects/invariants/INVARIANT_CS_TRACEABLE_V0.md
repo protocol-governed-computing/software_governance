@@ -27,8 +27,7 @@ trace. Traceability is what makes the system auditable, replayable, and debuggab
 execution that does not appear in the trace is an invisible side effect — a constitutional
 violation.
 
-## Rule
-
+## What this realizes
 For every CS artifact execution:
 1. The executor MUST emit a trace entry recording the CS invocation
 2. The trace entry MUST include the CS code, inputs, output result, and timestamp
@@ -36,8 +35,7 @@ For every CS artifact execution:
 This invariant is enforced at runtime by the execution engine. Compile-time static
 analysis cannot verify executor behavior.
 
-## Enforcement Scope
-
+## Where it applies
 - **Artifact Types**: CS
 - **Validation Phase**: Runtime (execution engine)
 - **Compile-Time**: ASSERT_CS_TRACEABLE_V0 (parity stub — runtime enforcement)
@@ -51,8 +49,7 @@ guarantee that the trace is the definitive record of what happened.
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   rule: CS executors must emit a trace entry for every side-effect execution

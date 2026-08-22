@@ -56,16 +56,14 @@ Capability Side Effects are the mechanism for interacting with the outside world
 
 ---
 
-## 4. Validation Rules
-
+## How it is checked
 - Side effect implementations must be discoverable.
 - Input and output types must match the capability contract.
 - Side effects must be restricted to authorized layers.
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   description: Governs Capability Side Effect (CS) artifacts — explicit declaration, traceability, and

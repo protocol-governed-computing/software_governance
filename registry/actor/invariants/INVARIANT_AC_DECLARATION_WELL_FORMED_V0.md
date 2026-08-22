@@ -29,8 +29,7 @@ An actor declares who execution runs as. It is an identity declaration and nothi
 
 ---
 
-## Validation Rules
-
+## How it is checked
 ### Rule 1: Type declared
 
 Every AC MUST declare a non-empty `core.type`.

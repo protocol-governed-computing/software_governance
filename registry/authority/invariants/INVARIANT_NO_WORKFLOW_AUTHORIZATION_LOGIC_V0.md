@@ -24,16 +24,14 @@ assert_projection:
 
 The boundary between authority governance and execution governance is inviolable. Authority evaluation happens before the Intent gate. Once execution traversal begins, authority is settled — the runtime consumes resolved authority state. It does not evaluate authority. Execution artifacts that contain authorization logic violate this invariant by extending the authority plane into the execution plane.
 
-## Rule
-
+## What this realizes
 For every WF_, CC_, CT_, and CS_ artifact:
 1. Authorization logic, role checks, and permission branching MUST NOT appear in execution artifacts
 2. The authority evaluation MUST be completed before IN (intent) is reached
 3. Execution MAY consume authority state but MUST NOT evaluate, re-evaluate, or re-interpret it
 4. Execution topology MUST NOT vary based on authority state after admissibility succeeds
 
-## Enforcement Scope
-
+## Where it applies
 - **Artifact Types**: WF, CC, CT, CS
 - **Validation Phase**: ASSERT (compile-time)
 - **Enforced By**: ASSERT_NO_WORKFLOW_AUTHORIZATION_LOGIC_V0
@@ -44,8 +42,7 @@ When authorization logic creeps into execution artifacts, two things happen: the
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   rule: WF, CC, CT, CS artifacts must assume admissibility has succeeded; authorization logic, role checks,

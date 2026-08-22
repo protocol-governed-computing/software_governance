@@ -25,16 +25,14 @@ assert_projection:
 
 Every TEST_DATA artifact must declare `expected` outputs with keys that exactly match the output contract of its target CT.
 
-## Rule
-
+## What this realizes
 For every TEST_DATA artifact:
 1. TEST_DATA must reference a target CT (via test_target or equivalent)
 2. TEST_DATA must declare `expected` section
 3. Expected keys must match CT's CC output declaration
 4. Missing keys or extra keys are violations
 
-## Enforcement Scope
-
+## Where it applies
 - **Artifact Types**: TEST_DATA
 - **Validation Phase**: Phase 5 (ASSERT)
 - **Enforcement**: MANDATORY (build fails on violation)
@@ -92,8 +90,7 @@ TEST_DATA contract matching ensures:
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   rule: All TEST_DATA artifacts must declare expected outputs matching their target CT output keys

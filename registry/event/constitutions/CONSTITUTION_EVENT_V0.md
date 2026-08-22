@@ -48,8 +48,7 @@ Events are the protocol's mechanism for recording state transitions and observab
 
 ---
 
-## 4. Validation Rules
-
+## How it is checked
 - Event MUST declare a schema with at least one field.
 - Event stores referenced by EV artifacts MUST enforce append-only semantics.
 - No mutation operation (update, delete, patch) is permitted on an event store.
@@ -60,8 +59,7 @@ Events are the protocol's mechanism for recording state transitions and observab
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   description: Governs event emission and audit integrity

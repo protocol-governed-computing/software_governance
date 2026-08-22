@@ -91,8 +91,7 @@ Changes to security domain semantics require a new constitution version and migr
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   description: 'Declares which information-control regime is active for a compiled snapshot.

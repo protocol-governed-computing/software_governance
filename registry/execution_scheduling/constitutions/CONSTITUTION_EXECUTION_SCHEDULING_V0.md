@@ -85,8 +85,7 @@ Changes to scheduling semantics require a new constitution version and migration
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   description: 'Declares which execution scheduling model is legally active for a compiled

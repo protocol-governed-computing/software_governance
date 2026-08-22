@@ -39,8 +39,7 @@ declared for every snapshot — even in local unsigned development. The declarat
 that no cryptographic verification is required in this context. This sets up the
 governance axis that future signed and attested execution modes will extend.
 
-## Rule
-
+## What this realizes
 For every compiled snapshot:
 1. The compiler MUST scan `cryptographic_trust/` for active contracts
 2. Exactly one MUST be present
@@ -60,8 +59,7 @@ For every compiled snapshot:
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   rule: 'The compiler MUST locate exactly one active trust contract within FB_CRYPTOGRAPHIC_TRUST. Zero

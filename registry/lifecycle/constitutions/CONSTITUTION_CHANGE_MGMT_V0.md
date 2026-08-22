@@ -162,8 +162,7 @@ V0 intentionally defers:
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   description: Governs the PGS change management design and authoring pipeline (Stages 0–7) — from Change

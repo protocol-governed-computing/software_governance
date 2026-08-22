@@ -135,8 +135,3 @@ output_configuration:
 
 ---
 
-## Version History
-
-- **V0**: Initial runtime execution STRUCTURE (2026-03-21)
-- **V1**: Flattened domain structure (2026-03-26)
-  - Removed 'governance' from domain search_roots

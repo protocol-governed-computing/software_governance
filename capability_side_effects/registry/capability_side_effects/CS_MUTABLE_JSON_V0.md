@@ -1,17 +1,5 @@
 # CS_MUTABLE_JSON_V0
 
-## Header (Mandatory)
-
-- **Artifact Code:** CS_MUTABLE_JSON_V0
-- **Artifact Kind:** capability_side_effect
-- **Governed By:** CONSTITUTION_CAPABILITY_SIDE_EFFECTS_V0
-- **Version:** v0
-- **Status:** draft
-- **Supersedes:** NONE
-- **Dependencies:** NONE
-
----
-
 ## 1. Intent
 
 Provide a mutable key-addressable JSON state store with last-write-wins semantics.

@@ -32,8 +32,7 @@ An RB compiled with `policy: {}` for a non-STRUCTURE-resolved CS type will cause
 a runtime KeyError crash before any payload is processed — a compiler blind spot
 that this invariant closes.
 
-## Rule
-
+## What this realizes
 For every RB artifact, for every key in `core.bindings`:
 1. Extract the CS artifact code from the binding key FQDN
 2. If the CS code is `CS_REGISTRY_V0` or `CS_APPENDONLY_JSONL_V0`:
@@ -41,8 +40,7 @@ For every RB artifact, for every key in `core.bindings`:
    - `policy: {}` is a violation — it causes runtime KeyError before any payload is processed
 3. Other CS types (CS_MUTABLE_JSON_V0, CS_SEND_EMAIL_V0, etc.) are not constrained by this rule
 
-## Enforcement Scope
-
+## Where it applies
 - **Artifact Types**: RB
 - **Validation Phase**: ASSERT (Phase 5, compile-time, hard fail)
 - **Enforced By**: ASSERT_RB_BINDING_POLICY_CONFORMANCE_V0
@@ -57,8 +55,7 @@ at compile time preserves the PGS invariant that Compiler PASS → Runtime execu
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   rule: 'For every CS binding in an RB artifact where the CS type is a file-path CS (CS_REGISTRY_V0 or

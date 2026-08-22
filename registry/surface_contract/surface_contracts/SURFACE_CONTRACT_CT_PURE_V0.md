@@ -1,15 +1,5 @@
 # SURFACE_CONTRACT_CT_PURE_V0
 
-## Header
-
-- **Artifact Code:** SURFACE_CONTRACT_CT_PURE_V0
-- **Artifact Kind:** surface_contract
-- **Governed By:** execution_topology::CONSTITUTION_EXECUTION_TOPOLOGY_V0
-- **Version:** V0
-- **Status:** canonical
-
----
-
 ## Purpose
 
 Canonical result surface for pure capability transforms (CT_PURE_*).
@@ -42,8 +32,7 @@ capability_id_prefix: CT_PURE_
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 capability_family: CT_PURE
 ```

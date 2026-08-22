@@ -32,8 +32,7 @@ This invariant closes the governance chain in both directions, so that a declara
 
 ---
 
-## Validation Rules
-
+## How it is checked
 ### Rule 1: Forward resolution
 
 Every `rules[].enforced_by` FQDN in a compiled CONSTITUTION MUST resolve to a compiled INVARIANT, and that invariant's derived ASSERT MUST have a registered handler.

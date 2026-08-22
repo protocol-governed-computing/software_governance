@@ -43,8 +43,7 @@ the runtime interprets it.
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   description: 'CONSTITUTION_COMPILER_V0 MUST be present in every compiled artifact set. Its machine block

@@ -29,8 +29,7 @@ STRUCTURE artifacts are the only authority for where anything lives. A path that
 
 ---
 
-## Validation Rules
-
+## How it is checked
 ### Rule 1: No absolute paths
 
 No path value may begin with `/`. All paths are layer-relative.

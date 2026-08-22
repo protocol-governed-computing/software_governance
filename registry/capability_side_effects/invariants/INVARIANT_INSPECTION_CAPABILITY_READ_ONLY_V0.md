@@ -40,8 +40,7 @@ The capability's *subject* must also be bound rather than discovered. A capabili
 own snapshot could answer truthfully about a composition other than the one it was asked about,
 which is the same failure wearing a more convincing disguise.
 
-## Rule
-
+## What this realizes
 For every CS artifact declaring `core.category: inspection`:
 
 1. No declared operation may name a mutating verb (`WRITE`, `DELETE`, `APPEND`, `UPDATE`, `PUT`,
@@ -63,8 +62,3 @@ For every CS artifact declaring `core.category: inspection`:
 - **Stage:** compiler_assertion
 - **Failure Mode:** FAIL_IMMEDIATELY
 
-## Version History
-
-- **V0**: Establishes observation of the assembled system as a governed, read-only capability.
-  Introduced alongside `CS_SNAPSHOT_QUERY_V0`, which is its first subject but not its reason —
-  the rule governs any future capability that observes a composition.

@@ -103,8 +103,7 @@ Changes to trust semantics require a new constitution version and migration rati
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   description: 'Declares the cryptographic trust regime active for a compiled snapshot.

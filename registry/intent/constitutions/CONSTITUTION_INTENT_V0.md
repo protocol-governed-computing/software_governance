@@ -51,8 +51,7 @@ Intents are the declared entry points of the protocol. They define the input sch
 
 ---
 
-## 4. Validation Rules
-
+## How it is checked
 - Intent MUST declare an input schema with at least one field.
 - Intent MUST reference its target workflow via FQDN.
 - Intent MUST NOT contain conditional logic or transformation expressions.
@@ -63,8 +62,7 @@ Intents are the declared entry points of the protocol. They define the input sch
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   description: Governs system entry points and payload schema validation

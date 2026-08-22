@@ -134,8 +134,3 @@ build_phases:
   target: compiled/artifacts/
 ```
 
-## Version History
-
-- **V1**: PGC normative-platform scope. Removed `CAPABILITIES` (domain) and `TEST_DATA` +
-  conformance phases (implementation-layer). First PGC normative divergence from RI-0.
-- **V0**: RI-0 platform scope (faithful harvest). Retained immutable as provenance.

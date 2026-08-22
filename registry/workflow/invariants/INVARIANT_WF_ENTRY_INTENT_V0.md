@@ -26,8 +26,7 @@ Enforce that every workflow has a single, unambiguous admission gate.
 
 ---
 
-## Validation Rules
-
+## How it is checked
 ### Rule: Exactly One IN Node
 
 Count all nodes with type IN. The count must be exactly 1.
@@ -59,14 +58,7 @@ nodes:
 
 ---
 
-## Version History
-
-- **V0**: Initial implementation (2026-05-04)
-
----
-
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   description: 'Every workflow must declare exactly one IN node as its entry intent. The start_node must

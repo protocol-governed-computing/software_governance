@@ -41,8 +41,7 @@ stopped at compile time.
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   description: 'TI_ and TE_ artifacts MUST NOT participate in execution orchestration semantics.

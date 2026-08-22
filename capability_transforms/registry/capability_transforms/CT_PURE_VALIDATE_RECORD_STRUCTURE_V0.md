@@ -1,16 +1,5 @@
 # CT_PURE_VALIDATE_RECORD_STRUCTURE_V0
 
-## Header (Mandatory)
-
-- **Artifact Code:** CT_PURE_VALIDATE_RECORD_STRUCTURE_V0
-- **Artifact Kind:** atom
-- **Governed By:** capability_transforms::CONSTITUTION_CAPABILITY_TRANSFORMS_V0
-- **Version:** v0
-- **Supersedes:** NONE
-- **Dependencies:** NONE
-
----
-
 ## Human
 
 ### 1. Intent
@@ -35,7 +24,6 @@ This atom performs **only structural record validation**.
 
 ### 3. Naming Convention
 
-- **Artifact Code:** CT_PURE_VALIDATE_RECORD_STRUCTURE_V0
 - **Operation:** VALIDATE_RECORD_STRUCTURE
 
 ---

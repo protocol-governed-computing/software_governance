@@ -1,16 +1,5 @@
 # CT_PURE_PASSTHROUGH_V0
 
-## Header
-
-- **Artifact Code:** CT_PURE_PASSTHROUGH_V0
-- **Artifact Kind:** atom
-- **Governed By:** capability_transforms::CONSTITUTION_CAPABILITY_TRANSFORMS_V0
-- **Version:** v0
-- **Status:** draft
-- **Dependencies:** NONE
-
----
-
 ## 1. Intent
 
 Pass through an input value unchanged. Used for 1:1 payload mapping where no transformation is needed.

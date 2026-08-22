@@ -42,8 +42,7 @@ assumption.
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   description: 'Every artifact in the compiled snapshot MUST have a content_hash field that is non-empty.

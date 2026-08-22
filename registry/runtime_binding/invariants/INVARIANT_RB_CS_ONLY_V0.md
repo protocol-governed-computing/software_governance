@@ -26,14 +26,12 @@ Runtime bindings supply concrete implementations for declared CS capabilities. T
 never bind CT, WF, CC, or IN artifacts — those artifact types are resolved through
 different runtime mechanisms.
 
-## Rule
-
+## What this realizes
 For every RB artifact, every key in `core.bindings`:
 1. MUST be a valid FQDN
 2. The artifact code component of the FQDN MUST start with `CS_`
 
-## Enforcement Scope
-
+## Where it applies
 - **Artifact Types**: RB
 - **Validation Phase**: ASSERT (Phase 5, compile-time, hard fail)
 - **Enforced By**: ASSERT_RB_CS_ONLY_V0
@@ -46,8 +44,7 @@ an architectural error. The compiler must catch this before the artifact reaches
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   rule: All binding keys in RB core.bindings must resolve to CS artifact codes (CS_ prefix)

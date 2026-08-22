@@ -39,8 +39,7 @@ assert_projection:
 
 All artifacts must reference other artifacts using fully qualified domain names (FQDN) in the format `layer::artifact_code`. Short names (bare artifact_code) are forbidden.
 
-## Rule
-
+## What this realizes
 For all artifact types:
 1. References to CT must use: `transforms::CT_*_V0`
 2. References to CS must use: `side_effects::CS_*_V0`
@@ -50,8 +49,7 @@ For all artifact types:
 6. References to STRUCTURE must use: `governance::STRUCTURE_*_V0`
 7. NO bare artifact codes (e.g., `CT_HASH_V0` without layer prefix)
 
-## Enforcement Scope
-
+## Where it applies
 - **Artifact Types**: ALL
 - **Validation Phase**: Phase 5 (ASSERT)
 - **Enforcement**: MANDATORY (build fails on violation)
@@ -118,8 +116,7 @@ Scan all artifact Machine sections for:
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   rule: All cross-artifact references must use fully qualified domain names in format layer::artifact_code

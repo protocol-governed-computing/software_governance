@@ -26,8 +26,7 @@ Keep runtime bindings as pure mapping declarations with no embedded programs.
 
 ---
 
-## Validation Rules
-
+## How it is checked
 ### Rule: No Conditional Logic
 
 Binding config strings must not contain conditional expressions.
@@ -64,14 +63,7 @@ config:
 
 ---
 
-## Version History
-
-- **V0**: Initial implementation (2026-05-04)
-
----
-
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   description: 'RB artifacts must contain no execution logic. Binding configuration values must be static

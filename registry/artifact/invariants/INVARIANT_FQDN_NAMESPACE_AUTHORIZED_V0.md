@@ -44,8 +44,7 @@ Identity is declared by the artifact, not derived from its folder. The one const
 
 ---
 
-## Validation Rules
-
+## How it is checked
 ### Rule 1: Declared namespace is authorized
 
 Every non-imported artifact's declared FQDN namespace MUST appear in the authorized namespace set for the build. Imported artifacts carry their origin namespace (resolved externally) and are exempt.

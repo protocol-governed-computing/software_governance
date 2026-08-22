@@ -33,8 +33,7 @@ This is the topology-side complement of `ASSERT_IDENTITY_AUTHORITY_SEPARATION_V0
 `ASSERT_ACTOR_AUTHORITY_SEPARATION_V0`. All three enforce orthogonality from their
 respective surfaces.
 
-## Rule
-
+## What this realizes
 For every execution topology step in a CC pipeline:
 1. Steps MUST NOT declare fields named to signal authority semantics:
    - `role`, `required_role`, `permissions`, `authorization`, `authorized_by`
@@ -43,8 +42,7 @@ For every execution topology step in a CC pipeline:
 3. Steps MUST NOT reference authority registries, permission tables, or role databases
 4. Topology variation based on actor type, role, or permission state is a constitutional violation
 
-## Enforcement Scope
-
+## Where it applies
 - **Artifact Types**: CC
 - **Validation Phase**: compile_time
 - **Enforced By**: ASSERT_TOPOLOGY_AUTHORITY_ORTHOGONAL_V0
@@ -64,8 +62,7 @@ This is a Phase 1 stub. Field name detection is implemented in Phase 3.
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   rule: Execution topology steps must not declare fields that carry authority semantics (role, permissions,

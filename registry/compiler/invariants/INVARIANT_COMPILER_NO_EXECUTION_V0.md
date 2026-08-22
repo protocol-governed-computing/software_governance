@@ -41,8 +41,7 @@ must never be invoked during compilation.
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   description: 'Compiled CT and CS artifacts MUST NOT carry execution-time state in their materialized

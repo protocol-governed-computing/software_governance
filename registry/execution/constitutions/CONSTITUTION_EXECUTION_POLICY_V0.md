@@ -140,8 +140,7 @@ Changes to policy profiles require:
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   description: Governs execution policy profiles — the licensing seam between BASIC and ADVANCED machine

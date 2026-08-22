@@ -60,8 +60,7 @@ Capability Contracts bind pure Capability Transforms (CTs) and authorized Capabi
 
 ---
 
-## 4. Validation Rules
-
+## How it is checked
 - All input fields declared in `core.inputs` MUST be bound before execution.
 - All capability references in `core.pipeline` MUST resolve to declared CT or CS artifacts.
 - No output declared in `core.outputs` may remain unconsumed across the pipeline.
@@ -72,8 +71,7 @@ Capability Contracts bind pure Capability Transforms (CTs) and authorized Capabi
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   description: Governs Capability Contract (CC) artifacts — explicit binding, determinism, and governed

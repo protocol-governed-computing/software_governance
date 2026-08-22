@@ -27,8 +27,7 @@ Any undeclared reference is a protocol violation and must stop the build.
 
 ---
 
-## Validation Rules
-
+## How it is checked
 ### Rule 1: Payload Field Must Be Declared
 
 ```yaml
@@ -87,14 +86,7 @@ outputs:
 
 ---
 
-## Version History
-
-- **V0**: Initial implementation (2026-04-29) - WF Binding Surface Closure
-
----
-
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   description: "For each CC node in a WF execution graph, all input bindings must reference only declared\

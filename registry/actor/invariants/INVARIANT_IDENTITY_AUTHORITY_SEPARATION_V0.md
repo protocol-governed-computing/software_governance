@@ -24,16 +24,14 @@ assert_projection:
 
 Actor identity governance and execution authority governance are orthogonal surfaces. An actor artifact that conflates identity with authority collapses two sovereign governance dimensions into one, destroying the separation that makes authority governance composable and transport-independent.
 
-## Rule
-
+## What this realizes
 For every AC_ artifact:
 1. `core.attributes` MUST NOT contain fields named to signal permissions, roles, capabilities, or execution rights (e.g., `allowed_workflows`, `permissions`, `roles`, `authorization`, `execution_rights`)
 2. The artifact MUST NOT declare admissibility rules, projection visibility constraints, or workflow authorization grants
 3. The artifact MUST NOT reference authorization databases, authority stores, or runtime permission tables
 4. Identity attributes (type, email, agent_id, etc.) MUST carry no implicit authority semantics
 
-## Enforcement Scope
-
+## Where it applies
 - **Artifact Types**: AC
 - **Validation Phase**: ASSERT (compile-time)
 - **Enforced By**: ASSERT_IDENTITY_AUTHORITY_SEPARATION_V0
@@ -51,8 +49,7 @@ The separation is not a convention — it is a structural invariant enforced at 
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   rule: AC_ artifacts must not conflate identity with authority; no actor artifact may declare permissions,

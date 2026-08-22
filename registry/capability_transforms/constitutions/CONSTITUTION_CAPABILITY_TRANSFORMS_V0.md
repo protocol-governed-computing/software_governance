@@ -54,16 +54,14 @@ Capability Transforms are pure functions that transform data within the protocol
 
 ---
 
-## 4. Validation Rules
-
+## How it is checked
 - CT implementations must be discoverable.
 - Input and output types must match the capability contract.
 - Implementation must adhere to the purity principle.
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   description: Governs Capability Transform (CT) artifacts — purity, determinism, and explicit IO

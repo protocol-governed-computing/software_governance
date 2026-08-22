@@ -34,8 +34,7 @@ Ensure governance symmetry between invariant declarations and assert enforcement
 
 ---
 
-## Validation Rules
-
+## How it is checked
 ### Rule 1: One-to-One Correspondence
 
 For every `INVARIANT_X_V0`, exactly one `ASSERT_X_V0` must exist.
@@ -182,14 +181,7 @@ If governance is inconsistent, artifact validation is meaningless.
 
 ---
 
-## Version History
-
-- **V0**: Initial implementation (2026-04-12) - Meta-Invariant for Parity
-
----
-
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   description: 'For every INVARIANT_*, exactly one ASSERT_* must exist (and vice versa).

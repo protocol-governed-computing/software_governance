@@ -25,14 +25,7 @@ Constitutional rule that runtime business invariants must be bound to the
 capability-contract outcome-routing mechanism that enforces them. The runtime is
 unchanged; this is verified at compile time by `ASSERT_RUNTIME_INVARIANT_WIRED_V0`.
 
-## Version History
-
-- **V0**: Initial runtime-invariant wiring rule (2026-06-14)
-
----
-
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   description: 'Every runtime-enforced business invariant must be wired to a real enforcement point. A

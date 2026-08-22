@@ -1,15 +1,5 @@
 # CT_PURE_COMPARE_EQUAL_V0
 
-## Header (Mandatory)
-
-- **Artifact Code:** CT_PURE_COMPARE_EQUAL_V0
-- **Artifact Kind:** capability_transform
-- **Governed By:** CONSTITUTION_CAPABILITY_TRANSFORMS_V0
-- **Version:** v0
-- **Status:** canonical
-
----
-
 ## 1. Summary
 
 Compare two values for equality.

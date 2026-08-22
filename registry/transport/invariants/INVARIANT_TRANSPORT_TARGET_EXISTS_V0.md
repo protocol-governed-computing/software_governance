@@ -49,8 +49,7 @@ handler kind is a violation.
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   description: 'Every TI_ artifact MUST declare an explicit, static invocation target for its

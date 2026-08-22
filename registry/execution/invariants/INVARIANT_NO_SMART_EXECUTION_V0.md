@@ -27,8 +27,7 @@ assert_projection:
 
 Execution layer code (atom_registry, workflow_runner, etc.) must be "dumb executors" - they pass inputs to transforms and return outputs without interpreting type metadata or performing conversions.
 
-## Rule
-
+## What this realizes
 For all execution layer code:
 1. NO type-based input conversion (e.g., hex_string → bytes)
 2. NO type-based output conversion (e.g., bytes → hex_string)
@@ -38,8 +37,7 @@ For all execution layer code:
 
 All canonicalization must happen inside atom implementations.
 
-## Enforcement Scope
-
+## Where it applies
 - **Artifact Types**: CS (Capability Side Effects - executors)
 - **Code Layer**: pgs_execution
 - **Validation Phase**: Phase 5 (ASSERT)
@@ -106,8 +104,7 @@ Scan execution layer code for:
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   rule: Runtime executors must pass inputs to transforms without type-based interpretation or conversion

@@ -1,17 +1,5 @@
 # CS_APPENDONLY_JSONL_V0
 
-## Header (Mandatory)
-
-- **Artifact Code:** CS_APPENDONLY_JSONL_V0
-- **Artifact Kind:** capability_side_effect
-- **Governed By:** CONSTITUTION_CAPABILITY_SIDE_EFFECTS_V0
-- **Version:** v0
-- **Status:** draft
-- **Supersedes:** NONE
-- **Dependencies:** NONE
-
----
-
 ## 1. Intent
 
 Provide an append-only JSONL persistence layer with ordered event history.

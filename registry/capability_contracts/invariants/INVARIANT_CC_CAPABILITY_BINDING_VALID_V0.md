@@ -28,8 +28,7 @@ Ensure CC pipeline steps are well-formed capability bindings.
 
 ---
 
-## Validation Rules
-
+## How it is checked
 ### Rule 1: Exactly One Binding
 
 Each pipeline step must have exactly one of:
@@ -131,14 +130,7 @@ pipeline:
 
 ---
 
-## Version History
-
-- **V0**: Initial implementation (2026-04-12) - CC Capability Binding Validation
-
----
-
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   description: 'Each CC pipeline step must bind exactly ONE capability: - Either CT (transform) for pure

@@ -37,8 +37,7 @@ transport/adapter separation the boundary exists to protect.
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   description: 'A TE MUST NOT declare external-protocol response projection (HTTP status, RPC
