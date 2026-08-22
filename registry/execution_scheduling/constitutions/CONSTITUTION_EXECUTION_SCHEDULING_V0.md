@@ -3,19 +3,21 @@
 ## Machine
 
 ```yaml
-fqdn: fb.execution_scheduling::CONSTITUTION_EXECUTION_SCHEDULING_V0
+fqdn: execution_scheduling::CONSTITUTION_EXECUTION_SCHEDULING_V0
 artifact_kind: CONSTITUTION
 version: V0
-governed_by: fb.governance::CONSTITUTION_GOVERNANCE_V0
+governed_by: governance::CONSTITUTION_GOVERNANCE_V0
+authority: pgc.platform
+concern: execution_scheduling
 core:
   enforcement_model: process_and_compiler_enforced
 rules:
 - applies_to: compiled_snapshot
-  enforced_by: fb.execution_scheduling::INVARIANT_EXECUTION_SCHEDULING_DECLARED_V0
+  enforced_by: execution_scheduling::INVARIANT_EXECUTION_SCHEDULING_DECLARED_V0
 - applies_to: compiled_snapshot
-  enforced_by: fb.execution_scheduling::INVARIANT_EXECUTION_SCHEDULING_DECLARED_V0
+  enforced_by: execution_scheduling::INVARIANT_EXECUTION_SCHEDULING_DECLARED_V0
 - applies_to: compiled_snapshot
-  enforced_by: fb.execution_scheduling::INVARIANT_EXECUTION_SCHEDULING_DECLARED_V0
+  enforced_by: execution_scheduling::INVARIANT_EXECUTION_SCHEDULING_DECLARED_V0
 - applies_to: federation_boundary
   enforced_by: PROCESS_ENFORCED
 - applies_to: runtime

@@ -5,10 +5,12 @@ Architectural Invariant
 ## Machine
 
 ```yaml
-fqdn: fb.authority::INVARIANT_NO_AMBIENT_AUTHORITY_V0
+fqdn: authority::INVARIANT_NO_AMBIENT_AUTHORITY_V0
 artifact_kind: INVARIANT
 version: V0
-governed_by: fb.authority::CONSTITUTION_AUTHORITY_GOVERNANCE_V0
+governed_by: authority::CONSTITUTION_AUTHORITY_GOVERNANCE_V0
+authority: pgc.platform
+concern: authority
 core:
   enforcement_stage:
   - compiler_assertion

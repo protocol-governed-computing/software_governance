@@ -16,10 +16,12 @@ Single source of truth for artifact discovery. Defines which layers are searched
 ## Machine
 
 ```yaml
-fqdn: fb.structure::STRUCTURE_DISCOVERY_V0
+fqdn: structure::STRUCTURE_DISCOVERY_V0
 artifact_kind: STRUCTURE
 version: V0
-governed_by: fb.structure::CONSTITUTION_STRUCTURE_V0
+governed_by: structure::CONSTITUTION_STRUCTURE_V0
+authority: pgc.platform
+concern: structure
 core:
   summary: Consolidated artifact discovery configuration
   description: 'Single source of truth for artifact discovery, replacing fragmented registry location

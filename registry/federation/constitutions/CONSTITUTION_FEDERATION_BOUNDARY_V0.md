@@ -2,10 +2,12 @@
 
 ## Machine
 ```yaml
-fqdn: fb.federation::CONSTITUTION_FEDERATION_BOUNDARY_V0
+fqdn: federation::CONSTITUTION_FEDERATION_BOUNDARY_V0
 artifact_kind: CONSTITUTION
 version: V0
-governed_by: fb.governance::CONSTITUTION_GOVERNANCE_V0
+governed_by: governance::CONSTITUTION_GOVERNANCE_V0
+authority: pgc.platform
+concern: federation
 core:
   enforcement_model: process_enforced
 rules:
@@ -35,7 +37,7 @@ rules:
 - **Applies To:** All federation boundaries in the PGS governance model
 - **Status:** Active — Foundational
 - **Supersedes:** NONE
-- **Governed By:** fb.governance::CONSTITUTION_GOVERNANCE_V0
+- **Governed By:** governance::CONSTITUTION_GOVERNANCE_V0
 - **Dependencies:** CONSTITUTION_GOVERNANCE_V0
 
 ---

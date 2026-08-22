@@ -4,7 +4,7 @@
   "title": "SCHEMA_STRUCTURE_V0",
   "description": "Structural definitions for STRUCTURE artifacts governed by CONSTITUTION_STRUCTURE_V0",
   "version": "V0",
-  "governed_by": "fb.structure::CONSTITUTION_STRUCTURE_V0",
+  "governed_by": "structure::CONSTITUTION_STRUCTURE_V0",
 
   "definitions": {
     "layer_path": {
@@ -141,7 +141,7 @@
       },
       "governed_by": {
         "type": "string",
-        "const": "fb.structure::CONSTITUTION_STRUCTURE_V0",
+        "const": "structure::CONSTITUTION_STRUCTURE_V0",
         "description": "MUST reference CONSTITUTION_STRUCTURE_V0 via FQDN"
       }
     }

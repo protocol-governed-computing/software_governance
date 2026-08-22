@@ -3,10 +3,12 @@
 ## Machine
 
 ```yaml
-fqdn: fb.trace::CONSTITUTION_TRACE_EXECUTION_V0
+fqdn: trace::CONSTITUTION_TRACE_EXECUTION_V0
 artifact_kind: CONSTITUTION
 version: V0
-governed_by: fb.execution::CONSTITUTION_EXECUTION_V0
+governed_by: execution::CONSTITUTION_EXECUTION_V0
+authority: pgc.platform
+concern: trace
 core:
   enforcement_model: runtime_enforced
 rules:

@@ -5,10 +5,12 @@ Architectural Invariant
 ## Machine
 
 ```yaml
-fqdn: fb.conformance::INVARIANT_TEST_DATA_MATCH_CT_OUTPUT_V0
+fqdn: conformance::INVARIANT_TEST_DATA_MATCH_CT_OUTPUT_V0
 artifact_kind: INVARIANT
 version: V0
-governed_by: fb.governance::CONSTITUTION_INVARIANTS_V0
+governed_by: governance::CONSTITUTION_INVARIANTS_V0
+authority: pgc.platform
+concern: conformance
 core:
   enforcement_stage:
   - compiler_assertion
@@ -86,7 +88,7 @@ TEST_DATA contract matching ensures:
 ## Related Artifacts
 
 - `governance::INVARIANT_CT_OUTPUT_CONTRACT_MATCH_V0` - Complementary check
-- `fb.conformance::CONSTITUTION_TEST_DATA_V0` - Governs TEST_DATA structure
+- `conformance::CONSTITUTION_TEST_DATA_V0` - Governs TEST_DATA structure
 
 ---
 

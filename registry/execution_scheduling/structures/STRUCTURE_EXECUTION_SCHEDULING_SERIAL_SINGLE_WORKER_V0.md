@@ -3,11 +3,13 @@
 ## Machine
 
 ```yaml
-fqdn: fb.execution_scheduling::STRUCTURE_EXECUTION_SCHEDULING_SERIAL_SINGLE_WORKER_V0
+fqdn: execution_scheduling::STRUCTURE_EXECUTION_SCHEDULING_SERIAL_SINGLE_WORKER_V0
 artifact_code: STRUCTURE_EXECUTION_SCHEDULING_SERIAL_SINGLE_WORKER_V0
 artifact_kind: STRUCTURE
 version: V0
-governed_by: fb.execution_scheduling::CONSTITUTION_EXECUTION_SCHEDULING_V0
+governed_by: execution_scheduling::CONSTITUTION_EXECUTION_SCHEDULING_V0
+authority: pgc.platform
+concern: execution_scheduling
 status: active
 scheduling_mode: SERIAL_SINGLE_WORKER
 parallel_branch_execution_allowed: false

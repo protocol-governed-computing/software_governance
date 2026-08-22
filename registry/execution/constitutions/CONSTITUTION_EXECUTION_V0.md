@@ -2,10 +2,12 @@
 
 ## Machine
 ```yaml
-fqdn: fb.execution::CONSTITUTION_EXECUTION_V0
+fqdn: execution::CONSTITUTION_EXECUTION_V0
 artifact_kind: CONSTITUTION
 version: V0
-governed_by: fb.vocabulary::CONSTITUTION_VOCABULARY_V0
+governed_by: vocabulary::CONSTITUTION_VOCABULARY_V0
+authority: pgc.platform
+concern: execution
 core:
   enforcement_model: runtime_enforced
 rules:
@@ -50,8 +52,8 @@ All workflow execution proceeds through exactly five phases:
 | Phase | Responsibility | Governance |
 |-------|---------------|------------|
 | INTERPRET | Parse DAG from workflow artifact | SCHEMA_EXECUTION_DAG_V0 |
-| ADMIT | Enforce pre-DAG preconditions | fb.transport::CONSTITUTION_ADMISSION_V0 |
-| DISPATCH | Route nodes to capability executors | fb.execution::CONSTITUTION_EXECUTION_V0 |
+| ADMIT | Enforce pre-DAG preconditions | transport::CONSTITUTION_ADMISSION_V0 |
+| DISPATCH | Route nodes to capability executors | execution::CONSTITUTION_EXECUTION_V0 |
 | EVALUATE | Execute capability and collect result | Capability Contract |
 | EXIT | Terminate with success/failure + trace | CONSTITUTION_TRACE_EXECUTION_V0 |
 

@@ -5,10 +5,12 @@ Architectural Invariant
 ## Machine
 
 ```yaml
-fqdn: fb.capability_side_effects::INVARIANT_CS_ISOLATED_EXECUTION_V0
+fqdn: capability_side_effects::INVARIANT_CS_ISOLATED_EXECUTION_V0
 artifact_kind: INVARIANT
 version: V0
-governed_by: fb.capability_side_effects::CONSTITUTION_CAPABILITY_SIDE_EFFECTS_V0
+governed_by: capability_side_effects::CONSTITUTION_CAPABILITY_SIDE_EFFECTS_V0
+authority: pgc.platform
+concern: capability_side_effects
 core:
   enforcement_stage:
   - compiler_assertion

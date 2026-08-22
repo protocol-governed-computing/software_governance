@@ -3,10 +3,12 @@
 ## Machine
 
 ```yaml
-fqdn: fb.cryptographic_trust::INVARIANT_CRYPTOGRAPHIC_TRUST_DECLARED_V0
+fqdn: cryptographic_trust::INVARIANT_CRYPTOGRAPHIC_TRUST_DECLARED_V0
 artifact_kind: INVARIANT
 version: V0
-governed_by: fb.governance::CONSTITUTION_INVARIANTS_V0
+governed_by: governance::CONSTITUTION_INVARIANTS_V0
+authority: pgc.platform
+concern: cryptographic_trust
 core:
   enforcement_stage:
   - compiler_validation
@@ -20,7 +22,7 @@ assert_projection:
     rule: exactly_one
     subject: active cryptographic trust contract
     selector:
-      namespace: fb.cryptographic_trust
+      namespace: cryptographic_trust
       artifact_type: STRUCTURE
       artifact_code_prefix: STRUCTURE_CRYPTOGRAPHIC_TRUST_
       where:

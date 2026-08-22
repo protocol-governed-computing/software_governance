@@ -2,41 +2,43 @@
 
 ## Machine
 ```yaml
-fqdn: fb.execution_topology::CONSTITUTION_EXECUTION_TOPOLOGY_V0
+fqdn: execution_topology::CONSTITUTION_EXECUTION_TOPOLOGY_V0
 artifact_kind: CONSTITUTION
 version: V0
-governed_by: fb.capability_contracts::CONSTITUTION_CAPABILITY_CONTRACT_V0
+governed_by: capability_contracts::CONSTITUTION_CAPABILITY_CONTRACT_V0
+authority: pgc.platform
+concern: execution_topology
 core:
   enforcement_model: compiler_enforced
   governs:
   - CC
 rules:
 - applies_to: CC
-  enforced_by: fb.execution_topology::INVARIANT_TOPOLOGY_STEP_DECLARED_V0
+  enforced_by: execution_topology::INVARIANT_TOPOLOGY_STEP_DECLARED_V0
 - applies_to: CC
-  enforced_by: fb.capability_contracts::INVARIANT_TOPOLOGY_CAPABILITY_REFERENCE_UNIQUE_V0
+  enforced_by: capability_contracts::INVARIANT_TOPOLOGY_CAPABILITY_REFERENCE_UNIQUE_V0
 - applies_to: CC
-  enforced_by: fb.capability_contracts::INVARIANT_TOPOLOGY_INPUT_REFERENCE_DECLARED_V0
+  enforced_by: capability_contracts::INVARIANT_TOPOLOGY_INPUT_REFERENCE_DECLARED_V0
 - applies_to: CC
-  enforced_by: fb.execution_topology::INVARIANT_TOPOLOGY_ROUTING_COMPLETE_V0
+  enforced_by: execution_topology::INVARIANT_TOPOLOGY_ROUTING_COMPLETE_V0
 - applies_to: CC
-  enforced_by: fb.execution_topology::INVARIANT_TOPOLOGY_CONTRACT_CLOSED_V0
+  enforced_by: execution_topology::INVARIANT_TOPOLOGY_CONTRACT_CLOSED_V0
 - applies_to: CC
-  enforced_by: fb.execution_topology::INVARIANT_TOPOLOGY_STEP_ID_UNIQUE_V0
+  enforced_by: execution_topology::INVARIANT_TOPOLOGY_STEP_ID_UNIQUE_V0
 - applies_to: CC
-  enforced_by: fb.execution_topology::INVARIANT_TOPOLOGY_AUTHORITY_ORTHOGONAL_V0
+  enforced_by: execution_topology::INVARIANT_TOPOLOGY_AUTHORITY_ORTHOGONAL_V0
 - applies_to: CC
-  enforced_by: fb.execution_topology::INVARIANT_TOPOLOGY_TRANSPORT_ORTHOGONAL_V0
+  enforced_by: execution_topology::INVARIANT_TOPOLOGY_TRANSPORT_ORTHOGONAL_V0
 - applies_to: CC
-  enforced_by: fb.execution_topology::INVARIANT_TOPOLOGY_IMMUTABLE_AFTER_COMPILATION_V0
+  enforced_by: execution_topology::INVARIANT_TOPOLOGY_IMMUTABLE_AFTER_COMPILATION_V0
 - applies_to: CC
-  enforced_by: fb.execution_topology::INVARIANT_NO_RUNTIME_TOPOLOGY_SYNTHESIS_V0
+  enforced_by: execution_topology::INVARIANT_NO_RUNTIME_TOPOLOGY_SYNTHESIS_V0
 - applies_to: CC
-  enforced_by: fb.execution_topology::INVARIANT_TOPOLOGY_SURFACE_CANONICAL_V0
+  enforced_by: execution_topology::INVARIANT_TOPOLOGY_SURFACE_CANONICAL_V0
 - applies_to: CT
-  enforced_by: fb.capability_transforms::INVARIANT_CT_TEST_DATA_OUTCOME_DECLARED_V0
+  enforced_by: capability_transforms::INVARIANT_CT_TEST_DATA_OUTCOME_DECLARED_V0
 - applies_to: WF
-  enforced_by: fb.workflow::INVARIANT_WF_NODE_KEY_BINDING_UNIQUE_V0
+  enforced_by: workflow::INVARIANT_WF_NODE_KEY_BINDING_UNIQUE_V0
 ```
 
 ---

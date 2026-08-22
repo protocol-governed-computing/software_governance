@@ -3,10 +3,12 @@
 ## Machine
 
 ```yaml
-fqdn: fb.surface_contract::INVARIANT_PROTOCOL_SURFACE_CLOSED_V0
+fqdn: surface_contract::INVARIANT_PROTOCOL_SURFACE_CLOSED_V0
 artifact_kind: INVARIANT
 version: V0
-governed_by: fb.governance::CONSTITUTION_INVARIANTS_V0
+governed_by: governance::CONSTITUTION_INVARIANTS_V0
+authority: pgc.platform
+concern: surface_contract
 core:
   enforcement_stage:
   - compiler_validation
@@ -48,7 +50,7 @@ references:
 
 ### Rule 2: No Short Name References
 
-All references must use FQDN format (`fb.vocabulary::artifact_code`).
+All references must use FQDN format (`vocabulary::artifact_code`).
 
 **Violation**:
 ```yaml

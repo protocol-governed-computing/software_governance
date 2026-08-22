@@ -3,10 +3,12 @@
 ## Machine
 
 ```yaml
-fqdn: fb.conformance::INVARIANT_ASSERT_PARITY_V0
+fqdn: conformance::INVARIANT_ASSERT_PARITY_V0
 artifact_kind: INVARIANT
 version: V0
-governed_by: fb.governance::CONSTITUTION_INVARIANTS_V0
+governed_by: governance::CONSTITUTION_INVARIANTS_V0
+authority: pgc.platform
+concern: conformance
 core:
   enforcement_stage:
   - compiler_meta_validation

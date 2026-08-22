@@ -2,31 +2,33 @@
 
 ## Machine
 ```yaml
-fqdn: fb.runtime_binding::CONSTITUTION_RUNTIME_BINDING_V0
+fqdn: runtime_binding::CONSTITUTION_RUNTIME_BINDING_V0
 artifact_kind: CONSTITUTION
 version: V0
-governed_by: fb.governance::CONSTITUTION_GOVERNANCE_V0
+governed_by: governance::CONSTITUTION_GOVERNANCE_V0
+authority: pgc.platform
+concern: runtime_binding
 core:
   enforcement_model: compiler_enforced
   governs:
   - RB
 rules:
 - applies_to: RB
-  enforced_by: fb.runtime_binding::INVARIANT_RB_NO_LOGIC_V0
+  enforced_by: runtime_binding::INVARIANT_RB_NO_LOGIC_V0
 - applies_to: RB
-  enforced_by: fb.runtime_binding::INVARIANT_RB_CS_ONLY_V0
+  enforced_by: runtime_binding::INVARIANT_RB_CS_ONLY_V0
 - applies_to: RB
-  enforced_by: fb.runtime_binding::INVARIANT_RB_NO_LOGIC_V0
+  enforced_by: runtime_binding::INVARIANT_RB_NO_LOGIC_V0
 - applies_to: RB
-  enforced_by: fb.runtime_binding::INVARIANT_RB_NO_LOGIC_V0
+  enforced_by: runtime_binding::INVARIANT_RB_NO_LOGIC_V0
 - applies_to: RB
-  enforced_by: fb.artifact::INVARIANT_FQDN_ONLY_REFERENCES_V0
+  enforced_by: artifact::INVARIANT_FQDN_ONLY_REFERENCES_V0
 - applies_to: RB
-  enforced_by: fb.runtime_binding::INVARIANT_RB_BINDING_POLICY_CONFORMANCE_V0
+  enforced_by: runtime_binding::INVARIANT_RB_BINDING_POLICY_CONFORMANCE_V0
 - applies_to: RB
-  enforced_by: fb.runtime_binding::INVARIANT_RB_PARAMETERS_DECLARED_V0
+  enforced_by: runtime_binding::INVARIANT_RB_PARAMETERS_DECLARED_V0
 - applies_to: RB
-  enforced_by: fb.runtime_binding::INVARIANT_RB_STORAGE_SUBDOMAIN_OWNED_V0
+  enforced_by: runtime_binding::INVARIANT_RB_STORAGE_SUBDOMAIN_OWNED_V0
 ```
 
 ---

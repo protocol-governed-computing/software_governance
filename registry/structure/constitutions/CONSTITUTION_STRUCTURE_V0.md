@@ -2,29 +2,31 @@
 
 ## Machine
 ```yaml
-fqdn: fb.structure::CONSTITUTION_STRUCTURE_V0
+fqdn: structure::CONSTITUTION_STRUCTURE_V0
 artifact_kind: CONSTITUTION
 version: V0
-governed_by: fb.governance::CONSTITUTION_GOVERNANCE_V0
+governed_by: governance::CONSTITUTION_GOVERNANCE_V0
+authority: pgc.platform
+concern: structure
 core:
   enforcement_model: process_and_compiler_enforced
   governs:
   - STRUCTURE
 rules:
 - applies_to: STRUCTURE
-  enforced_by: fb.structure::INVARIANT_STRUCTURE_PATHS_WELL_FORMED_V0
+  enforced_by: structure::INVARIANT_STRUCTURE_PATHS_WELL_FORMED_V0
 - applies_to: STRUCTURE
-  enforced_by: fb.structure::INVARIANT_STRUCTURE_PATHS_WELL_FORMED_V0
+  enforced_by: structure::INVARIANT_STRUCTURE_PATHS_WELL_FORMED_V0
 - applies_to: STRUCTURE
-  enforced_by: fb.structure::INVARIANT_STRUCTURE_PATHS_WELL_FORMED_V0
+  enforced_by: structure::INVARIANT_STRUCTURE_PATHS_WELL_FORMED_V0
 - applies_to: STRUCTURE
-  enforced_by: fb.structure::INVARIANT_STRUCTURE_PATHS_WELL_FORMED_V0
-- applies_to: STRUCTURE
-  enforced_by: PROCESS_ENFORCED
+  enforced_by: structure::INVARIANT_STRUCTURE_PATHS_WELL_FORMED_V0
 - applies_to: STRUCTURE
   enforced_by: PROCESS_ENFORCED
 - applies_to: STRUCTURE
-  enforced_by: fb.artifact::INVARIANT_FQDN_ONLY_REFERENCES_V0
+  enforced_by: PROCESS_ENFORCED
+- applies_to: STRUCTURE
+  enforced_by: artifact::INVARIANT_FQDN_ONLY_REFERENCES_V0
 ```
 
 ---

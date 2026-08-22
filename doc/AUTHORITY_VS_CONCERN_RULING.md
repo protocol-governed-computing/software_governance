@@ -3,9 +3,9 @@
 ## Ruled: authority. The platform has one governance authority, and all twenty-six declared boundaries are one modeling error.
 
 The current `fb.*` inventory does not represent a federation of governance authorities. It conflates
-governance authority with semantic concern — and in the case of `fb.governance`, encodes the root
+governance authority with semantic concern — and in the case of `governance`, encodes the root
 authority itself as though it were one concern-bound boundary among peers. Twenty-five boundaries fail
-to demonstrate independent authority; `fb.governance` fails in the opposite direction, by being the
+to demonstrate independent authority; `governance` fails in the opposite direction, by being the
 authority from which the others would have to be distinguished. One error explains all twenty-six,
 with no exception.
 
@@ -29,7 +29,7 @@ concern:    structure
 artifact:   STRUCTURE_IDENTITY_V0
 ```
 
-The present encoding collapses this into a single identifier, `fb.structure::STRUCTURE_IDENTITY_V0`,
+The present encoding collapses this into a single identifier, `structure::STRUCTURE_IDENTITY_V0`,
 where the namespace carries a concern but asserts an authority. Nothing in the artifact distinguishes
 the claim it makes about jurisdiction from the classification it makes about subject matter.
 
@@ -37,12 +37,12 @@ the claim it makes about jurisdiction from the classification it makes about sub
 
 Two boundaries already govern the same subject, from opposite directions.
 
-`fb.artifact` holds `INVARIANT_IDENTITY_FQDN_CONSISTENCY_V0`, declared `scope: ALL_ARTIFACTS` with
+`artifact` holds `INVARIANT_IDENTITY_FQDN_CONSISTENCY_V0`, declared `scope: ALL_ARTIFACTS` with
 `applies_to_kinds` enumerating every kind — including `STRUCTURE`. Its invariants therefore bind
-`fb.structure`'s artifacts.
+`structure`'s artifacts.
 
-`fb.structure` holds `STRUCTURE_IDENTITY_V0`, whose summary is "the canonical identity system for all
-protocol artifacts" — which necessarily includes `fb.artifact`'s.
+`structure` holds `STRUCTURE_IDENTITY_V0`, whose summary is "the canonical identity system for all
+protocol artifacts" — which necessarily includes `artifact`'s.
 
 Each governs artifact identity. Neither holds a decision the other is excluded from. The evidence
 does not establish two distinct federation authorities; therefore these two namespaces cannot
@@ -59,61 +59,61 @@ directory contents.
 
 | Boundary | Constituting act | Declared jurisdiction | Overlaps | Reading |
 |---|---|---|---|---|
-| `fb.actor` | yes | `AC` | — | kind-mirror |
-| `fb.artifact` | **none** | all 16 kinds, `ALL_ARTIFACTS` | everything | universal reach, unconstituted |
-| `fb.authority` | yes | `AC CC CS CT WF` | `capability_contracts`, `execution` | cross-kind, contested |
-| `fb.capability_contracts` | yes | `CC CS CT WF` | `authority`, `execution` | cross-kind, contested |
-| `fb.capability_side_effects` | yes | `CS` | — | kind-mirror |
-| `fb.capability_transforms` | yes | `CT` | — | kind-mirror |
-| `fb.compiler` | yes | `COMPILER` | — | kind-mirror |
-| `fb.conformance` | yes | `CC CS CT INVARIANT RB TEST_DATA WF` | the CC/CS/CT/WF cluster | cross-kind, contested |
-| `fb.cryptographic_trust` | yes | `SNAPSHOT`, `ALL_ARTIFACTS` | the SNAPSHOT cluster | snapshot-scoped |
-| `fb.event` | yes | `EV` | — | kind-mirror |
-| `fb.execution` | yes | `CC CS CT WF` | `authority`, `capability_contracts` | cross-kind, contested |
-| `fb.execution_placement` | yes | `SNAPSHOT`, `ALL_ARTIFACTS` | the SNAPSHOT cluster | snapshot-scoped |
-| `fb.execution_scheduling` | yes | `SNAPSHOT`, `ALL_ARTIFACTS` | the SNAPSHOT cluster | snapshot-scoped |
-| `fb.execution_topology` | yes | `CC CS CT RB TE TI WF` | the CC/CS/CT/WF cluster | cross-kind, contested |
-| `fb.federation` | yes | none exercised | — | constitution only |
-| `fb.governance` | yes | `CONSTITUTION INVARIANT` | — | governs governance |
-| `fb.intent` | yes | `IN WF` | `workflow` | kind-mirror, slight reach |
-| `fb.lifecycle` | yes | none exercised | — | constitution only |
-| `fb.runtime_binding` | yes | `RB` | — | kind-mirror |
-| `fb.security_domain` | yes | `SNAPSHOT`, `ALL_ARTIFACTS` | the SNAPSHOT cluster | snapshot-scoped |
-| `fb.structure` | yes | `STRUCTURE`, `global` | `artifact` | kind-mirror |
-| `fb.surface_contract` | **none** | `CC CS CT RB WF`, `ALL_ARTIFACTS` | the CC/CS/CT/WF cluster | cross-kind, unconstituted |
-| `fb.trace` | yes | none exercised | — | constitution only |
-| `fb.transport` | yes | `SNAPSHOT TE TI WF` | the SNAPSHOT cluster | mixed |
-| `fb.vocabulary` | yes | all 16 kinds | everything | universal reach |
-| `fb.workflow` | yes | `WF` | `intent`, the CC/CS/CT/WF cluster | kind-mirror |
+| `actor` | yes | `AC` | — | kind-mirror |
+| `artifact` | **none** | all 16 kinds, `ALL_ARTIFACTS` | everything | universal reach, unconstituted |
+| `authority` | yes | `AC CC CS CT WF` | `capability_contracts`, `execution` | cross-kind, contested |
+| `capability_contracts` | yes | `CC CS CT WF` | `authority`, `execution` | cross-kind, contested |
+| `capability_side_effects` | yes | `CS` | — | kind-mirror |
+| `capability_transforms` | yes | `CT` | — | kind-mirror |
+| `compiler` | yes | `COMPILER` | — | kind-mirror |
+| `conformance` | yes | `CC CS CT INVARIANT RB TEST_DATA WF` | the CC/CS/CT/WF cluster | cross-kind, contested |
+| `cryptographic_trust` | yes | `SNAPSHOT`, `ALL_ARTIFACTS` | the SNAPSHOT cluster | snapshot-scoped |
+| `event` | yes | `EV` | — | kind-mirror |
+| `execution` | yes | `CC CS CT WF` | `authority`, `capability_contracts` | cross-kind, contested |
+| `execution_placement` | yes | `SNAPSHOT`, `ALL_ARTIFACTS` | the SNAPSHOT cluster | snapshot-scoped |
+| `execution_scheduling` | yes | `SNAPSHOT`, `ALL_ARTIFACTS` | the SNAPSHOT cluster | snapshot-scoped |
+| `execution_topology` | yes | `CC CS CT RB TE TI WF` | the CC/CS/CT/WF cluster | cross-kind, contested |
+| `federation` | yes | none exercised | — | constitution only |
+| `governance` | yes | `CONSTITUTION INVARIANT` | — | governs governance |
+| `intent` | yes | `IN WF` | `workflow` | kind-mirror, slight reach |
+| `lifecycle` | yes | none exercised | — | constitution only |
+| `runtime_binding` | yes | `RB` | — | kind-mirror |
+| `security_domain` | yes | `SNAPSHOT`, `ALL_ARTIFACTS` | the SNAPSHOT cluster | snapshot-scoped |
+| `structure` | yes | `STRUCTURE`, `global` | `artifact` | kind-mirror |
+| `surface_contract` | **none** | `CC CS CT RB WF`, `ALL_ARTIFACTS` | the CC/CS/CT/WF cluster | cross-kind, unconstituted |
+| `trace` | yes | none exercised | — | constitution only |
+| `transport` | yes | `SNAPSHOT TE TI WF` | the SNAPSHOT cluster | mixed |
+| `vocabulary` | yes | all 16 kinds | everything | universal reach |
+| `workflow` | yes | `WF` | `intent`, the CC/CS/CT/WF cluster | kind-mirror |
 
 ## What the table shows
 
-**Nine boundaries are kind-mirrors.** `fb.actor` governs `AC`, `fb.event` governs `EV`,
-`fb.workflow` governs `WF`, and so on — the boundary name is the artifact kind, and the jurisdiction
+**Nine boundaries are kind-mirrors.** `actor` governs `AC`, `event` governs `EV`,
+`workflow` governs `WF`, and so on — the boundary name is the artifact kind, and the jurisdiction
 is that kind alone. "`fb.X` contains X artifacts" is a concern partition. No governance decision is
 reserved to these that follows from authority rather than from subject matter.
 
-**Six boundaries contest one jurisdiction.** `fb.authority`, `fb.capability_contracts` and
-`fb.execution` declare *the same four kinds* — `CC CS CT WF`. `fb.execution_topology`,
-`fb.surface_contract` and `fb.conformance` declare supersets of it. Six boundaries reaching the same
+**Six boundaries contest one jurisdiction.** `authority`, `capability_contracts` and
+`execution` declare *the same four kinds* — `CC CS CT WF`. `execution_topology`,
+`surface_contract` and `conformance` declare supersets of it. Six boundaries reaching the same
 subjects is not six sovereignties; none of them can show a decision the others are excluded from.
 
-**Four boundaries contest the snapshot.** `fb.cryptographic_trust`, `fb.execution_placement`,
-`fb.execution_scheduling` and `fb.security_domain` each declare `applies_to_kinds: SNAPSHOT` with
+**Four boundaries contest the snapshot.** `cryptographic_trust`, `execution_placement`,
+`execution_scheduling` and `security_domain` each declare `applies_to_kinds: SNAPSHOT` with
 `scope: ALL_ARTIFACTS`. Their subject is the same object.
 
-**Two claim universal reach.** `fb.artifact` and `fb.vocabulary` both enumerate all sixteen kinds.
+**Two claim universal reach.** `artifact` and `vocabulary` both enumerate all sixteen kinds.
 Two boundaries with total jurisdiction cannot both be bounded, and bounded jurisdiction is what the
 constitution requires.
 
-**Two have no constituting act.** `fb.artifact` and `fb.surface_contract` declare no constitution.
-`fb.artifact` is also one of the two universal-reach boundaries: seven invariants binding every
+**Two have no constituting act.** `artifact` and `surface_contract` declare no constitution.
+`artifact` is also one of the two universal-reach boundaries: seven invariants binding every
 artifact in the composition, under no constituting authority. That is not a gap to be filled by
 writing two constitutions — it is evidence that the boundaries were created as organizational
 partitions, and that the constituting act was never the thing that produced them.
 
-**Three exercise no jurisdiction at all.** `fb.federation`, `fb.lifecycle` and `fb.trace` declare no
-`applies_to_kinds`. `fb.federation` and `fb.trace` hold a single artifact each — their own
+**Three exercise no jurisdiction at all.** `federation`, `lifecycle` and `trace` declare no
+`applies_to_kinds`. `federation` and `trace` hold a single artifact each — their own
 constitution. A boundary whose only content is the declaration that it exists has no governed
 subject.
 
@@ -124,7 +124,7 @@ because the encoding does not distinguish the two dimensions.
 
 ## The independence test, applied to the apparent survivor
 
-`fb.governance` governs `CONSTITUTION` and `INVARIANT` — a jurisdiction no other boundary claims, and
+`governance` governs `CONSTITUTION` and `INVARIANT` — a jurisdiction no other boundary claims, and
 a decision no other boundary makes. It is the single row where the declarations satisfy the boundary
 test on its face.
 
@@ -137,14 +137,14 @@ It fails the independence clause. `CONSTITUTION_GOVERNANCE_V0` states:
 Its own tier table names the level: `Sovereign | Root authority, defines protocol semantics | This
 constitution`.
 
-So `fb.governance` is not a peer authority sitting beside the platform authority. It **is** the root
+So `governance` is not a peer authority sitting beside the platform authority. It **is** the root
 authority, and every other boundary's constitution derives from it. It fails in the opposite
 direction from the other twenty-five: not by having no authority to distinguish, but by being the
 authority from which the rest would have to be distinguished. It is not a federation boundary at all
 — it is the platform authority, encoded as though it were one boundary among peers.
 
-Notably, `fb.federation` — the boundary that defines what a federation boundary *is* — exercises no
-jurisdiction, while `fb.governance` does the governing.
+Notably, `federation` — the boundary that defines what a federation boundary *is* — exercises no
+jurisdiction, while `governance` does the governing.
 
 ## The ruling
 
@@ -226,7 +226,7 @@ candidate, but the registry representation should follow the ontology rather tha
 It does not define the ontology that must come next. At least four concepts are expressed here
 through one identifier — **authority** (the entity from which jurisdiction derives), **concern** (the
 semantic subject governed), **federation** (the relation among distinct authorities), and
-**namespace** (the name-resolution mechanism). That `fb.federation` exercises no jurisdiction while
+**namespace** (the name-resolution mechanism). That `federation` exercises no jurisdiction while
 defining what a boundary is suggests federation may be a relation rather than a governed subject.
 That is a hypothesis the evidence supports, not a ruling.
 

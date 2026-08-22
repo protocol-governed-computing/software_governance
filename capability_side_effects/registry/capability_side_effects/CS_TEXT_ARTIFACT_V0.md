@@ -44,7 +44,9 @@ the one that matters: either the construction was persisted or it was not.
 fqdn: capability_side_effects::CS_TEXT_ARTIFACT_V0
 artifact_kind: CAPABILITY_SIDE_EFFECT
 version: v0
-governed_by: fb.capability_side_effects::CONSTITUTION_CAPABILITY_SIDE_EFFECTS_V0
+governed_by: capability_side_effects::CONSTITUTION_CAPABILITY_SIDE_EFFECTS_V0
+authority: pgc.platform
+concern: capability_side_effects
 core:
   summary: Persist rendered protocol artifacts as text documents beneath a declared root
   category: storage

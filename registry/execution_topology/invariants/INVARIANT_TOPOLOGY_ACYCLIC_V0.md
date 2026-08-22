@@ -3,10 +3,12 @@
 ## Machine
 
 ```yaml
-fqdn: fb.execution_topology::INVARIANT_TOPOLOGY_ACYCLIC_V0
+fqdn: execution_topology::INVARIANT_TOPOLOGY_ACYCLIC_V0
 artifact_kind: INVARIANT
 version: V0
-governed_by: fb.governance::CONSTITUTION_INVARIANTS_V0
+governed_by: governance::CONSTITUTION_INVARIANTS_V0
+authority: pgc.platform
+concern: execution_topology
 core:
   enforcement_stage:
   - compiler_validation

@@ -6,7 +6,7 @@ Cross-structure vocabulary aggregation configuration.
 
 - **Artifact Code:** STRUCTURE_BUILD_VOCABULARY_AGGREGATE_V0
 - **Artifact Kind:** STRUCTURE
-- **Governed By:** fb.structure::CONSTITUTION_STRUCTURE_V0
+- **Governed By:** structure::CONSTITUTION_STRUCTURE_V0
 - **Version:** V0
 - **Status:** canonical
 - **Authority:** foundational
@@ -34,10 +34,12 @@ No per-structure STRUCTURE artifact should declare `vocabulary_artifacts_path`.
 ## Machine
 
 ```yaml
-fqdn: fb.vocabulary::STRUCTURE_BUILD_VOCABULARY_AGGREGATE_V0
+fqdn: vocabulary::STRUCTURE_BUILD_VOCABULARY_AGGREGATE_V0
 artifact_kind: STRUCTURE
 version: V0
-governed_by: fb.structure::CONSTITUTION_STRUCTURE_V0
+governed_by: structure::CONSTITUTION_STRUCTURE_V0
+authority: pgc.platform
+concern: vocabulary
 aggregation_type: VOCABULARY
 core:
   summary: Federated vocabulary aggregation (cross-structure Phase Type B)

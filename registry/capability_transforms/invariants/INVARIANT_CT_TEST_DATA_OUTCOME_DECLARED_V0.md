@@ -3,10 +3,12 @@
 ## Machine
 
 ```yaml
-fqdn: fb.capability_transforms::INVARIANT_CT_TEST_DATA_OUTCOME_DECLARED_V0
+fqdn: capability_transforms::INVARIANT_CT_TEST_DATA_OUTCOME_DECLARED_V0
 artifact_kind: INVARIANT
 version: V0
-governed_by: fb.execution_topology::CONSTITUTION_EXECUTION_TOPOLOGY_V0
+governed_by: execution_topology::CONSTITUTION_EXECUTION_TOPOLOGY_V0
+authority: pgc.platform
+concern: capability_transforms
 core:
   enforcement_stage:
   - compiler_assertion
@@ -57,7 +59,7 @@ Without this invariant, a compiler implementation that encounters a missing
 It either defaults silently (Bug 2) or fails cryptically at test run time.
 
 With this invariant, a missing `expected_outcome` is a named compile-time violation:
-`fb.capability_transforms::INVARIANT_CT_TEST_DATA_OUTCOME_DECLARED_V0` — findable, traceable,
+`capability_transforms::INVARIANT_CT_TEST_DATA_OUTCOME_DECLARED_V0` — findable, traceable,
 correctable at the source before any test is run.
 
 ## Version History

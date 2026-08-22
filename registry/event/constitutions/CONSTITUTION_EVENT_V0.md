@@ -2,21 +2,23 @@
 
 ## Machine
 ```yaml
-fqdn: fb.event::CONSTITUTION_EVENT_V0
+fqdn: event::CONSTITUTION_EVENT_V0
 artifact_kind: CONSTITUTION
 version: V0
-governed_by: fb.governance::CONSTITUTION_GOVERNANCE_V0
+governed_by: governance::CONSTITUTION_GOVERNANCE_V0
+authority: pgc.platform
+concern: event
 core:
   enforcement_model: compiler_enforced
   governs:
   - EV
 rules:
 - applies_to: EV
-  enforced_by: fb.event::INVARIANT_EV_APPEND_ONLY_V0
+  enforced_by: event::INVARIANT_EV_APPEND_ONLY_V0
 - applies_to: EV
-  enforced_by: fb.event::INVARIANT_EV_SCHEMA_REQUIRED_V0
+  enforced_by: event::INVARIANT_EV_SCHEMA_REQUIRED_V0
 - applies_to: EV
-  enforced_by: fb.event::INVARIANT_EV_APPEND_ONLY_V0
+  enforced_by: event::INVARIANT_EV_APPEND_ONLY_V0
 ```
 
 ---

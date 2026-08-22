@@ -3,10 +3,12 @@
 ## Machine
 
 ```yaml
-fqdn: fb.structure::INVARIANT_STRUCTURE_PATHS_WELL_FORMED_V0
+fqdn: structure::INVARIANT_STRUCTURE_PATHS_WELL_FORMED_V0
 artifact_kind: INVARIANT
 version: V0
-governed_by: fb.structure::CONSTITUTION_STRUCTURE_V0
+governed_by: structure::CONSTITUTION_STRUCTURE_V0
+authority: pgc.platform
+concern: structure
 core:
   enforcement_stage:
   - compiler_validation

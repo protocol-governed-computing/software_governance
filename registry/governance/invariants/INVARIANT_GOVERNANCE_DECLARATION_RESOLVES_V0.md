@@ -3,10 +3,12 @@
 ## Machine
 
 ```yaml
-fqdn: fb.governance::INVARIANT_GOVERNANCE_DECLARATION_RESOLVES_V0
+fqdn: governance::INVARIANT_GOVERNANCE_DECLARATION_RESOLVES_V0
 artifact_kind: INVARIANT
 version: V0
-governed_by: fb.governance::CONSTITUTION_GOVERNANCE_V0
+governed_by: governance::CONSTITUTION_GOVERNANCE_V0
+authority: pgc.platform
+concern: governance
 core:
   enforcement_stage:
   - compiler_meta_validation

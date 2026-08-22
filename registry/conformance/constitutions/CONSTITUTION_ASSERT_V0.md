@@ -2,19 +2,21 @@
 
 ## Machine
 ```yaml
-fqdn: fb.conformance::CONSTITUTION_ASSERT_V0
+fqdn: conformance::CONSTITUTION_ASSERT_V0
 artifact_kind: CONSTITUTION
 version: V0
-governed_by: fb.vocabulary::CONSTITUTION_VOCABULARY_V0
+governed_by: vocabulary::CONSTITUTION_VOCABULARY_V0
+authority: pgc.platform
+concern: conformance
 core:
   enforcement_model: process_and_compiler_enforced
   governs:
   - ASSERT
 rules:
 - applies_to: ASSERT
-  enforced_by: fb.conformance::INVARIANT_ASSERT_PARITY_V0
+  enforced_by: conformance::INVARIANT_ASSERT_PARITY_V0
 - applies_to: ASSERT
-  enforced_by: fb.conformance::INVARIANT_ASSERT_NOT_RUNTIME_REFERENCED_V0
+  enforced_by: conformance::INVARIANT_ASSERT_NOT_RUNTIME_REFERENCED_V0
 - applies_to: ASSERT
   enforced_by: PROCESS_ENFORCED
 - applies_to: ASSERT
@@ -78,7 +80,7 @@ ASSERT MUST return violations array.
 fqdn: <namespace>::ASSERT_<NAME>_V<N>
 artifact_kind: ASSERT
 version: V<N>
-governed_by: fb.conformance::CONSTITUTION_ASSERT_V0
+governed_by: conformance::CONSTITUTION_ASSERT_V0
 
 enforces: INVARIANT_<NAME>_V<N>
 

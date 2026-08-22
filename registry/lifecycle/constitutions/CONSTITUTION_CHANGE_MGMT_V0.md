@@ -2,10 +2,12 @@
 
 ## Machine
 ```yaml
-fqdn: fb.lifecycle::CONSTITUTION_CHANGE_MGMT_V0
+fqdn: lifecycle::CONSTITUTION_CHANGE_MGMT_V0
 artifact_kind: CONSTITUTION
 version: V0
-governed_by: fb.governance::CONSTITUTION_GOVERNANCE_V0
+governed_by: governance::CONSTITUTION_GOVERNANCE_V0
+authority: pgc.platform
+concern: lifecycle
 core:
   enforcement_model: process_enforced
 rules:
@@ -50,10 +52,10 @@ This constitution governs:
 - CR Closure as the terminal event — the CR closes after construction is complete (mechanics governed by `CONSTITUTION_CONSTRUCTION_V0`)
 
 This constitution does NOT govern:
-- The S8/S9 construction phase — Build Sheet Set, construction, compiler-gated promotion, Construction Record (governed by `fb.lifecycle::CONSTITUTION_CONSTRUCTION_V0`)
+- The S8/S9 construction phase — Build Sheet Set, construction, compiler-gated promotion, Construction Record (governed by `lifecycle::CONSTITUTION_CONSTRUCTION_V0`)
 - Protocol artifact authoring or compilation (governed by pgs_compiler)
-- Runtime execution semantics (governed by fb.execution::CONSTITUTION_EXECUTION_V0)
-- Vocabulary admissibility (governed by fb.vocabulary::CONSTITUTION_VOCABULARY_V0)
+- Runtime execution semantics (governed by execution::CONSTITUTION_EXECUTION_V0)
+- Vocabulary admissibility (governed by vocabulary::CONSTITUTION_VOCABULARY_V0)
 - Stage template contents (governed by stage template documents in pgs_change_mgmt)
 - Mechanism by which Governance Decision Gates are satisfied (human in V0; extensible in future versions)
 
@@ -165,7 +167,7 @@ V0 intentionally defers:
 ```yaml
 core:
   description: Governs the PGS change management design and authoring pipeline (Stages 0–7) — from Change
-    Request through the Authoring Mandate; the S8/S9 construction phase is governed by fb.lifecycle::CONSTITUTION_CONSTRUCTION_V0
+    Request through the Authoring Mandate; the S8/S9 construction phase is governed by lifecycle::CONSTITUTION_CONSTRUCTION_V0
 rules:
 - rule_id: STAGE_GATE_MANDATORY
   constraint: no stage may begin before the prior stage gate is satisfied; no stage may be skipped
@@ -177,7 +179,7 @@ rules:
     purity filter enforced by authoring agent throughout
 - rule_id: CONSTRUCTION_PHASE_DELEGATED
   constraint: the S8 Build Sheet Set, artifact construction, compiler-gated promotion, and the S9 Construction
-    Record are governed by fb.lifecycle::CONSTITUTION_CONSTRUCTION_V0, not here; a Change Request closes
+    Record are governed by lifecycle::CONSTITUTION_CONSTRUCTION_V0, not here; a Change Request closes
     only after the S9 Construction Record is complete and its artifacts compile clean
 - rule_id: GROUNDING_NOT_INHERITED
   constraint: a stage that introduces a new claim about an existing artifact must establish grounding

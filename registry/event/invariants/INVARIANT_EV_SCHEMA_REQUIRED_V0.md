@@ -5,10 +5,12 @@ Architectural Invariant
 ## Machine
 
 ```yaml
-fqdn: fb.event::INVARIANT_EV_SCHEMA_REQUIRED_V0
+fqdn: event::INVARIANT_EV_SCHEMA_REQUIRED_V0
 artifact_kind: INVARIANT
 version: V0
-governed_by: fb.event::CONSTITUTION_EVENT_V0
+governed_by: event::CONSTITUTION_EVENT_V0
+authority: pgc.platform
+concern: event
 core:
   enforcement_stage:
   - compiler_assertion

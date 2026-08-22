@@ -1,9 +1,9 @@
 # VOCAB_EXECUTION_STATES_V0 — Execution Semantics
 
 **Governance Header**
-- Vocabulary ID: fb.vocabulary::VOCAB_EXECUTION_STATES_V0
+- Vocabulary ID: vocabulary::VOCAB_EXECUTION_STATES_V0
 - Version: v0
-- Governed By: fb.vocabulary::CONSTITUTION_VOCABULARY_V0
+- Governed By: vocabulary::CONSTITUTION_VOCABULARY_V0
 - Status: Active
 
 ---
@@ -48,7 +48,7 @@ Extension is authorized per category, by this artifact, and is machine-checked:
 | `result_status` | `true` | A CC may report a domain-specific outcome; the workflow routes on it. The platform does not need to interpret it. |
 | `exit_reasons` | `false` | Terminal dispositions are interpreted by the runtime scheduler. A reason it cannot interpret has no meaning. |
 
-An extending vocabulary declares `extends: fb.vocabulary::VOCAB_EXECUTION_STATES_V0` and lists
+An extending vocabulary declares `extends: vocabulary::VOCAB_EXECUTION_STATES_V0` and lists
 only the categories it contributes to. Contributing to a category that is not
 `domain_extensible: true` is a compile-time violation, as is a symbol colliding with
 `VOCAB_LANGUAGE_CONSTRAINTS_V0.reserved_non_authorable`.
@@ -62,10 +62,12 @@ evaluated against; there is one closure, and every symbol rule is evaluated agai
 ## Machine
 
 ```yaml
-fqdn: fb.vocabulary::VOCAB_EXECUTION_STATES_V0
+fqdn: vocabulary::VOCAB_EXECUTION_STATES_V0
 artifact_kind: VOCABULARY
 version: v0
-governed_by: fb.vocabulary::CONSTITUTION_VOCABULARY_V0
+governed_by: vocabulary::CONSTITUTION_VOCABULARY_V0
+authority: pgc.platform
+concern: vocabulary
 result_status:
   casing: UPPER_SNAKE
   domain_extensible: true

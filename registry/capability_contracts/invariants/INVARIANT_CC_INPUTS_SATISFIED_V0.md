@@ -3,10 +3,12 @@
 ## Machine
 
 ```yaml
-fqdn: fb.capability_contracts::INVARIANT_CC_INPUTS_SATISFIED_V0
+fqdn: capability_contracts::INVARIANT_CC_INPUTS_SATISFIED_V0
 artifact_kind: INVARIANT
 version: V0
-governed_by: fb.governance::CONSTITUTION_INVARIANTS_V0
+governed_by: governance::CONSTITUTION_INVARIANTS_V0
+authority: pgc.platform
+concern: capability_contracts
 core:
   enforcement_stage:
   - compiler_validation

@@ -3,10 +3,12 @@
 ## Machine
 
 ```yaml
-fqdn: fb.structure::STRUCTURE_SCHEMA_DISPATCH_V0
+fqdn: structure::STRUCTURE_SCHEMA_DISPATCH_V0
 artifact_kind: STRUCTURE
 version: V0
-governed_by: fb.structure::CONSTITUTION_STRUCTURE_V0
+governed_by: structure::CONSTITUTION_STRUCTURE_V0
+authority: pgc.platform
+concern: structure
 core:
   summary: Declares which schema governs each artifact kind.
   schema_dispatch:

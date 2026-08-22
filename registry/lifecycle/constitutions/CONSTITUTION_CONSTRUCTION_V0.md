@@ -2,10 +2,12 @@
 
 ## Machine
 ```yaml
-fqdn: fb.lifecycle::CONSTITUTION_CONSTRUCTION_V0
+fqdn: lifecycle::CONSTITUTION_CONSTRUCTION_V0
 artifact_kind: CONSTITUTION
 version: V0
-governed_by: fb.governance::CONSTITUTION_GOVERNANCE_V0
+governed_by: governance::CONSTITUTION_GOVERNANCE_V0
+authority: pgc.platform
+concern: lifecycle
 core:
   enforcement_model: process_enforced
 rules:
@@ -78,7 +80,7 @@ This constitution does NOT govern:
 - **Promotion execution** — the cross-repo registry mutation mechanics belong to the SDLC/Promotion
   layer, not change management (this constitution states the law, not the mechanism)
 - **Runtime lifecycle** — `DEPLOYED → RUNTIME_VALIDATED` is governed downstream by
-  `fb.execution::CONSTITUTION_EXECUTION_V0` / `CONSTITUTION_TRACE_EXECUTION_V0`
+  `execution::CONSTITUTION_EXECUTION_V0` / `CONSTITUTION_TRACE_EXECUTION_V0`
 
 ---
 
@@ -263,5 +265,5 @@ rules:
 - rule_id: CONSTRUCTION_LADDER_ENDS_AT_CLOSED
   constraint: the construction readiness ladder is DESIGNED to BUILDABLE to CONSTRUCTION_READY to CONSTRUCTION_CLOSED;
     runtime lifecycle (DEPLOYED, RUNTIME_VALIDATED) is out of this constitution's authority and is governed
-    downstream by fb.execution::CONSTITUTION_EXECUTION_V0 and fb.trace::CONSTITUTION_TRACE_EXECUTION_V0
+    downstream by execution::CONSTITUTION_EXECUTION_V0 and trace::CONSTITUTION_TRACE_EXECUTION_V0
 ```

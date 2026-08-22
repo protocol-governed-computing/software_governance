@@ -2,23 +2,25 @@
 
 ## Machine
 ```yaml
-fqdn: fb.capability_transforms::CONSTITUTION_CAPABILITY_TRANSFORMS_V0
+fqdn: capability_transforms::CONSTITUTION_CAPABILITY_TRANSFORMS_V0
 artifact_kind: CONSTITUTION
 version: V0
-governed_by: fb.vocabulary::CONSTITUTION_VOCABULARY_V0
+governed_by: vocabulary::CONSTITUTION_VOCABULARY_V0
+authority: pgc.platform
+concern: capability_transforms
 core:
   enforcement_model: compiler_enforced
   governs:
   - CT
 rules:
 - applies_to: CT
-  enforced_by: fb.capability_transforms::INVARIANT_ATOM_OUTPUT_PURITY_V0
+  enforced_by: capability_transforms::INVARIANT_ATOM_OUTPUT_PURITY_V0
 - applies_to: CT
-  enforced_by: fb.capability_transforms::INVARIANT_ATOM_OUTPUT_PURITY_V0
+  enforced_by: capability_transforms::INVARIANT_ATOM_OUTPUT_PURITY_V0
 - applies_to: CT
-  enforced_by: fb.execution::INVARIANT_IMPLEMENTATION_ADMISSIBLE_V0
+  enforced_by: execution::INVARIANT_IMPLEMENTATION_ADMISSIBLE_V0
 - applies_to: CT
-  enforced_by: fb.capability_transforms::INVARIANT_CT_SURFACE_CLOSED_V1
+  enforced_by: capability_transforms::INVARIANT_CT_SURFACE_CLOSED_V1
 ```
 
 ---

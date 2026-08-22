@@ -3,10 +3,12 @@
 ## Machine
 
 ```yaml
-fqdn: fb.structure::STRUCTURE_MODULE_DATA_ROOTS_V0
+fqdn: structure::STRUCTURE_MODULE_DATA_ROOTS_V0
 artifact_kind: STRUCTURE
 version: V0
-governed_by: fb.structure::CONSTITUTION_STRUCTURE_V0
+governed_by: structure::CONSTITUTION_STRUCTURE_V0
+authority: pgc.platform
+concern: structure
 core:
   summary: Module data roots and directory structure
   description: 'Defines canonical directory names and module data roots aligned with current platform

@@ -4,7 +4,7 @@
 
 - **Artifact Code:** SURFACE_CONTRACT_CT_PURE_V0
 - **Artifact Kind:** surface_contract
-- **Governed By:** fb.execution_topology::CONSTITUTION_EXECUTION_TOPOLOGY_V0
+- **Governed By:** execution_topology::CONSTITUTION_EXECUTION_TOPOLOGY_V0
 - **Version:** V0
 - **Status:** canonical
 
@@ -26,10 +26,12 @@ to steps with a `transform:` binding (no `side_effect:`).
 ## Machine
 
 ```yaml
-fqdn: fb.surface_contract::SURFACE_CONTRACT_CT_PURE_V0
+fqdn: surface_contract::SURFACE_CONTRACT_CT_PURE_V0
 artifact_kind: SURFACE_CONTRACT
 version: V0
-governed_by: fb.execution_topology::CONSTITUTION_EXECUTION_TOPOLOGY_V0
+governed_by: execution_topology::CONSTITUTION_EXECUTION_TOPOLOGY_V0
+authority: pgc.platform
+concern: surface_contract
 governs: []
 op: TRANSFORM
 canonical_surface:

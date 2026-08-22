@@ -4,7 +4,7 @@
 - Artifact Code: STRUCTURE_FQDN_TREE_V0
 - Tier: Sovereign Authority
 - Artifact Kind: structure
-- Governed By: fb.governance::CONSTITUTION_GOVERNANCE_V0
+- Governed By: governance::CONSTITUTION_GOVERNANCE_V0
 - Version: v0
 - Status: active
 - Supersedes: NONE
@@ -101,10 +101,12 @@ Builder MUST NOT:
 ## Machine
 
 ```yaml
-fqdn: fb.structure::STRUCTURE_FQDN_TREE_V0
+fqdn: structure::STRUCTURE_FQDN_TREE_V0
 artifact_kind: STRUCTURE
 version: V0
-governed_by: fb.structure::CONSTITUTION_STRUCTURE_V0
+governed_by: structure::CONSTITUTION_STRUCTURE_V0
+authority: pgc.platform
+concern: structure
 core:
   summary: Logical package tree and folder-to-namespace correspondence
   description: 'Declares source packages and their physical roots, and records which namespaces are
@@ -131,7 +133,7 @@ packages:
     - structures
     - surface_contracts
     - vocabulary
-    notes: Namespace fb.actor
+    notes: Namespace actor
   - path: registry/artifact
     artifact_types:
     - constitutions
@@ -139,7 +141,7 @@ packages:
     - structures
     - surface_contracts
     - vocabulary
-    notes: Namespace fb.artifact
+    notes: Namespace artifact
   - path: registry/authority
     artifact_types:
     - constitutions
@@ -147,7 +149,7 @@ packages:
     - structures
     - surface_contracts
     - vocabulary
-    notes: Namespace fb.authority
+    notes: Namespace authority
   - path: registry/capability_contracts
     artifact_types:
     - constitutions
@@ -155,7 +157,7 @@ packages:
     - structures
     - surface_contracts
     - vocabulary
-    notes: Namespace fb.capability_contracts
+    notes: Namespace capability_contracts
   - path: registry/capability_side_effects
     artifact_types:
     - constitutions
@@ -163,7 +165,7 @@ packages:
     - structures
     - surface_contracts
     - vocabulary
-    notes: Namespace fb.capability_side_effects
+    notes: Namespace capability_side_effects
   - path: registry/capability_transforms
     artifact_types:
     - constitutions
@@ -171,7 +173,7 @@ packages:
     - structures
     - surface_contracts
     - vocabulary
-    notes: Namespace fb.capability_transforms
+    notes: Namespace capability_transforms
   - path: registry/compiler
     artifact_types:
     - constitutions
@@ -179,7 +181,7 @@ packages:
     - structures
     - surface_contracts
     - vocabulary
-    notes: Namespace fb.compiler
+    notes: Namespace compiler
   - path: registry/conformance
     artifact_types:
     - constitutions
@@ -187,7 +189,7 @@ packages:
     - structures
     - surface_contracts
     - vocabulary
-    notes: Namespace fb.conformance
+    notes: Namespace conformance
   - path: registry/cryptographic_trust
     artifact_types:
     - constitutions
@@ -195,7 +197,7 @@ packages:
     - structures
     - surface_contracts
     - vocabulary
-    notes: Namespace fb.cryptographic_trust
+    notes: Namespace cryptographic_trust
   - path: registry/event
     artifact_types:
     - constitutions
@@ -203,7 +205,7 @@ packages:
     - structures
     - surface_contracts
     - vocabulary
-    notes: Namespace fb.event
+    notes: Namespace event
   - path: registry/execution
     artifact_types:
     - constitutions
@@ -211,7 +213,7 @@ packages:
     - structures
     - surface_contracts
     - vocabulary
-    notes: Namespace fb.execution
+    notes: Namespace execution
   - path: registry/execution_placement
     artifact_types:
     - constitutions
@@ -219,7 +221,7 @@ packages:
     - structures
     - surface_contracts
     - vocabulary
-    notes: Namespace fb.execution_placement
+    notes: Namespace execution_placement
   - path: registry/execution_scheduling
     artifact_types:
     - constitutions
@@ -227,7 +229,7 @@ packages:
     - structures
     - surface_contracts
     - vocabulary
-    notes: Namespace fb.execution_scheduling
+    notes: Namespace execution_scheduling
   - path: registry/execution_topology
     artifact_types:
     - constitutions
@@ -235,7 +237,7 @@ packages:
     - structures
     - surface_contracts
     - vocabulary
-    notes: Namespace fb.execution_topology
+    notes: Namespace execution_topology
   - path: registry/federation
     artifact_types:
     - constitutions
@@ -243,7 +245,7 @@ packages:
     - structures
     - surface_contracts
     - vocabulary
-    notes: Namespace fb.federation
+    notes: Namespace federation
   - path: registry/governance
     artifact_types:
     - constitutions
@@ -251,7 +253,7 @@ packages:
     - structures
     - surface_contracts
     - vocabulary
-    notes: Namespace fb.governance
+    notes: Namespace governance
   - path: registry/intent
     artifact_types:
     - constitutions
@@ -259,7 +261,7 @@ packages:
     - structures
     - surface_contracts
     - vocabulary
-    notes: Namespace fb.intent
+    notes: Namespace intent
   - path: registry/lifecycle
     artifact_types:
     - constitutions
@@ -267,7 +269,7 @@ packages:
     - structures
     - surface_contracts
     - vocabulary
-    notes: Namespace fb.lifecycle
+    notes: Namespace lifecycle
   - path: registry/runtime_binding
     artifact_types:
     - constitutions
@@ -275,7 +277,7 @@ packages:
     - structures
     - surface_contracts
     - vocabulary
-    notes: Namespace fb.runtime_binding
+    notes: Namespace runtime_binding
   - path: registry/security_domain
     artifact_types:
     - constitutions
@@ -283,7 +285,7 @@ packages:
     - structures
     - surface_contracts
     - vocabulary
-    notes: Namespace fb.security_domain
+    notes: Namespace security_domain
   - path: registry/structure
     artifact_types:
     - constitutions
@@ -291,7 +293,7 @@ packages:
     - structures
     - surface_contracts
     - vocabulary
-    notes: Namespace fb.structure
+    notes: Namespace structure
   - path: registry/surface_contract
     artifact_types:
     - constitutions
@@ -299,7 +301,7 @@ packages:
     - structures
     - surface_contracts
     - vocabulary
-    notes: Namespace fb.surface_contract
+    notes: Namespace surface_contract
   - path: registry/trace
     artifact_types:
     - constitutions
@@ -307,7 +309,7 @@ packages:
     - structures
     - surface_contracts
     - vocabulary
-    notes: Namespace fb.trace
+    notes: Namespace trace
   - path: registry/transport
     artifact_types:
     - constitutions
@@ -315,7 +317,7 @@ packages:
     - structures
     - surface_contracts
     - vocabulary
-    notes: Namespace fb.transport
+    notes: Namespace transport
   - path: registry/vocabulary
     artifact_types:
     - constitutions
@@ -323,7 +325,7 @@ packages:
     - structures
     - surface_contracts
     - vocabulary
-    notes: Namespace fb.vocabulary
+    notes: Namespace vocabulary
   - path: registry/workflow
     artifact_types:
     - constitutions
@@ -331,7 +333,7 @@ packages:
     - structures
     - surface_contracts
     - vocabulary
-    notes: Namespace fb.workflow
+    notes: Namespace workflow
   - path: registry/schema
     artifact_types:
     - schemas
@@ -368,57 +370,57 @@ packages:
   - software_governance
 namespace_mappings:
   registry/actor:
-  - fb.actor
+  - actor
   registry/artifact:
-  - fb.artifact
+  - artifact
   registry/authority:
-  - fb.authority
+  - authority
   registry/capability_contracts:
-  - fb.capability_contracts
+  - capability_contracts
   registry/capability_side_effects:
-  - fb.capability_side_effects
+  - capability_side_effects
   registry/capability_transforms:
-  - fb.capability_transforms
+  - capability_transforms
   registry/compiler:
-  - fb.compiler
+  - compiler
   registry/conformance:
-  - fb.conformance
+  - conformance
   registry/cryptographic_trust:
-  - fb.cryptographic_trust
+  - cryptographic_trust
   registry/event:
-  - fb.event
+  - event
   registry/execution:
-  - fb.execution
+  - execution
   registry/execution_placement:
-  - fb.execution_placement
+  - execution_placement
   registry/execution_scheduling:
-  - fb.execution_scheduling
+  - execution_scheduling
   registry/execution_topology:
-  - fb.execution_topology
+  - execution_topology
   registry/federation:
-  - fb.federation
+  - federation
   registry/governance:
-  - fb.governance
+  - governance
   registry/intent:
-  - fb.intent
+  - intent
   registry/lifecycle:
-  - fb.lifecycle
+  - lifecycle
   registry/runtime_binding:
-  - fb.runtime_binding
+  - runtime_binding
   registry/security_domain:
-  - fb.security_domain
+  - security_domain
   registry/structure:
-  - fb.structure
+  - structure
   registry/surface_contract:
-  - fb.surface_contract
+  - surface_contract
   registry/trace:
-  - fb.trace
+  - trace
   registry/transport:
-  - fb.transport
+  - transport
   registry/vocabulary:
-  - fb.vocabulary
+  - vocabulary
   registry/workflow:
-  - fb.workflow
+  - workflow
   capability_transforms/registry/capability_transforms:
   - capability_transforms
   capability_side_effects/registry/capability_side_effects:

@@ -42,8 +42,8 @@ many platforms as there are profiles.
 | `capability_side_effects/registry/` | Neutral capability side-effect declarations |
 | `doc/` | The surface map, the governance doctrine, and the rulings that settled contested questions |
 
-Artifacts declare namespaces of the form `fb.<concern>` — `fb.structure::STRUCTURE_IDENTITY_V0`,
-`fb.authority::…`. **`fb` is a federation boundary**: a declaration that a distinct governance
+Artifacts declare namespaces of the form `fb.<concern>` — `structure::STRUCTURE_IDENTITY_V0`,
+`authority::…`. **`fb` is a federation boundary**: a declaration that a distinct governance
 authority has jurisdiction over a named set of protocol semantics. It is not a folder, a package, or
 a deployment unit — see `registry/federation/constitutions/CONSTITUTION_FEDERATION_BOUNDARY_V0.md`.
 Domains declare their own namespaces (`blockchain::`, `book_library_mgmt::`) and never declare into a

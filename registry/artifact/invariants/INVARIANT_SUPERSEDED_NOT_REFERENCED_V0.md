@@ -5,10 +5,12 @@ Architectural Invariant
 ## Machine
 
 ```yaml
-fqdn: fb.artifact::INVARIANT_SUPERSEDED_NOT_REFERENCED_V0
+fqdn: artifact::INVARIANT_SUPERSEDED_NOT_REFERENCED_V0
 artifact_kind: INVARIANT
 version: V0
-governed_by: fb.governance::CONSTITUTION_INVARIANTS_V0
+governed_by: governance::CONSTITUTION_INVARIANTS_V0
+authority: pgc.platform
+concern: artifact
 core:
   enforcement_stage:
   - compiler_assertion

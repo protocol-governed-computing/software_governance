@@ -3,15 +3,17 @@
 ## Machine
 
 ```yaml
-fqdn: fb.cryptographic_trust::CONSTITUTION_CRYPTOGRAPHIC_TRUST_V0
+fqdn: cryptographic_trust::CONSTITUTION_CRYPTOGRAPHIC_TRUST_V0
 artifact_kind: CONSTITUTION
 version: V0
-governed_by: fb.governance::CONSTITUTION_GOVERNANCE_V0
+governed_by: governance::CONSTITUTION_GOVERNANCE_V0
+authority: pgc.platform
+concern: cryptographic_trust
 core:
   enforcement_model: process_and_compiler_enforced
 rules:
 - applies_to: compiled_snapshot
-  enforced_by: fb.cryptographic_trust::INVARIANT_CRYPTOGRAPHIC_TRUST_DECLARED_V0
+  enforced_by: cryptographic_trust::INVARIANT_CRYPTOGRAPHIC_TRUST_DECLARED_V0
 - applies_to: compiled_snapshot
   enforced_by: PROCESS_ENFORCED
 - applies_to: compiled_snapshot

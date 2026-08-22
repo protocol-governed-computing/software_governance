@@ -2,10 +2,12 @@
 
 ## Machine
 ```yaml
-fqdn: fb.transport::CONSTITUTION_ADMISSION_V0
+fqdn: transport::CONSTITUTION_ADMISSION_V0
 artifact_kind: CONSTITUTION
 version: V0
-governed_by: fb.vocabulary::CONSTITUTION_VOCABULARY_V0
+governed_by: vocabulary::CONSTITUTION_VOCABULARY_V0
+authority: pgc.platform
+concern: transport
 core:
   enforcement_model: runtime_enforced
   governs:
@@ -78,7 +80,7 @@ Admission runs:
 - AFTER DAG construction and validation
 - BEFORE DAG node dispatch
 
-Admission is the ADMIT phase in the execution lifecycle (see fb.execution::CONSTITUTION_EXECUTION_V0 §2).
+Admission is the ADMIT phase in the execution lifecycle (see execution::CONSTITUTION_EXECUTION_V0 §2).
 
 ---
 

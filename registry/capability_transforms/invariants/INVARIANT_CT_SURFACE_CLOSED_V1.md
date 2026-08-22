@@ -3,10 +3,12 @@
 ## Machine
 
 ```yaml
-fqdn: fb.capability_transforms::INVARIANT_CT_SURFACE_CLOSED_V1
+fqdn: capability_transforms::INVARIANT_CT_SURFACE_CLOSED_V1
 artifact_kind: INVARIANT
 version: V1
-governed_by: fb.governance::CONSTITUTION_INVARIANTS_V0
+governed_by: governance::CONSTITUTION_INVARIANTS_V0
+authority: pgc.platform
+concern: capability_transforms
 core:
   enforcement_stage:
   - compiler_assertion

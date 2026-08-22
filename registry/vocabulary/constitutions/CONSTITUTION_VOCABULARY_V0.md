@@ -2,21 +2,23 @@
 
 ## Machine
 ```yaml
-fqdn: fb.vocabulary::CONSTITUTION_VOCABULARY_V0
+fqdn: vocabulary::CONSTITUTION_VOCABULARY_V0
 artifact_kind: CONSTITUTION
 version: V0
-governed_by: fb.governance::CONSTITUTION_GOVERNANCE_V0
+governed_by: governance::CONSTITUTION_GOVERNANCE_V0
+authority: pgc.platform
+concern: vocabulary
 core:
   enforcement_model: process_and_compiler_enforced
 rules:
 - applies_to: system
-  enforced_by: fb.artifact::INVARIANT_FQDN_ONLY_REFERENCES_V0
+  enforced_by: artifact::INVARIANT_FQDN_ONLY_REFERENCES_V0
 - applies_to: system
-  enforced_by: fb.vocabulary::INVARIANT_VOCABULARY_SYMBOLS_WELL_FORMED_V0
+  enforced_by: vocabulary::INVARIANT_VOCABULARY_SYMBOLS_WELL_FORMED_V0
 - applies_to: system
   enforced_by: PROCESS_ENFORCED
 - applies_to: system
-  enforced_by: fb.vocabulary::INVARIANT_VOCABULARY_SYMBOLS_WELL_FORMED_V0
+  enforced_by: vocabulary::INVARIANT_VOCABULARY_SYMBOLS_WELL_FORMED_V0
 ```
 
 ---
@@ -34,14 +36,14 @@ This constitution governs:
 ### 1.2 What This Constitution Does NOT Govern
 
 This constitution does not govern:
-- The mechanical enforcement of vocabulary rules (delegated to fb.compiler::CONSTITUTION_COMPILER_V0)
+- The mechanical enforcement of vocabulary rules (delegated to compiler::CONSTITUTION_COMPILER_V0)
 - Domain-specific terminology (delegated to domain constitutions)
 - Runtime interpretation of symbols (delegated to CONSTITUTION_EXECUTION_V0)
 
 ### 1.3 Constitutional Hierarchy
 
 - **Parent Constitution:** CONSTITUTION_GOVERNANCE_V0
-- **Enforcement Delegate:** fb.compiler::CONSTITUTION_COMPILER_V0
+- **Enforcement Delegate:** compiler::CONSTITUTION_COMPILER_V0
 
 ---
 

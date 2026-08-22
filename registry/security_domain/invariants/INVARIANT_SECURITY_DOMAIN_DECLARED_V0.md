@@ -3,10 +3,12 @@
 ## Machine
 
 ```yaml
-fqdn: fb.security_domain::INVARIANT_SECURITY_DOMAIN_DECLARED_V0
+fqdn: security_domain::INVARIANT_SECURITY_DOMAIN_DECLARED_V0
 artifact_kind: INVARIANT
 version: V0
-governed_by: fb.governance::CONSTITUTION_INVARIANTS_V0
+governed_by: governance::CONSTITUTION_INVARIANTS_V0
+authority: pgc.platform
+concern: security_domain
 core:
   enforcement_stage:
   - compiler_validation
@@ -20,7 +22,7 @@ assert_projection:
     rule: exactly_one
     subject: active security domain contract
     selector:
-      namespace: fb.security_domain
+      namespace: security_domain
       artifact_type: STRUCTURE
       artifact_code_prefix: STRUCTURE_SECURITY_DOMAIN_
       where:

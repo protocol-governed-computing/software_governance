@@ -46,7 +46,7 @@
             "returns",
             "never"
           ],
-          "description": "How the transform expresses a judgement about its subject. `raises` refuses by raising, which the execution contract reads as VIOLATION; `returns` yields the judgement as an output, so the step SUCCEEDs whatever it found and something else must route on the value; `never` makes no judgement at all. Refusal is about the subject, never the inputs: every transform raises on missing or malformed input, so input validity would make the fact uniform and therefore empty. Required, because a step that routes on transform status when it should route on the returned judgement is otherwise uncatchable — both transforms \"raise\" and nothing distinguishes them."
+          "description": "How the transform expresses a judgement about its subject. `raises` refuses by raising, which the execution contract reads as VIOLATION; `returns` yields the judgement as an output, so the step SUCCEEDs whatever it found and something else must route on the value; `never` makes no judgement at all. Refusal is about the subject, never the inputs: every transform raises on missing or malformed input, so input validity would make the fact uniform and therefore empty. Required, because a step that routes on transform status when it should route on the returned judgement is otherwise uncatchable \u2014 both transforms \"raise\" and nothing distinguishes them."
         },
         "description": {
           "type": "string",
@@ -159,6 +159,14 @@
       },
       "minItems": 1,
       "description": "FQDNs of the artifacts that stand in this one's place. Several is the ordinary case \u2014 one act split in two retires one artifact and authors two. Its presence means the artifact is superseded: unreachable from the executable projections, retained in the canonical set as history."
+    },
+    "authority": {
+      "type": "string",
+      "description": "The authority from which this artifact's jurisdiction derives (CA-1, CA-2). Declared, never inferred from namespace, path or kind."
+    },
+    "concern": {
+      "type": "string",
+      "description": "The semantic subject this artifact is about (GO-11, ID-12). A concern classification confers no authority and constitutes no boundary."
     }
   },
   "$defs": {

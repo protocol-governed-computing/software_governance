@@ -3,7 +3,7 @@
 **Artifact Type**: STRUCTURE
 **Version**: V1
 **Status**: CANONICAL
-**Governed By**: fb.structure::CONSTITUTION_STRUCTURE_V0
+**Governed By**: structure::CONSTITUTION_STRUCTURE_V0
 
 ---
 
@@ -49,10 +49,12 @@ No fallback or implicit behavior is permitted.
 ## Machine
 
 ```yaml
-fqdn: fb.structure::STRUCTURE_BUILD_PLATFORM_CONFIG_V1
+fqdn: structure::STRUCTURE_BUILD_PLATFORM_CONFIG_V1
 artifact_kind: STRUCTURE
 version: V1
-governed_by: fb.structure::CONSTITUTION_STRUCTURE_V0
+governed_by: structure::CONSTITUTION_STRUCTURE_V0
+authority: pgc.platform
+concern: structure
 structure_scope: platform
 reuse_visibility: substrate
 core:

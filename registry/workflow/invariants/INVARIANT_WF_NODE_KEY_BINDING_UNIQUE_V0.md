@@ -3,10 +3,12 @@
 ## Machine
 
 ```yaml
-fqdn: fb.workflow::INVARIANT_WF_NODE_KEY_BINDING_UNIQUE_V0
+fqdn: workflow::INVARIANT_WF_NODE_KEY_BINDING_UNIQUE_V0
 artifact_kind: INVARIANT
 version: V0
-governed_by: fb.execution_topology::CONSTITUTION_EXECUTION_TOPOLOGY_V0
+governed_by: execution_topology::CONSTITUTION_EXECUTION_TOPOLOGY_V0
+authority: pgc.platform
+concern: workflow
 core:
   enforcement_stage:
   - compiler_assertion

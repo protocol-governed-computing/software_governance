@@ -2,23 +2,25 @@
 
 ## Machine
 ```yaml
-fqdn: fb.intent::CONSTITUTION_INTENT_V0
+fqdn: intent::CONSTITUTION_INTENT_V0
 artifact_kind: CONSTITUTION
 version: V0
-governed_by: fb.governance::CONSTITUTION_GOVERNANCE_V0
+governed_by: governance::CONSTITUTION_GOVERNANCE_V0
+authority: pgc.platform
+concern: intent
 core:
   enforcement_model: compiler_enforced
   governs:
   - IN
 rules:
 - applies_to: IN
-  enforced_by: fb.intent::INVARIANT_IN_SCHEMA_REQUIRED_V0
+  enforced_by: intent::INVARIANT_IN_SCHEMA_REQUIRED_V0
 - applies_to: IN
-  enforced_by: fb.intent::INVARIANT_IN_NO_EXECUTION_LOGIC_V0
+  enforced_by: intent::INVARIANT_IN_NO_EXECUTION_LOGIC_V0
 - applies_to: IN
-  enforced_by: fb.intent::INVARIANT_IN_WORKFLOW_BINDING_V0
+  enforced_by: intent::INVARIANT_IN_WORKFLOW_BINDING_V0
 - applies_to: IN
-  enforced_by: fb.artifact::INVARIANT_FQDN_ONLY_REFERENCES_V0
+  enforced_by: artifact::INVARIANT_FQDN_ONLY_REFERENCES_V0
 ```
 
 ---

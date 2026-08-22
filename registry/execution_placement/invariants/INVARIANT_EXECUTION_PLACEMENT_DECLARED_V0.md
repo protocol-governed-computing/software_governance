@@ -3,10 +3,12 @@
 ## Machine
 
 ```yaml
-fqdn: fb.execution_placement::INVARIANT_EXECUTION_PLACEMENT_DECLARED_V0
+fqdn: execution_placement::INVARIANT_EXECUTION_PLACEMENT_DECLARED_V0
 artifact_kind: INVARIANT
 version: V0
-governed_by: fb.governance::CONSTITUTION_INVARIANTS_V0
+governed_by: governance::CONSTITUTION_INVARIANTS_V0
+authority: pgc.platform
+concern: execution_placement
 core:
   enforcement_stage:
   - compiler_validation
@@ -20,7 +22,7 @@ assert_projection:
     rule: exactly_one
     subject: active execution placement contract
     selector:
-      namespace: fb.execution_placement
+      namespace: execution_placement
       artifact_type: STRUCTURE
       artifact_code_prefix: STRUCTURE_EXECUTION_PLACEMENT_
       where:

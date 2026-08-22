@@ -3,23 +3,25 @@
 ## Machine
 
 ```yaml
-fqdn: fb.transport::CONSTITUTION_TRANSPORT_INGRESS_V0
+fqdn: transport::CONSTITUTION_TRANSPORT_INGRESS_V0
 artifact_kind: CONSTITUTION
 version: V0
-governed_by: fb.governance::CONSTITUTION_GOVERNANCE_V0
+governed_by: governance::CONSTITUTION_GOVERNANCE_V0
+authority: pgc.platform
+concern: transport
 core:
   enforcement_model: process_and_compiler_enforced
   governs:
   - TI
 rules:
 - applies_to: TI
-  enforced_by: fb.transport::INVARIANT_TRANSPORT_TARGET_EXISTS_V0
+  enforced_by: transport::INVARIANT_TRANSPORT_TARGET_EXISTS_V0
 - applies_to: TI
-  enforced_by: fb.transport::INVARIANT_TRANSPORT_NO_DYNAMIC_ROUTING_V0
+  enforced_by: transport::INVARIANT_TRANSPORT_NO_DYNAMIC_ROUTING_V0
 - applies_to: TI
-  enforced_by: fb.transport::INVARIANT_TRANSPORT_NO_WORKFLOW_SEMANTICS_V0
+  enforced_by: transport::INVARIANT_TRANSPORT_NO_WORKFLOW_SEMANTICS_V0
 - applies_to: TI
-  enforced_by: fb.transport::INVARIANT_TRANSPORT_OPERATION_IDENTITY_INDEPENDENCE_V0
+  enforced_by: transport::INVARIANT_TRANSPORT_OPERATION_IDENTITY_INDEPENDENCE_V0
 - applies_to: TI
   enforced_by: PROCESS_ENFORCED
 ```
@@ -73,7 +75,7 @@ exposes an admission interface and binds it to governed execution; it carries no
 ## §4. Scope
 
 Governs `TI` admission semantics only. It does **not** govern the external-protocol binding
-(adapter-owned), the executable target's behavior (`fb.execution_topology`), or egress (`TE`).
+(adapter-owned), the executable target's behavior (`execution_topology`), or egress (`TE`).
 
 ---
 

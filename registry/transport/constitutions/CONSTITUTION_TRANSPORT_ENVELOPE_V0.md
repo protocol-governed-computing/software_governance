@@ -3,10 +3,12 @@
 ## Machine
 
 ```yaml
-fqdn: fb.transport::CONSTITUTION_TRANSPORT_ENVELOPE_V0
+fqdn: transport::CONSTITUTION_TRANSPORT_ENVELOPE_V0
 artifact_kind: CONSTITUTION
 version: V0
-governed_by: fb.governance::CONSTITUTION_GOVERNANCE_V0
+governed_by: governance::CONSTITUTION_GOVERNANCE_V0
+authority: pgc.platform
+concern: transport
 core:
   enforcement_model: process_and_compiler_enforced
   governs:
@@ -14,15 +16,15 @@ core:
   - TE
 rules:
 - applies_to: TI
-  enforced_by: fb.transport::INVARIANT_TRANSPORT_CANONICAL_NORMALIZATION_V0
+  enforced_by: transport::INVARIANT_TRANSPORT_CANONICAL_NORMALIZATION_V0
 - applies_to: TE
-  enforced_by: fb.transport::INVARIANT_TRANSPORT_CANONICAL_NORMALIZATION_V0
+  enforced_by: transport::INVARIANT_TRANSPORT_CANONICAL_NORMALIZATION_V0
 - applies_to: TI
   enforced_by: PROCESS_ENFORCED
 - applies_to: TE
   enforced_by: PROCESS_ENFORCED
 - applies_to: compiled_snapshot
-  enforced_by: fb.transport::INVARIANT_INSPECTION_BOUNDARY_COMPOSED_V0
+  enforced_by: transport::INVARIANT_INSPECTION_BOUNDARY_COMPOSED_V0
 ```
 
 ---
@@ -68,7 +70,7 @@ the external world and governed execution. They carry no behavior and no domain 
 
 Governs the shape and normalization obligations of the canonical transport envelope and the
 `TI`/`TE` contracts that produce it. It does **not** govern external-protocol mechanics
-(adapter-owned) or execution semantics (`fb.execution_topology`).
+(adapter-owned) or execution semantics (`execution_topology`).
 
 ---
 

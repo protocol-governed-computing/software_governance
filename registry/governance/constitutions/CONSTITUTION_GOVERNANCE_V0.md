@@ -2,10 +2,13 @@
 
 ## Machine
 ```yaml
-fqdn: fb.governance::CONSTITUTION_GOVERNANCE_V0
+fqdn: governance::CONSTITUTION_GOVERNANCE_V0
 artifact_kind: CONSTITUTION
 version: V0
-governed_by: fb.vocabulary::CONSTITUTION_VOCABULARY_V0
+governed_by: vocabulary::CONSTITUTION_VOCABULARY_V0
+authority: pgc.platform
+concern: governance
+constitutes_authority: pgc.platform
 core:
   enforcement_model: process_and_compiler_enforced
 rules:
@@ -14,11 +17,11 @@ rules:
 - applies_to: system
   enforced_by: PROCESS_ENFORCED
 - applies_to: system
-  enforced_by: fb.surface_contract::INVARIANT_PROTOCOL_SURFACE_CLOSED_V0
+  enforced_by: surface_contract::INVARIANT_PROTOCOL_SURFACE_CLOSED_V0
 - applies_to: system
   enforced_by: PROCESS_ENFORCED
 - applies_to: ALL_ARTIFACTS
-  enforced_by: fb.governance::INVARIANT_GOVERNANCE_DECLARATION_RESOLVES_V0
+  enforced_by: governance::INVARIANT_GOVERNANCE_DECLARATION_RESOLVES_V0
 ```
 
 ---
@@ -56,8 +59,8 @@ In the event of conflict between this constitution and any other, this constitut
 This constitution does not govern:
 - Implementation details of any system component
 - Domain-specific business logic
-- Runtime behavior (delegated to fb.execution::CONSTITUTION_EXECUTION_V0)
-- Authoring-time behavior (governed by fb.compiler::CONSTITUTION_COMPILER_V0)
+- Runtime behavior (delegated to execution::CONSTITUTION_EXECUTION_V0)
+- Authoring-time behavior (governed by compiler::CONSTITUTION_COMPILER_V0)
 
 ---
 
@@ -133,7 +136,7 @@ The previous version remains valid until explicitly superseded.
 When constitutions conflict:
 1. Apply the higher-tier constitution
 2. If same tier, apply the constitution with explicit authority over the matter
-3. If ambiguous, apply fb.governance::CONSTITUTION_GOVERNANCE_V0 (this document)
+3. If ambiguous, apply governance::CONSTITUTION_GOVERNANCE_V0 (this document)
 
 ### 4.3 Delegation
 
@@ -206,7 +209,7 @@ This rule has no exceptions.
 Artifacts MUST conform to:
 - Their governing constitution's structural requirements
 - Their schema's type constraints
-- Vocabulary admissibility rules per fb.vocabulary::CONSTITUTION_VOCABULARY_V0
+- Vocabulary admissibility rules per vocabulary::CONSTITUTION_VOCABULARY_V0
 
 ---
 
@@ -214,12 +217,12 @@ Artifacts MUST conform to:
 
 ### 8.1 Build-Time Enforcement
 
-fb.compiler::CONSTITUTION_COMPILER_V0 governs build-time enforcement.
+compiler::CONSTITUTION_COMPILER_V0 governs build-time enforcement.
 The compiler MUST reject artifacts that violate their governing constitution.
 
 ### 8.2 Runtime Enforcement
 
-fb.execution::CONSTITUTION_EXECUTION_V0 governs runtime enforcement.
+execution::CONSTITUTION_EXECUTION_V0 governs runtime enforcement.
 The execution engine MUST halt on constitutional violations.
 
 ### 8.3 Violation Reporting

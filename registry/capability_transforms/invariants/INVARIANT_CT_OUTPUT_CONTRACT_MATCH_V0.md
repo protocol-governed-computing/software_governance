@@ -5,10 +5,12 @@ Architectural Invariant
 ## Machine
 
 ```yaml
-fqdn: fb.capability_transforms::INVARIANT_CT_OUTPUT_CONTRACT_MATCH_V0
+fqdn: capability_transforms::INVARIANT_CT_OUTPUT_CONTRACT_MATCH_V0
 artifact_kind: INVARIANT
 version: V0
-governed_by: fb.governance::CONSTITUTION_INVARIANTS_V0
+governed_by: governance::CONSTITUTION_INVARIANTS_V0
+authority: pgc.platform
+concern: capability_transforms
 core:
   enforcement_stage:
   - compiler_assertion
@@ -80,8 +82,8 @@ Output contract matching ensures:
 
 ## Related Artifacts
 
-- `fb.capability_transforms::CONSTITUTION_CAPABILITY_TRANSFORMS_V0` - Governs CT behavior
-- `fb.capability_contracts::CONSTITUTION_CAPABILITY_CONTRACT_V0` - Defines CC schema
+- `capability_transforms::CONSTITUTION_CAPABILITY_TRANSFORMS_V0` - Governs CT behavior
+- `capability_contracts::CONSTITUTION_CAPABILITY_CONTRACT_V0` - Defines CC schema
 
 ---
 

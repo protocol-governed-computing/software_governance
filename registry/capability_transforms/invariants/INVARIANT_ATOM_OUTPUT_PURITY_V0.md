@@ -5,10 +5,12 @@ Architectural Invariant
 ## Machine
 
 ```yaml
-fqdn: fb.capability_transforms::INVARIANT_ATOM_OUTPUT_PURITY_V0
+fqdn: capability_transforms::INVARIANT_ATOM_OUTPUT_PURITY_V0
 artifact_kind: INVARIANT
 version: V0
-governed_by: fb.governance::CONSTITUTION_INVARIANTS_V0
+governed_by: governance::CONSTITUTION_INVARIANTS_V0
+authority: pgc.platform
+concern: capability_transforms
 core:
   enforcement_stage:
   - compiler_assertion
@@ -104,7 +106,7 @@ Scan CT atom code for:
 
 ## Related Artifacts
 
-- `fb.capability_transforms::CONSTITUTION_CAPABILITY_TRANSFORMS_V0` - Defines pure transform behavior
+- `capability_transforms::CONSTITUTION_CAPABILITY_TRANSFORMS_V0` - Defines pure transform behavior
 - `governance::CC_*_V0` - Declares required output structure
 
 ---

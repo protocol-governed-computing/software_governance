@@ -3,19 +3,21 @@
 ## Machine
 
 ```yaml
-fqdn: fb.execution_placement::CONSTITUTION_EXECUTION_PLACEMENT_V0
+fqdn: execution_placement::CONSTITUTION_EXECUTION_PLACEMENT_V0
 artifact_kind: CONSTITUTION
 version: V0
-governed_by: fb.governance::CONSTITUTION_GOVERNANCE_V0
+governed_by: governance::CONSTITUTION_GOVERNANCE_V0
+authority: pgc.platform
+concern: execution_placement
 core:
   enforcement_model: process_and_compiler_enforced
 rules:
 - applies_to: compiled_snapshot
-  enforced_by: fb.execution_placement::INVARIANT_EXECUTION_PLACEMENT_DECLARED_V0
+  enforced_by: execution_placement::INVARIANT_EXECUTION_PLACEMENT_DECLARED_V0
 - applies_to: compiled_snapshot
-  enforced_by: fb.execution_placement::INVARIANT_EXECUTION_PLACEMENT_DECLARED_V0
+  enforced_by: execution_placement::INVARIANT_EXECUTION_PLACEMENT_DECLARED_V0
 - applies_to: compiled_snapshot
-  enforced_by: fb.execution_placement::INVARIANT_EXECUTION_PLACEMENT_DECLARED_V0
+  enforced_by: execution_placement::INVARIANT_EXECUTION_PLACEMENT_DECLARED_V0
 - applies_to: federation_boundary
   enforced_by: PROCESS_ENFORCED
 - applies_to: runtime

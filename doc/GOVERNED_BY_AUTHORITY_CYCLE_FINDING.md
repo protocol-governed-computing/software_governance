@@ -9,12 +9,12 @@ what the `governed_by` relation means, and whether the surface is consistent und
 ## The cycle
 
 ```
-fb.governance::CONSTITUTION_GOVERNANCE_V0  ──governed_by──▶  fb.vocabulary::CONSTITUTION_VOCABULARY_V0
-fb.vocabulary::CONSTITUTION_VOCABULARY_V0  ──governed_by──▶  fb.governance::CONSTITUTION_GOVERNANCE_V0
+governance::CONSTITUTION_GOVERNANCE_V0  ──governed_by──▶  vocabulary::CONSTITUTION_VOCABULARY_V0
+vocabulary::CONSTITUTION_VOCABULARY_V0  ──governed_by──▶  governance::CONSTITUTION_GOVERNANCE_V0
 ```
 
 Both edges are declared in the artifacts' own `## Machine` blocks. `CONSTITUTION_INVARIANTS_V0`,
-also in `fb.governance`, declares the same `governed_by: fb.vocabulary::CONSTITUTION_VOCABULARY_V0`.
+also in `governance`, declares the same `governed_by: vocabulary::CONSTITUTION_VOCABULARY_V0`.
 
 `CONSTITUTION_GOVERNANCE_V0` states of itself:
 
@@ -57,7 +57,7 @@ If no, this is a circular authority defect, and one of the two edges is wrong.
 
 ## Why it matters beyond the two artifacts
 
-`fb.vocabulary` is one of only two boundaries declaring universal reach — its rules enumerate all
+`vocabulary` is one of only two boundaries declaring universal reach — its rules enumerate all
 sixteen artifact kinds. If `governed_by` does mean authority derivation, then the surface's root
 authority derives from a boundary whose jurisdiction is unbounded, which compounds rather than
 resolves the bounded-jurisdiction problem recorded in `AUTHORITY_VS_CONCERN_EVIDENCE.md`.

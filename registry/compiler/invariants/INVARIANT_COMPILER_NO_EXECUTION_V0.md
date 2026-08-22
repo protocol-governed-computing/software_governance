@@ -3,10 +3,12 @@
 ## Machine
 
 ```yaml
-fqdn: fb.compiler::INVARIANT_COMPILER_NO_EXECUTION_V0
+fqdn: compiler::INVARIANT_COMPILER_NO_EXECUTION_V0
 artifact_kind: INVARIANT
 version: V0
-governed_by: fb.compiler::CONSTITUTION_COMPILER_V0
+governed_by: compiler::CONSTITUTION_COMPILER_V0
+authority: pgc.platform
+concern: compiler
 core:
   enforcement_stage:
   - compiler_assertion

@@ -15,7 +15,7 @@ WHERE things belong and who owns them. No new artifact codes; no cross-subdomain
 | Domain | `platform` |
 | Primary subdomain | `workflow` — EXISTING — modified by this CR |
 | Authority class | reuse existing — an act announces, a domain declares its moments, the platform states the model; no new actor type |
-| Governing constitutions | `fb.workflow::CONSTITUTION_WORKFLOW_V0`, `fb.event::CONSTITUTION_EVENT_V0` |
+| Governing constitutions | `workflow::CONSTITUTION_WORKFLOW_V0`, `event::CONSTITUTION_EVENT_V0` |
 
 A terminal node is part of the act, and what an act says it completed is the act's account of itself,
 so the model belongs to the subdomain that governs acts. The moment being announced belongs to the
@@ -40,7 +40,7 @@ own.
 | Reporting an announcement that cannot be made | workflow | OWNED | | S4 gap_register GAP-4 |
 | Refusing a moment announced twice | workflow | OWNED | | S4 gap_register GAP-5 |
 | Asserting what an act announced | workflow | OWNED | | S4 gap_register GAP-6 |
-| Writing one evidence record per moment | workflow | SATISFIED | fb.event::INVARIANT_EV_APPEND_ONLY_V0 | S4 capability_graph #7 |
+| Writing one evidence record per moment | workflow | SATISFIED | event::INVARIANT_EV_APPEND_ONLY_V0 | S4 capability_graph #7 |
 | A moment announced per member of a collection | workflow | DEFERRED | | S4 authoring_scope deferred #1 |
 | Deciding which moments each act announces | workflow | DEFERRED | | S4 authoring_scope deferred #2 |
 | Checking that every declared moment is announced by something | workflow | DEFERRED | | S4 authoring_scope deferred #3 |
@@ -61,7 +61,7 @@ own.
 <!-- register:cross_subdomain_deps optional business_language=dependency -->
 | Dependency | Direction | Existing Artifact | Status (SATISFIED, GAP) | Source Finding |
 |------------|-----------|-------------------|-------------------------|----------------|
-| The moment an announcement names, and the immutability of its record | workflow -> event | fb.event::CONSTITUTION_EVENT_V0 | SATISFIED | S4 dependency_graph #2 |
+| The moment an announcement names, and the immutability of its record | workflow -> event | event::CONSTITUTION_EVENT_V0 | SATISFIED | S4 dependency_graph #2 |
 | The design language that states a terminal node's announcement | workflow -> design | transformation::WF_P7_DESIGN_INTENT_ADMISSIBILITY_V0 | GAP | S4 dependency_graph #3 |
 
 ---
@@ -71,10 +71,10 @@ own.
 <!-- register:pps_artifacts_requiring_action optional -->
 | FQDN | Current Status | Action (REPLACE, REVIEW, REUSE, EXTEND) | Source Finding |
 |------|----------------|----------------------------------|----------------|
-| fb.workflow::CONSTITUTION_WORKFLOW_V0 | Governs the act and does not use the word announcement, so what a terminal node states is carried by implementation alone. | EXTEND | S4 gap_register GAP-1 |
-| fb.event::CONSTITUTION_EVENT_V0 | Declares a moment and the immutability of its record, and says nothing about how many an act may announce. | REVIEW | S4 dependency_graph #2 |
-| fb.event::INVARIANT_EV_APPEND_ONLY_V0 | Refuses a moment's record being altered once written, which is why an announced moment cannot be unannounced. | REUSE | S4 constraint_register #7 |
-| fb.event::INVARIANT_EV_SCHEMA_REQUIRED_V0 | Requires a moment to declare its shape, and does not count announcements. | REVIEW | S4 capability_graph #7 |
+| workflow::CONSTITUTION_WORKFLOW_V0 | Governs the act and does not use the word announcement, so what a terminal node states is carried by implementation alone. | EXTEND | S4 gap_register GAP-1 |
+| event::CONSTITUTION_EVENT_V0 | Declares a moment and the immutability of its record, and says nothing about how many an act may announce. | REVIEW | S4 dependency_graph #2 |
+| event::INVARIANT_EV_APPEND_ONLY_V0 | Refuses a moment's record being altered once written, which is why an announced moment cannot be unannounced. | REUSE | S4 constraint_register #7 |
+| event::INVARIANT_EV_SCHEMA_REQUIRED_V0 | Requires a moment to declare its shape, and does not count announcements. | REVIEW | S4 capability_graph #7 |
 
 ---
 

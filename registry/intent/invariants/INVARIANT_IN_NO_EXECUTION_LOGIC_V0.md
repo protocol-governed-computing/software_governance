@@ -5,10 +5,12 @@ Architectural Invariant
 ## Machine
 
 ```yaml
-fqdn: fb.intent::INVARIANT_IN_NO_EXECUTION_LOGIC_V0
+fqdn: intent::INVARIANT_IN_NO_EXECUTION_LOGIC_V0
 artifact_kind: INVARIANT
 version: V0
-governed_by: fb.intent::CONSTITUTION_INTENT_V0
+governed_by: intent::CONSTITUTION_INTENT_V0
+authority: pgc.platform
+concern: intent
 core:
   enforcement_stage:
   - compiler_assertion

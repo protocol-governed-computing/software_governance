@@ -3,10 +3,12 @@
 ## Machine
 
 ```yaml
-fqdn: fb.capability_contracts::INVARIANT_TOPOLOGY_INPUT_REFERENCE_DECLARED_V0
+fqdn: capability_contracts::INVARIANT_TOPOLOGY_INPUT_REFERENCE_DECLARED_V0
 artifact_kind: INVARIANT
 version: V0
-governed_by: fb.execution_topology::CONSTITUTION_EXECUTION_TOPOLOGY_V0
+governed_by: execution_topology::CONSTITUTION_EXECUTION_TOPOLOGY_V0
+authority: pgc.platform
+concern: capability_contracts
 core:
   enforcement_stage:
   - compiler_assertion

@@ -3,10 +3,12 @@
 ## Machine
 
 ```yaml
-fqdn: fb.runtime_binding::INVARIANT_BINDING_INTEGRITY_V0
+fqdn: runtime_binding::INVARIANT_BINDING_INTEGRITY_V0
 artifact_kind: INVARIANT
 version: V0
-governed_by: fb.governance::CONSTITUTION_INVARIANTS_V0
+governed_by: governance::CONSTITUTION_INVARIANTS_V0
+authority: pgc.platform
+concern: runtime_binding
 core:
   enforcement_stage:
   - compiler_validation

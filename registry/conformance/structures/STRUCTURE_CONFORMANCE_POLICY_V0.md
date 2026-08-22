@@ -3,10 +3,12 @@
 ## Machine
 
 ```yaml
-fqdn: fb.conformance::STRUCTURE_CONFORMANCE_POLICY_V0
+fqdn: conformance::STRUCTURE_CONFORMANCE_POLICY_V0
 artifact_kind: STRUCTURE
 version: V0
-governed_by: fb.structure::CONSTITUTION_STRUCTURE_V0
+governed_by: structure::CONSTITUTION_STRUCTURE_V0
+authority: pgc.platform
+concern: conformance
 
 core:
   description: Defines CONFORMANCE_POLICY artifact rules

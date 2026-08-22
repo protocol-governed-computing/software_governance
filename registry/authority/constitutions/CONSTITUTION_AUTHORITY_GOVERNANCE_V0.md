@@ -13,10 +13,12 @@ This distinction is critical. Authority answers: *may this actor invoke this wor
 ## Machine
 
 ```yaml
-fqdn: fb.authority::CONSTITUTION_AUTHORITY_GOVERNANCE_V0
+fqdn: authority::CONSTITUTION_AUTHORITY_GOVERNANCE_V0
 artifact_kind: CONSTITUTION
 version: V0
-governed_by: fb.governance::CONSTITUTION_GOVERNANCE_V0
+governed_by: governance::CONSTITUTION_GOVERNANCE_V0
+authority: pgc.platform
+concern: authority
 core:
   enforcement_model: compiler_enforced
   governs:
@@ -28,32 +30,32 @@ core:
 rules:
 - applies_to:
   - WF
-  enforced_by: fb.authority::INVARIANT_AUTHORITY_REQUIRED_FOR_EXECUTION_V0
+  enforced_by: authority::INVARIANT_AUTHORITY_REQUIRED_FOR_EXECUTION_V0
 - applies_to:
   - WF
   - CC
   - CT
   - CS
-  enforced_by: fb.authority::INVARIANT_NO_WORKFLOW_AUTHORIZATION_LOGIC_V0
+  enforced_by: authority::INVARIANT_NO_WORKFLOW_AUTHORIZATION_LOGIC_V0
 - applies_to:
   - WF
-  enforced_by: fb.authority::INVARIANT_AUTHORITY_STATE_WELL_FORMED_V0
+  enforced_by: authority::INVARIANT_AUTHORITY_STATE_WELL_FORMED_V0
 - applies_to:
   - WF
   - CC
   - CT
   - CS
-  enforced_by: fb.authority::INVARIANT_NO_AMBIENT_AUTHORITY_V0
+  enforced_by: authority::INVARIANT_NO_AMBIENT_AUTHORITY_V0
 - applies_to:
   - AC
-  enforced_by: fb.authority::INVARIANT_ACTOR_AUTHORITY_SEPARATION_V0
+  enforced_by: authority::INVARIANT_ACTOR_AUTHORITY_SEPARATION_V0
 - applies_to:
   - AC
-  enforced_by: fb.authority::INVARIANT_ACTOR_AUTHORITY_SEPARATION_V0
+  enforced_by: authority::INVARIANT_ACTOR_AUTHORITY_SEPARATION_V0
 - applies_to: WF
-  enforced_by: fb.authority::INVARIANT_NO_RUNTIME_AUTHORIZATION_V0
+  enforced_by: authority::INVARIANT_NO_RUNTIME_AUTHORIZATION_V0
 - applies_to: WF
-  enforced_by: fb.authority::INVARIANT_TRACE_AUTHORITY_BINDING_REQUIRED_V0
+  enforced_by: authority::INVARIANT_TRACE_AUTHORITY_BINDING_REQUIRED_V0
 ```
 
 ---

@@ -5,10 +5,12 @@ Architectural Invariant
 ## Machine
 
 ```yaml
-fqdn: fb.actor::INVARIANT_IDENTITY_AUTHORITY_SEPARATION_V0
+fqdn: actor::INVARIANT_IDENTITY_AUTHORITY_SEPARATION_V0
 artifact_kind: INVARIANT
 version: V0
-governed_by: fb.actor::CONSTITUTION_ACTOR_IDENTITY_V0
+governed_by: actor::CONSTITUTION_ACTOR_IDENTITY_V0
+authority: pgc.platform
+concern: actor
 core:
   enforcement_stage:
   - compiler_assertion

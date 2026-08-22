@@ -3,23 +3,25 @@
 ## Machine
 
 ```yaml
-fqdn: fb.transport::CONSTITUTION_TRANSPORT_EGRESS_V0
+fqdn: transport::CONSTITUTION_TRANSPORT_EGRESS_V0
 artifact_kind: CONSTITUTION
 version: V0
-governed_by: fb.governance::CONSTITUTION_GOVERNANCE_V0
+governed_by: governance::CONSTITUTION_GOVERNANCE_V0
+authority: pgc.platform
+concern: transport
 core:
   enforcement_model: process_and_compiler_enforced
   governs:
   - TE
 rules:
 - applies_to: TE
-  enforced_by: fb.transport::INVARIANT_TRANSPORT_CANONICAL_NORMALIZATION_V0
+  enforced_by: transport::INVARIANT_TRANSPORT_CANONICAL_NORMALIZATION_V0
 - applies_to: TE
-  enforced_by: fb.transport::INVARIANT_TRANSPORT_NO_WORKFLOW_SEMANTICS_V0
+  enforced_by: transport::INVARIANT_TRANSPORT_NO_WORKFLOW_SEMANTICS_V0
 - applies_to: TE
-  enforced_by: fb.transport::INVARIANT_TRANSPORT_RESULT_CLASS_PROTOCOL_INDEPENDENCE_V0
+  enforced_by: transport::INVARIANT_TRANSPORT_RESULT_CLASS_PROTOCOL_INDEPENDENCE_V0
 - applies_to: TE
-  enforced_by: fb.transport::INVARIANT_TRANSPORT_RESPONSE_PROJECTION_EXTERNAL_V0
+  enforced_by: transport::INVARIANT_TRANSPORT_RESPONSE_PROJECTION_EXTERNAL_V0
 - applies_to: TE
   enforced_by: PROCESS_ENFORCED
 ```
@@ -81,7 +83,7 @@ construct, not a transport artifact.
 ## §4. Scope
 
 Governs `TE` egress semantics only. It does **not** govern the adapter's response projection
-(external), the producing execution (`fb.execution_topology`), or ingress (`TI`).
+(external), the producing execution (`execution_topology`), or ingress (`TI`).
 
 ---
 

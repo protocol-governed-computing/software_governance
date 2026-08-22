@@ -2,55 +2,61 @@
 
 ## Machine
 ```yaml
-fqdn: fb.governance::CONSTITUTION_INVARIANTS_V0
+fqdn: governance::CONSTITUTION_INVARIANTS_V0
 artifact_kind: CONSTITUTION
 version: V0
-governed_by: fb.vocabulary::CONSTITUTION_VOCABULARY_V0
+governed_by: vocabulary::CONSTITUTION_VOCABULARY_V0
+authority: pgc.platform
+concern: governance
 core:
   enforcement_model: compiler_enforced
   governs:
   - INVARIANT
 rules:
 - applies_to: INVARIANT
-  enforced_by: fb.artifact::INVARIANT_SCHEMA_CONFORMANCE_V0
+  enforced_by: federation::INVARIANT_AUTHORITY_CONSTITUTED_V0
 - applies_to: INVARIANT
-  enforced_by: fb.conformance::INVARIANT_ASSERT_PARITY_V0
+  enforced_by: federation::INVARIANT_CONCERN_NOT_AUTHORITY_V0
 - applies_to: INVARIANT
-  enforced_by: fb.artifact::INVARIANT_SCHEMA_CONFORMANCE_V0
+  enforced_by: artifact::INVARIANT_SCHEMA_CONFORMANCE_V0
+- applies_to: INVARIANT
+  enforced_by: conformance::INVARIANT_ASSERT_PARITY_V0
+- applies_to: INVARIANT
+  enforced_by: artifact::INVARIANT_SCHEMA_CONFORMANCE_V0
 - applies_to: ALL_ARTIFACTS
-  enforced_by: fb.artifact::INVARIANT_IDENTITY_FQDN_CONSISTENCY_V0
+  enforced_by: artifact::INVARIANT_IDENTITY_FQDN_CONSISTENCY_V0
 - applies_to: ALL_ARTIFACTS
-  enforced_by: fb.artifact::INVARIANT_SUPERSEDED_NOT_REFERENCED_V0
+  enforced_by: artifact::INVARIANT_SUPERSEDED_NOT_REFERENCED_V0
 - applies_to: INVARIANT
-  enforced_by: fb.artifact::INVARIANT_NO_SHORT_NAME_REFERENCE_V0
+  enforced_by: artifact::INVARIANT_NO_SHORT_NAME_REFERENCE_V0
 - applies_to: INVARIANT
-  enforced_by: fb.artifact::INVARIANT_UNIQUE_ARTIFACT_ID_V0
+  enforced_by: artifact::INVARIANT_UNIQUE_ARTIFACT_ID_V0
 - applies_to: RB
-  enforced_by: fb.runtime_binding::INVARIANT_BINDING_INTEGRITY_V0
+  enforced_by: runtime_binding::INVARIANT_BINDING_INTEGRITY_V0
 - applies_to: RB
-  enforced_by: fb.runtime_binding::INVARIANT_BINDING_SURFACE_CLOSED_V0
+  enforced_by: runtime_binding::INVARIANT_BINDING_SURFACE_CLOSED_V0
 - applies_to: CC
-  enforced_by: fb.capability_contracts::INVARIANT_CC_STORAGE_OP_CONFORMANCE_V0
+  enforced_by: capability_contracts::INVARIANT_CC_STORAGE_OP_CONFORMANCE_V0
 - applies_to: CT
-  enforced_by: fb.capability_transforms::INVARIANT_CT_OUTPUT_CONTRACT_MATCH_V0
+  enforced_by: capability_transforms::INVARIANT_CT_OUTPUT_CONTRACT_MATCH_V0
 - applies_to: INVARIANT
-  enforced_by: fb.execution::INVARIANT_NO_SMART_EXECUTION_V0
+  enforced_by: execution::INVARIANT_NO_SMART_EXECUTION_V0
 - applies_to: INVARIANT
-  enforced_by: fb.surface_contract::INVARIANT_NO_UNDECLARED_BEHAVIOR_SURFACE_V0
+  enforced_by: surface_contract::INVARIANT_NO_UNDECLARED_BEHAVIOR_SURFACE_V0
 - applies_to: INVARIANT
-  enforced_by: fb.execution::INVARIANT_RUNTIME_INVARIANT_WIRED_V0
+  enforced_by: execution::INVARIANT_RUNTIME_INVARIANT_WIRED_V0
 - applies_to: ALL_ARTIFACTS
-  enforced_by: fb.execution_topology::INVARIANT_TOPOLOGY_ACYCLIC_V0
+  enforced_by: execution_topology::INVARIANT_TOPOLOGY_ACYCLIC_V0
 - applies_to: TI_TE
-  enforced_by: fb.transport::INVARIANT_TRANSPORT_CANONICAL_NORMALIZATION_V0
+  enforced_by: transport::INVARIANT_TRANSPORT_CANONICAL_NORMALIZATION_V0
 - applies_to: TI_TE
-  enforced_by: fb.transport::INVARIANT_TRANSPORT_NO_DYNAMIC_ROUTING_V0
+  enforced_by: transport::INVARIANT_TRANSPORT_NO_DYNAMIC_ROUTING_V0
 - applies_to: TI_TE
-  enforced_by: fb.transport::INVARIANT_TRANSPORT_NO_WORKFLOW_SEMANTICS_V0
+  enforced_by: transport::INVARIANT_TRANSPORT_NO_WORKFLOW_SEMANTICS_V0
 - applies_to: TI_TE
-  enforced_by: fb.transport::INVARIANT_TRANSPORT_TARGET_EXISTS_V0
+  enforced_by: transport::INVARIANT_TRANSPORT_TARGET_EXISTS_V0
 - applies_to: ALL_ARTIFACTS
-  enforced_by: fb.artifact::INVARIANT_FQDN_NAMESPACE_AUTHORIZED_V0
+  enforced_by: artifact::INVARIANT_FQDN_NAMESPACE_AUTHORIZED_V0
 ```
 
 ---
@@ -104,7 +110,7 @@ No debug modes, no environment toggles.
 fqdn: <namespace>::INVARIANT_<NAME>_V<N>
 artifact_kind: INVARIANT
 version: V<N>
-governed_by: fb.governance::CONSTITUTION_INVARIANTS_V0
+governed_by: governance::CONSTITUTION_INVARIANTS_V0
 
 core:
   description: <constraint description>

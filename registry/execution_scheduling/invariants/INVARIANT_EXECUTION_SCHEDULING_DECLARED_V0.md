@@ -3,10 +3,12 @@
 ## Machine
 
 ```yaml
-fqdn: fb.execution_scheduling::INVARIANT_EXECUTION_SCHEDULING_DECLARED_V0
+fqdn: execution_scheduling::INVARIANT_EXECUTION_SCHEDULING_DECLARED_V0
 artifact_kind: INVARIANT
 version: V0
-governed_by: fb.governance::CONSTITUTION_INVARIANTS_V0
+governed_by: governance::CONSTITUTION_INVARIANTS_V0
+authority: pgc.platform
+concern: execution_scheduling
 core:
   enforcement_stage:
   - compiler_validation
@@ -20,7 +22,7 @@ assert_projection:
     rule: exactly_one
     subject: active execution scheduling contract
     selector:
-      namespace: fb.execution_scheduling
+      namespace: execution_scheduling
       artifact_type: STRUCTURE
       artifact_code_prefix: STRUCTURE_EXECUTION_SCHEDULING_
       where:

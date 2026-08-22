@@ -3,7 +3,7 @@
 **Artifact Type**: STRUCTURE
 **Version**: V0
 **Status**: CANONICAL
-**Governed By**: fb.structure::CONSTITUTION_STRUCTURE_V0
+**Governed By**: structure::CONSTITUTION_STRUCTURE_V0
 
 ---
 
@@ -360,10 +360,12 @@ Add validation to fail build on duplicate fqdn_id.
 ## Machine
 
 ```yaml
-fqdn: fb.structure::STRUCTURE_ARTIFACT_IDENTITY_V0
+fqdn: structure::STRUCTURE_ARTIFACT_IDENTITY_V0
 artifact_kind: STRUCTURE
 version: V0
-governed_by: fb.structure::CONSTITUTION_STRUCTURE_V0
+governed_by: structure::CONSTITUTION_STRUCTURE_V0
+authority: pgc.platform
+concern: structure
 core:
   summary: Canonical artifact identity system (FQDN-scoped)
   description: 'Defines FQDN-scoped identity as internal system identity while preserving clean, short

@@ -5,10 +5,12 @@ Architectural Invariant
 ## Machine
 
 ```yaml
-fqdn: fb.artifact::INVARIANT_FQDN_ONLY_REFERENCES_V0
+fqdn: artifact::INVARIANT_FQDN_ONLY_REFERENCES_V0
 artifact_kind: INVARIANT
 version: V0
-governed_by: fb.governance::CONSTITUTION_INVARIANTS_V0
+governed_by: governance::CONSTITUTION_INVARIANTS_V0
+authority: pgc.platform
+concern: artifact
 core:
   enforcement_stage:
   - compiler_assertion
@@ -111,8 +113,8 @@ Scan all artifact Machine sections for:
 
 ## Related Artifacts
 
-- `fb.structure::STRUCTURE_FQDN_TREE_V0` - Defines FQDN format
-- `fb.structure::STRUCTURE_IDENTITY_V0` - Defines FQDN composition and reference fields
+- `structure::STRUCTURE_FQDN_TREE_V0` - Defines FQDN format
+- `structure::STRUCTURE_IDENTITY_V0` - Defines FQDN composition and reference fields
 
 ---
 

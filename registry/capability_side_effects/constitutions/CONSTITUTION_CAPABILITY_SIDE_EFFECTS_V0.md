@@ -2,25 +2,27 @@
 
 ## Machine
 ```yaml
-fqdn: fb.capability_side_effects::CONSTITUTION_CAPABILITY_SIDE_EFFECTS_V0
+fqdn: capability_side_effects::CONSTITUTION_CAPABILITY_SIDE_EFFECTS_V0
 artifact_kind: CONSTITUTION
 version: V0
-governed_by: fb.vocabulary::CONSTITUTION_VOCABULARY_V0
+governed_by: vocabulary::CONSTITUTION_VOCABULARY_V0
+authority: pgc.platform
+concern: capability_side_effects
 core:
   enforcement_model: compiler_enforced
   governs:
   - CS
 rules:
 - applies_to: CS
-  enforced_by: fb.capability_side_effects::INVARIANT_CS_SURFACE_CLOSED_V1
+  enforced_by: capability_side_effects::INVARIANT_CS_SURFACE_CLOSED_V1
 - applies_to: CS
-  enforced_by: fb.execution::INVARIANT_IMPLEMENTATION_ADMISSIBLE_V0
+  enforced_by: execution::INVARIANT_IMPLEMENTATION_ADMISSIBLE_V0
 - applies_to: CS
-  enforced_by: fb.capability_side_effects::INVARIANT_CS_TRACEABLE_V0
+  enforced_by: capability_side_effects::INVARIANT_CS_TRACEABLE_V0
 - applies_to: CS
-  enforced_by: fb.capability_side_effects::INVARIANT_CS_ISOLATED_EXECUTION_V0
+  enforced_by: capability_side_effects::INVARIANT_CS_ISOLATED_EXECUTION_V0
 - applies_to: CS
-  enforced_by: fb.capability_side_effects::INVARIANT_INSPECTION_CAPABILITY_READ_ONLY_V0
+  enforced_by: capability_side_effects::INVARIANT_INSPECTION_CAPABILITY_READ_ONLY_V0
 ```
 
 ---

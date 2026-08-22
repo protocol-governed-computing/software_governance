@@ -3,7 +3,7 @@
 **Artifact Type**: STRUCTURE
 **Version**: V0
 **Status**: CANONICAL
-**Governed By**: fb.structure::CONSTITUTION_STRUCTURE_V0
+**Governed By**: structure::CONSTITUTION_STRUCTURE_V0
 
 ---
 
@@ -26,10 +26,12 @@ Runtime execution STRUCTURE. Defines WHERE the runtime searches for workflow art
 ## Machine
 
 ```yaml
-fqdn: fb.execution::STRUCTURE_RUNTIME_EXECUTION_V0
+fqdn: execution::STRUCTURE_RUNTIME_EXECUTION_V0
 artifact_kind: STRUCTURE
 version: V0
-governed_by: fb.structure::CONSTITUTION_STRUCTURE_V0
+governed_by: structure::CONSTITUTION_STRUCTURE_V0
+authority: pgc.platform
+concern: execution
 core:
   summary: Runtime execution STRUCTURE configuration
   description: 'Defines artifact discovery and trace output paths for runtime workflow execution.
