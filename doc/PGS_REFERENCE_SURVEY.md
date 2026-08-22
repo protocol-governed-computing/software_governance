@@ -129,7 +129,7 @@ path that is wrong. No identity moves, no hash changes beyond the artifact's own
 | D — historical citation | 5 | **Keep the citation, fix the tense.** Not yet done; independent |
 | E — ungrounded prose | 11 | **Correct in place.** Not yet done; independent |
 
-`standards/process/governance_closure.py` was written **before** B was remediated, and reported the
+`.github/process/governance_closure.py` was written **before** B was remediated, and reported the
 three conflicts on its first run. That ordering is the only reason the check is known to detect the
 defect rather than merely to agree with an already-clean tree. It proves two relations and claims no
 more: every compiler handler is named by an invariant, and no layer is declared two ways.
