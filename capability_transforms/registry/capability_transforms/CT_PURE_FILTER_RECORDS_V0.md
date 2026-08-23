@@ -1,16 +1,5 @@
 # CT_PURE_FILTER_RECORDS_V0
 
-## Header (Mandatory)
-
-- **Artifact Code:** CT_PURE_FILTER_RECORDS_V0
-- **Artifact Kind:** atom
-- **Governed By:** fb.capability_transforms::CONSTITUTION_CAPABILITY_TRANSFORMS_V0
-- **Version:** v0
-- **Supersedes:** NONE
-- **Dependencies:** NONE
-
----
-
 ## Human
 
 ### 1. Intent
@@ -29,7 +18,6 @@ Without a canonical filter atom, filtering logic would be duplicated or embedded
 
 ### 3. Naming Convention
 
-- **Artifact Code:** CT_PURE_FILTER_RECORDS_V0 (full versioned identifier)
 - **Operation:** FILTER_RECORDS (execution opcode used in molecules)
 
 ---
@@ -119,7 +107,9 @@ This atom does NOT emit traces.
 fqdn: capability_transforms::CT_PURE_FILTER_RECORDS_V0
 artifact_kind: CAPABILITY_TRANSFORM
 version: v0
-governed_by: fb.capability_transforms::CONSTITUTION_CAPABILITY_TRANSFORMS_V0
+governed_by: capability_transforms::CONSTITUTION_CAPABILITY_TRANSFORMS_V0
+authority: pgc.platform
+concern: capability_transforms
 core:
   summary: Filter an array of records by declared field criteria
   refusal: raises

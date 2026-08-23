@@ -3,10 +3,12 @@
 ## Machine
 
 ```yaml
-fqdn: fb.execution_scheduling::INVARIANT_EXECUTION_SCHEDULING_DECLARED_V0
+fqdn: execution_scheduling::INVARIANT_EXECUTION_SCHEDULING_DECLARED_V0
 artifact_kind: INVARIANT
 version: V0
-governed_by: fb.governance::CONSTITUTION_INVARIANTS_V0
+governed_by: governance::CONSTITUTION_INVARIANTS_V0
+authority: pgc.platform
+concern: execution_scheduling
 core:
   enforcement_stage:
   - compiler_validation
@@ -20,7 +22,7 @@ assert_projection:
     rule: exactly_one
     subject: active execution scheduling contract
     selector:
-      namespace: fb.execution_scheduling
+      namespace: execution_scheduling
       artifact_type: STRUCTURE
       artifact_code_prefix: STRUCTURE_EXECUTION_SCHEDULING_
       where:
@@ -36,8 +38,7 @@ to validate that execution scheduling legality is explicitly declared for every 
 rather than assumed. In V0, `SERIAL_SINGLE_WORKER` is the declared and intentional
 scheduling mode, not a default that was never articulated.
 
-## Rule
-
+## What this realizes
 For every compiled snapshot:
 1. The compiler MUST scan `execution_scheduling/` for active contracts
 2. Exactly one MUST be present
@@ -57,8 +58,7 @@ For every compiled snapshot:
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   rule: 'The compiler MUST locate exactly one active scheduling contract within FB_EXECUTION_SCHEDULING.

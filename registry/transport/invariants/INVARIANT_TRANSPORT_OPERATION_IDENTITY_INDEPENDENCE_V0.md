@@ -3,10 +3,12 @@
 ## Machine
 
 ```yaml
-fqdn: fb.transport::INVARIANT_TRANSPORT_OPERATION_IDENTITY_INDEPENDENCE_V0
+fqdn: transport::INVARIANT_TRANSPORT_OPERATION_IDENTITY_INDEPENDENCE_V0
 artifact_kind: INVARIANT
 version: V0
-governed_by: fb.governance::CONSTITUTION_INVARIANTS_V0
+governed_by: governance::CONSTITUTION_INVARIANTS_V0
+authority: pgc.platform
+concern: transport
 core:
   enforcement_stage:
   - compiler_validation
@@ -34,8 +36,7 @@ indirection.
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   description: 'Every TI MUST declare an Operation Identity, and that identity MUST NOT equal

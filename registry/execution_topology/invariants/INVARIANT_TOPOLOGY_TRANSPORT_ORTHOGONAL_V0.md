@@ -3,10 +3,12 @@
 ## Machine
 
 ```yaml
-fqdn: fb.execution_topology::INVARIANT_TOPOLOGY_TRANSPORT_ORTHOGONAL_V0
+fqdn: execution_topology::INVARIANT_TOPOLOGY_TRANSPORT_ORTHOGONAL_V0
 artifact_kind: INVARIANT
 version: V0
-governed_by: fb.execution_topology::CONSTITUTION_EXECUTION_TOPOLOGY_V0
+governed_by: execution_topology::CONSTITUTION_EXECUTION_TOPOLOGY_V0
+authority: pgc.platform
+concern: execution_topology
 core:
   enforcement_stage:
   - compiler_assertion
@@ -32,8 +34,7 @@ to endpoints, declaring response codes per step — the execution topology becom
 transport infrastructure. Changes to transport governance require topology changes, and
 changes to topology potentially alter transport behavior.
 
-## Rule
-
+## What this realizes
 For every execution topology step in a CC pipeline:
 1. Steps MUST NOT declare fields named to signal transport semantics:
    - `http_method`, `endpoint`, `transport_target`, `url`, `route`
@@ -43,8 +44,7 @@ For every execution topology step in a CC pipeline:
 3. Steps MUST NOT declare TE boundary conditions or projection visibility rules
 4. Transport-conditional execution paths (e.g., "route differently for POST vs GET") are constitutional violations
 
-## Enforcement Scope
-
+## Where it applies
 - **Artifact Types**: CC
 - **Validation Phase**: compile_time
 - **Enforced By**: ASSERT_TOPOLOGY_TRANSPORT_ORTHOGONAL_V0
@@ -63,8 +63,7 @@ This is a Phase 1 stub. Field name detection is implemented in Phase 3.
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   rule: Execution topology steps must not declare fields that carry transport semantics (http_method,

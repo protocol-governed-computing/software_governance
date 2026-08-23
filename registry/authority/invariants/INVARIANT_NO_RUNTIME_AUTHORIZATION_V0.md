@@ -5,10 +5,12 @@ Architectural Invariant
 ## Machine
 
 ```yaml
-fqdn: fb.authority::INVARIANT_NO_RUNTIME_AUTHORIZATION_V0
+fqdn: authority::INVARIANT_NO_RUNTIME_AUTHORIZATION_V0
 artifact_kind: INVARIANT
 version: V0
-governed_by: fb.authority::CONSTITUTION_AUTHORITY_GOVERNANCE_V0
+governed_by: authority::CONSTITUTION_AUTHORITY_GOVERNANCE_V0
+authority: pgc.platform
+concern: authority
 core:
   enforcement_stage:
   - compiler_assertion
@@ -23,8 +25,7 @@ assert_projection:
 
 Runtime dumbness is a core PGS architectural principle. The runtime is a graph traversal engine — it executes what is declared, without interpretation. This invariant extends that principle to authority: the runtime must never perform authorization evaluation. Authority is resolved before execution begins. The runtime reads the resolved state; it does not participate in producing it.
 
-## Rule
-
+## What this realizes
 For every runtime interaction with authority state:
 1. The runtime MUST NOT evaluate permissions, resolve roles, or execute authorization logic
 2. The runtime MUST NOT query authorization databases at execution time
@@ -32,8 +33,7 @@ For every runtime interaction with authority state:
 4. Authority state MUST be fully resolved before the runtime receives it
 5. The runtime treats authority state as immutable input — not as a source to be re-evaluated
 
-## Enforcement Scope
-
+## Where it applies
 - **Artifact Types**: WF, CC, CT, CS (runtime boundary)
 - **Validation Phase**: ASSERT (compile-time)
 - **Enforced By**: ASSERT_NO_RUNTIME_AUTHORIZATION_V0
@@ -44,8 +44,7 @@ If the runtime evaluates authorization, it becomes a policy engine. Policy engin
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   rule: Runtime must consume pre-resolved authority state; dynamic authorization, role inference, policy

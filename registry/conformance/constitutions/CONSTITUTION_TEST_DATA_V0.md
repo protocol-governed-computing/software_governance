@@ -2,21 +2,23 @@
 
 ## Machine
 ```yaml
-fqdn: fb.conformance::CONSTITUTION_TEST_DATA_V0
+fqdn: conformance::CONSTITUTION_TEST_DATA_V0
 artifact_kind: CONSTITUTION
 version: V0
-governed_by: fb.governance::CONSTITUTION_GOVERNANCE_V0
+governed_by: governance::CONSTITUTION_GOVERNANCE_V0
+authority: pgc.platform
+concern: conformance
 core:
   enforcement_model: compiler_enforced
   governs:
   - TEST_DATA
 rules:
 - applies_to: TEST_DATA
-  enforced_by: fb.conformance::INVARIANT_TEST_DATA_MATCH_CT_OUTPUT_V0
+  enforced_by: conformance::INVARIANT_TEST_DATA_MATCH_CT_OUTPUT_V0
 - applies_to: TEST_DATA
-  enforced_by: fb.artifact::INVARIANT_FQDN_ONLY_REFERENCES_V0
+  enforced_by: artifact::INVARIANT_FQDN_ONLY_REFERENCES_V0
 - applies_to: TEST_DATA
-  enforced_by: fb.conformance::INVARIANT_CONFORMANCE_ASSERTION_MODE_VALID_V0
+  enforced_by: conformance::INVARIANT_CONFORMANCE_ASSERTION_MODE_VALID_V0
 ```
 
 ---
@@ -45,8 +47,7 @@ Test Data artifacts provide declarative test specifications for validating Capab
 
 ---
 
-## 4. Validation Rules
-
+## How it is checked
 - Each test case MUST declare input bindings that satisfy the target CT's input schema.
 - Each test case MUST declare expected outputs that match the target CT's output contract.
 - The target artifact reference MUST use FQDN and resolve to a declared CT artifact.
@@ -57,8 +58,7 @@ Test Data artifacts provide declarative test specifications for validating Capab
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   description: Governs Test Data (TEST_DATA) artifacts — declarative test specifications for CT conformance

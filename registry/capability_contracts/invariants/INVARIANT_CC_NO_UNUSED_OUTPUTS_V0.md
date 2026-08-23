@@ -3,10 +3,12 @@
 ## Machine
 
 ```yaml
-fqdn: fb.capability_contracts::INVARIANT_CC_NO_UNUSED_OUTPUTS_V0
+fqdn: capability_contracts::INVARIANT_CC_NO_UNUSED_OUTPUTS_V0
 artifact_kind: INVARIANT
 version: V0
-governed_by: fb.governance::CONSTITUTION_INVARIANTS_V0
+governed_by: governance::CONSTITUTION_INVARIANTS_V0
+authority: pgc.platform
+concern: capability_contracts
 core:
   enforcement_stage:
   - compiler_validation
@@ -192,14 +194,7 @@ def detect_unused_outputs(wf_graph):
 
 ---
 
-## Version History
-
-- **V0**: Initial implementation (2026-04-12) - Unused Output Detection (Warning Level)
-
----
-
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   description: 'CC pipeline step outputs should be consumed by downstream nodes.

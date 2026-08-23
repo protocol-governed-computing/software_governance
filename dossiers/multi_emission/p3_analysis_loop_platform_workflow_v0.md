@@ -59,8 +59,8 @@ snapshot and the sealed dispatch rather than inherited.
 <!-- register:impact_analysis -->
 | Artifact | Impact Scope | Consumer Count | Evidence |
 |----------|--------------|----------------|----------|
-| fb.workflow::CONSTITUTION_WORKFLOW_V0 | States what a terminal node announces, for the first time: an ordered sequence of moments, of which today's behaviour is the case of one. | 9 | Nine acts declare an announcement under it. |
-| fb.event::CONSTITUTION_EVENT_V0 | Unchanged in what it says about a moment's record; read alongside the new statement about how many an act may announce. | 20 | Twenty moments are declared across four domains. |
+| workflow::CONSTITUTION_WORKFLOW_V0 | States what a terminal node announces, for the first time: an ordered sequence of moments, of which today's behaviour is the case of one. | 9 | Nine acts declare an announcement under it. |
+| event::CONSTITUTION_EVENT_V0 | Unchanged in what it says about a moment's record; read alongside the new statement about how many an act may announce. | 20 | Twenty moments are declared across four domains. |
 | Every act that announces today | Each keeps announcing exactly what it announces now. A sequence of one is the case that already runs. | 12 | Twelve announcements across nine acts. |
 | Every act that announces nothing today | Unaffected by the model, and unblocked by it where the silence was a choice. | 6 | Six declared moments in one subdomain wait on this change. |
 

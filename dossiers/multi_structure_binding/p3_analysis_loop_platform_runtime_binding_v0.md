@@ -60,7 +60,7 @@ snapshot and the act that fails rather than inherited.
 <!-- register:impact_analysis -->
 | Artifact | Impact Scope | Consumer Count | Evidence |
 |----------|--------------|----------------|----------|
-| fb.runtime_binding::CONSTITUTION_RUNTIME_BINDING_V0 | States the resolution model for the first time: what an act reaches, whose description is authoritative, and what happens when two disagree. | 7 | Seven bindings are governed by it across five domains. |
+| runtime_binding::CONSTITUTION_RUNTIME_BINDING_V0 | States the resolution model for the first time: what an act reaches, whose description is authoritative, and what happens when two disagree. | 7 | Seven bindings are governed by it across five domains. |
 | blockchain::RB_WALLET_BINDINGS_V0 | The act it binds gains a second binding to read from, and keeps describing only wallet records. | 1 | One act operates under it. |
 | blockchain::RB_IDENTITY_BINDINGS_V0 | Unchanged, and reached by an act that does not own it. | 3 | Three identity acts operate under it. |
 | blockchain::WF_CREATE_WALLET_V0 | Names the bindings it operates under, and completes rather than stopping at its second step. | 0 | Nothing in the composition invokes it; it is invoked from outside. |

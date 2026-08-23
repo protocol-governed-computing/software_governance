@@ -3,10 +3,12 @@
 ## Machine
 
 ```yaml
-fqdn: fb.execution_topology::INVARIANT_TOPOLOGY_SURFACE_CANONICAL_V0
+fqdn: execution_topology::INVARIANT_TOPOLOGY_SURFACE_CANONICAL_V0
 artifact_kind: INVARIANT
 version: V0
-governed_by: fb.execution_topology::CONSTITUTION_EXECUTION_TOPOLOGY_V0
+governed_by: execution_topology::CONSTITUTION_EXECUTION_TOPOLOGY_V0
+authority: pgc.platform
+concern: execution_topology
 core:
   enforcement_stage:
   - compiler_assertion
@@ -36,8 +38,7 @@ A step can be routing-complete and still be wrong: if it declares `[SUCCESS, VIO
 registry REGISTER operation, every code is routed but ALREADY_EXISTS and BACKEND_ERROR are
 missing. SURFACE_CANONICAL catches this.
 
-## Rule
-
+## What this realizes
 For every CC pipeline step where a SURFACE_CONTRACT governs the step's capability and op:
 1. The step MUST declare `result_surface`
 2. The declared `result_surface` MUST exactly equal the contract's `canonical_surface`
@@ -45,8 +46,7 @@ For every CC pipeline step where a SURFACE_CONTRACT governs the step's capabilit
 4. Missing codes (omissions) are violations — they hide reachable outcomes from routing
 5. Aliased codes (e.g. `FAILED` instead of `BACKEND_ERROR`) are violations — they invent private semantics
 
-## Enforcement Scope
-
+## Where it applies
 - **Artifact Types**: CC
 - **Validation Phase**: compile_time
 - **Enforced By**: ASSERT_TOPOLOGY_SURFACE_CANONICAL_V0
@@ -75,8 +75,7 @@ Full enforcement is implemented in Phase 3.
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   rule: For every CC pipeline step whose capability (transform or side_effect) is governed by a SURFACE_CONTRACT

@@ -3,10 +3,12 @@
 ## Machine
 
 ```yaml
-fqdn: fb.execution_topology::INVARIANT_TOPOLOGY_ACYCLIC_V0
+fqdn: execution_topology::INVARIANT_TOPOLOGY_ACYCLIC_V0
 artifact_kind: INVARIANT
 version: V0
-governed_by: fb.governance::CONSTITUTION_INVARIANTS_V0
+governed_by: governance::CONSTITUTION_INVARIANTS_V0
+authority: pgc.platform
+concern: execution_topology
 core:
   enforcement_stage:
   - compiler_validation
@@ -30,8 +32,7 @@ Ensure the compiled topology graph has no circular dependencies. Cycles make com
 
 ---
 
-## Validation Rules
-
+## How it is checked
 ### Rule 1: No Transitive Dependency Cycles
 
 The dependency subgraph (filtered to dependency-carrying edge kinds) must admit a topological ordering.
@@ -63,14 +64,7 @@ CC_A → CT_X → (via MOLECULE_COMPOSES_ATOM) → CT_Y → (via CC binding) →
 
 ---
 
-## Version History
-
-- **V0**: Initial implementation (2026-05-21) - Extracted from compiler S4 GOVERN hardcoded cycle detection
-
----
-
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   description: 'The compiled semantic topology graph must be acyclic across all dependency-carrying edge

@@ -6,27 +6,29 @@ Actors are declarative identity authorities, not behavioral or execution authori
 
 ## Machine
 ```yaml
-fqdn: fb.actor::CONSTITUTION_ACTOR_IDENTITY_V0
+fqdn: actor::CONSTITUTION_ACTOR_IDENTITY_V0
 artifact_kind: CONSTITUTION
 version: V0
-governed_by: fb.governance::CONSTITUTION_GOVERNANCE_V0
+governed_by: governance::CONSTITUTION_GOVERNANCE_V0
+authority: pgc.platform
+concern: actor
 core:
   enforcement_model: compiler_enforced
   governs:
   - AC
 rules:
 - applies_to: AC
-  enforced_by: fb.actor::INVARIANT_AC_DECLARATION_WELL_FORMED_V0
+  enforced_by: actor::INVARIANT_AC_DECLARATION_WELL_FORMED_V0
 - applies_to: AC
-  enforced_by: fb.actor::INVARIANT_AC_DECLARATION_WELL_FORMED_V0
+  enforced_by: actor::INVARIANT_AC_DECLARATION_WELL_FORMED_V0
 - applies_to: AC
-  enforced_by: fb.actor::INVARIANT_AC_DECLARATION_WELL_FORMED_V0
+  enforced_by: actor::INVARIANT_AC_DECLARATION_WELL_FORMED_V0
 - applies_to: AC
-  enforced_by: fb.actor::INVARIANT_AC_DECLARATION_WELL_FORMED_V0
+  enforced_by: actor::INVARIANT_AC_DECLARATION_WELL_FORMED_V0
 - applies_to: AC
-  enforced_by: fb.authority::INVARIANT_ACTOR_AUTHORITY_SEPARATION_V0
+  enforced_by: authority::INVARIANT_ACTOR_AUTHORITY_SEPARATION_V0
 - applies_to: AC
-  enforced_by: fb.actor::INVARIANT_IDENTITY_AUTHORITY_SEPARATION_V0
+  enforced_by: actor::INVARIANT_IDENTITY_AUTHORITY_SEPARATION_V0
 ```
 
 ---
@@ -74,7 +76,7 @@ Actor identity is a **pre-execution governed concern**. Actors are declared, com
 
 - `ac_code`: Unique identifier for the actor artifact.
 - `version`: Version of the actor artifact.
-- `governed_by`: Must reference `fb.actor::CONSTITUTION_ACTOR_IDENTITY_V0`.
+- `governed_by`: Must reference `actor::CONSTITUTION_ACTOR_IDENTITY_V0`.
 - `core.type`: Declared actor type (e.g., `person`, `agent`, `system`).
 - `core.summary`: One-line description of the actor's role.
 - `core.description`: Extended description of the actor's purpose in the governed system.
@@ -82,8 +84,7 @@ Actor identity is a **pre-execution governed concern**. Actors are declared, com
 
 ---
 
-## 4. Validation Rules
-
+## How it is checked
 - Actor MUST declare a `type` field. An absent or empty `type` is a compile-time violation.
 - Every field in `core.attributes` MUST declare an explicit `type`. Attribute type inference is prohibited.
 - Actor artifact MUST NOT contain: execution logic, routing conditions, policy rules, side-effect bindings, or authorization assertions.
@@ -121,8 +122,7 @@ This separation is foundational. Actors are identity subjects. Authority governa
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   description: Constitution governing declarative actor identity semantics

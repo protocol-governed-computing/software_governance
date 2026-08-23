@@ -5,10 +5,12 @@ Architectural Invariant
 ## Machine
 
 ```yaml
-fqdn: fb.artifact::INVARIANT_SUPERSEDED_NOT_REFERENCED_V0
+fqdn: artifact::INVARIANT_SUPERSEDED_NOT_REFERENCED_V0
 artifact_kind: INVARIANT
 version: V0
-governed_by: fb.governance::CONSTITUTION_INVARIANTS_V0
+governed_by: governance::CONSTITUTION_INVARIANTS_V0
+authority: pgc.platform
+concern: artifact
 core:
   enforcement_stage:
   - compiler_assertion
@@ -49,8 +51,7 @@ to it. A caller crossing either boundary would have reached the workflow the des
 
 ---
 
-## Validation Rules
-
+## How it is checked
 ### Rule: nothing live references a superseded artifact
 
 Where `X` declares `supersedes: Y` — equivalently, where `Y` declares `superseded_by` — no artifact

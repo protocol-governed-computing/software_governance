@@ -1,17 +1,5 @@
 # CS_REGISTRY_V0
 
-## Header (Mandatory)
-
-- **Artifact Code:** CS_REGISTRY_V0
-- **Artifact Kind:** capability_side_effect
-- **Governed By:** CONSTITUTION_CAPABILITY_SIDE_EFFECTS_V0
-- **Version:** v0
-- **Status:** draft
-- **Supersedes:** NONE
-- **Dependencies:** NONE
-
----
-
 ## 1. Intent
 
 Provide a registry capability for stable indirection by binding symbolic keys to opaque addresses and underlying storage references.
@@ -236,7 +224,9 @@ Provides stable symbolic addressing layer above concrete storage
 fqdn: capability_side_effects::CS_REGISTRY_V0
 artifact_kind: CAPABILITY_SIDE_EFFECT
 version: v0
-governed_by: fb.capability_side_effects::CONSTITUTION_CAPABILITY_SIDE_EFFECTS_V0
+governed_by: capability_side_effects::CONSTITUTION_CAPABILITY_SIDE_EFFECTS_V0
+authority: pgc.platform
+concern: capability_side_effects
 core:
   summary: Registry for stable indirection by binding symbolic keys to opaque addresses
   category: storage

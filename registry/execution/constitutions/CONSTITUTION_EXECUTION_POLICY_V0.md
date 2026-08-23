@@ -2,10 +2,12 @@
 
 ## Machine
 ```yaml
-fqdn: fb.execution::CONSTITUTION_EXECUTION_POLICY_V0
+fqdn: execution::CONSTITUTION_EXECUTION_POLICY_V0
 artifact_kind: CONSTITUTION
 version: V0
-governed_by: fb.execution::CONSTITUTION_EXECUTION_V0
+governed_by: execution::CONSTITUTION_EXECUTION_V0
+authority: pgc.platform
+concern: execution
 core:
   enforcement_model: runtime_enforced
 rules:
@@ -138,8 +140,7 @@ Changes to policy profiles require:
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   description: Governs execution policy profiles — the licensing seam between BASIC and ADVANCED machine

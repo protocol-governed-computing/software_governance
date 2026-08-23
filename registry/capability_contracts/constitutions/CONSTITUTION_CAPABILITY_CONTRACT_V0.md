@@ -2,27 +2,29 @@
 
 ## Machine
 ```yaml
-fqdn: fb.capability_contracts::CONSTITUTION_CAPABILITY_CONTRACT_V0
+fqdn: capability_contracts::CONSTITUTION_CAPABILITY_CONTRACT_V0
 artifact_kind: CONSTITUTION
 version: V0
-governed_by: fb.governance::CONSTITUTION_GOVERNANCE_V0
+governed_by: governance::CONSTITUTION_GOVERNANCE_V0
+authority: pgc.platform
+concern: capability_contracts
 core:
   enforcement_model: compiler_enforced
   governs:
   - CC
 rules:
 - applies_to: CC
-  enforced_by: fb.capability_contracts::INVARIANT_CC_INPUTS_SATISFIED_V0
+  enforced_by: capability_contracts::INVARIANT_CC_INPUTS_SATISFIED_V0
 - applies_to: CC
-  enforced_by: fb.capability_contracts::INVARIANT_CC_CAPABILITY_BINDING_VALID_V0
+  enforced_by: capability_contracts::INVARIANT_CC_CAPABILITY_BINDING_VALID_V0
 - applies_to: CC
-  enforced_by: fb.capability_contracts::INVARIANT_CC_NO_IMPLICIT_CHAINING_V0
+  enforced_by: capability_contracts::INVARIANT_CC_NO_IMPLICIT_CHAINING_V0
 - applies_to: CC
-  enforced_by: fb.capability_contracts::INVARIANT_CC_NO_MISSING_DEPENDENCIES_V0
+  enforced_by: capability_contracts::INVARIANT_CC_NO_MISSING_DEPENDENCIES_V0
 - applies_to: CC
-  enforced_by: fb.capability_contracts::INVARIANT_CC_NO_UNUSED_OUTPUTS_V0
+  enforced_by: capability_contracts::INVARIANT_CC_NO_UNUSED_OUTPUTS_V0
 - applies_to: CC
-  enforced_by: fb.artifact::INVARIANT_FQDN_ONLY_REFERENCES_V0
+  enforced_by: artifact::INVARIANT_FQDN_ONLY_REFERENCES_V0
 ```
 
 ---
@@ -58,8 +60,7 @@ Capability Contracts bind pure Capability Transforms (CTs) and authorized Capabi
 
 ---
 
-## 4. Validation Rules
-
+## How it is checked
 - All input fields declared in `core.inputs` MUST be bound before execution.
 - All capability references in `core.pipeline` MUST resolve to declared CT or CS artifacts.
 - No output declared in `core.outputs` may remain unconsumed across the pipeline.
@@ -70,8 +71,7 @@ Capability Contracts bind pure Capability Transforms (CTs) and authorized Capabi
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   description: Governs Capability Contract (CC) artifacts — explicit binding, determinism, and governed

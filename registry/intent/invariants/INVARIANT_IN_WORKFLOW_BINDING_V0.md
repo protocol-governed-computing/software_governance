@@ -3,10 +3,12 @@
 ## Machine
 
 ```yaml
-fqdn: fb.intent::INVARIANT_IN_WORKFLOW_BINDING_V0
+fqdn: intent::INVARIANT_IN_WORKFLOW_BINDING_V0
 artifact_kind: INVARIANT
 version: V0
-governed_by: fb.governance::CONSTITUTION_INVARIANTS_V0
+governed_by: governance::CONSTITUTION_INVARIANTS_V0
+authority: pgc.platform
+concern: intent
 core:
   enforcement_stage:
   - compiler_validation
@@ -25,8 +27,7 @@ Ensure entry intents are dedicated per-workflow and resolvable.
 
 ---
 
-## Validation Rules
-
+## How it is checked
 ### Rule: IN Resolves to Declared Artifact
 
 IN node FQDN in each WF must resolve to an IN artifact in the compilation graph.
@@ -56,14 +57,7 @@ No IN FQDN may appear as start_node in more than one workflow.
 
 ---
 
-## Version History
-
-- **V0**: Initial implementation (2026-05-04)
-
----
-
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   description: 'Every IN artifact used as a WF entry node must resolve to a declared IN artifact, and

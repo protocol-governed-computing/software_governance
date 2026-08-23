@@ -73,8 +73,8 @@ not only what was found.
 | Capability | FQDN | What It Does | Fit (EXACT, PARTIAL, MISMATCH) | Cannot Do |
 |-----------|------|--------------|--------------------------------|-----------|
 | Holds durable records addressed by a key | capability_side_effects::CS_MUTABLE_JSON_V0 | Writes, reads, lists, selects, updates in place and deletes. | PARTIAL | Says what each operation does and never why it is offered. |
-| Governs what a capability may be | fb.capability_side_effects::CONSTITUTION_CAPABILITY_SIDE_EFFECTS_V0 | Declares what a capability side effect is and what it may carry. | PARTIAL | Says nothing about who may change what an admitted capability offers. |
-| Keeps the admitted set closed | fb.capability_side_effects::INVARIANT_CS_SURFACE_CLOSED_V1 | Refuses a capability nobody admitted. | PARTIAL | Governs which capabilities exist, not which operations one offers. |
+| Governs what a capability may be | capability_side_effects::CONSTITUTION_CAPABILITY_SIDE_EFFECTS_V0 | Declares what a capability side effect is and what it may carry. | PARTIAL | Says nothing about who may change what an admitted capability offers. |
+| Keeps the admitted set closed | capability_side_effects::INVARIANT_CS_SURFACE_CLOSED_V1 | Refuses a capability nobody admitted. | PARTIAL | Governs which capabilities exist, not which operations one offers. |
 | Searches the catalog | book_library_mgmt::CC_SEARCH_CATALOG_V0 | Selects the book records matching stated criteria. | EXACT | Nothing — it is the caller the operation was added for. |
 | Assembles a book's details | book_library_mgmt::CC_ASSEMBLE_BOOK_DETAILS_V0 | Reads a book and selects the copies held of it. | EXACT | Nothing — the second caller, and evidence the operation is general. |
 | The act a reader reaches it through | book_library_mgmt::WF_SEARCH_CATALOG_V0 | Answers a question about what the library holds. | EXACT | Nothing. |

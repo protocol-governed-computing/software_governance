@@ -3,10 +3,12 @@
 ## Machine
 
 ```yaml
-fqdn: fb.workflow::INVARIANT_WF_ANNOUNCEMENT_DISTINCT_V0
+fqdn: workflow::INVARIANT_WF_ANNOUNCEMENT_DISTINCT_V0
 artifact_kind: INVARIANT
 version: V0
-governed_by: fb.workflow::CONSTITUTION_WORKFLOW_V0
+governed_by: workflow::CONSTITUTION_WORKFLOW_V0
+authority: pgc.platform
+concern: workflow
 core:
   enforcement_stage:
   - compiler_assertion
@@ -22,8 +24,7 @@ A terminal node announces each moment at most once, and every moment it announce
 event artifact. An announcement that names the same moment twice is either a mistake or two
 different moments that were not distinguished, and a reader can act on neither.
 
-## Rule
-
+## What this realizes
 For every `WF` artifact, for every node of type `EXIT` or `EXIT_SUCCESS` declaring `emit`:
 
 1. `emit` MUST be a moment or an ordered sequence of moments. A single moment is a sequence of one.

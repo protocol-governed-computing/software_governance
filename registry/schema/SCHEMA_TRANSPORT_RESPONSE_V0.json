@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "pgc.schemas.SCHEMA_TRANSPORT_RESPONSE_V0",
   "title": "PGC Canonical Transport Response V0",
-  "description": "Protocol-neutral canonical transport response contract (Transport Standard V0 §5.2). Representation-independent; JSON is one serialization and is not itself normative.",
+  "description": "Protocol-neutral canonical transport response contract (Transport Standard V0 \u00a75.2). Representation-independent; JSON is one serialization and is not itself normative.",
   "type": "object",
   "required": [
     "request_id",
@@ -44,6 +44,14 @@
     "errors": {
       "type": "array",
       "description": "Populated on failure."
+    },
+    "authority": {
+      "type": "string",
+      "description": "The authority from which this artifact's jurisdiction derives (CA-1, CA-2). Declared, never inferred from namespace, path or kind."
+    },
+    "concern": {
+      "type": "string",
+      "description": "The semantic subject this artifact is about (GO-11, ID-12). A concern classification confers no authority and constitutes no boundary."
     }
   }
 }

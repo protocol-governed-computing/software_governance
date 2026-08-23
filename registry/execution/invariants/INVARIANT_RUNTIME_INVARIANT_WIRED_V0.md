@@ -3,10 +3,12 @@
 ## Machine
 
 ```yaml
-fqdn: fb.execution::INVARIANT_RUNTIME_INVARIANT_WIRED_V0
+fqdn: execution::INVARIANT_RUNTIME_INVARIANT_WIRED_V0
 artifact_kind: INVARIANT
 version: V0
-governed_by: fb.governance::CONSTITUTION_INVARIANTS_V0
+governed_by: governance::CONSTITUTION_INVARIANTS_V0
+authority: pgc.platform
+concern: execution
 core:
   enforcement_stage:
   - compiler_assertion
@@ -23,14 +25,7 @@ Constitutional rule that runtime business invariants must be bound to the
 capability-contract outcome-routing mechanism that enforces them. The runtime is
 unchanged; this is verified at compile time by `ASSERT_RUNTIME_INVARIANT_WIRED_V0`.
 
-## Version History
-
-- **V0**: Initial runtime-invariant wiring rule (2026-06-14)
-
----
-
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   description: 'Every runtime-enforced business invariant must be wired to a real enforcement point. A

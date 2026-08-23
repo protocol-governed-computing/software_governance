@@ -3,10 +3,12 @@
 ## Machine
 
 ```yaml
-fqdn: fb.capability_transforms::INVARIANT_CT_TEST_DATA_OUTCOME_DECLARED_V0
+fqdn: capability_transforms::INVARIANT_CT_TEST_DATA_OUTCOME_DECLARED_V0
 artifact_kind: INVARIANT
 version: V0
-governed_by: fb.execution_topology::CONSTITUTION_EXECUTION_TOPOLOGY_V0
+governed_by: execution_topology::CONSTITUTION_EXECUTION_TOPOLOGY_V0
+authority: pgc.platform
+concern: capability_transforms
 core:
   enforcement_stage:
   - compiler_assertion
@@ -29,8 +31,7 @@ A compiler that silently defaults missing `expected_outcome` to `SUCCESS` produc
 conformance tests that never test the failure path — `VIOLATION` cases appear to pass
 because the runner treats them as success cases.
 
-## Rule
-
+## What this realizes
 For every TEST_DATA artifact:
 
 1. Every `### Case N:` yaml block MUST include `expected_outcome` as an explicit field.
@@ -39,8 +40,7 @@ For every TEST_DATA artifact:
 4. The test runner MUST use the declared `expected_outcome` to determine whether the
    CT invocation is expected to raise an exception (VIOLATION) or return a result (SUCCESS).
 
-## Enforcement Scope
-
+## Where it applies
 - **Artifact Types**: TEST_DATA
 - **Validation Phase**: compile_time (S4 GOVERN)
 - **Enforced By**: ASSERT_CT_TEST_DATA_OUTCOME_DECLARED_V0
@@ -57,17 +57,10 @@ Without this invariant, a compiler implementation that encounters a missing
 It either defaults silently (Bug 2) or fails cryptically at test run time.
 
 With this invariant, a missing `expected_outcome` is a named compile-time violation:
-`fb.capability_transforms::INVARIANT_CT_TEST_DATA_OUTCOME_DECLARED_V0` — findable, traceable,
+`capability_transforms::INVARIANT_CT_TEST_DATA_OUTCOME_DECLARED_V0` — findable, traceable,
 correctable at the source before any test is run.
 
-## Version History
-
-- **V0**: Initial invariant requiring explicit expected_outcome in all CT test cases (2026-06-03)
-
----
-
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   rule: 'For every TEST_DATA artifact in the compiled graph: each test case declared in the artifact body

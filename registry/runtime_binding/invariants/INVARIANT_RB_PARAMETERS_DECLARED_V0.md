@@ -5,10 +5,12 @@ Architectural Invariant
 ## Machine
 
 ```yaml
-fqdn: fb.runtime_binding::INVARIANT_RB_PARAMETERS_DECLARED_V0
+fqdn: runtime_binding::INVARIANT_RB_PARAMETERS_DECLARED_V0
 artifact_kind: INVARIANT
 version: V0
-governed_by: fb.runtime_binding::CONSTITUTION_RUNTIME_BINDING_V0
+governed_by: runtime_binding::CONSTITUTION_RUNTIME_BINDING_V0
+authority: pgc.platform
+concern: runtime_binding
 core:
   enforcement_stage:
   - compiler_assertion
@@ -49,8 +51,7 @@ Two directions of disagreement, both silent before this invariant:
 Neither breaks a build today, and both make the declaration untrustworthy. This invariant makes
 `parameters` a checked contract rather than documentation that happens to be nearby.
 
-## Rule
-
+## What this realizes
 For every RB artifact:
 
 1. Collect every `{{name}}` appearing in any value under `core.bindings`, at any nesting depth.
@@ -71,7 +72,3 @@ agreement, not the presence of parameters.
 - **Stage:** compiler_assertion
 - **Failure Mode:** FAIL_IMMEDIATELY
 
-## Version History
-
-- **V0**: Closes the drift between an RB's declared parameters and the templates its binding
-  policies actually expand.

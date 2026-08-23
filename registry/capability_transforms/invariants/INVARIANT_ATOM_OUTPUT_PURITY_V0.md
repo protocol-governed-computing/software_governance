@@ -5,10 +5,12 @@ Architectural Invariant
 ## Machine
 
 ```yaml
-fqdn: fb.capability_transforms::INVARIANT_ATOM_OUTPUT_PURITY_V0
+fqdn: capability_transforms::INVARIANT_ATOM_OUTPUT_PURITY_V0
 artifact_kind: INVARIANT
 version: V0
-governed_by: fb.governance::CONSTITUTION_INVARIANTS_V0
+governed_by: governance::CONSTITUTION_INVARIANTS_V0
+authority: pgc.platform
+concern: capability_transforms
 core:
   enforcement_stage:
   - compiler_assertion
@@ -22,8 +24,7 @@ assert_projection:
 
 CT atom implementations must be pure functions that return explicit output dictionaries in ALL execution paths. Exceptions may only be raised for INPUT VALIDATION (missing required inputs, wrong types), never for business logic or "failure" states.
 
-## Rule
-
+## What this realizes
 For all CT atom implementations:
 1. `execute()` must return dict in ALL business logic paths
 2. Exceptions allowed ONLY for input validation (missing keys, wrong types)
@@ -31,8 +32,7 @@ For all CT atom implementations:
 4. NO exceptions for quota exhaustion, training incomplete, etc.
 5. Output structure must match CC contract in success AND "failure" cases
 
-## Enforcement Scope
-
+## Where it applies
 - **Artifact Types**: CT
 - **Code Layer**: pgs_transforms/implementation/transforms/atoms/
 - **Validation Phase**: Phase 5 (ASSERT)
@@ -104,13 +104,12 @@ Scan CT atom code for:
 
 ## Related Artifacts
 
-- `fb.capability_transforms::CONSTITUTION_CAPABILITY_TRANSFORMS_V0` - Defines pure transform behavior
+- `capability_transforms::CONSTITUTION_CAPABILITY_TRANSFORMS_V0` - Defines pure transform behavior
 - `governance::CC_*_V0` - Declares required output structure
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   rule: CT atom execute() functions must return dict outputs for all code paths including error states

@@ -1,23 +1,14 @@
 # CT_EXEC_EMIT_V0
 
-## Header (Mandatory)
-
-- **Artifact Code:** CT_EXEC_EMIT_V0
-- **Artifact Kind:** atom
-- **Governed By:** fb.capability_transforms::CONSTITUTION_CAPABILITY_TRANSFORMS_V0
-- **Version:** v0
-- **Supersedes:** NONE
-- **Dependencies:** NONE
-
----
-
 ## Machine
 
 ```yaml
 fqdn: capability_transforms::CT_EXEC_EMIT_V0
 artifact_kind: CAPABILITY_TRANSFORM
 version: V0
-governed_by: fb.capability_transforms::CONSTITUTION_CAPABILITY_TRANSFORMS_V0
+governed_by: capability_transforms::CONSTITUTION_CAPABILITY_TRANSFORMS_V0
+authority: pgc.platform
+concern: capability_transforms
 core:
   summary: Emit terminal value
   refusal: never

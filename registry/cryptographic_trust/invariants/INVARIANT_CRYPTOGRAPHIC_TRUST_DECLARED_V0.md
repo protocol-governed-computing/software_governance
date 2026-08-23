@@ -3,10 +3,12 @@
 ## Machine
 
 ```yaml
-fqdn: fb.cryptographic_trust::INVARIANT_CRYPTOGRAPHIC_TRUST_DECLARED_V0
+fqdn: cryptographic_trust::INVARIANT_CRYPTOGRAPHIC_TRUST_DECLARED_V0
 artifact_kind: INVARIANT
 version: V0
-governed_by: fb.governance::CONSTITUTION_INVARIANTS_V0
+governed_by: governance::CONSTITUTION_INVARIANTS_V0
+authority: pgc.platform
+concern: cryptographic_trust
 core:
   enforcement_stage:
   - compiler_validation
@@ -20,7 +22,7 @@ assert_projection:
     rule: exactly_one
     subject: active cryptographic trust contract
     selector:
-      namespace: fb.cryptographic_trust
+      namespace: cryptographic_trust
       artifact_type: STRUCTURE
       artifact_code_prefix: STRUCTURE_CRYPTOGRAPHIC_TRUST_
       where:
@@ -37,8 +39,7 @@ declared for every snapshot — even in local unsigned development. The declarat
 that no cryptographic verification is required in this context. This sets up the
 governance axis that future signed and attested execution modes will extend.
 
-## Rule
-
+## What this realizes
 For every compiled snapshot:
 1. The compiler MUST scan `cryptographic_trust/` for active contracts
 2. Exactly one MUST be present
@@ -58,8 +59,7 @@ For every compiled snapshot:
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   rule: 'The compiler MUST locate exactly one active trust contract within FB_CRYPTOGRAPHIC_TRUST. Zero

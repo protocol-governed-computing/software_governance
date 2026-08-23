@@ -3,10 +3,12 @@
 ## Machine
 
 ```yaml
-fqdn: fb.workflow::INVARIANT_WF_CC_ONLY_NODES_V0
+fqdn: workflow::INVARIANT_WF_CC_ONLY_NODES_V0
 artifact_kind: INVARIANT
 version: V0
-governed_by: fb.governance::CONSTITUTION_INVARIANTS_V0
+governed_by: governance::CONSTITUTION_INVARIANTS_V0
+authority: pgc.platform
+concern: workflow
 core:
   enforcement_stage:
   - compiler_validation
@@ -24,8 +26,7 @@ Enforce the WF → CC → CT/CS layering. Workflows orchestrate; capability cont
 
 ---
 
-## Validation Rules
-
+## How it is checked
 ### Rule: All Non-Structural Nodes Are CC
 
 For each node in the WF nodes map, if type is not IN or EXIT, it must be CC.
@@ -53,14 +54,7 @@ nodes:
 
 ---
 
-## Version History
-
-- **V0**: Initial implementation (2026-05-04)
-
----
-
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   description: 'All non-structural WF nodes must be of type CC. Structural nodes (IN, EXIT) are permitted.

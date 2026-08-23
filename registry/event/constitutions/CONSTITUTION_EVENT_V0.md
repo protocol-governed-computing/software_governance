@@ -2,21 +2,23 @@
 
 ## Machine
 ```yaml
-fqdn: fb.event::CONSTITUTION_EVENT_V0
+fqdn: event::CONSTITUTION_EVENT_V0
 artifact_kind: CONSTITUTION
 version: V0
-governed_by: fb.governance::CONSTITUTION_GOVERNANCE_V0
+governed_by: governance::CONSTITUTION_GOVERNANCE_V0
+authority: pgc.platform
+concern: event
 core:
   enforcement_model: compiler_enforced
   governs:
   - EV
 rules:
 - applies_to: EV
-  enforced_by: fb.event::INVARIANT_EV_APPEND_ONLY_V0
+  enforced_by: event::INVARIANT_EV_APPEND_ONLY_V0
 - applies_to: EV
-  enforced_by: fb.event::INVARIANT_EV_SCHEMA_REQUIRED_V0
+  enforced_by: event::INVARIANT_EV_SCHEMA_REQUIRED_V0
 - applies_to: EV
-  enforced_by: fb.event::INVARIANT_EV_APPEND_ONLY_V0
+  enforced_by: event::INVARIANT_EV_APPEND_ONLY_V0
 ```
 
 ---
@@ -46,8 +48,7 @@ Events are the protocol's mechanism for recording state transitions and observab
 
 ---
 
-## 4. Validation Rules
-
+## How it is checked
 - Event MUST declare a schema with at least one field.
 - Event stores referenced by EV artifacts MUST enforce append-only semantics.
 - No mutation operation (update, delete, patch) is permitted on an event store.
@@ -58,8 +59,7 @@ Events are the protocol's mechanism for recording state transitions and observab
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   description: Governs event emission and audit integrity

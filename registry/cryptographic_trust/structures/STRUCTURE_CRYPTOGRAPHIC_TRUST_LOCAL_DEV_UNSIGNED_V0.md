@@ -3,11 +3,13 @@
 ## Machine
 
 ```yaml
-fqdn: fb.cryptographic_trust::STRUCTURE_CRYPTOGRAPHIC_TRUST_LOCAL_DEV_UNSIGNED_V0
+fqdn: cryptographic_trust::STRUCTURE_CRYPTOGRAPHIC_TRUST_LOCAL_DEV_UNSIGNED_V0
 artifact_code: STRUCTURE_CRYPTOGRAPHIC_TRUST_LOCAL_DEV_UNSIGNED_V0
 artifact_kind: STRUCTURE
 version: V0
-governed_by: fb.cryptographic_trust::CONSTITUTION_CRYPTOGRAPHIC_TRUST_V0
+governed_by: cryptographic_trust::CONSTITUTION_CRYPTOGRAPHIC_TRUST_V0
+authority: pgc.platform
+concern: cryptographic_trust
 status: active
 trust_mode: LOCAL_DEV_UNSIGNED
 artifact_signing_required: false

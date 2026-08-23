@@ -2,30 +2,67 @@
 
 ## Machine
 ```yaml
-fqdn: fb.structure::CONSTITUTION_STRUCTURE_V0
+fqdn: structure::CONSTITUTION_STRUCTURE_V0
 artifact_kind: CONSTITUTION
 version: V0
-governed_by: fb.governance::CONSTITUTION_GOVERNANCE_V0
+governed_by: governance::CONSTITUTION_GOVERNANCE_V0
+authority: pgc.platform
+concern: structure
 core:
   enforcement_model: process_and_compiler_enforced
   governs:
   - STRUCTURE
 rules:
 - applies_to: STRUCTURE
-  enforced_by: fb.structure::INVARIANT_STRUCTURE_PATHS_WELL_FORMED_V0
+  enforced_by: structure::INVARIANT_STRUCTURE_PATHS_WELL_FORMED_V0
 - applies_to: STRUCTURE
-  enforced_by: fb.structure::INVARIANT_STRUCTURE_PATHS_WELL_FORMED_V0
+  enforced_by: structure::INVARIANT_STRUCTURE_PATHS_WELL_FORMED_V0
 - applies_to: STRUCTURE
-  enforced_by: fb.structure::INVARIANT_STRUCTURE_PATHS_WELL_FORMED_V0
+  enforced_by: structure::INVARIANT_STRUCTURE_PATHS_WELL_FORMED_V0
 - applies_to: STRUCTURE
-  enforced_by: fb.structure::INVARIANT_STRUCTURE_PATHS_WELL_FORMED_V0
+  enforced_by: structure::INVARIANT_STRUCTURE_PATHS_WELL_FORMED_V0
+- applies_to: STRUCTURE
+  enforced_by: structure::INVARIANT_SCHEMA_DESCRIPTION_WELL_FORMED_V0
 - applies_to: STRUCTURE
   enforced_by: PROCESS_ENFORCED
 - applies_to: STRUCTURE
   enforced_by: PROCESS_ENFORCED
 - applies_to: STRUCTURE
-  enforced_by: fb.artifact::INVARIANT_FQDN_ONLY_REFERENCES_V0
+  enforced_by: artifact::INVARIANT_FQDN_ONLY_REFERENCES_V0
 ```
+
+
+---
+
+## What makes a description a description
+
+A schema governing an artifact kind **names at least one required field and closes its surface**. One
+that does neither admits every declaration of its kind and refuses none, and a kind dispatched to it
+reads as governed by any reader counting dispatched kinds. **Coverage is not governance**, and the
+count of dispatched kinds measures neither.
+
+That was not a hypothetical. One kind was dispatched to a description requiring no field and closing
+no surface, and thirty-three declarations passed it because everything passes it.
+
+## Every kind carries a disposition
+
+An artifact kind is **described** or **exempt**, drawn from `structure::VOCAB_SCHEMA_DISPOSITION_V0`,
+and a kind carrying neither is refused. An exemption states its ground beside it.
+
+A kind absent from the dispatch table was absent for three different reasons and one representation:
+nobody wrote a description, one exists and nobody named it, or the kind needs none. A reader could not
+tell a decision from an oversight, and neither could a check.
+
+## A description matches what it describes
+
+A description states the shape the platform currently builds. One that has drifted refuses correct
+work **with the authority of a rule**, which is worse than describing nothing, so a description is
+measured against every artifact of its kind before it is dispatched — never dispatched to find out.
+
+Drift is continuous rather than episodic. Three descriptions were found to have diverged at three
+separate undated points, and every one was found by dispatching it and reading what it refused: a
+method that only works while nobody relies on the description. `INVARIANT_SCHEMA_DESCRIPTION_WELL_FORMED_V0`
+is what reports the next one before a build does.
 
 ---
 
@@ -58,21 +95,11 @@ For usage examples and path patterns see: `doc/STRUCTURE_GUIDE.md`
 
 ---
 
-## Version History
-
-- **V0**: Initial rules-only constitution for STRUCTURE artifacts (2026-03-24)
-  - Establishes 7 enforcement rules: explicit paths, no absolute paths, no escape, layer declared, deterministic resolution, bootstrap eligible, FQDN references
-  - Schema extracted to SCHEMA_STRUCTURE_V0.json
-  - Examples and implementation notes extracted to doc/STRUCTURE_GUIDE.md
-
----
-
 ## End of Constitution
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   description: Governs STRUCTURE artifacts — system configuration and artifact discovery declarations

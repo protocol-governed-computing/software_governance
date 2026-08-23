@@ -2,27 +2,29 @@
 
 ## Machine
 ```yaml
-fqdn: fb.workflow::CONSTITUTION_WORKFLOW_V0
+fqdn: workflow::CONSTITUTION_WORKFLOW_V0
 artifact_kind: CONSTITUTION
 version: V0
-governed_by: fb.governance::CONSTITUTION_GOVERNANCE_V0
+governed_by: governance::CONSTITUTION_GOVERNANCE_V0
+authority: pgc.platform
+concern: workflow
 core:
   enforcement_model: compiler_enforced
   governs:
   - WF
 rules:
 - applies_to: WF
-  enforced_by: fb.workflow::INVARIANT_WF_EXECUTION_PATH_VALID_V0
+  enforced_by: workflow::INVARIANT_WF_EXECUTION_PATH_VALID_V0
 - applies_to: WF
-  enforced_by: fb.workflow::INVARIANT_WF_CC_ONLY_NODES_V0
+  enforced_by: workflow::INVARIANT_WF_CC_ONLY_NODES_V0
 - applies_to: WF
-  enforced_by: fb.workflow::INVARIANT_WF_EXECUTION_PATH_VALID_V0
+  enforced_by: workflow::INVARIANT_WF_EXECUTION_PATH_VALID_V0
 - applies_to: WF
-  enforced_by: fb.workflow::INVARIANT_WF_ENTRY_INTENT_V0
+  enforced_by: workflow::INVARIANT_WF_ENTRY_INTENT_V0
 - applies_to: WF
-  enforced_by: fb.artifact::INVARIANT_FQDN_ONLY_REFERENCES_V0
+  enforced_by: artifact::INVARIANT_FQDN_ONLY_REFERENCES_V0
 - applies_to: WF
-  enforced_by: fb.workflow::INVARIANT_WF_ANNOUNCEMENT_DISTINCT_V0
+  enforced_by: workflow::INVARIANT_WF_ANNOUNCEMENT_DISTINCT_V0
 ```
 
 ---
@@ -87,8 +89,7 @@ moments announced none, and nothing anywhere noticed.
 
 ---
 
-## 4. Validation Rules
-
+## How it is checked
 - Workflow node graph MUST be acyclic.
 - All node references MUST resolve to declared CC artifacts via FQDN.
 - All result status transitions from each node MUST be explicitly declared.
@@ -102,8 +103,7 @@ moments announced none, and nothing anywhere noticed.
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   description: Governs workflow DAG structure and execution sequencing

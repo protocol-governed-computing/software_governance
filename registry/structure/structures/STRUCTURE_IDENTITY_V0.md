@@ -16,10 +16,12 @@ Single source of truth for artifact identity. Defines FQDN composition, normaliz
 ## Machine
 
 ```yaml
-fqdn: fb.structure::STRUCTURE_IDENTITY_V0
+fqdn: structure::STRUCTURE_IDENTITY_V0
 artifact_kind: STRUCTURE
 version: V0
-governed_by: fb.structure::CONSTITUTION_STRUCTURE_V0
+governed_by: structure::CONSTITUTION_STRUCTURE_V0
+authority: pgc.platform
+concern: structure
 core:
   summary: Consolidated artifact identity and FQDN configuration
   description: 'Defines the canonical identity system for all protocol artifacts. Namespace identity is
@@ -31,36 +33,33 @@ identity:
     format: '{namespace}::{artifact_code}'
     namespace:
       derivation:
-        method: module_path
         rules:
         - namespace: capability_side_effects
         - namespace: capability_transforms
-        - namespace: fb.actor
-        - namespace: fb.artifact
-        - namespace: fb.authority
-        - namespace: fb.capability_contracts
-        - namespace: fb.capability_side_effects
-        - namespace: fb.capability_transforms
-        - namespace: fb.compiler
-        - namespace: fb.conformance
-        - namespace: fb.cryptographic_trust
-        - namespace: fb.event
-        - namespace: fb.execution
-        - namespace: fb.execution_placement
-        - namespace: fb.execution_scheduling
-        - namespace: fb.execution_topology
-        - namespace: fb.federation
-        - namespace: fb.governance
-        - namespace: fb.intent
-        - namespace: fb.lifecycle
-        - namespace: fb.runtime_binding
-        - namespace: fb.security_domain
-        - namespace: fb.structure
-        - namespace: fb.surface_contract
-        - namespace: fb.trace
-        - namespace: fb.transport
-        - namespace: fb.vocabulary
-        - namespace: fb.workflow
+        - namespace: actor
+        - namespace: artifact
+        - namespace: authority
+        - namespace: capability_contracts
+        - namespace: compiler
+        - namespace: conformance
+        - namespace: cryptographic_trust
+        - namespace: event
+        - namespace: execution
+        - namespace: execution_placement
+        - namespace: execution_scheduling
+        - namespace: execution_topology
+        - namespace: federation
+        - namespace: governance
+        - namespace: intent
+        - namespace: lifecycle
+        - namespace: runtime_binding
+        - namespace: security_domain
+        - namespace: structure
+        - namespace: surface_contract
+        - namespace: trace
+        - namespace: transport
+        - namespace: vocabulary
+        - namespace: workflow
     uniqueness:
       scope: global
       constraint: no_duplicate_fqdn

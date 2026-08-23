@@ -3,10 +3,12 @@
 ## Machine
 
 ```yaml
-fqdn: fb.execution_topology::INVARIANT_TOPOLOGY_IMMUTABLE_AFTER_COMPILATION_V0
+fqdn: execution_topology::INVARIANT_TOPOLOGY_IMMUTABLE_AFTER_COMPILATION_V0
 artifact_kind: INVARIANT
 version: V0
-governed_by: fb.execution_topology::CONSTITUTION_EXECUTION_TOPOLOGY_V0
+governed_by: execution_topology::CONSTITUTION_EXECUTION_TOPOLOGY_V0
+authority: pgc.platform
+concern: execution_topology
 core:
   enforcement_stage:
   - compiler_assertion
@@ -31,8 +33,7 @@ would be invalidated by changes it never saw.
 
 Topology immutability after compilation is what makes compiler-enforced governance meaningful.
 
-## Rule
-
+## What this realizes
 Compiled execution topology MUST NOT be:
 1. Modified by any runtime component (workflow engine, executor, host environment)
 2. Extended with runtime-injected steps not present in the compiled artifact
@@ -41,8 +42,7 @@ Compiled execution topology MUST NOT be:
 
 The compiled artifact is the topology. The runtime traverses it. No other authority exists.
 
-## Enforcement Scope
-
+## Where it applies
 - **Artifact Types**: CC
 - **Validation Phase**: compile_time (structural) + runtime (behavioral constraint)
 - **Enforced By**: ASSERT_TOPOLOGY_IMMUTABLE_AFTER_COMPILATION_V0
@@ -58,8 +58,7 @@ This is a Phase 1 stub. Full enforcement is implemented in Phase 3.
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   rule: no runtime component, workflow engine, or execution agent may alter, extend, patch, or override

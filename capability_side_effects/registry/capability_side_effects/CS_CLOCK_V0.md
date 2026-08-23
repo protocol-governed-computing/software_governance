@@ -1,15 +1,5 @@
 # CS_CLOCK_V0
 
-## Header (Mandatory)
-
-- **Artifact Code:** CS_CLOCK_V0
-- **Artifact Kind:** capability_side_effect
-- **Governed By:** CONSTITUTION_CAPABILITY_SIDE_EFFECTS_V0
-- **Version:** V0
-- **Supersedes:** NONE
-
----
-
 ## Human
 
 ### 1. Intent
@@ -43,7 +33,9 @@ on a value, and a value it has already answered is an ordinary input to an ordin
 fqdn: capability_side_effects::CS_CLOCK_V0
 artifact_kind: CAPABILITY_SIDE_EFFECT
 version: v0
-governed_by: fb.capability_side_effects::CONSTITUTION_CAPABILITY_SIDE_EFFECTS_V0
+governed_by: capability_side_effects::CONSTITUTION_CAPABILITY_SIDE_EFFECTS_V0
+authority: pgc.platform
+concern: capability_side_effects
 core:
   summary: Answers the current instant, so a record states when something happened rather than when it was claimed to
   category: external

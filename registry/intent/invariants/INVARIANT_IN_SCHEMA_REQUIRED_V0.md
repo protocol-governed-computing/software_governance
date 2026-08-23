@@ -3,10 +3,12 @@
 ## Machine
 
 ```yaml
-fqdn: fb.intent::INVARIANT_IN_SCHEMA_REQUIRED_V0
+fqdn: intent::INVARIANT_IN_SCHEMA_REQUIRED_V0
 artifact_kind: INVARIANT
 version: V0
-governed_by: fb.governance::CONSTITUTION_INVARIANTS_V0
+governed_by: governance::CONSTITUTION_INVARIANTS_V0
+authority: pgc.platform
+concern: intent
 core:
   enforcement_stage:
   - compiler_validation
@@ -24,8 +26,7 @@ Ensure every admission gate declares what it expects from incoming payloads.
 
 ---
 
-## Validation Rules
-
+## How it is checked
 ### Rule: Schema Field Required
 
 IN artifact must have a top-level schema field.
@@ -68,14 +69,7 @@ schema:
 
 ---
 
-## Version History
-
-- **V0**: Initial implementation (2026-05-04)
-
----
-
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   description: 'Every IN artifact must declare a non-empty schema. Schema must contain at least one field,

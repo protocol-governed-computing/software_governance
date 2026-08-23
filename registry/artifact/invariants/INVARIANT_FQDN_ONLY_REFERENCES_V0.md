@@ -5,10 +5,12 @@ Architectural Invariant
 ## Machine
 
 ```yaml
-fqdn: fb.artifact::INVARIANT_FQDN_ONLY_REFERENCES_V0
+fqdn: artifact::INVARIANT_FQDN_ONLY_REFERENCES_V0
 artifact_kind: INVARIANT
 version: V0
-governed_by: fb.governance::CONSTITUTION_INVARIANTS_V0
+governed_by: governance::CONSTITUTION_INVARIANTS_V0
+authority: pgc.platform
+concern: artifact
 core:
   enforcement_stage:
   - compiler_assertion
@@ -37,8 +39,7 @@ assert_projection:
 
 All artifacts must reference other artifacts using fully qualified domain names (FQDN) in the format `layer::artifact_code`. Short names (bare artifact_code) are forbidden.
 
-## Rule
-
+## What this realizes
 For all artifact types:
 1. References to CT must use: `transforms::CT_*_V0`
 2. References to CS must use: `side_effects::CS_*_V0`
@@ -48,8 +49,7 @@ For all artifact types:
 6. References to STRUCTURE must use: `governance::STRUCTURE_*_V0`
 7. NO bare artifact codes (e.g., `CT_HASH_V0` without layer prefix)
 
-## Enforcement Scope
-
+## Where it applies
 - **Artifact Types**: ALL
 - **Validation Phase**: Phase 5 (ASSERT)
 - **Enforcement**: MANDATORY (build fails on violation)
@@ -111,13 +111,12 @@ Scan all artifact Machine sections for:
 
 ## Related Artifacts
 
-- `fb.structure::STRUCTURE_FQDN_TREE_V0` - Defines FQDN format
-- `fb.structure::STRUCTURE_IDENTITY_V0` - Defines FQDN composition and reference fields
+- `structure::STRUCTURE_FQDN_TREE_V0` - Defines FQDN format
+- `structure::STRUCTURE_IDENTITY_V0` - Defines FQDN composition and reference fields
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   rule: All cross-artifact references must use fully qualified domain names in format layer::artifact_code

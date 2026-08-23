@@ -3,10 +3,12 @@
 ## Machine
 
 ```yaml
-fqdn: fb.artifact::INVARIANT_NO_SHORT_NAME_REFERENCE_V0
+fqdn: artifact::INVARIANT_NO_SHORT_NAME_REFERENCE_V0
 artifact_kind: INVARIANT
 version: V0
-governed_by: fb.governance::CONSTITUTION_INVARIANTS_V0
+governed_by: governance::CONSTITUTION_INVARIANTS_V0
+authority: pgc.platform
+concern: artifact
 core:
   enforcement_stage:
   - compiler_assertion
@@ -44,8 +46,7 @@ Enforce FQDN discipline at the source.
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   description: 'All artifact references in machine frontmatter must be fully qualified (FQDN). Short names

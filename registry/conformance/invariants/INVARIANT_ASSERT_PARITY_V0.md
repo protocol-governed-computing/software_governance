@@ -3,13 +3,16 @@
 ## Machine
 
 ```yaml
-fqdn: fb.conformance::INVARIANT_ASSERT_PARITY_V0
+fqdn: conformance::INVARIANT_ASSERT_PARITY_V0
 artifact_kind: INVARIANT
 version: V0
-governed_by: fb.governance::CONSTITUTION_INVARIANTS_V0
+governed_by: governance::CONSTITUTION_INVARIANTS_V0
+authority: pgc.platform
+concern: conformance
 core:
   enforcement_stage:
-  - compiler_meta_validation
+  - enforced_elsewhere
+  enforced_by: the step of the build that derives a check from its obligation
   violation_response: FAIL_IMMEDIATELY
 assert_projection:
   ci_override:
@@ -32,8 +35,7 @@ Ensure governance symmetry between invariant declarations and assert enforcement
 
 ---
 
-## Validation Rules
-
+## How it is checked
 ### Rule 1: One-to-One Correspondence
 
 For every `INVARIANT_X_V0`, exactly one `ASSERT_X_V0` must exist.
@@ -180,14 +182,7 @@ If governance is inconsistent, artifact validation is meaningless.
 
 ---
 
-## Version History
-
-- **V0**: Initial implementation (2026-04-12) - Meta-Invariant for Parity
-
----
-
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   description: 'For every INVARIANT_*, exactly one ASSERT_* must exist (and vice versa).
@@ -214,3 +209,21 @@ assert_projection:
   enforcement:
     failure_mode: HARD_FAIL
 ```
+
+
+---
+
+## Carried by derivation, not by comparison
+
+What this obligation asserts — one check per obligation, one obligation per check — is now guaranteed
+by construction. A check is derived from every obligation whose declared stage is the build, so an
+obligation without a check cannot exist and a check without an obligation cannot exist. **The content
+holds more strongly than when it was checked by comparing two authored sets.**
+
+It was published for a long time declaring that a violation failed the build immediately, excluded
+from derivation by name, evaluated by no build, and referenced by no artifact: an obligation carried
+by nothing, which is the defect `enforcement_capability` exists to end, sitting inside the obligation
+that states the guarantee the change rests on.
+
+It is restated rather than retired because what it asserts is true and worth declaring. Its check
+module is withdrawn with the exclusion that named it.

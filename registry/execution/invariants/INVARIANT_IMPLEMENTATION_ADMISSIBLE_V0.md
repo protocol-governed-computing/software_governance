@@ -3,10 +3,12 @@
 ## Machine
 
 ```yaml
-fqdn: fb.execution::INVARIANT_IMPLEMENTATION_ADMISSIBLE_V0
+fqdn: execution::INVARIANT_IMPLEMENTATION_ADMISSIBLE_V0
 artifact_kind: INVARIANT
 version: V0
-governed_by: fb.governance::CONSTITUTION_INVARIANTS_V0
+governed_by: governance::CONSTITUTION_INVARIANTS_V0
+authority: pgc.platform
+concern: execution
 core:
   enforcement_stage:
   - compiler_validation
@@ -27,14 +29,7 @@ Ensure every executable capability artifact has a structurally complete implemen
 
 ---
 
-## Version History
-
-- **V0**: Initial implementation (2026-05-21) - Extracted from compiler S4 GOVERN hardcoded CT/CS validation
-
----
-
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   description: 'All capability artifacts (CT atoms and CS side effects) must declare structurally complete

@@ -3,10 +3,12 @@
 ## Machine
 
 ```yaml
-fqdn: fb.surface_contract::INVARIANT_NO_UNDECLARED_BEHAVIOR_SURFACE_V0
+fqdn: surface_contract::INVARIANT_NO_UNDECLARED_BEHAVIOR_SURFACE_V0
 artifact_kind: INVARIANT
 version: V0
-governed_by: fb.governance::CONSTITUTION_INVARIANTS_V0
+governed_by: governance::CONSTITUTION_INVARIANTS_V0
+authority: pgc.platform
+concern: surface_contract
 core:
   enforcement_stage:
   - compiler_validation
@@ -159,14 +161,7 @@ Fields that are genuinely optional:
 
 ---
 
-## Version History
-
-- **V0**: Initial invariant declaration (2026-03-24) - Protocol Surface Closure Phase 1
-
----
-
-## Rule Statement
-
+## What this realizes
 ```yaml
 examples:
   violation_1:

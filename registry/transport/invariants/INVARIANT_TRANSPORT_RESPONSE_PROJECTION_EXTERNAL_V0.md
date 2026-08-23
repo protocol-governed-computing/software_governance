@@ -3,10 +3,12 @@
 ## Machine
 
 ```yaml
-fqdn: fb.transport::INVARIANT_TRANSPORT_RESPONSE_PROJECTION_EXTERNAL_V0
+fqdn: transport::INVARIANT_TRANSPORT_RESPONSE_PROJECTION_EXTERNAL_V0
 artifact_kind: INVARIANT
 version: V0
-governed_by: fb.governance::CONSTITUTION_INVARIANTS_V0
+governed_by: governance::CONSTITUTION_INVARIANTS_V0
+authority: pgc.platform
+concern: transport
 core:
   enforcement_stage:
   - compiler_validation
@@ -35,8 +37,7 @@ transport/adapter separation the boundary exists to protect.
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   description: 'A TE MUST NOT declare external-protocol response projection (HTTP status, RPC

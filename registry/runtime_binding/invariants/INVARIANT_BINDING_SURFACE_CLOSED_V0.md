@@ -3,10 +3,12 @@
 ## Machine
 
 ```yaml
-fqdn: fb.runtime_binding::INVARIANT_BINDING_SURFACE_CLOSED_V0
+fqdn: runtime_binding::INVARIANT_BINDING_SURFACE_CLOSED_V0
 artifact_kind: INVARIANT
 version: V0
-governed_by: fb.governance::CONSTITUTION_INVARIANTS_V0
+governed_by: governance::CONSTITUTION_INVARIANTS_V0
+authority: pgc.platform
+concern: runtime_binding
 core:
   enforcement_stage:
   - compiler_validation
@@ -25,8 +27,7 @@ Any undeclared reference is a protocol violation and must stop the build.
 
 ---
 
-## Validation Rules
-
+## How it is checked
 ### Rule 1: Payload Field Must Be Declared
 
 ```yaml
@@ -85,14 +86,7 @@ outputs:
 
 ---
 
-## Version History
-
-- **V0**: Initial implementation (2026-04-29) - WF Binding Surface Closure
-
----
-
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   description: "For each CC node in a WF execution graph, all input bindings must reference only declared\

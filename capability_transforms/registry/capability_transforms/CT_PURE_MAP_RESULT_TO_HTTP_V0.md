@@ -1,23 +1,14 @@
 # CT_PURE_MAP_RESULT_TO_HTTP_V0
 
-## Header
-
-- **Artifact Code:** CT_PURE_MAP_RESULT_TO_HTTP_V0
-- **Artifact Kind:** atom
-- **Governed By:** fb.capability_transforms::CONSTITUTION_CAPABILITY_TRANSFORMS_V0
-- **Version:** v0
-- **Status:** draft
-- **Dependencies:** NONE
-
----
-
 ## Machine
 
 ```yaml
 fqdn: capability_transforms::CT_PURE_MAP_RESULT_TO_HTTP_V0
 artifact_kind: CAPABILITY_TRANSFORM
 version: V0
-governed_by: fb.capability_transforms::CONSTITUTION_CAPABILITY_TRANSFORMS_V0
+governed_by: capability_transforms::CONSTITUTION_CAPABILITY_TRANSFORMS_V0
+authority: pgc.platform
+concern: capability_transforms
 core:
   summary: Map result status to HTTP
   refusal: never

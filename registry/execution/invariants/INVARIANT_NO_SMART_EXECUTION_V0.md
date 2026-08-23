@@ -5,10 +5,12 @@ Architectural Invariant
 ## Machine
 
 ```yaml
-fqdn: fb.execution::INVARIANT_NO_SMART_EXECUTION_V0
+fqdn: execution::INVARIANT_NO_SMART_EXECUTION_V0
 artifact_kind: INVARIANT
 version: V0
-governed_by: fb.governance::CONSTITUTION_INVARIANTS_V0
+governed_by: governance::CONSTITUTION_INVARIANTS_V0
+authority: pgc.platform
+concern: execution
 core:
   enforcement_stage:
   - compiler_assertion
@@ -25,8 +27,7 @@ assert_projection:
 
 Execution layer code (atom_registry, workflow_runner, etc.) must be "dumb executors" - they pass inputs to transforms and return outputs without interpreting type metadata or performing conversions.
 
-## Rule
-
+## What this realizes
 For all execution layer code:
 1. NO type-based input conversion (e.g., hex_string → bytes)
 2. NO type-based output conversion (e.g., bytes → hex_string)
@@ -36,8 +37,7 @@ For all execution layer code:
 
 All canonicalization must happen inside atom implementations.
 
-## Enforcement Scope
-
+## Where it applies
 - **Artifact Types**: CS (Capability Side Effects - executors)
 - **Code Layer**: pgs_execution
 - **Validation Phase**: Phase 5 (ASSERT)
@@ -99,13 +99,12 @@ Scan execution layer code for:
 
 ## Related Artifacts
 
-- `fb.capability_transforms::CONSTITUTION_CAPABILITY_TRANSFORMS_V0` - Defines pure atom behavior
-- `fb.runtime_binding::CONSTITUTION_RUNTIME_BINDING_V0` - Defines executor boundaries
+- `capability_transforms::CONSTITUTION_CAPABILITY_TRANSFORMS_V0` - Defines pure atom behavior
+- `runtime_binding::CONSTITUTION_RUNTIME_BINDING_V0` - Defines executor boundaries
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   rule: Runtime executors must pass inputs to transforms without type-based interpretation or conversion

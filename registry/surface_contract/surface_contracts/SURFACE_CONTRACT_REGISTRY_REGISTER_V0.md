@@ -1,15 +1,5 @@
 # SURFACE_CONTRACT_REGISTRY_REGISTER_V0
 
-## Header
-
-- **Artifact Code:** SURFACE_CONTRACT_REGISTRY_REGISTER_V0
-- **Artifact Kind:** surface_contract
-- **Governed By:** fb.execution_topology::CONSTITUTION_EXECUTION_TOPOLOGY_V0
-- **Version:** V0
-- **Status:** canonical
-
----
-
 ## Purpose
 
 Canonical result surface for registry REGISTER operations.
@@ -24,10 +14,12 @@ registry capability with REGISTER operation.
 ## Machine
 
 ```yaml
-fqdn: fb.surface_contract::SURFACE_CONTRACT_REGISTRY_REGISTER_V0
+fqdn: surface_contract::SURFACE_CONTRACT_REGISTRY_REGISTER_V0
 artifact_kind: SURFACE_CONTRACT
 version: V0
-governed_by: fb.execution_topology::CONSTITUTION_EXECUTION_TOPOLOGY_V0
+governed_by: execution_topology::CONSTITUTION_EXECUTION_TOPOLOGY_V0
+authority: pgc.platform
+concern: surface_contract
 governs:
 - CS_REGISTRY_V0
 op: REGISTER
@@ -40,8 +32,7 @@ canonical_surface:
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 capability_family: REGISTRY
 ```

@@ -1,9 +1,9 @@
 # VOCAB_LANGUAGE_CONSTRAINTS_V0 — Authoring Law
 
 **Governance Header**
-- Vocabulary ID: fb.vocabulary::VOCAB_LANGUAGE_CONSTRAINTS_V0
+- Vocabulary ID: vocabulary::VOCAB_LANGUAGE_CONSTRAINTS_V0
 - Version: v0
-- Governed By: fb.vocabulary::CONSTITUTION_VOCABULARY_V0
+- Governed By: vocabulary::CONSTITUTION_VOCABULARY_V0
 - Status: Active
 
 ---
@@ -47,10 +47,12 @@ verbs, or reserved words here; it declares its own `VOCABULARY` artifact in its 
 ## Machine
 
 ```yaml
-fqdn: fb.vocabulary::VOCAB_LANGUAGE_CONSTRAINTS_V0
+fqdn: vocabulary::VOCAB_LANGUAGE_CONSTRAINTS_V0
 artifact_kind: VOCABULARY
 version: v0
-governed_by: fb.vocabulary::CONSTITUTION_VOCABULARY_V0
+governed_by: vocabulary::CONSTITUTION_VOCABULARY_V0
+authority: pgc.platform
+concern: vocabulary
 structural_keys:
   casing: lower_snake
   entries:

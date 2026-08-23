@@ -3,10 +3,12 @@
 ## Machine
 
 ```yaml
-fqdn: fb.runtime_binding::INVARIANT_BINDING_INTEGRITY_V0
+fqdn: runtime_binding::INVARIANT_BINDING_INTEGRITY_V0
 artifact_kind: INVARIANT
 version: V0
-governed_by: fb.governance::CONSTITUTION_INVARIANTS_V0
+governed_by: governance::CONSTITUTION_INVARIANTS_V0
+authority: pgc.platform
+concern: runtime_binding
 core:
   enforcement_stage:
   - compiler_validation
@@ -26,8 +28,7 @@ Ensure RB binding surfaces are structurally sound. Every binding must point to a
 
 ---
 
-## Validation Rules
-
+## How it is checked
 ### Rule 1: FQDN-Only Binding Keys
 
 All `core.bindings` keys in RB artifacts must contain `::` (FQDN separator).
@@ -42,14 +43,7 @@ All `core.bindings` keys must reference artifacts present in the compiled graph.
 
 ---
 
-## Version History
-
-- **V0**: Initial implementation (2026-05-21) - Extracted from compiler S4 GOVERN hardcoded RB validation
-
----
-
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   description: 'Runtime Binding (RB) artifacts must declare bindings only to artifacts that exist in the

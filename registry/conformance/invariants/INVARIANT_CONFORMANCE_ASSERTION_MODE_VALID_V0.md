@@ -5,13 +5,16 @@ Architectural Invariant
 ## Machine
 
 ```yaml
-fqdn: fb.conformance::INVARIANT_CONFORMANCE_ASSERTION_MODE_VALID_V0
+fqdn: conformance::INVARIANT_CONFORMANCE_ASSERTION_MODE_VALID_V0
 artifact_kind: INVARIANT
 version: V0
-governed_by: fb.conformance::CONSTITUTION_TEST_DATA_V0
+governed_by: conformance::CONSTITUTION_TEST_DATA_V0
+authority: pgc.platform
+concern: conformance
 core:
   enforcement_stage:
-  - compiler_assertion
+  - enforced_elsewhere
+  enforced_by: the VALIDATE_TEST_DATA phase of the compiler
   violation_response: FAIL_IMMEDIATELY
 assert_projection:
   applies_to_kinds:
@@ -22,8 +25,7 @@ assert_projection:
 
 Every assertion spec in a TEST_DATA artifact must use a `mode` and `type` drawn exclusively from the closed vocabularies declared in this invariant. No implicit, ad-hoc, or undeclared assertion semantics are permitted.
 
-## Rule
-
+## What this realizes
 For every assertion spec `{field: spec}` in a TEST_DATA `assertions` block:
 
 1. `spec.mode` MUST be present
@@ -65,8 +67,7 @@ schema   → type ∈ { json_schema }
 | non_zero          | (none)                  | (none)            |
 | json_schema       | schema_ref              | (none)            |
 
-## Enforcement Scope
-
+## Where it applies
 - **Artifact Types**: TEST_DATA
 - **Validation Phase**: VALIDATE_TEST_DATA (compile-time, hard fail)
 - **Defense in depth**: conformance runner (runtime, raises AssertionError)
@@ -172,17 +173,30 @@ This invariant ensures that the conformance suite's claim of correctness is enfo
 
 ## Related Artifacts
 
-- `fb.conformance::CONSTITUTION_TEST_DATA_V0` - Governs TEST_DATA structure
+- `conformance::CONSTITUTION_TEST_DATA_V0` - Governs TEST_DATA structure
 - `governance::INVARIANT_TEST_DATA_MATCH_CT_OUTPUT_V0` - Complementary: output keys must match CT contract
 - `governance::INVARIANT_CT_OUTPUT_CONTRACT_MATCH_V0` - CT output purity
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   rule: All assertion specs in TEST_DATA must use declared mode and type values; unknown modes/types are
     violations
   summary: Conformance assertion modes must belong to a closed declared vocabulary
 ```
+
+
+---
+
+## Carried by a phase of the build, and now saying so
+
+The closed-vocabulary enforcement this obligation states is implemented in the compiler's
+`VALIDATE_TEST_DATA` phase. Its derived check said so in its own prose — *"parity stub — enforcement
+delegated"* — and declared `compiler_assertion`, which asserts the opposite: that the build derives a
+check and runs it. The check ran, matched nothing and reported passed, indistinguishable from the
+seventy-three that can refuse.
+
+**A delegation stated in prose is a delegation nobody can follow.** The stage now names the mechanism,
+and `core.enforced_by` says which.

@@ -3,10 +3,12 @@
 ## Machine
 
 ```yaml
-fqdn: fb.artifact::INVARIANT_IDENTITY_FQDN_CONSISTENCY_V0
+fqdn: artifact::INVARIANT_IDENTITY_FQDN_CONSISTENCY_V0
 artifact_kind: INVARIANT
 version: V0
-governed_by: fb.governance::CONSTITUTION_INVARIANTS_V0
+governed_by: governance::CONSTITUTION_INVARIANTS_V0
+authority: pgc.platform
+concern: artifact
 core:
   enforcement_stage:
   - compiler_discovery
@@ -46,8 +48,7 @@ Ensure artifact identity (FQDN) is consistent with namespace and artifact_code.
 
 ---
 
-## Validation Rules
-
+## How it is checked
 ### Rule 1: FQDN Structure
 
 FQDN must follow pattern: `{namespace}::{artifact_code}`
@@ -145,14 +146,7 @@ if "fqdn_id" in frontmatter:
 
 ---
 
-## Version History
-
-- **V0**: Initial implementation (2026-04-12) - Identity Consistency Enforcement
-
----
-
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   description: 'Artifact FQDN must match namespace and artifact_code consistently.

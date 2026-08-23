@@ -17,7 +17,7 @@ The map answers, for the MNP: *what governance concepts exist, which lifecycle p
         GOVERNANCE_SURFACE_MAP         semantic concept ⇄ artifacts ⇄ declared namespace
                    │
                    ▼
-        DECLARED ARTIFACT IDENTITY     fb.execution_topology::… · fb.governance::… · domain::…
+        DECLARED ARTIFACT IDENTITY     execution_topology::… · governance::… · domain::…
                    │
                    ▼
         PHYSICAL REPOSITORY            folders · files
@@ -85,8 +85,8 @@ Completeness is a claim about the *declared* universe, evaluated per concern. Ev
 | coverage | count | notes |
 |---|---:|---|
 | `implemented` | 127 | governing artifact present and (for compile/runtime loci) executed |
-| `intentionally_deferred` | 5 | all of `fb.transport` — transport phase frozen, TI/TE governance not yet authorized |
-| `process_enforced` | 3 | `fb.lifecycle` + federation-boundary doctrine — real by declaration, no compiler teeth |
+| `intentionally_deferred` | 5 | all of `transport` — transport phase frozen, TI/TE governance not yet authorized |
+| `process_enforced` | 3 | `lifecycle` + federation-boundary doctrine — real by declaration, no compiler teeth |
 
 Two dispositions are explicit, not gaps:
 
@@ -95,7 +95,7 @@ Two dispositions are explicit, not gaps:
 
 One finding previously recorded in the ledger, now resolved:
 
-- **trace / observability** — `implemented`. `CONSTITUTION_TRACE_EXECUTION` formerly sat inside the `fb.topology` composite, a misplaced boundary (execution semantics, not composition). The namespace rename moved it to `fb.trace`, its own concern.
+- **trace / observability** — `implemented`. `CONSTITUTION_TRACE_EXECUTION` formerly sat inside the `fb.topology` composite, a misplaced boundary (execution semantics, not composition). The namespace rename moved it to `trace`, its own concern.
 
 ---
 
@@ -105,32 +105,32 @@ Namespace identity is declared per artifact in its `## Machine` block, not deriv
 The registry is organized **one directory per namespace**, so the correspondence is one-to-one:
 
 ```
-registry/actor                    → fb.actor(3)
-registry/artifact                 → fb.artifact(6)
-registry/authority                → fb.authority(8)
-registry/capability_contracts     → fb.capability_contracts(9)
-registry/capability_side_effects  → fb.capability_side_effects(4)
-registry/capability_transforms    → fb.capability_transforms(6)
-registry/compiler                 → fb.compiler(5)
-registry/conformance              → fb.conformance(7)
-registry/cryptographic_trust      → fb.cryptographic_trust(3)
-registry/event                    → fb.event(3)
-registry/execution                → fb.execution(6)
-registry/execution_placement      → fb.execution_placement(3)
-registry/execution_scheduling     → fb.execution_scheduling(3)
-registry/execution_topology       → fb.execution_topology(11)
-registry/federation               → fb.federation(1)
-registry/governance               → fb.governance(3)
-registry/intent                   → fb.intent(4)
-registry/lifecycle                → fb.lifecycle(2)
-registry/runtime_binding          → fb.runtime_binding(6)
-registry/security_domain          → fb.security_domain(3)
-registry/structure                → fb.structure(13)
-registry/surface_contract         → fb.surface_contract(10)
-registry/trace                    → fb.trace(1)
-registry/transport                → fb.transport(11)
-registry/vocabulary               → fb.vocabulary(6)
-registry/workflow                 → fb.workflow(5)
+registry/actor                    → actor(3)
+registry/artifact                 → artifact(6)
+registry/authority                → authority(8)
+registry/capability_contracts     → capability_contracts(9)
+registry/capability_side_effects  → capability_side_effects(4)
+registry/capability_transforms    → capability_transforms(6)
+registry/compiler                 → compiler(5)
+registry/conformance              → conformance(7)
+registry/cryptographic_trust      → cryptographic_trust(3)
+registry/event                    → event(3)
+registry/execution                → execution(6)
+registry/execution_placement      → execution_placement(3)
+registry/execution_scheduling     → execution_scheduling(3)
+registry/execution_topology       → execution_topology(11)
+registry/federation               → federation(1)
+registry/governance               → governance(3)
+registry/intent                   → intent(4)
+registry/lifecycle                → lifecycle(2)
+registry/runtime_binding          → runtime_binding(6)
+registry/security_domain          → security_domain(3)
+registry/structure                → structure(13)
+registry/surface_contract         → surface_contract(10)
+registry/trace                    → trace(1)
+registry/transport                → transport(11)
+registry/vocabulary               → vocabulary(6)
+registry/workflow                 → workflow(5)
 registry/schema                   → (no namespace — 25 JSON schemas, declaration substrate)
 ```
 

@@ -2,48 +2,36 @@
 
 ## Machine
 ```yaml
-fqdn: fb.compiler::CONSTITUTION_COMPILER_V0
+fqdn: compiler::CONSTITUTION_COMPILER_V0
 artifact_kind: CONSTITUTION
 version: V0
-governed_by: fb.vocabulary::CONSTITUTION_VOCABULARY_V0
+governed_by: vocabulary::CONSTITUTION_VOCABULARY_V0
+authority: pgc.platform
+concern: compiler
 core:
   enforcement_model: process_and_compiler_enforced
 rules:
 - applies_to: system
-  enforced_by: fb.compiler::INVARIANT_ARTIFACT_CONTENT_HASH_DECLARED_V0
+  enforced_by: compiler::INVARIANT_ARTIFACT_CONTENT_HASH_DECLARED_V0
 - applies_to: system
-  enforced_by: fb.compiler::INVARIANT_HANDLER_REGISTRY_CLOSED_V0
-- applies_to: system
-  enforced_by: PROCESS_ENFORCED
-- applies_to: system
-  enforced_by: fb.artifact::INVARIANT_FQDN_ONLY_REFERENCES_V0
+  enforced_by: compiler::INVARIANT_HANDLER_REGISTRY_CLOSED_V0
 - applies_to: system
   enforced_by: PROCESS_ENFORCED
 - applies_to: system
+  enforced_by: artifact::INVARIANT_FQDN_ONLY_REFERENCES_V0
+- applies_to: system
   enforced_by: PROCESS_ENFORCED
 - applies_to: system
-  enforced_by: fb.compiler::INVARIANT_HANDLER_REGISTRY_CLOSED_V0
+  enforced_by: PROCESS_ENFORCED
 - applies_to: system
-  enforced_by: fb.compiler::INVARIANT_ARTIFACT_CONTENT_HASH_DECLARED_V0
+  enforced_by: compiler::INVARIANT_HANDLER_REGISTRY_CLOSED_V0
 - applies_to: system
-  enforced_by: fb.compiler::INVARIANT_COMPILER_GOVERNANCE_DECLARED_V0
+  enforced_by: compiler::INVARIANT_ARTIFACT_CONTENT_HASH_DECLARED_V0
+- applies_to: system
+  enforced_by: compiler::INVARIANT_COMPILER_GOVERNANCE_DECLARED_V0
 - applies_to: SYSTEM
-  enforced_by: fb.compiler::INVARIANT_COMPILER_NO_EXECUTION_V0
+  enforced_by: compiler::INVARIANT_COMPILER_NO_EXECUTION_V0
 ```
-
----
-
-## Header (Documentation)
-
-| Field         | Value                      |
-| ------------- | -------------------------- |
-| Artifact Code | CONSTITUTION_COMPILER_V0   |
-| Artifact Kind | constitution               |
-| Tier          | Concern Authority          |
-| Governed By   | fb.governance::CONSTITUTION_GOVERNANCE_V0 |
-| Applies To    | Builder, Compiler          |
-| Version       | v0                         |
-| Status        | active                     |
 
 ---
 
@@ -217,9 +205,9 @@ The following are constitutional violations:
 
 | Constitution               | Relationship                      |
 | -------------------------- | --------------------------------- |
-| fb.execution::CONSTITUTION_EXECUTION_V0  | Execution is compiler-independent |
-| fb.vocabulary::CONSTITUTION_VOCABULARY_V0 | Naming and symbols enforced       |
-| fb.governance::CONSTITUTION_GOVERNANCE_V0 | Amendment authority               |
+| execution::CONSTITUTION_EXECUTION_V0  | Execution is compiler-independent |
+| vocabulary::CONSTITUTION_VOCABULARY_V0 | Naming and symbols enforced       |
+| governance::CONSTITUTION_GOVERNANCE_V0 | Amendment authority               |
 
 This constitution does not override other constitutions.
 
@@ -255,8 +243,7 @@ Backward compatibility is not assumed.
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   description: Governs the OmniBachi compiler pipeline — phases, surface closure, determinism, and validation

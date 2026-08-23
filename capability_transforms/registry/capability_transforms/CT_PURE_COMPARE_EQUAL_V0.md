@@ -1,15 +1,5 @@
 # CT_PURE_COMPARE_EQUAL_V0
 
-## Header (Mandatory)
-
-- **Artifact Code:** CT_PURE_COMPARE_EQUAL_V0
-- **Artifact Kind:** capability_transform
-- **Governed By:** CONSTITUTION_CAPABILITY_TRANSFORMS_V0
-- **Version:** v0
-- **Status:** canonical
-
----
-
 ## 1. Summary
 
 Compare two values for equality.
@@ -39,7 +29,9 @@ Compare two values for equality.
 fqdn: capability_transforms::CT_PURE_COMPARE_EQUAL_V0
 artifact_kind: CAPABILITY_TRANSFORM
 version: v0
-governed_by: fb.capability_transforms::CONSTITUTION_CAPABILITY_TRANSFORMS_V0
+governed_by: capability_transforms::CONSTITUTION_CAPABILITY_TRANSFORMS_V0
+authority: pgc.platform
+concern: capability_transforms
 core:
   summary: Compare two values for equality.
   refusal: returns

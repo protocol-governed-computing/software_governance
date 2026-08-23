@@ -3,10 +3,12 @@
 ## Machine
 
 ```yaml
-fqdn: fb.trace::CONSTITUTION_TRACE_EXECUTION_V0
+fqdn: trace::CONSTITUTION_TRACE_EXECUTION_V0
 artifact_kind: CONSTITUTION
 version: V0
-governed_by: fb.execution::CONSTITUTION_EXECUTION_V0
+governed_by: execution::CONSTITUTION_EXECUTION_V0
+authority: pgc.platform
+concern: trace
 core:
   enforcement_model: runtime_enforced
 rules:
@@ -164,14 +166,7 @@ No sink is injected into execution.
 
 ---
 
-## Version History
-
-- **V0**: Initial TE layer constitution (2026-04-26)
-
----
-
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   description: Governs trace emission and materialization — declares trace as a mandated protocol artifact

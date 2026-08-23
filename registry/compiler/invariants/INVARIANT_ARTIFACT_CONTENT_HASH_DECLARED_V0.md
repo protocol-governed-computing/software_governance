@@ -3,10 +3,12 @@
 ## Machine
 
 ```yaml
-fqdn: fb.compiler::INVARIANT_ARTIFACT_CONTENT_HASH_DECLARED_V0
+fqdn: compiler::INVARIANT_ARTIFACT_CONTENT_HASH_DECLARED_V0
 artifact_kind: INVARIANT
 version: V0
-governed_by: fb.compiler::CONSTITUTION_COMPILER_V0
+governed_by: compiler::CONSTITUTION_COMPILER_V0
+authority: pgc.platform
+concern: compiler
 core:
   enforcement_stage:
   - compiler_assertion
@@ -40,8 +42,7 @@ assumption.
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   description: 'Every artifact in the compiled snapshot MUST have a content_hash field that is non-empty.

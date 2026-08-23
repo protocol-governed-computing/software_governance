@@ -3,10 +3,12 @@
 ## Machine
 
 ```yaml
-fqdn: fb.security_domain::INVARIANT_SECURITY_DOMAIN_DECLARED_V0
+fqdn: security_domain::INVARIANT_SECURITY_DOMAIN_DECLARED_V0
 artifact_kind: INVARIANT
 version: V0
-governed_by: fb.governance::CONSTITUTION_INVARIANTS_V0
+governed_by: governance::CONSTITUTION_INVARIANTS_V0
+authority: pgc.platform
+concern: security_domain
 core:
   enforcement_stage:
   - compiler_validation
@@ -20,7 +22,7 @@ assert_projection:
     rule: exactly_one
     subject: active security domain contract
     selector:
-      namespace: fb.security_domain
+      namespace: security_domain
       artifact_type: STRUCTURE
       artifact_code_prefix: STRUCTURE_SECURITY_DOMAIN_
       where:
@@ -37,8 +39,7 @@ In V0, `UNCLASSIFIED_LOCAL` is not a default — it is a declared governance pos
 The difference matters: future classified execution modes require this axis to already exist
 and be compiler-validated.
 
-## Rule
-
+## What this realizes
 For every compiled snapshot:
 1. The compiler MUST scan `security_domain/` for active contracts
 2. Exactly one MUST be present
@@ -58,8 +59,7 @@ For every compiled snapshot:
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   rule: 'The compiler MUST locate exactly one active security domain contract within FB_SECURITY_DOMAIN.

@@ -1,16 +1,5 @@
 # CT_PURE_PASSTHROUGH_V0
 
-## Header
-
-- **Artifact Code:** CT_PURE_PASSTHROUGH_V0
-- **Artifact Kind:** atom
-- **Governed By:** fb.capability_transforms::CONSTITUTION_CAPABILITY_TRANSFORMS_V0
-- **Version:** v0
-- **Status:** draft
-- **Dependencies:** NONE
-
----
-
 ## 1. Intent
 
 Pass through an input value unchanged. Used for 1:1 payload mapping where no transformation is needed.
@@ -27,7 +16,9 @@ Pure. No side effects, no state mutation.
 fqdn: capability_transforms::CT_PURE_PASSTHROUGH_V0
 artifact_kind: CAPABILITY_TRANSFORM
 version: v0
-governed_by: fb.capability_transforms::CONSTITUTION_CAPABILITY_TRANSFORMS_V0
+governed_by: capability_transforms::CONSTITUTION_CAPABILITY_TRANSFORMS_V0
+authority: pgc.platform
+concern: capability_transforms
 core:
   summary: Pass through value
   refusal: never

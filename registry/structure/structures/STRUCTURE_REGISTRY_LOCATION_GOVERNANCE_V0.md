@@ -2,17 +2,6 @@
 
 Registry location declaration for GOVERNANCE layer.
 
-## Header
-
-- **Artifact Code:** STRUCTURE_REGISTRY_LOCATION_GOVERNANCE_V0
-- **Artifact Kind:** structure
-- **Governed By:** fb.structure::CONSTITUTION_STRUCTURE_V0
-- **Version:** V0
-- **Status:** canonical
-- **Authority:** foundational
-
----
-
 ## Purpose
 
 Declares the physical registry module location for GOVERNANCE layer artifacts. This artifact enables federated ownership of registry locations while maintaining deterministic resolution.
@@ -24,10 +13,12 @@ Declares the physical registry module location for GOVERNANCE layer artifacts. T
 ## Machine
 
 ```yaml
-fqdn: fb.structure::STRUCTURE_REGISTRY_LOCATION_GOVERNANCE_V0
+fqdn: structure::STRUCTURE_REGISTRY_LOCATION_GOVERNANCE_V0
 artifact_kind: STRUCTURE
 version: V0
-governed_by: fb.structure::CONSTITUTION_STRUCTURE_V0
+governed_by: structure::CONSTITUTION_STRUCTURE_V0
+authority: pgc.platform
+concern: structure
 core:
   layer_code: GOVERNANCE
   description: 'Core platform governance artifacts (VOCAB, CONSTITUTION, STRUCTURE, SCHEMA). Sovereign
@@ -63,8 +54,3 @@ Loaded by artifact discovery during build:
 
 ---
 
-## Version History
-
-- **V0**: Initial federated registry location (2026-03-25)
-  - Extracted from central STRUCTURE_LAYER_REGISTRY_LOCATIONS_V0
-  - GOVERNANCE layer now owns its registry location

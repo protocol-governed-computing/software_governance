@@ -2,23 +2,27 @@
 
 ## Machine
 ```yaml
-fqdn: fb.capability_transforms::CONSTITUTION_CAPABILITY_TRANSFORMS_V0
+fqdn: capability_transforms::CONSTITUTION_CAPABILITY_TRANSFORMS_V0
 artifact_kind: CONSTITUTION
 version: V0
-governed_by: fb.vocabulary::CONSTITUTION_VOCABULARY_V0
+governed_by: vocabulary::CONSTITUTION_VOCABULARY_V0
+authority: pgc.platform
+concern: capability_transforms
 core:
   enforcement_model: compiler_enforced
   governs:
   - CT
 rules:
 - applies_to: CT
-  enforced_by: fb.capability_transforms::INVARIANT_ATOM_OUTPUT_PURITY_V0
+  enforced_by: capability_transforms::INVARIANT_ATOM_OUTPUT_PURITY_V0
 - applies_to: CT
-  enforced_by: fb.capability_transforms::INVARIANT_ATOM_OUTPUT_PURITY_V0
+  enforced_by: capability_transforms::INVARIANT_ATOM_OUTPUT_PURITY_V0
 - applies_to: CT
-  enforced_by: fb.execution::INVARIANT_IMPLEMENTATION_ADMISSIBLE_V0
+  enforced_by: execution::INVARIANT_IMPLEMENTATION_ADMISSIBLE_V0
 - applies_to: CT
-  enforced_by: fb.capability_transforms::INVARIANT_CT_SURFACE_CLOSED_V1
+  enforced_by: capability_transforms::INVARIANT_CT_SURFACE_CLOSED_V1
+- applies_to: CT
+  enforced_by: capability_transforms::INVARIANT_CT_SURFACE_DERIVED_CLOSED_V0
 ```
 
 ---
@@ -52,16 +56,14 @@ Capability Transforms are pure functions that transform data within the protocol
 
 ---
 
-## 4. Validation Rules
-
+## How it is checked
 - CT implementations must be discoverable.
 - Input and output types must match the capability contract.
 - Implementation must adhere to the purity principle.
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   description: Governs Capability Transform (CT) artifacts — purity, determinism, and explicit IO

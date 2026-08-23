@@ -3,10 +3,12 @@
 ## Machine
 
 ```yaml
-fqdn: fb.execution_topology::INVARIANT_TOPOLOGY_CONTRACT_CLOSED_V0
+fqdn: execution_topology::INVARIANT_TOPOLOGY_CONTRACT_CLOSED_V0
 artifact_kind: INVARIANT
 version: V0
-governed_by: fb.execution_topology::CONSTITUTION_EXECUTION_TOPOLOGY_V0
+governed_by: execution_topology::CONSTITUTION_EXECUTION_TOPOLOGY_V0
+authority: pgc.platform
+concern: execution_topology
 core:
   enforcement_stage:
   - compiler_assertion
@@ -30,8 +32,7 @@ CONTRACT_CLOSED verifies that the topology fulfills the contract — not just th
 locally complete per step (ROUTING_COMPLETE), but that the full CC exit surface matches the
 declared contract exactly.
 
-## Rule
-
+## What this realizes
 For every CC:
 
 1. **No uncontracted exits**: every status code that can exit the CC topology (via `exit`,
@@ -54,8 +55,7 @@ Codes routed as `continue` in non-last steps remain in-pipeline — they do not 
 Codes routed to an evaluation target (e.g., `SUCCESS: evaluate_cap`) exit via evaluation
 outcome — the evaluation's `on_true`/`on_false` codes are the actual exits.
 
-## Enforcement Scope
-
+## Where it applies
 - **Artifact Types**: CC
 - **Validation Phase**: compile_time
 - **Enforced By**: ASSERT_TOPOLOGY_CONTRACT_CLOSED_V0
@@ -85,8 +85,7 @@ reading individual steps — it requires aggregating all exit paths across the f
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   rule: For every CC, the set of status codes that can actually exit the topology (via step exit routes,

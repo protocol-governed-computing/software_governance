@@ -3,10 +3,12 @@
 ## Machine
 
 ```yaml
-fqdn: fb.governance::INVARIANT_GOVERNANCE_DECLARATION_RESOLVES_V0
+fqdn: governance::INVARIANT_GOVERNANCE_DECLARATION_RESOLVES_V0
 artifact_kind: INVARIANT
 version: V0
-governed_by: fb.governance::CONSTITUTION_GOVERNANCE_V0
+governed_by: governance::CONSTITUTION_GOVERNANCE_V0
+authority: pgc.platform
+concern: governance
 core:
   enforcement_stage:
   - compiler_meta_validation
@@ -30,8 +32,7 @@ This invariant closes the governance chain in both directions, so that a declara
 
 ---
 
-## Validation Rules
-
+## How it is checked
 ### Rule 1: Forward resolution
 
 Every `rules[].enforced_by` FQDN in a compiled CONSTITUTION MUST resolve to a compiled INVARIANT, and that invariant's derived ASSERT MUST have a registered handler.

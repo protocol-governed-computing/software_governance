@@ -3,15 +3,17 @@
 ## Machine
 
 ```yaml
-fqdn: fb.cryptographic_trust::CONSTITUTION_CRYPTOGRAPHIC_TRUST_V0
+fqdn: cryptographic_trust::CONSTITUTION_CRYPTOGRAPHIC_TRUST_V0
 artifact_kind: CONSTITUTION
 version: V0
-governed_by: fb.governance::CONSTITUTION_GOVERNANCE_V0
+governed_by: governance::CONSTITUTION_GOVERNANCE_V0
+authority: pgc.platform
+concern: cryptographic_trust
 core:
   enforcement_model: process_and_compiler_enforced
 rules:
 - applies_to: compiled_snapshot
-  enforced_by: fb.cryptographic_trust::INVARIANT_CRYPTOGRAPHIC_TRUST_DECLARED_V0
+  enforced_by: cryptographic_trust::INVARIANT_CRYPTOGRAPHIC_TRUST_DECLARED_V0
 - applies_to: compiled_snapshot
   enforced_by: PROCESS_ENFORCED
 - applies_to: compiled_snapshot
@@ -21,6 +23,51 @@ rules:
 - applies_to: runtime
   enforced_by: PROCESS_ENFORCED
 ```
+
+
+---
+
+## What an attestation contributes to a composition's identity
+
+An attestation carries two kinds of field and the difference decides what a composition *is*.
+
+**Constituting.** The projection the build produced, and the value taken over it. The runtime refuses
+a composition whose projection does not match them, so they are enforced content and a composition's
+identity is taken over them like any other constituent.
+
+```
+attestation.constitutes:  tokenized_projection_hash, attestation_hash
+```
+
+**Accompanying.** When the signing happened. It records something *about* the composition rather than
+constituting it, nothing reads it, and it is excluded from the identity.
+
+```
+attestation.accompanies:  signed_at
+```
+
+**This is not a tidiness rule.** Until it was drawn, a composition's identity was a function of when
+it was built: two compiles of unchanged source wrote ninety-one files each, ninety byte-identical,
+and the ninety-first differed only in a microsecond timestamp. Every pin in the workspace expired on
+the next rebuild — twenty of twenty-two could not be verified — and a genuine alteration was
+indistinguishable from a no-op recompile, which is the one thing an identity over bytes exists to
+prevent.
+
+**Excluding the file was refused for the same reason.** The two constituting fields are enforced at
+boot; dropping them from the identity would weaken it in the direction opposite to the fix. The
+exclusion is of a field, and the platform already excludes two whole files on exactly this ground —
+the self-description doing the enumerating, and material written after the composition was
+constituted. This is that distinction at a finer grain.
+
+## Building unchanged source twice yields one identity
+
+A rebuild of source that has not changed produces the composition it produced before. A record naming
+a composition nobody can reproduce makes every claim resting on it unverifiable, and nothing reported
+that for as long as it was true.
+
+**The claim is stability, not reproducibility.** What was measured is two builds on one machine
+minutes apart. That the remaining ninety files matched establishes nothing about another machine,
+another interpreter or another day, and a further instability is a further change.
 
 ---
 
@@ -101,8 +148,7 @@ Changes to trust semantics require a new constitution version and migration rati
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   description: 'Declares the cryptographic trust regime active for a compiled snapshot.

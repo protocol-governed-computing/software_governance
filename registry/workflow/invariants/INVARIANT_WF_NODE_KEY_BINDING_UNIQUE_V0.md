@@ -3,10 +3,12 @@
 ## Machine
 
 ```yaml
-fqdn: fb.workflow::INVARIANT_WF_NODE_KEY_BINDING_UNIQUE_V0
+fqdn: workflow::INVARIANT_WF_NODE_KEY_BINDING_UNIQUE_V0
 artifact_kind: INVARIANT
 version: V0
-governed_by: fb.execution_topology::CONSTITUTION_EXECUTION_TOPOLOGY_V0
+governed_by: execution_topology::CONSTITUTION_EXECUTION_TOPOLOGY_V0
+authority: pgc.platform
+concern: workflow
 core:
   enforcement_stage:
   - compiler_assertion
@@ -30,8 +32,7 @@ The dispatch projection binds WF-level inputs per node_key, not per CC address.
 If a compiler implementation keys by CC address, all four contexts collapse to the
 last-writer's bindings — three denial paths silently receive the wrong inputs.
 
-## Rule
-
+## What this realizes
 For every WF execution topology:
 
 1. Each CC node usage is identified by `node_key` (the dict key in `core.nodes`).
@@ -43,8 +44,7 @@ For every WF execution topology:
 5. Routing values in the dispatch projection MUST carry the target node_key alongside
    the target CC address so the scheduler can select the correct binding context.
 
-## Enforcement Scope
-
+## Where it applies
 - **Artifact Types**: WF
 - **Validation Phase**: compile_time (S4 GOVERN)
 - **Enforced By**: ASSERT_WF_NODE_KEY_BINDING_UNIQUE_V0
@@ -61,14 +61,7 @@ The invariant exposes the rule that makes node_key the mandatory binding discrim
 Any compiler implementation that introduces address-based binding keying will be caught
 at compile time rather than discovered through incorrect execution traces.
 
-## Version History
-
-- **V0**: Initial invariant establishing node_key as mandatory WF binding discriminator (2026-06-03)
-
----
-
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   rule: 'For every WF in the compiled graph: the set of node_keys with non-empty input bindings must be

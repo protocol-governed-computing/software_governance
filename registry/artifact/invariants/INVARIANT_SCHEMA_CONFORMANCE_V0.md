@@ -3,10 +3,12 @@
 ## Machine
 
 ```yaml
-fqdn: fb.artifact::INVARIANT_SCHEMA_CONFORMANCE_V0
+fqdn: artifact::INVARIANT_SCHEMA_CONFORMANCE_V0
 artifact_kind: INVARIANT
 version: V0
-governed_by: fb.governance::CONSTITUTION_INVARIANTS_V0
+governed_by: governance::CONSTITUTION_INVARIANTS_V0
+authority: pgc.platform
+concern: artifact
 core:
   enforcement_stage:
   - compiler_validation
@@ -33,14 +35,7 @@ Ensure every governed artifact's frontmatter is structurally valid against its d
 
 ---
 
-## Version History
-
-- **V0**: Initial implementation (2026-05-21) - Extracted from compiler S4 GOVERN schema validation
-
----
-
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   description: 'All governed artifacts with a declared JSON schema must have frontmatter that validates

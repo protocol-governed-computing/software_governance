@@ -3,10 +3,12 @@
 ## Machine
 
 ```yaml
-fqdn: fb.workflow::INVARIANT_WF_ENTRY_INTENT_V0
+fqdn: workflow::INVARIANT_WF_ENTRY_INTENT_V0
 artifact_kind: INVARIANT
 version: V0
-governed_by: fb.governance::CONSTITUTION_INVARIANTS_V0
+governed_by: governance::CONSTITUTION_INVARIANTS_V0
+authority: pgc.platform
+concern: workflow
 core:
   enforcement_stage:
   - compiler_validation
@@ -24,8 +26,7 @@ Enforce that every workflow has a single, unambiguous admission gate.
 
 ---
 
-## Validation Rules
-
+## How it is checked
 ### Rule: Exactly One IN Node
 
 Count all nodes with type IN. The count must be exactly 1.
@@ -57,14 +58,7 @@ nodes:
 
 ---
 
-## Version History
-
-- **V0**: Initial implementation (2026-05-04)
-
----
-
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   description: 'Every workflow must declare exactly one IN node as its entry intent. The start_node must

@@ -5,10 +5,12 @@ Architectural Invariant
 ## Machine
 
 ```yaml
-fqdn: fb.conformance::INVARIANT_TEST_DATA_MATCH_CT_OUTPUT_V0
+fqdn: conformance::INVARIANT_TEST_DATA_MATCH_CT_OUTPUT_V0
 artifact_kind: INVARIANT
 version: V0
-governed_by: fb.governance::CONSTITUTION_INVARIANTS_V0
+governed_by: governance::CONSTITUTION_INVARIANTS_V0
+authority: pgc.platform
+concern: conformance
 core:
   enforcement_stage:
   - compiler_assertion
@@ -23,16 +25,14 @@ assert_projection:
 
 Every TEST_DATA artifact must declare `expected` outputs with keys that exactly match the output contract of its target CT.
 
-## Rule
-
+## What this realizes
 For every TEST_DATA artifact:
 1. TEST_DATA must reference a target CT (via test_target or equivalent)
 2. TEST_DATA must declare `expected` section
 3. Expected keys must match CT's CC output declaration
 4. Missing keys or extra keys are violations
 
-## Enforcement Scope
-
+## Where it applies
 - **Artifact Types**: TEST_DATA
 - **Validation Phase**: Phase 5 (ASSERT)
 - **Enforcement**: MANDATORY (build fails on violation)
@@ -86,12 +86,11 @@ TEST_DATA contract matching ensures:
 ## Related Artifacts
 
 - `governance::INVARIANT_CT_OUTPUT_CONTRACT_MATCH_V0` - Complementary check
-- `fb.conformance::CONSTITUTION_TEST_DATA_V0` - Governs TEST_DATA structure
+- `conformance::CONSTITUTION_TEST_DATA_V0` - Governs TEST_DATA structure
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   rule: All TEST_DATA artifacts must declare expected outputs matching their target CT output keys

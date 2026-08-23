@@ -9,10 +9,12 @@ All CT artifacts MUST conform to this structure at compile time.
 ## Machine
 
 ```yaml
-fqdn: fb.capability_transforms::STRUCTURE_CT_IR_CONTRACT_V0
+fqdn: capability_transforms::STRUCTURE_CT_IR_CONTRACT_V0
 artifact_kind: STRUCTURE
 version: V0
-governed_by: fb.structure::CONSTITUTION_STRUCTURE_V0
+governed_by: structure::CONSTITUTION_STRUCTURE_V0
+authority: pgc.platform
+concern: capability_transforms
 contract:
   name: CT_IR
   version: V0

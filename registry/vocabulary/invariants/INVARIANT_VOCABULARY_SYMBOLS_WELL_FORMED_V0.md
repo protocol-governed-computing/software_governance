@@ -3,10 +3,12 @@
 ## Machine
 
 ```yaml
-fqdn: fb.vocabulary::INVARIANT_VOCABULARY_SYMBOLS_WELL_FORMED_V0
+fqdn: vocabulary::INVARIANT_VOCABULARY_SYMBOLS_WELL_FORMED_V0
 artifact_kind: INVARIANT
 version: V0
-governed_by: fb.vocabulary::CONSTITUTION_VOCABULARY_V0
+governed_by: vocabulary::CONSTITUTION_VOCABULARY_V0
+authority: pgc.platform
+concern: vocabulary
 core:
   enforcement_stage:
   - compiler_validation
@@ -42,8 +44,7 @@ A symbol that no vocabulary declares is a symbol nobody agreed to. Closing the s
 
 ---
 
-## Validation Rules
-
+## How it is checked
 ### Rule 1: Artifact codes are UPPER_SNAKE_CASE with a version suffix
 
 Every artifact code MUST match `^[A-Z][A-Z0-9_]*_V[0-9]+$`.

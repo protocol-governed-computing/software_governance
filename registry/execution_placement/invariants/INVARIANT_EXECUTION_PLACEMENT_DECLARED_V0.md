@@ -3,10 +3,12 @@
 ## Machine
 
 ```yaml
-fqdn: fb.execution_placement::INVARIANT_EXECUTION_PLACEMENT_DECLARED_V0
+fqdn: execution_placement::INVARIANT_EXECUTION_PLACEMENT_DECLARED_V0
 artifact_kind: INVARIANT
 version: V0
-governed_by: fb.governance::CONSTITUTION_INVARIANTS_V0
+governed_by: governance::CONSTITUTION_INVARIANTS_V0
+authority: pgc.platform
+concern: execution_placement
 core:
   enforcement_stage:
   - compiler_validation
@@ -20,7 +22,7 @@ assert_projection:
     rule: exactly_one
     subject: active execution placement contract
     selector:
-      namespace: fb.execution_placement
+      namespace: execution_placement
       artifact_type: STRUCTURE
       artifact_code_prefix: STRUCTURE_EXECUTION_PLACEMENT_
       where:
@@ -36,8 +38,7 @@ This invariant is what makes the V0 placement contract non-dead-code. Without it
 is required to find and validate it — making placement declaration a hard compile-time
 requirement, not an optional annotation.
 
-## Rule
-
+## What this realizes
 For every compiled snapshot:
 1. The compiler MUST scan `execution_placement/` for active contracts
 2. Exactly one MUST be present
@@ -57,8 +58,7 @@ For every compiled snapshot:
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   rule: 'The compiler MUST locate exactly one active placement contract within FB_EXECUTION_PLACEMENT.

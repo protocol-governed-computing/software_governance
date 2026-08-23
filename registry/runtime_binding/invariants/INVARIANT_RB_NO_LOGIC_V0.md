@@ -3,10 +3,12 @@
 ## Machine
 
 ```yaml
-fqdn: fb.runtime_binding::INVARIANT_RB_NO_LOGIC_V0
+fqdn: runtime_binding::INVARIANT_RB_NO_LOGIC_V0
 artifact_kind: INVARIANT
 version: V0
-governed_by: fb.governance::CONSTITUTION_INVARIANTS_V0
+governed_by: governance::CONSTITUTION_INVARIANTS_V0
+authority: pgc.platform
+concern: runtime_binding
 core:
   enforcement_stage:
   - compiler_validation
@@ -24,8 +26,7 @@ Keep runtime bindings as pure mapping declarations with no embedded programs.
 
 ---
 
-## Validation Rules
-
+## How it is checked
 ### Rule: No Conditional Logic
 
 Binding config strings must not contain conditional expressions.
@@ -62,14 +63,7 @@ config:
 
 ---
 
-## Version History
-
-- **V0**: Initial implementation (2026-05-04)
-
----
-
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   description: 'RB artifacts must contain no execution logic. Binding configuration values must be static

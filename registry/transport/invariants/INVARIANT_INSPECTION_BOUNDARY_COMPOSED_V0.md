@@ -3,10 +3,12 @@
 ## Machine
 
 ```yaml
-fqdn: fb.transport::INVARIANT_INSPECTION_BOUNDARY_COMPOSED_V0
+fqdn: transport::INVARIANT_INSPECTION_BOUNDARY_COMPOSED_V0
 artifact_kind: INVARIANT
 version: V0
-governed_by: fb.governance::CONSTITUTION_INVARIANTS_V0
+governed_by: governance::CONSTITUTION_INVARIANTS_V0
+authority: pgc.platform
+concern: transport
 core:
   enforcement_stage:
   - composition_conformance
@@ -79,8 +81,7 @@ a rule authored here is always evaluated.
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   description: 'Every assembled composition MUST carry at least one transport ingress contract
@@ -106,7 +107,3 @@ core:
       '
 ```
 
-## Version History
-
-- **V0**: First composition-scoped invariant covering the inspection boundary. Introduces the
-  `at_least_one` cardinality rule, for a subject whose expected count grows with the operation set.

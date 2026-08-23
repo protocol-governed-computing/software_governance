@@ -3,10 +3,12 @@
 ## Machine
 
 ```yaml
-fqdn: fb.transport::INVARIANT_TRANSPORT_CANONICAL_NORMALIZATION_V0
+fqdn: transport::INVARIANT_TRANSPORT_CANONICAL_NORMALIZATION_V0
 artifact_kind: INVARIANT
 version: V0
-governed_by: fb.governance::CONSTITUTION_INVARIANTS_V0
+governed_by: governance::CONSTITUTION_INVARIANTS_V0
+authority: pgc.platform
+concern: transport
 core:
   enforcement_stage:
   - compiler_validation
@@ -40,8 +42,7 @@ This invariant enforces that both boundaries are explicit, governed, and closed.
 
 ---
 
-## Rule Statement
-
+## What this realizes
 ```yaml
 core:
   description: 'Transport artifacts MUST declare explicit normalization schemas. No passthrough of raw

@@ -15,7 +15,7 @@ WHERE things belong and who owns them. No new artifact codes; no cross-subdomain
 | Domain | `platform` |
 | Primary subdomain | `capability_side_effects` — EXISTING — modified by this CR |
 | Authority class | reuse existing — the platform decides an offer, a domain composes it; no new actor type |
-| Governing constitutions | `fb.capability_side_effects::CONSTITUTION_CAPABILITY_SIDE_EFFECTS_V0`, `fb.governance::CONSTITUTION_GOVERNANCE_V0` |
+| Governing constitutions | `capability_side_effects::CONSTITUTION_CAPABILITY_SIDE_EFFECTS_V0`, `governance::CONSTITUTION_GOVERNANCE_V0` |
 
 What a capability offers is what this subdomain governs, so the record of why it offers an operation
 belongs to it. Nothing new stands on its own, so no subdomain is declared.
@@ -65,8 +65,8 @@ be claiming what it does not own.
 | FQDN | Current Status | Action (REPLACE, REVIEW, REUSE, EXTEND) | Source Finding |
 |------|----------------|----------------------------------|----------------|
 | capability_side_effects::CS_MUTABLE_JSON_V0 | Offers nine operations, one of which arrived with a business change request and carries no recorded reason. | REVIEW | S4 gap_register GAP-1 |
-| fb.capability_side_effects::CONSTITUTION_CAPABILITY_SIDE_EFFECTS_V0 | Declares what a capability side effect is, and says nothing about who may change what an admitted one offers. | REVIEW | S4 constraint_register #1 |
-| fb.capability_side_effects::INVARIANT_CS_SURFACE_CLOSED_V1 | Refuses a capability nobody admitted, and does not examine the operations an admitted one offers. | REVIEW | S4 constraint_register #1 |
+| capability_side_effects::CONSTITUTION_CAPABILITY_SIDE_EFFECTS_V0 | Declares what a capability side effect is, and says nothing about who may change what an admitted one offers. | REVIEW | S4 constraint_register #1 |
+| capability_side_effects::INVARIANT_CS_SURFACE_CLOSED_V1 | Refuses a capability nobody admitted, and does not examine the operations an admitted one offers. | REVIEW | S4 constraint_register #1 |
 
 ---
 

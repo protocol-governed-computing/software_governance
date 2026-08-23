@@ -1,17 +1,5 @@
 # CS_APPENDONLY_JSONL_V0
 
-## Header (Mandatory)
-
-- **Artifact Code:** CS_APPENDONLY_JSONL_V0
-- **Artifact Kind:** capability_side_effect
-- **Governed By:** CONSTITUTION_CAPABILITY_SIDE_EFFECTS_V0
-- **Version:** v0
-- **Status:** draft
-- **Supersedes:** NONE
-- **Dependencies:** NONE
-
----
-
 ## 1. Intent
 
 Provide an append-only JSONL persistence layer with ordered event history.
@@ -180,7 +168,9 @@ This CS MUST emit:
 fqdn: capability_side_effects::CS_APPENDONLY_JSONL_V0
 artifact_kind: CAPABILITY_SIDE_EFFECT
 version: v0
-governed_by: fb.capability_side_effects::CONSTITUTION_CAPABILITY_SIDE_EFFECTS_V0
+governed_by: capability_side_effects::CONSTITUTION_CAPABILITY_SIDE_EFFECTS_V0
+authority: pgc.platform
+concern: capability_side_effects
 core:
   summary: Append-only JSONL persistence layer with ordered event history
   category: storage

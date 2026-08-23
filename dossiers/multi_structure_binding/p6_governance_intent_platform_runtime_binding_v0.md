@@ -15,7 +15,7 @@ WHERE things belong and who owns them. No new artifact codes; no cross-subdomain
 | Domain | `platform` |
 | Primary subdomain | `runtime_binding` — EXISTING — modified by this CR |
 | Authority class | reuse existing — an act declares, a subdomain owns, assembly refuses; no new actor type |
-| Governing constitutions | `fb.runtime_binding::CONSTITUTION_RUNTIME_BINDING_V0`, `fb.structure::CONSTITUTION_STRUCTURE_V0`, `fb.workflow::CONSTITUTION_WORKFLOW_V0` |
+| Governing constitutions | `runtime_binding::CONSTITUTION_RUNTIME_BINDING_V0`, `structure::CONSTITUTION_STRUCTURE_V0`, `workflow::CONSTITUTION_WORKFLOW_V0` |
 
 Where an act finds its records is what runtime binding governs, so the resolution model belongs to
 it. Nothing new stands on its own, so no subdomain is declared.
@@ -70,8 +70,8 @@ own.
 <!-- register:pps_artifacts_requiring_action optional -->
 | FQDN | Current Status | Action (REPLACE, REVIEW, REUSE, EXTEND) | Source Finding |
 |------|----------------|----------------------------------|----------------|
-| fb.runtime_binding::CONSTITUTION_RUNTIME_BINDING_V0 | Governs bindings and says nothing about where storage is described or how much of it an act reaches. | EXTEND | S4 gap_register GAP-3 |
-| fb.runtime_binding::INVARIANT_RB_BINDING_POLICY_CONFORMANCE_V0 | Checks the binding policy the compiler sealed, over the one description it finds. | EXTEND | S4 gap_register GAP-4 |
+| runtime_binding::CONSTITUTION_RUNTIME_BINDING_V0 | Governs bindings and says nothing about where storage is described or how much of it an act reaches. | EXTEND | S4 gap_register GAP-3 |
+| runtime_binding::INVARIANT_RB_BINDING_POLICY_CONFORMANCE_V0 | Checks the binding policy the compiler sealed, over the one description it finds. | EXTEND | S4 gap_register GAP-4 |
 
 ---
 
