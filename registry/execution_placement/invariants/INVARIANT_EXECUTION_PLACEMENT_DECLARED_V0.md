@@ -1,0 +1,72 @@
+# INVARIANT_EXECUTION_PLACEMENT_DECLARED_V0
+
+## Machine
+
+```yaml
+fqdn: execution_placement::INVARIANT_EXECUTION_PLACEMENT_DECLARED_V0
+artifact_kind: INVARIANT
+version: V0
+governed_by: governance::CONSTITUTION_INVARIANTS_V0
+authority: pgc.platform
+concern: execution_placement
+core:
+  enforcement_stage:
+  - compiler_validation
+  violation_response: FAIL_IMMEDIATELY
+assert_projection:
+  enforcement:
+    scope: ALL_ARTIFACTS
+  applies_to_kinds:
+  - SNAPSHOT
+  composition_check:
+    rule: exactly_one
+    subject: active execution placement contract
+    selector:
+      namespace: execution_placement
+      artifact_type: STRUCTURE
+      artifact_code_prefix: STRUCTURE_EXECUTION_PLACEMENT_
+      where:
+        status: active
+```
+
+---
+
+## Purpose
+
+This invariant is what makes the V0 placement contract non-dead-code. Without it, the
+`STRUCTURE_EXECUTION_PLACEMENT_LOCAL_SINGLE_NODE_V0` would be documentation. With it, the compiler
+is required to find and validate it — making placement declaration a hard compile-time
+requirement, not an optional annotation.
+
+## What this realizes
+For every compiled snapshot:
+1. The compiler MUST scan `execution_placement/` for active contracts
+2. Exactly one MUST be present
+3. The active contract's placement mode MUST be materialized into `federation_profile.execution_placement`
+4. Compile MUST fail if no contract is found or more than one is found
+
+## Anti-Patterns
+
+- `no_placement_contract`: Snapshot compiled without any placement contract present
+- `multiple_active_contracts`: More than one placement contract marked active simultaneously
+- `runtime_placement_override`: Runtime selecting placement mode at execution time
+
+## Enforcement
+
+- **Stage:** compiler_validation
+- **Failure Mode:** FAIL_COMPILE — no snapshot is produced if violated
+
+---
+
+## What this realizes
+```yaml
+core:
+  rule: 'The compiler MUST locate exactly one active placement contract within FB_EXECUTION_PLACEMENT.
+    Zero contracts is a missing declaration violation. More than one active contract is an ambiguity violation.
+
+    '
+  summary: Every compiled snapshot must declare exactly one active execution placement contract
+assert_projection:
+  enforcement:
+    failure_mode: HARD_FAIL
+```
