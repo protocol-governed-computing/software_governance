@@ -1,0 +1,229 @@
+# INVARIANT_ASSERT_PARITY_V0
+
+## Machine
+
+```yaml
+fqdn: conformance::INVARIANT_ASSERT_PARITY_V0
+artifact_kind: INVARIANT
+version: V0
+governed_by: governance::CONSTITUTION_INVARIANTS_V0
+authority: pgc.platform
+concern: conformance
+core:
+  enforcement_stage:
+  - enforced_elsewhere
+  enforced_by: the step of the build that derives a check from its obligation
+  violation_response: FAIL_IMMEDIATELY
+assert_projection:
+  ci_override:
+    level: ERROR
+  enforcement:
+    order: 1
+    scope: GOVERNANCE_ARTIFACTS
+    level: WARNING
+  applies_to_kinds:
+  - INVARIANT
+```
+
+---
+
+## Purpose
+
+Ensure governance symmetry between invariant declarations and assert enforcement.
+
+**Core Principle**: Every rule declared must be enforceable. Every enforcement must have a rule.
+
+---
+
+## How it is checked
+### Rule 1: One-to-One Correspondence
+
+For every `INVARIANT_X_V0`, exactly one `ASSERT_X_V0` must exist.
+For every `ASSERT_X_V0`, exactly one `INVARIANT_X_V0` must exist.
+
+**Violation - Orphaned Invariant**:
+```
+✓ INVARIANT_WF_EXECUTION_PATH_VALID_V0.md exists
+✗ ASSERT_WF_EXECUTION_PATH_VALID_V0.md missing
+
+❌ FORBIDDEN: Invariant without enforcement
+```
+
+**Violation - Orphaned Assert**:
+```
+✗ INVARIANT_OLD_RULE_V0.md deleted
+✓ ASSERT_OLD_RULE_V0.md still exists
+
+❌ FORBIDDEN: Assert without declaration
+```
+
+**Correct**:
+```
+✓ INVARIANT_CC_CAPABILITY_BINDING_VALID_V0.md
+✓ ASSERT_CC_CAPABILITY_BINDING_VALID_V0.md
+
+✅ Paired declaration + enforcement
+```
+
+**Detection**:
+```python
+invariant_names = {i.code.replace("INVARIANT_", "") for i in invariants}
+assert_names = {a.code.replace("ASSERT_", "") for a in asserts}
+
+orphaned_invariants = invariant_names - assert_names  # Must be empty
+orphaned_asserts = assert_names - invariant_names    # Must be empty
+```
+
+---
+
+### Rule 2: Naming Convention Match
+
+Names must follow exact pattern:
+- Invariant: `INVARIANT_{NAME}_V{N}`
+- Assert: `ASSERT_{NAME}_V{N}`
+
+Where `{NAME}` and `{N}` are identical.
+
+**Violation - Naming Mismatch**:
+```
+✓ INVARIANT_WF_PATH_VALID_V0.md
+✓ ASSERT_WF_EXECUTION_PATH_V0.md
+
+❌ FORBIDDEN: Names don't match
+(WF_PATH_VALID ≠ WF_EXECUTION_PATH)
+```
+
+**Correct**:
+```
+✓ INVARIANT_WF_EXECUTION_PATH_VALID_V0.md
+✓ ASSERT_WF_EXECUTION_PATH_VALID_V0.md
+
+✅ Exact name match (WF_EXECUTION_PATH_VALID)
+```
+
+**Detection**: String match after removing prefix and suffix.
+
+---
+
+## Scope
+
+**Applies to**:
+- All INVARIANT artifacts in governance layer
+- All ASSERT artifacts in governance layer
+
+**Does NOT validate**:
+- Invariant/assert content correctness (different concern)
+- Whether asserts actually enforce their invariants (runtime verification)
+- Version compatibility (handled by versioning system)
+
+---
+
+## Rationale
+
+### Governance Integrity
+
+**Problem without parity**:
+- Developer writes INVARIANT but forgets ASSERT → rule never enforced
+- Developer deletes INVARIANT but leaves ASSERT → enforcement without justification
+- Protocol appears to have rules, but runtime doesn't enforce them
+
+**Solution with parity**:
+- Build fails if INVARIANT lacks ASSERT
+- Build fails if ASSERT lacks INVARIANT
+- Governance is always self-consistent
+
+### Build-Time Detection
+
+Parity violation is governance defect, not artifact defect.
+Must be caught before any artifact validation runs.
+
+**Validation order**:
+1. Meta-validate: governance self-consistency (parity check)
+2. Artifact-validate: artifacts against constitutions
+3. Conformance-validate: runtime behavior matches declarations
+
+### Developer Experience
+
+**Clear feedback**:
+```
+❌ Build failed: INVARIANT_ASSERT_PARITY_V0 violated
+
+Orphaned invariants (missing asserts):
+  - INVARIANT_WF_EXECUTION_PATH_VALID_V0
+  - INVARIANT_CC_NO_IMPLICIT_CHAINING_V0
+
+Orphaned asserts (missing invariants):
+  - ASSERT_OLD_SURFACE_CLOSURE_V0
+
+Fix: Create missing files or delete orphaned files.
+```
+
+### Constitutional Enforcement
+
+This invariant enforces governance constitution itself:
+- Governance must be complete (no missing enforcement)
+- Governance must be minimal (no orphaned enforcement)
+- Governance must be consistent (1:1 correspondence)
+
+---
+
+## Implementation Note
+
+**This is meta-governance**: governance validating governance structure.
+
+Must run BEFORE any invariant/assert enforcement:
+```python
+# Build pipeline order:
+1. validate_governance_parity()     # This invariant
+2. validate_artifacts_against_invariants()  # Other invariants
+```
+
+If governance is inconsistent, artifact validation is meaningless.
+
+---
+
+## What this realizes
+```yaml
+core:
+  description: 'For every INVARIANT_*, exactly one ASSERT_* must exist (and vice versa).
+
+    Naming must match: - INVARIANT_FOO_V0 ↔ ASSERT_FOO_V0
+
+    This ensures governance symmetry between declaration (invariant) and enforcement (assert).
+
+    '
+  anti_patterns:
+  - orphaned_invariant: INVARIANT without matching ASSERT (declaration without enforcement)
+  - orphaned_assert: ASSERT without matching INVARIANT (enforcement without declaration)
+  - naming_mismatch: INVARIANT and ASSERT exist but names don't match pattern
+  clarification:
+    governance_symmetry: 'Invariants declare what must be true. Asserts enforce what must be true. Every
+      declaration requires enforcement. Every enforcement must have declaration.
+
+      '
+    meta_validation: 'This is meta-governance: governance validating governance. Ensures governance layer
+      is self-consistent before validating artifacts.
+
+      '
+assert_projection:
+  enforcement:
+    failure_mode: HARD_FAIL
+```
+
+
+---
+
+## Carried by derivation, not by comparison
+
+What this obligation asserts — one check per obligation, one obligation per check — is now guaranteed
+by construction. A check is derived from every obligation whose declared stage is the build, so an
+obligation without a check cannot exist and a check without an obligation cannot exist. **The content
+holds more strongly than when it was checked by comparing two authored sets.**
+
+It was published for a long time declaring that a violation failed the build immediately, excluded
+from derivation by name, evaluated by no build, and referenced by no artifact: an obligation carried
+by nothing, which is the defect `enforcement_capability` exists to end, sitting inside the obligation
+that states the guarantee the change rests on.
+
+It is restated rather than retired because what it asserts is true and worth declaring. Its check
+module is withdrawn with the exclusion that named it.

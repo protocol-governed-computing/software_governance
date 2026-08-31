@@ -1,0 +1,36 @@
+# CT_PURE_LOOKUP_V0
+
+## Machine
+
+```yaml
+fqdn: capability_transforms::CT_PURE_LOOKUP_V0
+artifact_kind: CAPABILITY_TRANSFORM
+version: V0
+governed_by: capability_transforms::CONSTITUTION_CAPABILITY_TRANSFORMS_V0
+authority: pgc.platform
+concern: capability_transforms
+core:
+  summary: Look up key in map
+  refusal: raises
+  description: Returns the value associated with a key from a provided key-value mapping object.
+  inputs:
+    key:
+      type: string
+      required: true
+      description: The key to look for
+    map:
+      type: object
+      required: true
+      description: The mapping object to search in
+  outputs:
+    result:
+      type: any
+      required: true
+      description: The value found for the given key
+machine:
+  ct_kind: atom
+  ct_purity: ct_pure
+  implementation:
+    module: capability_transforms.implementation.ct_pure_lookup_v0
+    callable: execute
+```

@@ -1,0 +1,221 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "software_governance.schemas.SCHEMA_CONSTITUTION_V0",
+  "title": "PGC Constitution Schema V0",
+  "description": "Closed machine-block contract for CONSTITUTION artifacts. core.enforcement_model discriminates how each rule's enforced_by must be expressed: a compiler-enforced rule names the INVARIANT that enforces it by FQDN; a process-enforced rule declares an explicit sentinel. Rule prose lives below the Machine fence.",
+  "type": "object",
+  "required": [
+    "fqdn",
+    "artifact_kind",
+    "version",
+    "governed_by",
+    "core",
+    "rules"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "artifact_kind": {
+      "const": "CONSTITUTION"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^V[0-9]+$"
+    },
+    "governed_by": {
+      "type": "string",
+      "pattern": "^[a-z0-9_.]+::CONSTITUTION_[A-Z0-9_]+_V[0-9]+$"
+    },
+    "core": {
+      "type": "object",
+      "required": [
+        "enforcement_model"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "enforcement_model": {
+          "description": "Determines the admissible shape of rules[].enforced_by.",
+          "enum": [
+            "compiler_enforced",
+            "process_enforced",
+            "process_and_compiler_enforced",
+            "runtime_enforced"
+          ]
+        },
+        "governs": {
+          "description": "Artifact-type tokens this constitution governs. Read by assert_topology_surface_canonical_v0.",
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Z0-9_]+$"
+          }
+        }
+      }
+    },
+    "rules": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "applies_to",
+          "enforced_by"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "applies_to": {
+            "description": "What the rule governs \u2014 an artifact-type token, a lifecycle scope, or a list of either. The vocabulary is not yet normalized and the field has no consumer; it is constrained to shape only until it is promoted to load-bearing.",
+            "oneOf": [
+              {
+                "type": "string",
+                "minLength": 1
+              },
+              {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            ]
+          },
+          "enforced_by": {
+            "description": "FQDN of the enforcing INVARIANT, or an explicit non-compiler sentinel. TBD is not admissible.",
+            "type": "string",
+            "oneOf": [
+              {
+                "pattern": "^[a-z0-9_.]+::INVARIANT_[A-Z0-9_]+_V[0-9]+$"
+              },
+              {
+                "enum": [
+                  "PROCESS_ENFORCED",
+                  "RUNTIME_ENFORCED"
+                ]
+              }
+            ]
+          }
+        }
+      }
+    },
+    "fqdn": {
+      "type": "string",
+      "pattern": "^[a-z0-9_.]+::[A-Z][A-Z0-9_]*_V[0-9]+$",
+      "description": "Authoritative declared identity (namespace::code). Folder location has no authority over identity."
+    },
+    "supersedes": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_.]*::[A-Z][A-Z0-9_]*_V\\d+$",
+      "description": "FQDN of the artifact this one stands in place of. A declared relation between two exact identities, not a resolution rule: references stay exact, and a superseded artifact is unreachable rather than absent."
+    },
+    "superseded_by": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9_.]*::[A-Z][A-Z0-9_]*_V\\d+$"
+      },
+      "minItems": 1,
+      "description": "FQDNs of the artifacts that stand in this one's place. Several is the ordinary case \u2014 one act split in two retires one artifact and authors two. Its presence means the artifact is superseded: unreachable from the executable projections, retained in the canonical set as history."
+    },
+    "authority": {
+      "type": "string",
+      "description": "The authority from which this artifact's jurisdiction derives (CA-1, CA-2). Declared, never inferred from namespace, path or kind."
+    },
+    "concern": {
+      "type": "string",
+      "description": "The semantic subject this artifact is about (GO-11, ID-12). A concern classification confers no authority and constitutes no boundary."
+    },
+    "constitutes_authority": {
+      "type": "string",
+      "description": "The authority this constituting act constitutes (2e CA-2). An authority named by artifacts and constituted by nothing is refused."
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "core": {
+            "properties": {
+              "enforcement_model": {
+                "const": "compiler_enforced"
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "rules": {
+            "items": {
+              "properties": {
+                "enforced_by": {
+                  "pattern": "^[a-z0-9_.]+::INVARIANT_[A-Z0-9_]+_V[0-9]+$"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "core": {
+            "properties": {
+              "enforcement_model": {
+                "const": "process_enforced"
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "rules": {
+            "items": {
+              "properties": {
+                "enforced_by": {
+                  "const": "PROCESS_ENFORCED"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "core": {
+            "properties": {
+              "enforcement_model": {
+                "const": "runtime_enforced"
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "rules": {
+            "items": {
+              "properties": {
+                "enforced_by": {
+                  "oneOf": [
+                    {
+                      "pattern": "^[a-z0-9_.]+::INVARIANT_[A-Z0-9_]+_V[0-9]+$"
+                    },
+                    {
+                      "const": "RUNTIME_ENFORCED"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

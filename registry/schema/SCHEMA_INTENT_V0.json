@@ -1,0 +1,144 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "pgs_governance.schemas.SCHEMA_INTENT_V0",
+  "title": "OmniBachi Intent Schema V0",
+  "description": "JSON Schema for materialized intent artifacts",
+  "type": "object",
+  "required": [
+    "fqdn",
+    "artifact_kind",
+    "version",
+    "governed_by",
+    "core"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "artifact_kind": {
+      "const": "INTENT",
+      "description": "Canonical artifact kind discriminator (Kind Vocabulary)."
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^v[0-9]+$",
+      "description": "Version string"
+    },
+    "governed_by": {
+      "type": "string",
+      "const": "CONSTITUTION_INTENT_V0",
+      "description": "Governing constitution"
+    },
+    "core": {
+      "type": "object",
+      "required": [
+        "summary",
+        "workflow",
+        "inputs",
+        "outcomes"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "summary": {
+          "type": "string",
+          "description": "Human-readable summary of intent purpose"
+        },
+        "workflow": {
+          "type": "string",
+          "pattern": "^WF_[A-Z0-9_]+_V[0-9]+$",
+          "description": "Workflow that processes this intent"
+        },
+        "inputs": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/inputField"
+          },
+          "description": "Input field definitions"
+        },
+        "outcomes": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "required": [
+              "description"
+            ],
+            "properties": {
+              "description": {
+                "type": "string"
+              }
+            }
+          },
+          "description": "Possible outcomes (ACK/NACK)"
+        }
+      }
+    },
+    "extensions": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "domain": {
+          "type": "string",
+          "description": "Domain namespace"
+        }
+      }
+    },
+    "fqdn": {
+      "type": "string",
+      "pattern": "^[a-z0-9_.]+::[A-Z][A-Z0-9_]*_V[0-9]+$",
+      "description": "Authoritative declared identity (namespace::code). Folder location has no authority over identity."
+    },
+    "supersedes": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_.]*::[A-Z][A-Z0-9_]*_V\\d+$",
+      "description": "FQDN of the artifact this one stands in place of. A declared relation between two exact identities, not a resolution rule: references stay exact, and a superseded artifact is unreachable rather than absent."
+    },
+    "superseded_by": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9_.]*::[A-Z][A-Z0-9_]*_V\\d+$"
+      },
+      "minItems": 1,
+      "description": "FQDNs of the artifacts that stand in this one's place. Several is the ordinary case \u2014 one act split in two retires one artifact and authors two. Its presence means the artifact is superseded: unreachable from the executable projections, retained in the canonical set as history."
+    },
+    "authority": {
+      "type": "string",
+      "description": "The authority from which this artifact's jurisdiction derives (CA-1, CA-2). Declared, never inferred from namespace, path or kind."
+    },
+    "concern": {
+      "type": "string",
+      "description": "The semantic subject this artifact is about (GO-11, ID-12). A concern classification confers no authority and constitutes no boundary."
+    }
+  },
+  "$defs": {
+    "inputField": {
+      "type": "object",
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "string",
+            "number",
+            "boolean",
+            "object",
+            "array"
+          ],
+          "description": "Field type"
+        },
+        "required": {
+          "type": "boolean",
+          "default": false,
+          "description": "Whether field is required"
+        },
+        "default": {
+          "description": "Default value if not provided"
+        },
+        "description": {
+          "type": "string",
+          "description": "Human-readable description"
+        }
+      }
+    }
+  }
+}
