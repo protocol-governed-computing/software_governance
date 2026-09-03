@@ -7,7 +7,20 @@ repository. It holds the constitutions, invariants, structures, schemas, surface
 reserved vocabulary, and the neutral capability transforms and side effects that no single domain
 owns and every domain depends on.
 
-It contains **no code of any kind**. It declares; the sibling toolchain reads.
+It is **declaration first**: constitutions, invariants, structures, schemas and vocabulary that
+the sibling toolchain reads. It also carries the capability transform and side-effect
+implementation modules a sealed snapshot binds by fully qualified module path at execution —
+the only executable code here, and it exists because a snapshot names it.
+
+## Install
+
+```bash
+pip install pgc-governance
+```
+
+This package carries declarations and the implementation modules a sealed
+snapshot binds at execution. It provides no command of its own — the toolchain
+packages read it.
 
 ## Where it fits
 
@@ -84,3 +97,47 @@ or moving the latter into the domain that owns it.
 ## License
 
 See `LICENSE` and `NOTICE`.
+
+---
+
+## The package family
+
+| Package | Repository | Role |
+|---|---|---|
+| `pgc-compiler` | `protocol_compiler` | declarations → compiled projections |
+| `pgc-assembler` | `snapshot_assembler` | projections → sealed snapshot |
+| `pgc-runtime` | `protocol_runtime` | snapshot → governed execution |
+| `pgc-inspector` | `snapshot_inspector` | snapshot → read-only inspection |
+| `pgc-transformation` | `transformation` | change request → protocol artifacts |
+| `pgc-governance` | `software_governance` | the governance surface and its capability implementations |
+| `pgc-workloads` | `conformance_workloads` | the workloads that make conformance observable |
+| `pgc-domains` | `business_domains` | the business domain implementations the composed snapshot binds |
+
+`pip install pgc` brings in the whole family.
+
+**Installing the toolchain is one of two steps.** The compiler resolves the governance surface from
+`PGC_PLATFORM_ROOT` — fail-hard, cwd-independent, zero inference — so the *declarations* come from a
+repository you point at, never from a wheel. A registry inside a package would be a second governance
+surface competing with the repository's, and a build could then be governed by a stale copy.
+
+```bash
+git clone https://github.com/protocol-governed-computing/software_governance
+export PGC_PLATFORM_ROOT=$PWD/software_governance
+pgc            # reports what is installed and whether the anchor resolves
+```
+
+`PGC_BUILD_ROOT` (compiled output, keeping the governance repo read-only) and `PGC_DOMAIN_ROOTS`
+(additional domains contributing their own `registry/structures`) are optional.
+
+**Versioning.** Two schemes, and the published version follows the second.
+
+- **Internal** — each repository's `VERSION` file, a monotonic composition ordinal. PGC versions the
+  composition rather than each repo: they release together and the governance closure forces lockstep,
+  so the ordinal names which composition a repo belongs to. Development happens on `dev/<N>` and each
+  cycle is tagged `release-<N>`. This is not published.
+- **Public** — `PUBLIC_VERSION`, tagged on every component repository. The platform is at **`v2`**.
+
+**The published version is the public one: `v2` is `2.0.0`.** The standard the packages implement is a
+separate artifact on its own track and is not this number.
+
+The standard these packages implement is published separately: https://doi.org/10.5281/zenodo.22150616
