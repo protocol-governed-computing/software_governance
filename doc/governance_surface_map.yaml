@@ -1,0 +1,1812 @@
+governance_surface_map:
+  note: family and concern are read from the semantic registry tree (registry/<family>/<concern>/); identity
+    (fqdn) is declared per-artifact and independent of this path.
+  artifact_count: 160
+  families:
+    composition:
+      authority: 8
+      conformance: 5
+      event: 1
+      topology: 63
+    declaration:
+      identity: 5
+      schema: 24
+      structure: 10
+      vocabulary: 6
+    evolution:
+      change_management: 2
+    execution:
+      cryptographic_trust: 3
+      execution: 1
+      execution_policy: 1
+      placement: 3
+      scheduling: 3
+      security_domain: 3
+      trace: 1
+      transport: 5
+    meta_governance:
+      (kernel): 16
+  by_enforcement_locus:
+    compile_composition: 135
+    meta_process: 18
+    snapshot_declaration: 4
+    runtime_execution: 3
+  by_coverage_status:
+    implemented: 128
+    declaration_substrate: 24
+    process_enforced: 3
+    intentionally_deferred: 5
+  coverage_ledger:
+    transport:
+      status: intentionally_deferred
+      reason: transport phase frozen; TI/TE governance not yet authorized
+    state_entity_platform:
+      status: not_applicable
+      reason: ENTITY/state is domain-owned; not a platform concern
+    schema:
+      status: declaration_substrate
+      reason: formal shape/type system of the declaration language, not an independent policy concern
+    trace_observability:
+      status: implemented
+      note: governed by CONSTITUTION_TRACE_EXECUTION under execution/semantics/trace
+  artifacts:
+  - artifact_code: CONSTITUTION_AUTHORITY_GOVERNANCE_V0
+    kind: CONSTITUTION
+    family: composition
+    concern: authority
+    semantic:
+      property: authority_governance
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: INVARIANT_ACTOR_AUTHORITY_SEPARATION_V0
+    kind: INVARIANT
+    family: composition
+    concern: authority
+    semantic:
+      property: actor_authority_separation
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: INVARIANT_AUTHORITY_REQUIRED_FOR_EXECUTION_V0
+    kind: INVARIANT
+    family: composition
+    concern: authority
+    semantic:
+      property: authority_required_for_execution
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: INVARIANT_AUTHORITY_STATE_WELL_FORMED_V0
+    kind: INVARIANT
+    family: composition
+    concern: authority
+    semantic:
+      property: authority_state_well_formed
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: INVARIANT_NO_AMBIENT_AUTHORITY_V0
+    kind: INVARIANT
+    family: composition
+    concern: authority
+    semantic:
+      property: no_ambient_authority
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: INVARIANT_NO_RUNTIME_AUTHORIZATION_V0
+    kind: INVARIANT
+    family: composition
+    concern: authority
+    semantic:
+      property: no_runtime_authorization
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: INVARIANT_NO_WORKFLOW_AUTHORIZATION_LOGIC_V0
+    kind: INVARIANT
+    family: composition
+    concern: authority
+    semantic:
+      property: no_workflow_authorization_logic
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: INVARIANT_TRACE_AUTHORITY_BINDING_REQUIRED_V0
+    kind: INVARIANT
+    family: composition
+    concern: authority
+    semantic:
+      property: trace_authority_binding_required
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: CONSTITUTION_TEST_DATA_V0
+    kind: CONSTITUTION
+    family: composition
+    concern: conformance
+    semantic:
+      property: test_data
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: INVARIANT_ASSERT_PARITY_V0
+    kind: INVARIANT
+    family: composition
+    concern: conformance
+    semantic:
+      property: assert_parity
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: INVARIANT_CONFORMANCE_ASSERTION_MODE_VALID_V0
+    kind: INVARIANT
+    family: composition
+    concern: conformance
+    semantic:
+      property: conformance_assertion_mode_valid
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: INVARIANT_TEST_DATA_MATCH_CT_OUTPUT_V0
+    kind: INVARIANT
+    family: composition
+    concern: conformance
+    semantic:
+      property: test_data_match_ct_output
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: STRUCTURE_CONFORMANCE_POLICY_V0
+    kind: STRUCTURE
+    family: composition
+    concern: conformance
+    semantic:
+      property: conformance_policy
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: CONSTITUTION_EVENT_V0
+    kind: CONSTITUTION
+    family: composition
+    concern: event
+    semantic:
+      property: event
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: CONSTITUTION_CAPABILITY_CONTRACT_V0
+    kind: CONSTITUTION
+    family: composition
+    concern: topology
+    semantic:
+      property: capability_contract
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: CONSTITUTION_CAPABILITY_SIDE_EFFECTS_V0
+    kind: CONSTITUTION
+    family: composition
+    concern: topology
+    semantic:
+      property: capability_side_effects
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: CONSTITUTION_CAPABILITY_TRANSFORMS_V0
+    kind: CONSTITUTION
+    family: composition
+    concern: topology
+    semantic:
+      property: capability_transforms
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: CONSTITUTION_EXECUTION_TOPOLOGY_V0
+    kind: CONSTITUTION
+    family: composition
+    concern: topology
+    semantic:
+      property: execution_topology
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: CONSTITUTION_INTENT_V0
+    kind: CONSTITUTION
+    family: composition
+    concern: topology
+    semantic:
+      property: intent
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: CONSTITUTION_RUNTIME_BINDING_V0
+    kind: CONSTITUTION
+    family: composition
+    concern: topology
+    semantic:
+      property: runtime_binding
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: CONSTITUTION_WORKFLOW_V0
+    kind: CONSTITUTION
+    family: composition
+    concern: topology
+    semantic:
+      property: workflow
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: INVARIANT_ATOM_OUTPUT_PURITY_V0
+    kind: INVARIANT
+    family: composition
+    concern: topology
+    semantic:
+      property: atom_output_purity
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: INVARIANT_BINDING_INTEGRITY_V0
+    kind: INVARIANT
+    family: composition
+    concern: topology
+    semantic:
+      property: binding_integrity
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: INVARIANT_BINDING_SURFACE_CLOSED_V0
+    kind: INVARIANT
+    family: composition
+    concern: topology
+    semantic:
+      property: binding_surface_closed
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: INVARIANT_CC_CAPABILITY_BINDING_VALID_V0
+    kind: INVARIANT
+    family: composition
+    concern: topology
+    semantic:
+      property: cc_capability_binding_valid
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: INVARIANT_CC_INPUTS_SATISFIED_V0
+    kind: INVARIANT
+    family: composition
+    concern: topology
+    semantic:
+      property: cc_inputs_satisfied
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: INVARIANT_CC_NO_IMPLICIT_CHAINING_V0
+    kind: INVARIANT
+    family: composition
+    concern: topology
+    semantic:
+      property: cc_no_implicit_chaining
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: INVARIANT_CC_NO_MISSING_DEPENDENCIES_V0
+    kind: INVARIANT
+    family: composition
+    concern: topology
+    semantic:
+      property: cc_no_missing_dependencies
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: INVARIANT_CC_NO_UNUSED_OUTPUTS_V0
+    kind: INVARIANT
+    family: composition
+    concern: topology
+    semantic:
+      property: cc_no_unused_outputs
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: INVARIANT_CC_STORAGE_OP_CONFORMANCE_V0
+    kind: INVARIANT
+    family: composition
+    concern: topology
+    semantic:
+      property: cc_storage_op_conformance
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: INVARIANT_CS_ISOLATED_EXECUTION_V0
+    kind: INVARIANT
+    family: composition
+    concern: topology
+    semantic:
+      property: cs_isolated_execution
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: INVARIANT_CS_SURFACE_CLOSED_V1
+    kind: INVARIANT
+    family: composition
+    concern: topology
+    semantic:
+      property: cs_surface_closed
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: INVARIANT_CS_TRACEABLE_V0
+    kind: INVARIANT
+    family: composition
+    concern: topology
+    semantic:
+      property: cs_traceable
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: INVARIANT_CT_OUTPUT_CONTRACT_MATCH_V0
+    kind: INVARIANT
+    family: composition
+    concern: topology
+    semantic:
+      property: ct_output_contract_match
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: INVARIANT_CT_SURFACE_CLOSED_V1
+    kind: INVARIANT
+    family: composition
+    concern: topology
+    semantic:
+      property: ct_surface_closed
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: INVARIANT_CT_TEST_DATA_OUTCOME_DECLARED_V0
+    kind: INVARIANT
+    family: composition
+    concern: topology
+    semantic:
+      property: ct_test_data_outcome_declared
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: INVARIANT_IMPLEMENTATION_ADMISSIBLE_V0
+    kind: INVARIANT
+    family: composition
+    concern: topology
+    semantic:
+      property: implementation_admissible
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: INVARIANT_IN_NO_EXECUTION_LOGIC_V0
+    kind: INVARIANT
+    family: composition
+    concern: topology
+    semantic:
+      property: in_no_execution_logic
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: INVARIANT_IN_SCHEMA_REQUIRED_V0
+    kind: INVARIANT
+    family: composition
+    concern: topology
+    semantic:
+      property: in_schema_required
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: INVARIANT_IN_WORKFLOW_BINDING_V0
+    kind: INVARIANT
+    family: composition
+    concern: topology
+    semantic:
+      property: in_workflow_binding
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: INVARIANT_NO_RUNTIME_TOPOLOGY_SYNTHESIS_V0
+    kind: INVARIANT
+    family: composition
+    concern: topology
+    semantic:
+      property: no_runtime_topology_synthesis
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: INVARIANT_NO_SMART_EXECUTION_V0
+    kind: INVARIANT
+    family: composition
+    concern: topology
+    semantic:
+      property: no_smart_execution
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: INVARIANT_NO_UNDECLARED_BEHAVIOR_SURFACE_V0
+    kind: INVARIANT
+    family: composition
+    concern: topology
+    semantic:
+      property: no_undeclared_behavior_surface
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: INVARIANT_PROTOCOL_SURFACE_CLOSED_V0
+    kind: INVARIANT
+    family: composition
+    concern: topology
+    semantic:
+      property: protocol_surface_closed
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: INVARIANT_RB_BINDING_POLICY_CONFORMANCE_V0
+    kind: INVARIANT
+    family: composition
+    concern: topology
+    semantic:
+      property: rb_binding_policy_conformance
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: INVARIANT_RB_CS_ONLY_V0
+    kind: INVARIANT
+    family: composition
+    concern: topology
+    semantic:
+      property: rb_cs_only
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: INVARIANT_RB_NO_LOGIC_V0
+    kind: INVARIANT
+    family: composition
+    concern: topology
+    semantic:
+      property: rb_no_logic
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: INVARIANT_RUNTIME_INVARIANT_WIRED_V0
+    kind: INVARIANT
+    family: composition
+    concern: topology
+    semantic:
+      property: runtime_invariant_wired
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: INVARIANT_SCHEMA_CONFORMANCE_V0
+    kind: INVARIANT
+    family: composition
+    concern: topology
+    semantic:
+      property: schema_conformance
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: INVARIANT_STRUCTURE_PATHS_WELL_FORMED_V0
+    kind: INVARIANT
+    family: composition
+    concern: topology
+    semantic:
+      property: structure_paths_well_formed
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: INVARIANT_TOPOLOGY_ACYCLIC_V0
+    kind: INVARIANT
+    family: composition
+    concern: topology
+    semantic:
+      property: topology_acyclic
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: INVARIANT_TOPOLOGY_AUTHORITY_ORTHOGONAL_V0
+    kind: INVARIANT
+    family: composition
+    concern: topology
+    semantic:
+      property: topology_authority_orthogonal
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: INVARIANT_TOPOLOGY_CAPABILITY_REFERENCE_UNIQUE_V0
+    kind: INVARIANT
+    family: composition
+    concern: topology
+    semantic:
+      property: topology_capability_reference_unique
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: INVARIANT_TOPOLOGY_CONTRACT_CLOSED_V0
+    kind: INVARIANT
+    family: composition
+    concern: topology
+    semantic:
+      property: topology_contract_closed
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: INVARIANT_TOPOLOGY_IMMUTABLE_AFTER_COMPILATION_V0
+    kind: INVARIANT
+    family: composition
+    concern: topology
+    semantic:
+      property: topology_immutable_after_compilation
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: INVARIANT_TOPOLOGY_INPUT_REFERENCE_DECLARED_V0
+    kind: INVARIANT
+    family: composition
+    concern: topology
+    semantic:
+      property: topology_input_reference_declared
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: INVARIANT_TOPOLOGY_ROUTING_COMPLETE_V0
+    kind: INVARIANT
+    family: composition
+    concern: topology
+    semantic:
+      property: topology_routing_complete
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: INVARIANT_TOPOLOGY_STEP_DECLARED_V0
+    kind: INVARIANT
+    family: composition
+    concern: topology
+    semantic:
+      property: topology_step_declared
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: INVARIANT_TOPOLOGY_STEP_ID_UNIQUE_V0
+    kind: INVARIANT
+    family: composition
+    concern: topology
+    semantic:
+      property: topology_step_id_unique
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: INVARIANT_TOPOLOGY_SURFACE_CANONICAL_V0
+    kind: INVARIANT
+    family: composition
+    concern: topology
+    semantic:
+      property: topology_surface_canonical
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: INVARIANT_TOPOLOGY_TRANSPORT_ORTHOGONAL_V0
+    kind: INVARIANT
+    family: composition
+    concern: topology
+    semantic:
+      property: topology_transport_orthogonal
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: INVARIANT_WF_CC_ONLY_NODES_V0
+    kind: INVARIANT
+    family: composition
+    concern: topology
+    semantic:
+      property: wf_cc_only_nodes
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: INVARIANT_WF_ENTRY_INTENT_V0
+    kind: INVARIANT
+    family: composition
+    concern: topology
+    semantic:
+      property: wf_entry_intent
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: INVARIANT_WF_EXECUTION_PATH_VALID_V0
+    kind: INVARIANT
+    family: composition
+    concern: topology
+    semantic:
+      property: wf_execution_path_valid
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: INVARIANT_WF_NODE_KEY_BINDING_UNIQUE_V0
+    kind: INVARIANT
+    family: composition
+    concern: topology
+    semantic:
+      property: wf_node_key_binding_unique
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: STRUCTURE_CT_IR_CONTRACT_V0
+    kind: STRUCTURE
+    family: composition
+    concern: topology
+    semantic:
+      property: ct_ir_contract
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: STRUCTURE_REGISTRY_LOCATION_REUSABLE_SIDE_EFFECTS_V0
+    kind: STRUCTURE
+    family: composition
+    concern: topology
+    semantic:
+      property: registry_location_reusable_side_effects
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: STRUCTURE_REGISTRY_LOCATION_REUSABLE_TRANSFORMS_V0
+    kind: STRUCTURE
+    family: composition
+    concern: topology
+    semantic:
+      property: registry_location_reusable_transforms
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: STRUCTURE_RUNTIME_EXECUTION_V0
+    kind: STRUCTURE
+    family: composition
+    concern: topology
+    semantic:
+      property: runtime_execution
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: SURFACE_CONTRACT_CT_PURE_V0
+    kind: SURFACE_CONTRACT
+    family: composition
+    concern: topology
+    semantic:
+      property: contract_ct_pure
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: SURFACE_CONTRACT_REGISTRY_COUNT_V0
+    kind: SURFACE_CONTRACT
+    family: composition
+    concern: topology
+    semantic:
+      property: contract_registry_count
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: SURFACE_CONTRACT_REGISTRY_DEREGISTER_V0
+    kind: SURFACE_CONTRACT
+    family: composition
+    concern: topology
+    semantic:
+      property: contract_registry_deregister
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: SURFACE_CONTRACT_REGISTRY_REGISTER_V0
+    kind: SURFACE_CONTRACT
+    family: composition
+    concern: topology
+    semantic:
+      property: contract_registry_register
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: SURFACE_CONTRACT_REGISTRY_RESOLVE_V0
+    kind: SURFACE_CONTRACT
+    family: composition
+    concern: topology
+    semantic:
+      property: contract_registry_resolve
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: SURFACE_CONTRACT_STORAGE_APPENDONLY_APPEND_V0
+    kind: SURFACE_CONTRACT
+    family: composition
+    concern: topology
+    semantic:
+      property: contract_storage_appendonly_append
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: SURFACE_CONTRACT_STORAGE_READ_V0
+    kind: SURFACE_CONTRACT
+    family: composition
+    concern: topology
+    semantic:
+      property: contract_storage_read
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: SURFACE_CONTRACT_STORAGE_WRITE_V0
+    kind: SURFACE_CONTRACT
+    family: composition
+    concern: topology
+    semantic:
+      property: contract_storage_write
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: CONSTITUTION_ACTOR_IDENTITY_V0
+    kind: CONSTITUTION
+    family: declaration
+    concern: identity
+    semantic:
+      property: actor_identity
+      lifecycle: declare
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: INVARIANT_AC_DECLARATION_WELL_FORMED_V0
+    kind: INVARIANT
+    family: declaration
+    concern: identity
+    semantic:
+      property: ac_declaration_well_formed
+      lifecycle: declare
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: INVARIANT_FQDN_NAMESPACE_AUTHORIZED_V0
+    kind: INVARIANT
+    family: declaration
+    concern: identity
+    semantic:
+      property: fqdn_namespace_authorized
+      lifecycle: declare
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: INVARIANT_IDENTITY_AUTHORITY_SEPARATION_V0
+    kind: INVARIANT
+    family: declaration
+    concern: identity
+    semantic:
+      property: identity_authority_separation
+      lifecycle: declare
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: INVARIANT_IDENTITY_FQDN_CONSISTENCY_V0
+    kind: INVARIANT
+    family: declaration
+    concern: identity
+    semantic:
+      property: identity_fqdn_consistency
+      lifecycle: declare
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: SCHEMA_ACTOR_V0
+    kind: SCHEMA
+    family: declaration
+    concern: schema
+    semantic:
+      property: actor
+      lifecycle: declare
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: declaration_substrate
+  - artifact_code: SCHEMA_AUTHENTICATED_AUTHORITY_STATE_V0
+    kind: SCHEMA
+    family: declaration
+    concern: schema
+    semantic:
+      property: authenticated_authority_state
+      lifecycle: declare
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: declaration_substrate
+  - artifact_code: SCHEMA_AUTHORITY_REGISTRY_V0
+    kind: SCHEMA
+    family: declaration
+    concern: schema
+    semantic:
+      property: authority_registry
+      lifecycle: declare
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: declaration_substrate
+  - artifact_code: SCHEMA_AUTHORITY_STATE_V0
+    kind: SCHEMA
+    family: declaration
+    concern: schema
+    semantic:
+      property: authority_state
+      lifecycle: declare
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: declaration_substrate
+  - artifact_code: SCHEMA_CAPABILITY_CONTRACT_V0
+    kind: SCHEMA
+    family: declaration
+    concern: schema
+    semantic:
+      property: capability_contract
+      lifecycle: declare
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: declaration_substrate
+  - artifact_code: SCHEMA_CAPABILITY_SIDE_EFFECT_V0
+    kind: SCHEMA
+    family: declaration
+    concern: schema
+    semantic:
+      property: capability_side_effect
+      lifecycle: declare
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: declaration_substrate
+  - artifact_code: SCHEMA_CAPABILITY_TRANSFORM_V0
+    kind: SCHEMA
+    family: declaration
+    concern: schema
+    semantic:
+      property: capability_transform
+      lifecycle: declare
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: declaration_substrate
+  - artifact_code: SCHEMA_CC_PIPELINE_STEP_V0
+    kind: SCHEMA
+    family: declaration
+    concern: schema
+    semantic:
+      property: cc_pipeline_step
+      lifecycle: declare
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: declaration_substrate
+  - artifact_code: SCHEMA_CONSTITUTION_V0
+    kind: SCHEMA
+    family: declaration
+    concern: schema
+    semantic:
+      property: constitution
+      lifecycle: declare
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: declaration_substrate
+  - artifact_code: SCHEMA_CT_IR_V0
+    kind: SCHEMA
+    family: declaration
+    concern: schema
+    semantic:
+      property: ct_ir
+      lifecycle: declare
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: declaration_substrate
+  - artifact_code: SCHEMA_EVENT_V0
+    kind: SCHEMA
+    family: declaration
+    concern: schema
+    semantic:
+      property: event
+      lifecycle: declare
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: declaration_substrate
+  - artifact_code: SCHEMA_EXECUTION_DAG_V0
+    kind: SCHEMA
+    family: declaration
+    concern: schema
+    semantic:
+      property: execution_dag
+      lifecycle: declare
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: declaration_substrate
+  - artifact_code: SCHEMA_EXECUTION_NODE_V0
+    kind: SCHEMA
+    family: declaration
+    concern: schema
+    semantic:
+      property: execution_node
+      lifecycle: declare
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: declaration_substrate
+  - artifact_code: SCHEMA_EXECUTION_POLICY_V0
+    kind: SCHEMA
+    family: declaration
+    concern: schema
+    semantic:
+      property: execution_policy
+      lifecycle: declare
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: declaration_substrate
+  - artifact_code: SCHEMA_INTENT_V0
+    kind: SCHEMA
+    family: declaration
+    concern: schema
+    semantic:
+      property: intent
+      lifecycle: declare
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: declaration_substrate
+  - artifact_code: SCHEMA_INVARIANT_V0
+    kind: SCHEMA
+    family: declaration
+    concern: schema
+    semantic:
+      property: invariant
+      lifecycle: declare
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: declaration_substrate
+  - artifact_code: SCHEMA_MOLECULE_V0
+    kind: SCHEMA
+    family: declaration
+    concern: schema
+    semantic:
+      property: molecule
+      lifecycle: declare
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: declaration_substrate
+  - artifact_code: SCHEMA_RUNTIME_BINDING_V0
+    kind: SCHEMA
+    family: declaration
+    concern: schema
+    semantic:
+      property: runtime_binding
+      lifecycle: declare
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: declaration_substrate
+  - artifact_code: SCHEMA_STRUCTURE_V0
+    kind: SCHEMA
+    family: declaration
+    concern: schema
+    semantic:
+      property: structure
+      lifecycle: declare
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: declaration_substrate
+  - artifact_code: SCHEMA_SURFACE_CONTRACT_V0
+    kind: SCHEMA
+    family: declaration
+    concern: schema
+    semantic:
+      property: surface_contract
+      lifecycle: declare
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: declaration_substrate
+  - artifact_code: SCHEMA_TRACE_EVENT_V0
+    kind: SCHEMA
+    family: declaration
+    concern: schema
+    semantic:
+      property: trace_event
+      lifecycle: declare
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: declaration_substrate
+  - artifact_code: SCHEMA_TRANSPORT_EVENT_V0
+    kind: SCHEMA
+    family: declaration
+    concern: schema
+    semantic:
+      property: transport_event
+      lifecycle: declare
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: declaration_substrate
+  - artifact_code: SCHEMA_TRANSPORT_INGRESS_V0
+    kind: SCHEMA
+    family: declaration
+    concern: schema
+    semantic:
+      property: transport_ingress
+      lifecycle: declare
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: declaration_substrate
+  - artifact_code: SCHEMA_WORKFLOW_V0
+    kind: SCHEMA
+    family: declaration
+    concern: schema
+    semantic:
+      property: workflow
+      lifecycle: declare
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: declaration_substrate
+  - artifact_code: CONSTITUTION_STRUCTURE_V0
+    kind: CONSTITUTION
+    family: declaration
+    concern: structure
+    semantic:
+      property: structure
+      lifecycle: declare
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: STRUCTURE_ARTIFACT_IDENTITY_V0
+    kind: STRUCTURE
+    family: declaration
+    concern: structure
+    semantic:
+      property: artifact_identity
+      lifecycle: declare
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: STRUCTURE_BUILD_PLATFORM_CONFIG_V0
+    kind: STRUCTURE
+    family: declaration
+    concern: structure
+    semantic:
+      property: build_platform_config
+      lifecycle: declare
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: STRUCTURE_BUILD_PLATFORM_CONFIG_V1
+    kind: STRUCTURE
+    family: declaration
+    concern: structure
+    semantic:
+      property: build_platform_config
+      lifecycle: declare
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: STRUCTURE_DISCOVERY_V0
+    kind: STRUCTURE
+    family: declaration
+    concern: structure
+    semantic:
+      property: discovery
+      lifecycle: declare
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: STRUCTURE_FQDN_TREE_V0
+    kind: STRUCTURE
+    family: declaration
+    concern: structure
+    semantic:
+      property: fqdn_tree
+      lifecycle: declare
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: STRUCTURE_IDENTITY_V0
+    kind: STRUCTURE
+    family: declaration
+    concern: structure
+    semantic:
+      property: identity
+      lifecycle: declare
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: STRUCTURE_MODULE_DATA_ROOTS_V0
+    kind: STRUCTURE
+    family: declaration
+    concern: structure
+    semantic:
+      property: module_data_roots
+      lifecycle: declare
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: STRUCTURE_REGISTRY_LOCATION_GOVERNANCE_V0
+    kind: STRUCTURE
+    family: declaration
+    concern: structure
+    semantic:
+      property: registry_location_governance
+      lifecycle: declare
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: STRUCTURE_SCHEMA_DISPATCH_V0
+    kind: STRUCTURE
+    family: declaration
+    concern: structure
+    semantic:
+      property: schema_dispatch
+      lifecycle: declare
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: CONSTITUTION_VOCABULARY_V0
+    kind: CONSTITUTION
+    family: declaration
+    concern: vocabulary
+    semantic:
+      property: vocabulary
+      lifecycle: declare
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: INVARIANT_VOCABULARY_SYMBOLS_WELL_FORMED_V0
+    kind: INVARIANT
+    family: declaration
+    concern: vocabulary
+    semantic:
+      property: vocabulary_symbols_well_formed
+      lifecycle: declare
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: STRUCTURE_BUILD_VOCABULARY_AGGREGATE_V0
+    kind: STRUCTURE
+    family: declaration
+    concern: vocabulary
+    semantic:
+      property: build_vocabulary_aggregate
+      lifecycle: declare
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: VOCAB_EXECUTION_STATES_V0
+    kind: VOCAB
+    family: declaration
+    concern: vocabulary
+    semantic:
+      property: execution_states
+      lifecycle: declare
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: VOCAB_LANGUAGE_CONSTRAINTS_V0
+    kind: VOCAB
+    family: declaration
+    concern: vocabulary
+    semantic:
+      property: language_constraints
+      lifecycle: declare
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: VOCAB_PROTOCOL_KINDS_V0
+    kind: VOCAB
+    family: declaration
+    concern: vocabulary
+    semantic:
+      property: protocol_kinds
+      lifecycle: declare
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: CONSTITUTION_CHANGE_MGMT_V0
+    kind: CONSTITUTION
+    family: evolution
+    concern: change_management
+    semantic:
+      property: change_mgmt
+      lifecycle: evolve
+      enforcement_locus: meta_process
+      authority: process
+    coverage:
+      status: process_enforced
+  - artifact_code: CONSTITUTION_CONSTRUCTION_V0
+    kind: CONSTITUTION
+    family: evolution
+    concern: change_management
+    semantic:
+      property: construction
+      lifecycle: evolve
+      enforcement_locus: meta_process
+      authority: process
+    coverage:
+      status: process_enforced
+  - artifact_code: CONSTITUTION_CRYPTOGRAPHIC_TRUST_V0
+    kind: CONSTITUTION
+    family: execution
+    concern: cryptographic_trust
+    semantic:
+      property: cryptographic_trust
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: INVARIANT_CRYPTOGRAPHIC_TRUST_DECLARED_V0
+    kind: INVARIANT
+    family: execution
+    concern: cryptographic_trust
+    semantic:
+      property: cryptographic_trust_declared
+      lifecycle: seal
+      enforcement_locus: snapshot_declaration
+      authority: snapshot
+    coverage:
+      status: implemented
+  - artifact_code: STRUCTURE_CRYPTOGRAPHIC_TRUST_LOCAL_DEV_UNSIGNED_V0
+    kind: STRUCTURE
+    family: execution
+    concern: cryptographic_trust
+    semantic:
+      property: cryptographic_trust_local_dev_unsigned
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: CONSTITUTION_EXECUTION_V0
+    kind: CONSTITUTION
+    family: execution
+    concern: execution
+    semantic:
+      property: execution
+      lifecycle: execute
+      enforcement_locus: runtime_execution
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: CONSTITUTION_EXECUTION_POLICY_V0
+    kind: CONSTITUTION
+    family: execution
+    concern: execution_policy
+    semantic:
+      property: execution_policy
+      lifecycle: execute
+      enforcement_locus: runtime_execution
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: CONSTITUTION_EXECUTION_PLACEMENT_V0
+    kind: CONSTITUTION
+    family: execution
+    concern: placement
+    semantic:
+      property: execution_placement
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: INVARIANT_EXECUTION_PLACEMENT_DECLARED_V0
+    kind: INVARIANT
+    family: execution
+    concern: placement
+    semantic:
+      property: execution_placement_declared
+      lifecycle: seal
+      enforcement_locus: snapshot_declaration
+      authority: snapshot
+    coverage:
+      status: implemented
+  - artifact_code: STRUCTURE_EXECUTION_PLACEMENT_LOCAL_SINGLE_NODE_V0
+    kind: STRUCTURE
+    family: execution
+    concern: placement
+    semantic:
+      property: execution_placement_local_single_node
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: CONSTITUTION_EXECUTION_SCHEDULING_V0
+    kind: CONSTITUTION
+    family: execution
+    concern: scheduling
+    semantic:
+      property: execution_scheduling
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: INVARIANT_EXECUTION_SCHEDULING_DECLARED_V0
+    kind: INVARIANT
+    family: execution
+    concern: scheduling
+    semantic:
+      property: execution_scheduling_declared
+      lifecycle: seal
+      enforcement_locus: snapshot_declaration
+      authority: snapshot
+    coverage:
+      status: implemented
+  - artifact_code: STRUCTURE_EXECUTION_SCHEDULING_SERIAL_SINGLE_WORKER_V0
+    kind: STRUCTURE
+    family: execution
+    concern: scheduling
+    semantic:
+      property: execution_scheduling_serial_single_worker
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: CONSTITUTION_SECURITY_DOMAIN_V0
+    kind: CONSTITUTION
+    family: execution
+    concern: security_domain
+    semantic:
+      property: security_domain
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: INVARIANT_SECURITY_DOMAIN_DECLARED_V0
+    kind: INVARIANT
+    family: execution
+    concern: security_domain
+    semantic:
+      property: security_domain_declared
+      lifecycle: seal
+      enforcement_locus: snapshot_declaration
+      authority: snapshot
+    coverage:
+      status: implemented
+  - artifact_code: STRUCTURE_SECURITY_DOMAIN_UNCLASSIFIED_LOCAL_V0
+    kind: STRUCTURE
+    family: execution
+    concern: security_domain
+    semantic:
+      property: security_domain_unclassified_local
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: CONSTITUTION_TRACE_EXECUTION_V0
+    kind: CONSTITUTION
+    family: execution
+    concern: trace
+    semantic:
+      property: trace_execution
+      lifecycle: execute
+      enforcement_locus: runtime_execution
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: CONSTITUTION_ADMISSION_V0
+    kind: CONSTITUTION
+    family: execution
+    concern: transport
+    semantic:
+      property: admission
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: intentionally_deferred
+  - artifact_code: INVARIANT_TRANSPORT_CANONICAL_NORMALIZATION_V0
+    kind: INVARIANT
+    family: execution
+    concern: transport
+    semantic:
+      property: transport_canonical_normalization
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: intentionally_deferred
+  - artifact_code: INVARIANT_TRANSPORT_NO_DYNAMIC_ROUTING_V0
+    kind: INVARIANT
+    family: execution
+    concern: transport
+    semantic:
+      property: transport_no_dynamic_routing
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: intentionally_deferred
+  - artifact_code: INVARIANT_TRANSPORT_NO_WORKFLOW_SEMANTICS_V0
+    kind: INVARIANT
+    family: execution
+    concern: transport
+    semantic:
+      property: transport_no_workflow_semantics
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: intentionally_deferred
+  - artifact_code: INVARIANT_TRANSPORT_TARGET_EXISTS_V0
+    kind: INVARIANT
+    family: execution
+    concern: transport
+    semantic:
+      property: transport_target_exists
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: intentionally_deferred
+  - artifact_code: CONSTITUTION_ASSERT_V0
+    kind: CONSTITUTION
+    family: meta_governance
+    concern: (kernel)
+    semantic:
+      property: assert
+      lifecycle: compile
+      enforcement_locus: meta_process
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: CONSTITUTION_COMPILER_V0
+    kind: CONSTITUTION
+    family: meta_governance
+    concern: (kernel)
+    semantic:
+      property: compiler
+      lifecycle: compile
+      enforcement_locus: meta_process
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: CONSTITUTION_FEDERATION_BOUNDARY_V0
+    kind: CONSTITUTION
+    family: meta_governance
+    concern: (kernel)
+    semantic:
+      property: federation_boundary
+      lifecycle: evolve
+      enforcement_locus: meta_process
+      authority: process
+    coverage:
+      status: process_enforced
+  - artifact_code: CONSTITUTION_GOVERNANCE_V0
+    kind: CONSTITUTION
+    family: meta_governance
+    concern: (kernel)
+    semantic:
+      property: governance
+      lifecycle: compile
+      enforcement_locus: meta_process
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: CONSTITUTION_INVARIANTS_V0
+    kind: CONSTITUTION
+    family: meta_governance
+    concern: (kernel)
+    semantic:
+      property: invariants
+      lifecycle: compile
+      enforcement_locus: meta_process
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: INVARIANT_ARTIFACT_CONTENT_HASH_DECLARED_V0
+    kind: INVARIANT
+    family: meta_governance
+    concern: (kernel)
+    semantic:
+      property: artifact_content_hash_declared
+      lifecycle: compile
+      enforcement_locus: meta_process
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: INVARIANT_ASSERT_NOT_RUNTIME_REFERENCED_V0
+    kind: INVARIANT
+    family: meta_governance
+    concern: (kernel)
+    semantic:
+      property: assert_not_runtime_referenced
+      lifecycle: compile
+      enforcement_locus: meta_process
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: INVARIANT_COMPILER_GOVERNANCE_DECLARED_V0
+    kind: INVARIANT
+    family: meta_governance
+    concern: (kernel)
+    semantic:
+      property: compiler_governance_declared
+      lifecycle: compile
+      enforcement_locus: meta_process
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: INVARIANT_COMPILER_NO_EXECUTION_V0
+    kind: INVARIANT
+    family: meta_governance
+    concern: (kernel)
+    semantic:
+      property: compiler_no_execution
+      lifecycle: compile
+      enforcement_locus: meta_process
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: INVARIANT_EV_APPEND_ONLY_V0
+    kind: INVARIANT
+    family: meta_governance
+    concern: (kernel)
+    semantic:
+      property: ev_append_only
+      lifecycle: compile
+      enforcement_locus: meta_process
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: INVARIANT_EV_SCHEMA_REQUIRED_V0
+    kind: INVARIANT
+    family: meta_governance
+    concern: (kernel)
+    semantic:
+      property: ev_schema_required
+      lifecycle: compile
+      enforcement_locus: meta_process
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: INVARIANT_FQDN_ONLY_REFERENCES_V0
+    kind: INVARIANT
+    family: meta_governance
+    concern: (kernel)
+    semantic:
+      property: fqdn_only_references
+      lifecycle: compile
+      enforcement_locus: meta_process
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: INVARIANT_GOVERNANCE_DECLARATION_RESOLVES_V0
+    kind: INVARIANT
+    family: meta_governance
+    concern: (kernel)
+    semantic:
+      property: governance_declaration_resolves
+      lifecycle: compile
+      enforcement_locus: meta_process
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: INVARIANT_HANDLER_REGISTRY_CLOSED_V0
+    kind: INVARIANT
+    family: meta_governance
+    concern: (kernel)
+    semantic:
+      property: handler_registry_closed
+      lifecycle: compile
+      enforcement_locus: meta_process
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: INVARIANT_NO_SHORT_NAME_REFERENCE_V0
+    kind: INVARIANT
+    family: meta_governance
+    concern: (kernel)
+    semantic:
+      property: no_short_name_reference
+      lifecycle: compile
+      enforcement_locus: meta_process
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: INVARIANT_UNIQUE_ARTIFACT_ID_V0
+    kind: INVARIANT
+    family: meta_governance
+    concern: (kernel)
+    semantic:
+      property: unique_artifact_id
+      lifecycle: compile
+      enforcement_locus: meta_process
+      authority: constitution
+    coverage:
+      status: implemented

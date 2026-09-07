@@ -1,0 +1,109 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "pgs_governance/registry/schema/SCHEMA_VOCABULARY_V0.json",
+  "title": "VOCABULARY artifact machine block",
+  "description": "A VOCABULARY artifact declares one or more named, closed sets of symbols. The envelope is the universal one; everything beyond it is a vocabulary group, whose name is the vocabulary being declared. Envelope keys are excluded from the group pattern by name, so a key is validated as an envelope field or as a vocabulary group, never as both. The surface is closed: a group name must be lower_snake and a group must carry exactly casing, entries and optionally domain_extensible, so nothing undeclared can appear while the set of group names stays open (KV-2, MB-5, MB-11).",
+  "type": "object",
+  "required": [
+    "fqdn",
+    "artifact_kind",
+    "version",
+    "governed_by"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "fqdn": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_.]*::[A-Z][A-Z0-9_]*$"
+    },
+    "artifact_kind": {
+      "type": "string",
+      "const": "VOCABULARY"
+    },
+    "version": {
+      "type": "string"
+    },
+    "governed_by": {
+      "type": "string"
+    },
+    "authority": {
+      "type": "string",
+      "description": "The authority from which this artifact's jurisdiction derives (CA-1, CA-2). Declared, never inferred from namespace, path or kind."
+    },
+    "concern": {
+      "type": "string",
+      "description": "The semantic subject this artifact is about (GO-11, ID-12). A concern classification confers no authority and constitutes no boundary."
+    },
+    "supersedes": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      ]
+    },
+    "superseded_by": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      ]
+    },
+    "core": {
+      "type": "object"
+    },
+    "extensions": {
+      "type": "object"
+    },
+    "extends": {
+      "type": "string",
+      "description": "The vocabulary this one extends, by identity. The empty string is the declared-nothing sentinel: a vocabulary that extends nothing says so rather than omitting the key, because an absent key and a considered 'none' are otherwise indistinguishable (KV-2, and the emptiness-is-declared rule)."
+    }
+  },
+  "patternProperties": {
+    "^(?!fqdn$)(?!artifact_kind$)(?!version$)(?!governed_by$)(?!authority$)(?!concern$)(?!supersedes$)(?!superseded_by$)(?!core$)(?!extensions$)(?!extends$)[a-z][a-z0-9_]*$": {
+      "type": "object",
+      "description": "One declared vocabulary. Its name is the symbol class it governs.",
+      "required": [
+        "casing",
+        "entries"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "casing": {
+          "type": "string",
+          "enum": [
+            "lower_snake",
+            "UPPER_SNAKE"
+          ],
+          "description": "The casing every entry conforms to. A closed set, extended by revision."
+        },
+        "domain_extensible": {
+          "type": "boolean",
+          "description": "Whether a domain may add entries. Absent means false: a vocabulary is closed within its revision unless it declares otherwise (KV-2)."
+        },
+        "entries": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": "The declared symbols. An empty vocabulary declares nothing and is refused; emptiness, where meant, is a declared sentinel rather than an absent list."
+        }
+      }
+    }
+  }
+}
