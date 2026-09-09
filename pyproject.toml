@@ -35,7 +35,14 @@ Standard = "https://doi.org/10.5281/zenodo.22150616"
 [tool.setuptools.packages.find]
 where = ["."]
 include = ["capability_transforms*", "capability_side_effects*"]
+# The nested registry/ trees are declarations, not implementation. Namespace discovery
+# finds them as packages, so they are excluded by name: a registry inside a wheel would
+# be the second governance surface this file's comment above disclaims.
+exclude = ["capability_transforms.registry*", "capability_side_effects.registry*"]
 namespaces = true
 
+# Scoped to the side-effect implementations, which read these three descriptors at
+# runtime. A bare "*" pattern here sweeps every found package and re-admits the
+# declarations the exclude above removes.
 [tool.setuptools.package-data]
-"*" = ["*.md", "*.json", "*.yaml"]
+"capability_side_effects.implementation" = ["*/*.json"]
