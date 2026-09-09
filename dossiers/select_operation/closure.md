@@ -17,7 +17,7 @@ request.
 
 It is complete at P6 for the same reason every governance-surface change is: the governance surface
 is authored, not constructed, and the pipeline's authority over such a change ends there. The ruling
-is in `transformation/doc/THE_SHAPE_OF_A_CHANGE_V0.md` §7.
+is in `transformation/THE_SHAPE_OF_A_CHANGE_V0.md` §7.
 
 ## What it records
 

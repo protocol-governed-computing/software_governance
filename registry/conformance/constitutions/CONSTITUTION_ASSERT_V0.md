@@ -19,8 +19,6 @@ rules:
   enforced_by: conformance::INVARIANT_ASSERT_NOT_RUNTIME_REFERENCED_V0
 - applies_to: ASSERT
   enforced_by: conformance::INVARIANT_ASSERT_CAPABLE_OF_REFUSING_V0
-- applies_to: ASSERT
-  enforced_by: conformance::INVARIANT_ASSERT_CAPABLE_OF_REFUSING_V0
 ```
 
 

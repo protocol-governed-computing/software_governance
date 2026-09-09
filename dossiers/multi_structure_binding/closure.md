@@ -62,7 +62,7 @@ argument, but it should be recorded as what it is rather than absorbed as normal
 written by a person under a governed dossier; the pipeline's authority over such a change ends at P6.
 A constitution's content is argument, and a register that determined it would have to carry the
 argument — at which point the register is the constitution and the document is its rendering. The
-ruling is recorded in `transformation/doc/THE_SHAPE_OF_A_CHANGE_V0.md` §7 and enforced by
+ruling is recorded in `transformation/THE_SHAPE_OF_A_CHANGE_V0.md` §7 and enforced by
 `AMENDED_ARTIFACT_NOT_AUTHORABLE`.
 
 So this dossier is **complete**, not halted. Its six capabilities are settled, its eight boundary

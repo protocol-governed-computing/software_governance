@@ -13,7 +13,7 @@
 The governance surface is authored, not constructed. This change states what a terminal node
 announces — a clause in the constitution that governs acts, and the rules that hold it — and neither
 a constitution nor an invariant is an artifact the design language can author or the renderer can
-build. The ruling is in `transformation/doc/THE_SHAPE_OF_A_CHANGE_V0.md` §7, and
+build. The ruling is in `transformation/THE_SHAPE_OF_A_CHANGE_V0.md` §7, and
 `AMENDED_ARTIFACT_NOT_AUTHORABLE` refuses a design that claims otherwise.
 
 ## What the phase run established that the problem statement did not
