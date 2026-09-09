@@ -53,7 +53,9 @@ many platforms as there are profiles.
 | `registry/schema/` | `SCHEMA_*.json` — the declaration substrate, not a namespace of its own |
 | `capability_transforms/registry/` | Neutral, domain-agnostic capability transform declarations |
 | `capability_side_effects/registry/` | Neutral capability side-effect declarations |
-| `doc/` | The surface map, the governance doctrine, and the rulings that settled contested questions |
+| `surface_map/` | The generated map of the governance surface — `governance_surface_map.yaml` is emitted from the registry tree, and `GOVERNANCE_SURFACE_MAP.md` reads it. Documentation *about* the registry, never a second source of truth for it |
+| `dossiers/` | The governed changes that produced this surface, one directory per change — the P0–P8 phase documents and a `closure.md` recording which phases were reached, against which composition, and who closed the gate. The record of how the registry came to say what it says |
+| `rulings/` | Questions that were contested and are now settled, kept with the evidence that settled them: the authority-versus-concern ruling and the cycle finding behind it, and `rule_ownership.md`, which states which mechanism carries which class of rule |
 
 Artifacts declare namespaces of the form `fb.<concern>` — `structure::STRUCTURE_IDENTITY_V0`,
 `authority::…`. **`fb` is a federation boundary**: a declaration that a distinct governance
