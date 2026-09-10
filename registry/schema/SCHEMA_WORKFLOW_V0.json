@@ -1,0 +1,202 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "pgs_governance.schemas.SCHEMA_WORKFLOW_V0",
+  "title": "OmniBachi Workflow Schema V0",
+  "description": "JSON Schema for materialized workflow artifacts. Structural validation only \u2014 semantic topology correctness governed by ASSERT_TOPOLOGY_* handlers.",
+  "type": "object",
+  "required": [
+    "fqdn",
+    "artifact_kind",
+    "version",
+    "governed_by",
+    "core"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "artifact_kind": {
+      "const": "WORKFLOW",
+      "description": "Canonical artifact kind discriminator (Kind Vocabulary)."
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^[Vv][0-9]+$",
+      "description": "Version string"
+    },
+    "governed_by": {
+      "type": "string",
+      "description": "Governing constitution FQDN"
+    },
+    "runtime_binding": {
+      "type": "string",
+      "description": "FQDN of the runtime binding artifact (RB_) this act owns \u2014 the one that resolves CS implementations for its own records. Exactly one: an act writes what it owns, and ownership that is shared is not ownership."
+    },
+    "consults": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "uniqueItems": true,
+      "description": "FQDNs of runtime bindings this act reads and never writes \u2014 the records another subdomain of this domain owns and this act must consult. Each stays owned and maintained by the subdomain that wrote it; naming one here is a declared reach, not a copy. Absent where an act reads only what it owns, which is most acts."
+    },
+    "structure": {
+      "type": "string",
+      "description": "FQDN of the structure artifact that governs this workflow's build configuration"
+    },
+    "subdomain": {
+      "type": "string",
+      "description": "Subdomain within the workflow's namespace; used for trace and data path routing"
+    },
+    "core": {
+      "type": "object",
+      "required": [
+        "summary",
+        "start_node",
+        "nodes"
+      ],
+      "additionalProperties": true,
+      "properties": {
+        "summary": {
+          "type": "string",
+          "description": "Human-readable summary of workflow purpose"
+        },
+        "admission": {
+          "type": "object",
+          "additionalProperties": true,
+          "properties": {
+            "requires": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Events that must have occurred before workflow can execute"
+            },
+            "forbids": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Events that must NOT have occurred"
+            },
+            "bindings": {
+              "type": "object",
+              "additionalProperties": true,
+              "description": "Field bindings from admission events to payload"
+            }
+          }
+        },
+        "start_node": {
+          "type": "string",
+          "description": "Entry node code (must be an intent node)"
+        },
+        "nodes": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/node"
+          },
+          "description": "Map of node code to node definition"
+        }
+      }
+    },
+    "extensions": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "Optional extension fields"
+    },
+    "fqdn": {
+      "type": "string",
+      "pattern": "^[a-z0-9_.]+::[A-Z][A-Z0-9_]*_V[0-9]+$",
+      "description": "Authoritative declared identity (namespace::code). Folder location has no authority over identity."
+    },
+    "supersedes": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_.]*::[A-Z][A-Z0-9_]*_V\\d+$",
+      "description": "FQDN of the artifact this one stands in place of. A declared relation between two exact identities, not a resolution rule: references stay exact, and a superseded artifact is unreachable rather than absent."
+    },
+    "superseded_by": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9_.]*::[A-Z][A-Z0-9_]*_V\\d+$"
+      },
+      "minItems": 1,
+      "description": "FQDNs of the artifacts that stand in this one's place. Several is the ordinary case \u2014 one act split in two retires one artifact and authors two. Its presence means the artifact is superseded: unreachable from the executable projections, retained in the canonical set as history."
+    },
+    "authority": {
+      "type": "string",
+      "description": "The authority from which this artifact's jurisdiction derives (CA-1, CA-2). Declared, never inferred from namespace, path or kind."
+    },
+    "concern": {
+      "type": "string",
+      "description": "The semantic subject this artifact is about (GO-11, ID-12). A concern classification confers no authority and constitutes no boundary."
+    }
+  },
+  "$defs": {
+    "node": {
+      "type": "object",
+      "required": [
+        "type"
+      ],
+      "additionalProperties": true,
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "IN",
+            "CC",
+            "EV",
+            "EXIT"
+          ],
+          "description": "Node type"
+        },
+        "code": {
+          "type": "string",
+          "description": "Referenced artifact code"
+        },
+        "fqdn_id": {
+          "type": "string",
+          "description": "Fully-qualified artifact identifier"
+        },
+        "reason": {
+          "type": "string",
+          "enum": [
+            "EXITED",
+            "COMPLETED",
+            "FAILED",
+            "HALTED",
+            "DUPLICATE_NONCE"
+          ],
+          "description": "Exit reason (for EXIT nodes)"
+        },
+        "emit": {
+          "description": "The moments this terminal node announces, in the order they are announced. A single moment is a sequence of one, which is how every act announcing today is read. The order is normative: an account whose order varies between runs cannot be compared with another. No moment appears twice in one announcement.",
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "minItems": 1,
+              "uniqueItems": true
+            }
+          ]
+        },
+        "inputs": {
+          "type": "object",
+          "additionalProperties": true,
+          "description": "Input bindings using JSONPath expressions"
+        },
+        "next": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Transition map from result_status to next node"
+        }
+      }
+    }
+  }
+}

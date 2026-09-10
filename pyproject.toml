@@ -1,0 +1,48 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pgc-governance"
+version = "4.0.0"
+description = "PGC governance surface — the registry of governed artifacts and the capability implementations a sealed snapshot binds at execution"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "Apache-2.0"
+authors = [{ name = "Bhash Ganti", email = "bachipeachy@gmail.com" }]
+keywords = ["protocol-governed-computing", "governance", "authorization", "sdlc"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Developers",
+  "Programming Language :: Python :: 3",
+  "Topic :: Software Development :: Compilers",
+]
+dependencies = []
+
+[project.urls]
+Homepage = "https://omnibachi.org/"
+Repository = "https://github.com/protocol-governed-computing/software_governance"
+Standard = "https://doi.org/10.5281/zenodo.22150616"
+
+# The sealed snapshot binds capability implementations by fully qualified module
+# path — `capability_side_effects.implementation.CS_CLOCK_V0.runtime` and the
+# like. Those paths are recorded inside snapshots that are immutable and cited
+# by DOI, so the import names cannot be renamed or nested under a `pgc.`
+# prefix without breaking every snapshot already sealed. They are therefore
+# installed at top level, deliberately.
+# Neither top-level directory carries an __init__.py; they are namespace
+# packages, and they are shipped that way so the repository needs no change.
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["capability_transforms*", "capability_side_effects*"]
+# The nested registry/ trees are declarations, not implementation. Namespace discovery
+# finds them as packages, so they are excluded by name: a registry inside a wheel would
+# be the second governance surface this file's comment above disclaims.
+exclude = ["capability_transforms.registry*", "capability_side_effects.registry*"]
+namespaces = true
+
+# Scoped to the side-effect implementations, which read these three descriptors at
+# runtime. A bare "*" pattern here sweeps every found package and re-admits the
+# declarations the exclude above removes.
+[tool.setuptools.package-data]
+"capability_side_effects.implementation" = ["*/*.json"]

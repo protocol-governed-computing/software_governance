@@ -1,0 +1,124 @@
+# INVARIANT_FQDN_ONLY_REFERENCES_V0
+
+Architectural Invariant
+
+## Machine
+
+```yaml
+fqdn: artifact::INVARIANT_FQDN_ONLY_REFERENCES_V0
+artifact_kind: INVARIANT
+version: V0
+governed_by: governance::CONSTITUTION_INVARIANTS_V0
+authority: pgc.platform
+concern: artifact
+core:
+  enforcement_stage:
+  - compiler_assertion
+  violation_response: FAIL_IMMEDIATELY
+assert_projection:
+  applies_to_kinds:
+  - AC
+  - CC
+  - CONSTITUTION
+  - CS
+  - CT
+  - EV
+  - IN
+  - INVARIANT
+  - RB
+  - SCHEMA
+  - STRUCTURE
+  - SURFACE
+  - TE
+  - TI
+  - VOCAB
+  - WF
+```
+
+## Summary
+
+All artifacts must reference other artifacts using fully qualified domain names (FQDN) in the format `layer::artifact_code`. Short names (bare artifact_code) are forbidden.
+
+## What this realizes
+For all artifact types:
+1. References to CT must use: `transforms::CT_*_V0`
+2. References to CS must use: `side_effects::CS_*_V0`
+3. References to CC must use: `governance::CC_*_V0`
+4. References to WF must use: `governance::WF_*_V0`
+5. References to VOCAB must use: `governance::VOCAB_*_V0`
+6. References to STRUCTURE must use: `governance::STRUCTURE_*_V0`
+7. NO bare artifact codes (e.g., `CT_HASH_V0` without layer prefix)
+
+## Where it applies
+- **Artifact Types**: ALL
+- **Validation Phase**: Phase 5 (ASSERT)
+- **Enforcement**: MANDATORY (build fails on violation)
+
+## Examples
+
+### ✅ VALID
+
+**CC Pipeline:**
+```yaml
+pipeline:
+  - step: hash_data
+    transform: transforms::CT_HASH_DATA_V0  # ✅ FQDN
+```
+
+**WF Reference:**
+```yaml
+structure: registry::STRUCTURE_BUILD_CONFIG_V0  # ✅ FQDN
+runtime_binding: registry::RB_BUILD_PLATFORM_V0  # ✅ FQDN
+```
+
+**CT governed_by:**
+```yaml
+governed_by:
+  - registry::CC_HASH_DATA_V0  # ✅ FQDN
+```
+
+### ❌ INVALID
+
+**Short name:**
+```yaml
+pipeline:
+  - step: hash_data
+    transform: CT_HASH_DATA_V0  # ❌ No layer prefix
+```
+
+**Partial FQDN:**
+```yaml
+structure: STRUCTURE_BUILD_CONFIG_V0  # ❌ Missing layer
+```
+
+## Rationale
+
+FQDN-only references ensure:
+- Unambiguous artifact resolution
+- No namespace collisions
+- Explicit layer boundaries
+- Traceable dependencies
+- No implicit search paths
+
+## Detection Strategy
+
+Scan all artifact Machine sections for:
+- `governed_by` field values without `::`
+- `transform` field values without `::`
+- `structure` field values without `::`
+- `runtime_binding` field values without `::`
+- Any artifact_code reference pattern without layer prefix
+
+## Related Artifacts
+
+- `structure::STRUCTURE_FQDN_TREE_V0` - Defines FQDN format
+- `structure::STRUCTURE_IDENTITY_V0` - Defines FQDN composition and reference fields
+
+---
+
+## What this realizes
+```yaml
+core:
+  rule: All cross-artifact references must use fully qualified domain names in format layer::artifact_code
+  summary: All artifact references must use FQDN (layer::code), never short names
+```
