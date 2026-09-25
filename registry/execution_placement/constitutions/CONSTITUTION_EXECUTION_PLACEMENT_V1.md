@@ -36,6 +36,7 @@ that an arrangement nobody declared cannot be reached by an arrangement nobody n
 |---|---|---|---|
 | `LOCAL_SINGLE_NODE` | one process, one host | no | no |
 | `LOCAL_MULTI_WORKER` | several worker processes, one host | no | no |
+| `FEDERATED_NODE` | several separately addressable nodes, one authority | yes | yes |
 
 A mode not in this table is unauthorized. Authorizing one is an amendment to this constitution, not
 a configuration.
@@ -118,18 +119,49 @@ reached under the same closure, against the same sealed snapshot, and yields the
 would have reached alone. Placement that altered a determination would be an environment supplying
 governed behavior, which no mode may do.
 
+## §5a. What `FEDERATED_NODE` permits, and what it does not
+
+**Permits.** Several separately addressable nodes under one governance authority, work reaching a
+node from a coordinating party across a network, and a node executing a governed topology it did not
+itself receive from a caller.
+
+**Does not permit** — and this is the line the mode exists to hold — **more than one authority.**
+Federation here is placement and distribution. Nodes are where execution happens; they are not
+parties that determine anything. A node's refusal is the one authority refusing, reached on that
+node. Nothing about this mode constitutes an authority, and a realization that let a node determine
+under its own closure would have left what this authorizes.
+
+**Does not decide** how nodes are realized, how many machines carry them, how they are addressed, or
+what happens when one is unreachable. A deployment placing every node on one host and one spanning
+several both satisfy it. Unreachability already has a determination and it is to refuse.
+
+**Changes nothing about determination.** A determination reached on one node is reached under the
+same closure, against the same sealed snapshot, and yields the result it would have reached
+anywhere. What crosses between nodes is work and evidence, never authority.
+
+**The distinction from `LOCAL_MULTI_WORKER` is reachability, not count.** Several workers on one host
+are not addressable and cannot be reached from outside; several nodes are, which is why this mode
+and not that one is what an environment profile requiring addressable nodes can be met under.
+
 ## §6. Expansion path
 
 ```
 LOCAL_SINGLE_NODE
   → LOCAL_MULTI_WORKER          ← authorized here
-  → REMOTE_WORKER_POOL
-  → FEDERATED_NODE
+  → REMOTE_WORKER_POOL          ← not authorized; a pool is not a node group
+  → FEDERATED_NODE              ← authorized here
   → SILICON_HOSTED
 ```
 
 The axis extends additively. Each mode is authorized by amendment, and an unauthorized mode is
 unreachable rather than merely undocumented.
+
+`REMOTE_WORKER_POOL` is deliberately skipped rather than reached. A pool is a set of interchangeable
+executors reached through one address; a node group is a set of addressable participants with
+declared roles. The profile requiring this axis names roles — a boundary, a coordinator, workers —
+so the pool is not on the path to it. Skipping a step leaves that step unexercised, which is a cost
+worth stating: nothing here has been demonstrated against an arrangement where executors are
+anonymous.
 
 ## §7. Versioning
 
