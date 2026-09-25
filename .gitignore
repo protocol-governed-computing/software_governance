@@ -15,9 +15,15 @@ compiled/
 **/compiled/
 snapshot/
 
+# One surface now serves several compositions, and each build writes its own output root —
+# `snapshot/` for single-node placement, `snapshot_mw/` for multi-worker. They are derived from
+# the same declarations and differ only by what the build selected, so none of them is authored.
+snapshot_*/
+
 # Construction determination records — evidence about a build, not build output.
 # `3e` §3.2 makes evidence output only; nothing reads these.
 snapshot/determinations/
 **/snapshot/determinations/
+snapshot_*/determinations/
 build/
 dist/
