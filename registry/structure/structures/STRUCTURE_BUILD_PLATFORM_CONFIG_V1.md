@@ -63,6 +63,10 @@ core:
     layers and implementation-layer conformance are out of scope.
 
     '
+placement_mode: LOCAL_SINGLE_NODE
+scheduling_mode: SERIAL_SINGLE_WORKER
+security_domain: UNCLASSIFIED_LOCAL
+trust_mode: LOCAL_DEV_UNSIGNED
 artifact_discovery:
   search_layers:
   - GOVERNANCE
