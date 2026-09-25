@@ -21,6 +21,7 @@ assert_projection:
   allowed_capability_side_effects:
   - capability_side_effects::CS_APPENDONLY_JSONL_V0
   - capability_side_effects::CS_CLOCK_V0
+  - capability_side_effects::CS_EVIDENCE_EXPIRY_V0
   - capability_side_effects::CS_MUTABLE_JSON_V0
   - capability_side_effects::CS_REGISTRY_V0
   - capability_side_effects::CS_SNAPSHOT_QUERY_V0
