@@ -8,24 +8,13 @@ Entity-based storage resolution:
 - __pgs_store_entity__ injected per-operation by capability_pipeline from CC step store: field
 """
 
-import threading
 from typing import Any, Dict
 from pathlib import Path
 
 from capability_side_effects.implementation.CS_MUTABLE_JSON_V0.impl.backend import JsonFileBackend
 from capability_side_effects.implementation.CS_MUTABLE_JSON_V0.impl.utils import validate_key
 from capability_side_effects.implementation.CS_MUTABLE_JSON_V0.errors import InvalidKey, KeyNotFound
-
-# Per-file threading locks — serialize concurrent load+save cycles on the same path.
-_file_locks: dict[str, threading.Lock] = {}
-_file_locks_registry_lock = threading.Lock()
-
-
-def _get_file_lock(path: str) -> threading.Lock:
-    with _file_locks_registry_lock:
-        if path not in _file_locks:
-            _file_locks[path] = threading.Lock()
-        return _file_locks[path]
+from capability_side_effects.implementation.store_lock import store_lock
 
 
 class MutableJsonEngine:
@@ -113,10 +102,9 @@ class MutableJsonEngine:
     def write(self, payload: Dict[str, Any]) -> Dict[str, Any]:
         """Write key-value pair to entity-specific storage."""
         storage_path = self._resolve_storage_path(payload)
-        file_lock = _get_file_lock(str(storage_path))
         key = self._require_key(payload)
         value = payload.get("value")
-        with file_lock:
+        with store_lock(storage_path):
             backend = JsonFileBackend(str(storage_path))
             data = backend.load()
             data[key] = value
@@ -126,9 +114,8 @@ class MutableJsonEngine:
     def delete(self, payload: Dict[str, Any]) -> Dict[str, Any]:
         """Delete key from entity-specific storage."""
         storage_path = self._resolve_storage_path(payload)
-        file_lock = _get_file_lock(str(storage_path))
         key = self._require_key(payload)
-        with file_lock:
+        with store_lock(storage_path):
             backend = JsonFileBackend(str(storage_path))
             data = backend.load()
             if key not in data:
@@ -184,9 +171,8 @@ class MutableJsonEngine:
         Returns drained_count — number of keys that were actually present and removed.
         """
         storage_path = self._resolve_storage_path(payload)
-        file_lock = _get_file_lock(str(storage_path))
         keys = payload.get("keys") or []
-        with file_lock:
+        with store_lock(storage_path):
             backend = JsonFileBackend(str(storage_path))
             data = backend.load()
             drained_count = 0
@@ -200,7 +186,7 @@ class MutableJsonEngine:
     def update(self, payload: Dict[str, Any]) -> Dict[str, Any]:
         """Set named fields on the record at one key, leaving its other fields as they are.
 
-        Under a per-file lock: load → merge → save. The point counterpart of `update_where`.
+        Under the store lock: load → merge → save. The point counterpart of `update_where`.
         A caller changing part of a record it did not create needs neither `write`, which replaces
         the whole value and so destroys every field the caller did not supply, nor a filter, which
         addresses a set where the caller means one record.
@@ -217,11 +203,10 @@ class MutableJsonEngine:
             VIOLATION when no record is held at that key
         """
         storage_path = self._resolve_storage_path(payload)
-        file_lock = _get_file_lock(str(storage_path))
         key = self._require_key(payload)
         updates: Dict[str, Any] = payload.get("updates") or {}
 
-        with file_lock:
+        with store_lock(storage_path):
             backend = JsonFileBackend(str(storage_path))
             data = backend.load()
 
@@ -244,8 +229,8 @@ class MutableJsonEngine:
         """
         Atomically update all records matching ALL filter conditions.
 
-        Under a per-file lock: load → filter → apply updates → save.
-        Concurrent callers on the same file are serialized — no interleaving.
+        Under the store lock: load → filter → apply updates → save.
+        Concurrent callers on the same store are serialized, on any host — no interleaving.
 
         Args:
             filter:  {field: value, ...}  — ALL must match (AND semantics)
@@ -256,12 +241,11 @@ class MutableJsonEngine:
             VIOLATION + matched_keys=[] + updated_count=0  when no record matched
         """
         storage_path = self._resolve_storage_path(payload)
-        file_lock = _get_file_lock(str(storage_path))
 
         filter_conditions: Dict[str, Any] = payload.get("filter") or {}
         updates: Dict[str, Any] = payload.get("updates") or {}
 
-        with file_lock:
+        with store_lock(storage_path):
             backend = JsonFileBackend(str(storage_path))
             data = backend.load()
 

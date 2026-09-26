@@ -13,6 +13,8 @@ from datetime import datetime
 from pathlib import Path
 from typing import Any, Dict
 
+from capability_side_effects.implementation.store_lock import store_lock
+
 
 class AppendOnlyJsonlEngine:
     """
@@ -70,9 +72,16 @@ class AppendOnlyJsonlEngine:
         return Path(self._module_data_root) / subpath
 
     def append(self, payload: Dict[str, Any]) -> Dict[str, Any]:
-        """Append a record to the log."""
-        path = self._resolve_storage_path(payload)
+        """Append a record to the log.
 
+        The sequence number is the count of records already held, so counting and appending happen
+        under the store lock: no two appends take the same number, and none interleave.
+        """
+        path = self._resolve_storage_path(payload)
+        with store_lock(path):
+            return self._append_locked(path, payload)
+
+    def _append_locked(self, path: Path, payload: Dict[str, Any]) -> Dict[str, Any]:
         sequence_counter = 0
         if path.exists():
             with open(path) as f:

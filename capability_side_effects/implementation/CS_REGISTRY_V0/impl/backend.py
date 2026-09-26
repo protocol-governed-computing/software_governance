@@ -18,6 +18,7 @@ from capability_side_effects.implementation.CS_REGISTRY_V0.errors import (
     RegistryKeyNotFound,
     StorageUnavailable,
 )
+from capability_side_effects.implementation.store_lock import store_lock
 
 
 class RegistryBackend:
@@ -103,8 +104,17 @@ class RegistryBackend:
         return None
 
     def register(self, key: str, target_cs: str | None = None, target_ref: str | None = None, value: dict | None = None, store_entity: Optional[str] = None) -> str:
-        """Register a new key. Returns the generated address."""
+        """Register a new key. Returns the generated address.
+
+        The check and the append happen under the store lock: two writers claiming one key see each
+        other, and exactly one claim is recorded.
+        """
         path = self._resolve_path(store_entity)
+        with store_lock(path):
+            return self._register_locked(path, key, target_cs, target_ref, value)
+
+    def _register_locked(self, path: Path, key: str, target_cs: str | None, target_ref: str | None,
+                         value: dict | None) -> str:
         entries = self._load_all(path)
         if key in entries:
             raise RegistryKeyExists(key)
@@ -145,8 +155,12 @@ class RegistryBackend:
         return len(self._load_all(path))
 
     def deregister(self, key_or_address: str, store_entity: Optional[str] = None) -> bool:
-        """Logical deregister via tombstone append."""
+        """Logical deregister via tombstone append, under the store lock."""
         path = self._resolve_path(store_entity)
+        with store_lock(path):
+            return self._deregister_locked(path, key_or_address)
+
+    def _deregister_locked(self, path: Path, key_or_address: str) -> bool:
         entries = self._load_all(path)
         entry = self._find_entry(key_or_address, entries)
         if not entry:
