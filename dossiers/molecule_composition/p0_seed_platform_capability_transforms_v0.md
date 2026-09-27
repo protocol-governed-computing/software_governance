@@ -16,7 +16,7 @@ author answered. Human input only — nothing here was added, decided or designe
 
 The capability transforms subdomain governs the units of computation a governed act performs: what a
 transform is, what it is composed of, how it runs, and whether its result is determined by its
-inputs. A transform is either an atom, one implementation with one result, or a molecule, a stated
+inputs, as each transform declares. A transform is either an atom, one implementation with one result, or a molecule, a stated
 sequence of steps in which a loop may run a composed body once per member of a stated collection. Its
 authority is to decide the shape of a transform and how that shape runs, and it decides nothing about
 what any domain computes or whether a computation should be one step or several.
@@ -26,7 +26,7 @@ what any domain computes or whether a computation should be one step or several.
 <!-- register:cr_type business_language -->
 | Subdomain | Classification (NEW_SUBDOMAIN, EXTEND_SUBDOMAIN, MODIFY, DEPRECATE) | Rationale |
 |-----------|----------------|-----------|
-| capability_transforms | MODIFY | The platform declares composed transforms and nothing can carry one from design to execution: design cannot state one, construction cannot render one, compilation accepts one it cannot vouch for, and execution cannot run one. No rule forbids a composed transform, so its model is stated for the first time rather than relaxed. |
+| capability_transforms | MODIFY | The platform declares composed transforms and nothing can carry one from design to execution: design cannot state one, construction cannot render one, compilation accepts one it cannot vouch for, and execution cannot run one. No rule forbids a composed transform, so its model is stated for the first time. The rule that every transform is pure becomes a declaration: determinism is required of a transform declared deterministic, and a transform may declare that it is not. |
 
 ## 2. Business Vocabulary
 
@@ -43,6 +43,9 @@ what any domain computes or whether a computation should be one step or several.
 | Carried value | A value a loop passes from one pass to the next. |
 | Emission | The one value a molecule yields as its result. |
 | Purity | Whether a transform's result is determined by its inputs, as declared. |
+| Deterministic transform | A transform declared to produce the same output from the same inputs, and held to it. |
+| Non-deterministic transform | A transform declared as one whose result is not determined by its inputs, such as a language model offering the words it might write next. |
+| Side effect | A change a computation makes outside its own result; the business of capability side effects, never of transforms. |
 | Evidence record | The observable trace that a step ran, naming its results and not their values. |
 | Design | The statement of what a change will build, from which construction renders artifacts. |
 | Construction | Rendering the artifacts a design determines, at full determinacy or not at all. |
@@ -53,6 +56,7 @@ what any domain computes or whether a computation should be one step or several.
 | Outcome |
 |---------|
 | A design can state a molecule's steps, including a loop and its body, and construction renders it at full determinacy. |
+| A transform can declare that its result is not determined by its inputs, and every transform not so declared is held to determinism. |
 | A molecule whose steps or loop body cannot be run is refused when the composition is built. |
 | A molecule's steps run in their declared order, including a composed body once per pass of a loop. |
 | A composed transform designed, constructed, compiled and run end to end shows the path holds. |
@@ -81,6 +85,14 @@ what any domain computes or whether a computation should be one step or several.
 | The instance belongs to a domain this platform does not require; it is evidence that the shape occurs. | HIGH |
 | The workflow constitution requires an act to be acyclic, and repetition belongs in molecules, not acts. | HIGH |
 | No constitution or invariant forbids a composed loop body. | HIGH |
+| A composed computation may include a step whose result is not determined by its inputs; a language model offering the words it might write next is one. | HIGH |
+| The constitution governing transforms says every transform is pure and that the same inputs always produce the same output. | HIGH |
+| The schema already lets a transform declare a different purity, and nothing reads the declaration, so a transform declared otherwise is unenforced rather than lawful. | HIGH |
+| A molecule's purity cannot be checked against its steps while every step is required to be the one kind. | HIGH |
+| The requirement that every transform is pure becomes a declaration: a transform declared deterministic must be, and a transform may instead declare that it is not. | HIGH |
+| No transform gains a side effect by declaring that it is not deterministic; side effects remain the business of capability side effects. | HIGH |
+| Treating a non-deterministic step as a side effect was rejected: a side effect runs as a step of a governed operation, never inside a transform, so it could not be repeated once per pass of a loop. | HIGH |
+| Whether any domain uses a non-deterministic transform is that domain's decision, declared where it is made. | HIGH |
 | Putting the whole repetition inside one atom was rejected: every decision inside it is invisible to governance. | HIGH |
 | Unrolling the repetition into the act was rejected: it makes the composition unreadable where it must be read. | HIGH |
 | A loop runs for every member of its collection, every time; a finished loop carries that fact forward and the remaining passes do nothing. | HIGH |
@@ -103,6 +115,7 @@ what any domain computes or whether a computation should be one step or several.
 | The design language cannot state a molecule's steps, and the renderer cannot write them. | The design half of the change. | Establish which registers describe a transform and what the renderer writes for one. |
 | The runtime cannot run a composed step. | The execution half of the change. | Confirm how the runtime dispatches a step and a loop pass, and what a composed body lacks. |
 | Nothing reads a transform's declared purity. | Decides whether checking purity changes the behaviour of anything that exists. | Establish every reader of a transform's purity. |
+| The constitution governing transforms requires every transform to be pure and deterministic, and nothing enforces determinism. | Decides whether this relaxes an enforced rule or replaces an unenforced one with a declaration. | Establish what the constitution requires of every transform and what checks each requirement. |
 | A repeated computation exists that hides its decisions inside one atom. | Establishes that the cost is already being paid. | Confirm the instance and where its repetition lives. |
 
 ## 6. Assumptions
@@ -120,6 +133,8 @@ what any domain computes or whether a computation should be one step or several.
 | A loop runs for every member of its stated collection; its length never depends on the data it computes. | Business policy |
 | No molecule contains itself, directly or through others. | Business policy |
 | A molecule declared pure has no step that is not. | Business policy |
+| A transform declared deterministic produces the same output from the same inputs. | Business policy |
+| No transform has side effects, whatever its declared purity. | Business policy |
 | Each step a molecule runs leaves an evidence record naming its results and not their values. | Business policy |
 | Amending the runtime without the design and construction halves is not an acceptable partial change. | Business policy |
 | The end-to-end evidence comes from the platform's own conformance evidence, not from the domain that found the gap. | Business policy |
@@ -134,6 +149,8 @@ what any domain computes or whether a computation should be one step or several.
 | A loop runs its body exactly once per member of its stated collection. |
 | No molecule contains itself. |
 | A molecule declared pure contains only pure steps. |
+| Every transform declares whether it is deterministic. |
+| No transform has side effects. |
 | Every step a molecule runs leaves one evidence record. |
 
 ## 9. Lifecycle States
@@ -164,6 +181,7 @@ what any domain computes or whether a computation should be one step or several.
 | Whether a computation is one atom or several steps | The design that states it |
 | How a design states a molecule | The design language |
 | What counts as evidence that a step ran | The platform |
+| Whether a transform is deterministic | The design that declares it |
 
 ## 12. Out of Scope
 
@@ -173,6 +191,7 @@ what any domain computes or whether a computation should be one step or several.
 | What any domain composes | Each domain states its own molecules in its own change. |
 | Whether a computation should be one atom or several steps | That is each design's judgement. |
 | The shape of an act | Acts stay acyclic; repetition lives in molecules. |
+| Whether any domain uses a non-deterministic transform | Each domain decides, and declares it where it is made. |
 | A loop that stops early | Rejected by the business author: a loop's length never depends on the data it computes. |
 
 ## 13. Governance Scope
@@ -203,7 +222,9 @@ what any domain computes or whether a computation should be one step or several.
 | A molecule that contains itself is refused when the composition is built. |
 | A molecule declared pure with a step that is not pure is refused when the composition is built. |
 | Each step a molecule runs leaves one evidence record naming its results and not their values. |
-| Every transform that ran before this change runs as it did. |
+| A transform declared non-deterministic is admitted, and its declaration is visible to anyone reading the composition. |
+| A molecule containing a non-deterministic step, and declared so, is admitted and runs. |
+| Every transform that ran before this change runs as it did, and each is declared deterministic. |
 | The end-to-end evidence is part of the platform's own conformance evidence. |
 
 ## 16. Identity and Sameness

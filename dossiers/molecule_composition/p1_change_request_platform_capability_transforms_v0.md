@@ -16,7 +16,7 @@ does not.
 <!-- register:cr_type business_language -->
 | Subdomain | Classification (NEW_SUBDOMAIN, EXTEND_SUBDOMAIN, MODIFY, DEPRECATE) | Rationale | Source Finding |
 |---------|-------------------------------------------------------------------|---------|--------------|
-| capability_transforms | MODIFY | The platform declares composed transforms and nothing can carry one from design to execution: design cannot state one, construction cannot render one, compilation accepts one it cannot vouch for, and execution cannot run one. No rule forbids a composed transform, so its model is stated for the first time rather than relaxed. | CR seed §1 CR Type #1 |
+| capability_transforms | MODIFY | The platform declares composed transforms and nothing can carry one from design to execution: design cannot state one, construction cannot render one, compilation accepts one it cannot vouch for, and execution cannot run one. No rule forbids a composed transform, so its model is stated for the first time. The rule that every transform is pure becomes a declaration: determinism is required of a transform declared deterministic, and a transform may declare that it is not. | CR seed §1 CR Type #1 |
 
 ---
 
@@ -35,9 +35,12 @@ does not.
 | Carried value | A value a loop passes from one pass to the next. | CR seed §2 Business Vocabulary #8 |
 | Emission | The one value a molecule yields as its result. | CR seed §2 Business Vocabulary #9 |
 | Purity | Whether a transform's result is determined by its inputs, as declared. | CR seed §2 Business Vocabulary #10 |
-| Evidence record | The observable trace that a step ran, naming its results and not their values. | CR seed §2 Business Vocabulary #11 |
-| Design | The statement of what a change will build, from which construction renders artifacts. | CR seed §2 Business Vocabulary #12 |
-| Construction | Rendering the artifacts a design determines, at full determinacy or not at all. | CR seed §2 Business Vocabulary #13 |
+| Deterministic transform | A transform declared to produce the same output from the same inputs, and held to it. | CR seed §2 Business Vocabulary #11 |
+| Non-deterministic transform | A transform declared as one whose result is not determined by its inputs, such as a language model offering the words it might write next. | CR seed §2 Business Vocabulary #12 |
+| Side effect | A change a computation makes outside its own result; the business of capability side effects, never of transforms. | CR seed §2 Business Vocabulary #13 |
+| Evidence record | The observable trace that a step ran, naming its results and not their values. | CR seed §2 Business Vocabulary #14 |
+| Design | The statement of what a change will build, from which construction renders artifacts. | CR seed §2 Business Vocabulary #15 |
+| Construction | Rendering the artifacts a design determines, at full determinacy or not at all. | CR seed §2 Business Vocabulary #16 |
 
 ---
 
@@ -47,9 +50,10 @@ does not.
 | Outcome | Source Finding |
 |-------|--------------|
 | A design can state a molecule's steps, including a loop and its body, and construction renders it at full determinacy. | CR seed §3 Requested Outcomes #1 |
-| A molecule whose steps or loop body cannot be run is refused when the composition is built. | CR seed §3 Requested Outcomes #2 |
-| A molecule's steps run in their declared order, including a composed body once per pass of a loop. | CR seed §3 Requested Outcomes #3 |
-| A composed transform designed, constructed, compiled and run end to end shows the path holds. | CR seed §3 Requested Outcomes #4 |
+| A transform can declare that its result is not determined by its inputs, and every transform not so declared is held to determinism. | CR seed §3 Requested Outcomes #2 |
+| A molecule whose steps or loop body cannot be run is refused when the composition is built. | CR seed §3 Requested Outcomes #3 |
+| A molecule's steps run in their declared order, including a composed body once per pass of a loop. | CR seed §3 Requested Outcomes #4 |
+| A composed transform designed, constructed, compiled and run end to end shows the path holds. | CR seed §3 Requested Outcomes #5 |
 
 ---
 
@@ -77,15 +81,23 @@ does not.
 | The instance belongs to a domain this platform does not require; it is evidence that the shape occurs. | HIGH | CR seed §4 Known Facts — Business Truths #17 |
 | The workflow constitution requires an act to be acyclic, and repetition belongs in molecules, not acts. | HIGH | CR seed §4 Known Facts — Business Truths #18 |
 | No constitution or invariant forbids a composed loop body. | HIGH | CR seed §4 Known Facts — Business Truths #19 |
-| Putting the whole repetition inside one atom was rejected: every decision inside it is invisible to governance. | HIGH | CR seed §4 Known Facts — Business Truths #20 |
-| Unrolling the repetition into the act was rejected: it makes the composition unreadable where it must be read. | HIGH | CR seed §4 Known Facts — Business Truths #21 |
-| A loop runs for every member of its collection, every time; a finished loop carries that fact forward and the remaining passes do nothing. | HIGH | CR seed §4 Known Facts — Business Truths #22 |
-| Molecules may contain molecules to any depth, and a loop's body may contain a loop. | HIGH | CR seed §4 Known Facts — Business Truths #23 |
-| A molecule that contains itself, directly or through others, is refused when the composition is built. | HIGH | CR seed §4 Known Facts — Business Truths #24 |
-| A molecule's purity is declared, and a molecule declared pure is refused when any of its steps is not. | HIGH | CR seed §4 Known Facts — Business Truths #25 |
-| Each step a molecule runs leaves its own evidence record, naming its results and not their values. | HIGH | CR seed §4 Known Facts — Business Truths #26 |
-| A loop of many passes leaves a record per step per pass. | HIGH | CR seed §4 Known Facts — Business Truths #27 |
-| The evidence for this change must not come from the domain that found the gap. | HIGH | CR seed §4 Known Facts — Business Truths #28 |
+| A composed computation may include a step whose result is not determined by its inputs; a language model offering the words it might write next is one. | HIGH | CR seed §4 Known Facts — Business Truths #20 |
+| The constitution governing transforms says every transform is pure and that the same inputs always produce the same output. | HIGH | CR seed §4 Known Facts — Business Truths #21 |
+| The schema already lets a transform declare a different purity, and nothing reads the declaration, so a transform declared otherwise is unenforced rather than lawful. | HIGH | CR seed §4 Known Facts — Business Truths #22 |
+| A molecule's purity cannot be checked against its steps while every step is required to be the one kind. | HIGH | CR seed §4 Known Facts — Business Truths #23 |
+| The requirement that every transform is pure becomes a declaration: a transform declared deterministic must be, and a transform may instead declare that it is not. | HIGH | CR seed §4 Known Facts — Business Truths #24 |
+| No transform gains a side effect by declaring that it is not deterministic; side effects remain the business of capability side effects. | HIGH | CR seed §4 Known Facts — Business Truths #25 |
+| Treating a non-deterministic step as a side effect was rejected: a side effect runs as a step of a governed operation, never inside a transform, so it could not be repeated once per pass of a loop. | HIGH | CR seed §4 Known Facts — Business Truths #26 |
+| Whether any domain uses a non-deterministic transform is that domain's decision, declared where it is made. | HIGH | CR seed §4 Known Facts — Business Truths #27 |
+| Putting the whole repetition inside one atom was rejected: every decision inside it is invisible to governance. | HIGH | CR seed §4 Known Facts — Business Truths #28 |
+| Unrolling the repetition into the act was rejected: it makes the composition unreadable where it must be read. | HIGH | CR seed §4 Known Facts — Business Truths #29 |
+| A loop runs for every member of its collection, every time; a finished loop carries that fact forward and the remaining passes do nothing. | HIGH | CR seed §4 Known Facts — Business Truths #30 |
+| Molecules may contain molecules to any depth, and a loop's body may contain a loop. | HIGH | CR seed §4 Known Facts — Business Truths #31 |
+| A molecule that contains itself, directly or through others, is refused when the composition is built. | HIGH | CR seed §4 Known Facts — Business Truths #32 |
+| A molecule's purity is declared, and a molecule declared pure is refused when any of its steps is not. | HIGH | CR seed §4 Known Facts — Business Truths #33 |
+| Each step a molecule runs leaves its own evidence record, naming its results and not their values. | HIGH | CR seed §4 Known Facts — Business Truths #34 |
+| A loop of many passes leaves a record per step per pass. | HIGH | CR seed §4 Known Facts — Business Truths #35 |
+| The evidence for this change must not come from the domain that found the gap. | HIGH | CR seed §4 Known Facts — Business Truths #36 |
 
 ---
 
@@ -99,7 +111,8 @@ does not.
 | The design language cannot state a molecule's steps, and the renderer cannot write them. | The design half of the change. | Establish which registers describe a transform and what the renderer writes for one. | CR seed §5 Existing-System Beliefs — Requiring Verification #3 |
 | The runtime cannot run a composed step. | The execution half of the change. | Confirm how the runtime dispatches a step and a loop pass, and what a composed body lacks. | CR seed §5 Existing-System Beliefs — Requiring Verification #4 |
 | Nothing reads a transform's declared purity. | Decides whether checking purity changes the behaviour of anything that exists. | Establish every reader of a transform's purity. | CR seed §5 Existing-System Beliefs — Requiring Verification #5 |
-| A repeated computation exists that hides its decisions inside one atom. | Establishes that the cost is already being paid. | Confirm the instance and where its repetition lives. | CR seed §5 Existing-System Beliefs — Requiring Verification #6 |
+| The constitution governing transforms requires every transform to be pure and deterministic, and nothing enforces determinism. | Decides whether this relaxes an enforced rule or replaces an unenforced one with a declaration. | Establish what the constitution requires of every transform and what checks each requirement. | CR seed §5 Existing-System Beliefs — Requiring Verification #6 |
+| A repeated computation exists that hides its decisions inside one atom. | Establishes that the cost is already being paid. | Confirm the instance and where its repetition lives. | CR seed §5 Existing-System Beliefs — Requiring Verification #7 |
 
 ---
 
@@ -120,9 +133,11 @@ does not.
 | A loop runs for every member of its stated collection; its length never depends on the data it computes. | Business policy | CR seed §7 Constraints #2 |
 | No molecule contains itself, directly or through others. | Business policy | CR seed §7 Constraints #3 |
 | A molecule declared pure has no step that is not. | Business policy | CR seed §7 Constraints #4 |
-| Each step a molecule runs leaves an evidence record naming its results and not their values. | Business policy | CR seed §7 Constraints #5 |
-| Amending the runtime without the design and construction halves is not an acceptable partial change. | Business policy | CR seed §7 Constraints #6 |
-| The end-to-end evidence comes from the platform's own conformance evidence, not from the domain that found the gap. | Business policy | CR seed §7 Constraints #7 |
+| A transform declared deterministic produces the same output from the same inputs. | Business policy | CR seed §7 Constraints #5 |
+| No transform has side effects, whatever its declared purity. | Business policy | CR seed §7 Constraints #6 |
+| Each step a molecule runs leaves an evidence record naming its results and not their values. | Business policy | CR seed §7 Constraints #7 |
+| Amending the runtime without the design and construction halves is not an acceptable partial change. | Business policy | CR seed §7 Constraints #8 |
+| The end-to-end evidence comes from the platform's own conformance evidence, not from the domain that found the gap. | Business policy | CR seed §7 Constraints #9 |
 
 ---
 
@@ -136,7 +151,9 @@ does not.
 | A loop runs its body exactly once per member of its stated collection. | CR seed §8 Business Invariants #3 |
 | No molecule contains itself. | CR seed §8 Business Invariants #4 |
 | A molecule declared pure contains only pure steps. | CR seed §8 Business Invariants #5 |
-| Every step a molecule runs leaves one evidence record. | CR seed §8 Business Invariants #6 |
+| Every transform declares whether it is deterministic. | CR seed §8 Business Invariants #6 |
+| No transform has side effects. | CR seed §8 Business Invariants #7 |
+| Every step a molecule runs leaves one evidence record. | CR seed §8 Business Invariants #8 |
 
 ---
 
@@ -172,6 +189,7 @@ does not.
 | Whether a computation is one atom or several steps | The design that states it | CR seed §11 Authority Boundaries #3 |
 | How a design states a molecule | The design language | CR seed §11 Authority Boundaries #4 |
 | What counts as evidence that a step ran | The platform | CR seed §11 Authority Boundaries #5 |
+| Whether a transform is deterministic | The design that declares it | CR seed §11 Authority Boundaries #6 |
 
 ---
 
@@ -183,7 +201,8 @@ does not.
 | What any domain composes | Each domain states its own molecules in its own change. | CR seed §12 Out of Scope #1 |
 | Whether a computation should be one atom or several steps | That is each design's judgement. | CR seed §12 Out of Scope #2 |
 | The shape of an act | Acts stay acyclic; repetition lives in molecules. | CR seed §12 Out of Scope #3 |
-| A loop that stops early | Rejected by the business author: a loop's length never depends on the data it computes. | CR seed §12 Out of Scope #4 |
+| Whether any domain uses a non-deterministic transform | Each domain decides, and declares it where it is made. | CR seed §12 Out of Scope #4 |
+| A loop that stops early | Rejected by the business author: a loop's length never depends on the data it computes. | CR seed §12 Out of Scope #5 |
 
 ---
 
@@ -219,8 +238,10 @@ does not.
 | A molecule that contains itself is refused when the composition is built. | CR seed §15 Acceptance Criteria #6 |
 | A molecule declared pure with a step that is not pure is refused when the composition is built. | CR seed §15 Acceptance Criteria #7 |
 | Each step a molecule runs leaves one evidence record naming its results and not their values. | CR seed §15 Acceptance Criteria #8 |
-| Every transform that ran before this change runs as it did. | CR seed §15 Acceptance Criteria #9 |
-| The end-to-end evidence is part of the platform's own conformance evidence. | CR seed §15 Acceptance Criteria #10 |
+| A transform declared non-deterministic is admitted, and its declaration is visible to anyone reading the composition. | CR seed §15 Acceptance Criteria #9 |
+| A molecule containing a non-deterministic step, and declared so, is admitted and runs. | CR seed §15 Acceptance Criteria #10 |
+| Every transform that ran before this change runs as it did, and each is declared deterministic. | CR seed §15 Acceptance Criteria #11 |
+| The end-to-end evidence is part of the platform's own conformance evidence. | CR seed §15 Acceptance Criteria #12 |
 
 ---
 

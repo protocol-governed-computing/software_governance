@@ -47,7 +47,21 @@ That is a loop whose body is two declared steps. The domain's design reached the
 and could not. The instance belongs to a domain this platform does not require; it is evidence that
 the shape occurs, not the problem itself.
 
-**The limit is not a rule anyone wrote.** The workflow constitution requires an act to be acyclic, and
+**A molecule's decisions are not all of the same kind, and the platform can only say one of them.**
+A composed computation may include a step whose result is not determined by its inputs: a language
+model offering the words it might write next is one. The constitution governing transforms says every
+transform is pure and that the same inputs always produce the same output. The schema already lets a
+transform declare a different purity, and nothing reads the declaration, so a transform declared
+otherwise is unenforced rather than lawful. A molecule's purity cannot be checked against its steps
+while every step is required to be the one kind.
+
+The constitution's requirement is right for almost everything and wrong as a universal. What a reader
+needs is to see exactly where determinism ends, which requires a transform to be able to say that it
+is the place. So the requirement becomes a declaration: a transform declared deterministic must be,
+and a transform may instead declare that it is not. No transform gains a side effect by it; side
+effects remain the business of capability side effects.
+
+**The limit on composition is not a rule anyone wrote.** The workflow constitution requires an act to be acyclic, and
 that is correct: repetition does not belong in an act. The molecule is where the platform already
 placed it. No constitution or invariant forbids a composed loop body. The schema declares one, and the
 compiler emits one. What is missing is everything else.
@@ -57,6 +71,9 @@ Two ways of avoiding the problem were examined and rejected:
 - **Put the whole repetition inside one atom.** This is what the composition does today, and it is
   the defect: every decision inside the atom is invisible to governance, and an act that must show
   its decisions cannot.
+- **Treat a non-deterministic step as a side effect.** A side effect runs as a step of a governed
+  operation, never inside a transform, so a step repeated once per pass of a loop could not be one.
+  The computation would move back into a single place where its decisions cannot be seen.
 - **Unroll the repetition into the act.** An act bounded by a longest response of several hundred
   words would need several hundred copies of the same steps. The act stays acyclic, and the
   composition becomes unreadable in exactly the place it must be read.
@@ -65,6 +82,8 @@ This change shall:
 
 - let a design state a molecule's steps, including a loop and its body, so construction renders it at
   full determinacy;
+- let a transform declare that its result is not determined by its inputs, and hold every
+  transform not so declared to determinism;
 - refuse, when the composition is built, a molecule whose steps or loop body cannot be run;
 - run a molecule's steps in their declared order, including a composed body once per pass of a loop;
 - show, by a composed transform designed, constructed, compiled and run end to end, that the path
@@ -73,6 +92,8 @@ This change shall:
 ### What this change does not decide
 
 - **What any domain composes.** Each domain states its own molecules in its own change.
+- **Whether any domain uses a non-deterministic transform.** That is each domain's decision, declared
+  where it is made.
 - **Whether a computation should be one atom or several steps.** That is each design's judgement.
 - **Anything about an act's shape.** Acts stay acyclic. Repetition lives in molecules.
 
@@ -84,7 +105,7 @@ Four repositories, in dependency order. Recorded so the scope is visible before 
 
 | # | Repository | What changes |
 |---|---|---|
-| 1 | `software_governance` | States what a molecule is and how it runs, which no constitution currently says: its steps run in declared order, a loop runs its body once per member of the stated collection, and the composition refuses a molecule it cannot run. An invariant holds a composition to it. |
+| 1 | `software_governance` | A new version of the constitution governing transforms. It states what a molecule is and how it runs, which no constitution currently says: its steps run in declared order, a loop runs its body once per member of the stated collection, and the composition refuses a molecule it cannot run. It replaces "every transform is pure" with a declaration: determinism is required of a transform declared deterministic, a transform may declare that it is not, and no transform has side effects. Invariants hold a composition to both. |
 | 2 | `protocol_compiler` | Checks, when the composition is built, that every molecule's steps and every loop's body resolve to something the runtime can run, and refuses otherwise. |
 | 3 | `protocol_runtime` | Runs a molecule as a sequence of steps, both at the top of a transform and as a loop's body, carrying the loop's values between passes. |
 | 4 | `transformation` | A design register for a molecule's steps, and the renderer that writes them, so a design can state a molecule and construction renders it. |
