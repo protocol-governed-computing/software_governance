@@ -24,7 +24,7 @@ core:
     VOCABULARY: SCHEMA_VOCABULARY_V0.json
     SURFACE_CONTRACT: SCHEMA_SURFACE_CONTRACT_V0.json
     STRUCTURE: SCHEMA_STRUCTURE_V0.json
-    TEST_DATA: SCHEMA_TEST_DATA_V0.json
+    TEST_DATA: SCHEMA_TEST_DATA_V1.json
   # Every kind the composition carries, and what was decided about describing it. A kind absent from
   # the dispatch above was absent for three different reasons and one representation — nobody wrote a
   # description, one exists and nobody named it, or the kind needs none — so a reader could not tell a
