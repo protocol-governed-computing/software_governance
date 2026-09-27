@@ -58,7 +58,7 @@ as the reference implementation's build did.
 
 | Item | Content |
 |---|---|
-| `assembler/core.py` | Carry each domain's conformance result into the snapshot at a place of its own, beside and apart from `conformance/composition.json`, which does not move. |
+| `assembler/core.py` | Carry each domain's conformance result into the snapshot at a place of its own, beside and apart from `conformance/composition.json`, which does not move. Found already true in delivery: the assembler carries every compiled projection, so the result arrives at `transform_conformance/<domain>/` with no change. |
 | Tests | The result is carried for each domain; composition evidence is where it was. |
 
 ## 6. `transformation` — design and construction
@@ -99,6 +99,12 @@ every domain's transforms named unproven, none refused — until a domain's own 
    `book_library_mgmt` registry does not have. Recommended: the fixtures gain vectors, and the
    acceptance harness compares only what the delivered registry carries, reporting rendered vectors as
    *not yet delivered* rather than as a difference — the delivered domain gains them in its own change.
-4. **Whether a domain's result is part of the snapshot's identity.** Recommended: carried as evidence,
-   treated exactly as composition evidence is, and not folded into the composite hash — a result says
-   what a build found, and the composition's identity is what was declared.
+4. **Whether a domain's result is part of the snapshot's identity.** Recommended at Gate 1: carried as
+   evidence and kept out of the identity, as composition evidence is. **Amended during delivery:** the
+   result is part of the identity. The snapshot's identity covers every file it carries, and excludes
+   only what is written after sealing and names the snapshot — which a domain's result, written by the
+   domain's build before assembly, does not. In an admitted build the result follows from the
+   declarations alone, because a build with a failing case is never assembled, so including it adds no
+   instability; excluding it would be the carve-out the identity's totality refuses. The snapshot
+   therefore states what its domains proved, and the recommendation as first written misread which
+   hash was meant.
