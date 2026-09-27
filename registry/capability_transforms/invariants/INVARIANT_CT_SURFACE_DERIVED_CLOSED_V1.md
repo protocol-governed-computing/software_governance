@@ -1,11 +1,11 @@
-# INVARIANT_CT_SURFACE_DERIVED_CLOSED_V0
+# INVARIANT_CT_SURFACE_DERIVED_CLOSED_V1
 
 ## Machine
 
 ```yaml
-fqdn: capability_transforms::INVARIANT_CT_SURFACE_DERIVED_CLOSED_V0
+fqdn: capability_transforms::INVARIANT_CT_SURFACE_DERIVED_CLOSED_V1
 artifact_kind: INVARIANT
-version: V0
+version: V1
 governed_by: governance::CONSTITUTION_INVARIANTS_V0
 authority: pgc.platform
 concern: capability_transforms
@@ -48,10 +48,20 @@ form that does not name any domain.
 `declared == invoked`, evaluated within a domain, and neither side is a list anyone maintains:
 
 - **declared** — the transforms the domain's own registry carries
-- **invoked** — the transforms named by the pipeline steps of the domain's capability contracts
+- **invoked** — the transforms named by the pipeline steps of the domain's capability contracts, and
+  every transform a molecule among them runs, however deeply
 
 A list goes stale the moment a domain adds a transform. An equality does not, because both sides move
 together or the build refuses.
+
+## Change from V0
+
+V0 read the contracts' pipelines alone. That was complete for as long as no domain declared a
+molecule, and wrong for the first that did: a molecule's steps are transforms, reached through the
+molecule and never named by a contract, so a model's offer, the rules' choice and the pass that runs
+them were refused as unreached while every one of them runs on every response. V1 closes the invoked
+set over molecule steps — an atom by name, a nested molecule, and a loop's body. V0 is withdrawn
+rather than superseded, so nothing enforces the narrower reading.
 
 ## What it refuses
 

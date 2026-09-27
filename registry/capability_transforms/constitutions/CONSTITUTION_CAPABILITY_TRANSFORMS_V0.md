@@ -22,7 +22,7 @@ rules:
 - applies_to: CT
   enforced_by: capability_transforms::INVARIANT_CT_SURFACE_CLOSED_V1
 - applies_to: CT
-  enforced_by: capability_transforms::INVARIANT_CT_SURFACE_DERIVED_CLOSED_V0
+  enforced_by: capability_transforms::INVARIANT_CT_SURFACE_DERIVED_CLOSED_V1
 ```
 
 ---
