@@ -49,6 +49,8 @@ what any domain computes or whether a computation should be one step or several.
 | Evidence record | The observable trace that a step ran, naming its results and not their values. |
 | Design | The statement of what a change will build, from which construction renders artifacts. |
 | Construction | Rendering the artifacts a design determines, at full determinacy or not at all. |
+| Recorded outcome | A result a non-deterministic atom produced, kept as evidence when it was produced. |
+| Replay | Reproducing a past run from its sealed composition and inputs, using recorded outcomes in place of non-deterministic atoms. |
 
 ## 3. Requested Outcomes
 
@@ -60,6 +62,7 @@ what any domain computes or whether a computation should be one step or several.
 | A molecule whose steps or loop body cannot be run is refused when the composition is built. |
 | A molecule's steps run in their declared order, including a composed body once per pass of a loop. |
 | A composed transform designed, constructed, compiled and run end to end shows the path holds. |
+| Every result a non-deterministic atom produces is recorded, and a replay reproduces the run from the recorded results. |
 
 ## 4. Known Facts — Business Truths
 
@@ -102,6 +105,13 @@ what any domain computes or whether a computation should be one step or several.
 | Each step a molecule runs leaves its own evidence record, naming its results and not their values. | HIGH |
 | A loop of many passes leaves a record per step per pass. | HIGH |
 | The evidence for this change must not come from the domain that found the gap. | HIGH |
+| The standard states that the same governed state, proposal and closure determine the same result, and that replay reproduces it. | HIGH |
+| A step whose result varies breaks determinism and replay unless what it produced is kept. | HIGH |
+| Every result a non-deterministic atom produces is recorded as evidence when it is produced. | HIGH |
+| A replay uses the recorded result instead of running a non-deterministic atom again. | HIGH |
+| Determinism holds for the governed state, the proposal, the closure and the recorded outcomes together. | HIGH |
+| The platform already admits a value that differs every time it is asked, the clock, whose answer is recorded where it is used. | HIGH |
+| A non-deterministic atom's results are consumed by a deterministic step before anything routes on them: they may be offered, never decided. | HIGH |
 
 ## 5. Existing-System Beliefs — Requiring Verification
 
@@ -117,6 +127,8 @@ what any domain computes or whether a computation should be one step or several.
 | Nothing reads a transform's declared purity. | Decides whether checking purity changes the behaviour of anything that exists. | Establish every reader of a transform's purity. |
 | The constitution governing transforms requires every transform to be pure and deterministic, and nothing enforces determinism. | Decides whether this relaxes an enforced rule or replaces an unenforced one with a declaration. | Establish what the constitution requires of every transform and what checks each requirement. |
 | A repeated computation exists that hides its decisions inside one atom. | Establishes that the cost is already being paid. | Confirm the instance and where its repetition lives. |
+| The platform already admits a value not determined by its inputs, and records it where it is used. | A precedent decides whether recorded outcomes are a new principle or an existing one applied to transforms. | Establish how the composition admits and records the clock's answer. |
+| Nothing replays a run from recorded values today. | Decides whether replay from recorded outcomes extends an existing path or adds one. | Establish what replay the runtime and conformance evidence perform. |
 
 ## 6. Assumptions
 
@@ -138,6 +150,9 @@ what any domain computes or whether a computation should be one step or several.
 | Each step a molecule runs leaves an evidence record naming its results and not their values. | Business policy |
 | Amending the runtime without the design and construction halves is not an acceptable partial change. | Business policy |
 | The end-to-end evidence comes from the platform's own conformance evidence, not from the domain that found the gap. | Business policy |
+| Every result a non-deterministic atom produces is recorded when it is produced. | Business policy |
+| A replay never runs a non-deterministic atom; it uses the recorded result. | Business policy |
+| Nothing routes on a non-deterministic atom's result until a deterministic step has consumed it. | Business policy |
 
 ## 8. Business Invariants
 
@@ -152,6 +167,9 @@ what any domain computes or whether a computation should be one step or several.
 | Every transform declares whether it is deterministic. |
 | No transform has side effects. |
 | Every step a molecule runs leaves one evidence record. |
+| Every result a non-deterministic atom produced is recorded. |
+| A replay reproduces the same result from the same inputs and recorded outcomes. |
+| Nothing routes directly on a non-deterministic atom's result. |
 
 ## 9. Lifecycle States
 
@@ -226,6 +244,9 @@ what any domain computes or whether a computation should be one step or several.
 | A molecule containing a non-deterministic step, and declared so, is admitted and runs. |
 | Every transform that ran before this change runs as it did, and each is declared deterministic. |
 | The end-to-end evidence is part of the platform's own conformance evidence. |
+| Every result a non-deterministic atom produces in a run is recorded. |
+| Replaying that run reproduces the same result without running the non-deterministic atom. |
+| A composition in which something routes directly on a non-deterministic atom's result is refused when it is built. |
 
 ## 16. Identity and Sameness
 
@@ -250,6 +271,7 @@ what any domain computes or whether a computation should be one step or several.
 | Build a composition | A molecule's step or loop body cannot be run. | Every molecule in a composition can be run. |
 | Build a composition | A molecule contains itself, directly or through others. | Repetition with no stated bound. |
 | Build a composition | A molecule declared pure has a step that is not. | The declaration is what a reader relies on to see where determinism ends. |
+| Build a composition | Something routes directly on a non-deterministic atom's result. | Its results may be offered, never decided. |
 
 ## 19. Authority Deferrals
 

@@ -41,6 +41,8 @@ does not.
 | Evidence record | The observable trace that a step ran, naming its results and not their values. | CR seed §2 Business Vocabulary #14 |
 | Design | The statement of what a change will build, from which construction renders artifacts. | CR seed §2 Business Vocabulary #15 |
 | Construction | Rendering the artifacts a design determines, at full determinacy or not at all. | CR seed §2 Business Vocabulary #16 |
+| Recorded outcome | A result a non-deterministic atom produced, kept as evidence when it was produced. | CR seed §2 Business Vocabulary #17 |
+| Replay | Reproducing a past run from its sealed composition and inputs, using recorded outcomes in place of non-deterministic atoms. | CR seed §2 Business Vocabulary #18 |
 
 ---
 
@@ -54,6 +56,7 @@ does not.
 | A molecule whose steps or loop body cannot be run is refused when the composition is built. | CR seed §3 Requested Outcomes #3 |
 | A molecule's steps run in their declared order, including a composed body once per pass of a loop. | CR seed §3 Requested Outcomes #4 |
 | A composed transform designed, constructed, compiled and run end to end shows the path holds. | CR seed §3 Requested Outcomes #5 |
+| Every result a non-deterministic atom produces is recorded, and a replay reproduces the run from the recorded results. | CR seed §3 Requested Outcomes #6 |
 
 ---
 
@@ -98,6 +101,13 @@ does not.
 | Each step a molecule runs leaves its own evidence record, naming its results and not their values. | HIGH | CR seed §4 Known Facts — Business Truths #34 |
 | A loop of many passes leaves a record per step per pass. | HIGH | CR seed §4 Known Facts — Business Truths #35 |
 | The evidence for this change must not come from the domain that found the gap. | HIGH | CR seed §4 Known Facts — Business Truths #36 |
+| The standard states that the same governed state, proposal and closure determine the same result, and that replay reproduces it. | HIGH | CR seed §4 Known Facts — Business Truths #37 |
+| A step whose result varies breaks determinism and replay unless what it produced is kept. | HIGH | CR seed §4 Known Facts — Business Truths #38 |
+| Every result a non-deterministic atom produces is recorded as evidence when it is produced. | HIGH | CR seed §4 Known Facts — Business Truths #39 |
+| A replay uses the recorded result instead of running a non-deterministic atom again. | HIGH | CR seed §4 Known Facts — Business Truths #40 |
+| Determinism holds for the governed state, the proposal, the closure and the recorded outcomes together. | HIGH | CR seed §4 Known Facts — Business Truths #41 |
+| The platform already admits a value that differs every time it is asked, the clock, whose answer is recorded where it is used. | HIGH | CR seed §4 Known Facts — Business Truths #42 |
+| A non-deterministic atom's results are consumed by a deterministic step before anything routes on them: they may be offered, never decided. | HIGH | CR seed §4 Known Facts — Business Truths #43 |
 
 ---
 
@@ -113,6 +123,8 @@ does not.
 | Nothing reads a transform's declared purity. | Decides whether checking purity changes the behaviour of anything that exists. | Establish every reader of a transform's purity. | CR seed §5 Existing-System Beliefs — Requiring Verification #5 |
 | The constitution governing transforms requires every transform to be pure and deterministic, and nothing enforces determinism. | Decides whether this relaxes an enforced rule or replaces an unenforced one with a declaration. | Establish what the constitution requires of every transform and what checks each requirement. | CR seed §5 Existing-System Beliefs — Requiring Verification #6 |
 | A repeated computation exists that hides its decisions inside one atom. | Establishes that the cost is already being paid. | Confirm the instance and where its repetition lives. | CR seed §5 Existing-System Beliefs — Requiring Verification #7 |
+| The platform already admits a value not determined by its inputs, and records it where it is used. | A precedent decides whether recorded outcomes are a new principle or an existing one applied to transforms. | Establish how the composition admits and records the clock's answer. | CR seed §5 Existing-System Beliefs — Requiring Verification #8 |
+| Nothing replays a run from recorded values today. | Decides whether replay from recorded outcomes extends an existing path or adds one. | Establish what replay the runtime and conformance evidence perform. | CR seed §5 Existing-System Beliefs — Requiring Verification #9 |
 
 ---
 
@@ -138,6 +150,9 @@ does not.
 | Each step a molecule runs leaves an evidence record naming its results and not their values. | Business policy | CR seed §7 Constraints #7 |
 | Amending the runtime without the design and construction halves is not an acceptable partial change. | Business policy | CR seed §7 Constraints #8 |
 | The end-to-end evidence comes from the platform's own conformance evidence, not from the domain that found the gap. | Business policy | CR seed §7 Constraints #9 |
+| Every result a non-deterministic atom produces is recorded when it is produced. | Business policy | CR seed §7 Constraints #10 |
+| A replay never runs a non-deterministic atom; it uses the recorded result. | Business policy | CR seed §7 Constraints #11 |
+| Nothing routes on a non-deterministic atom's result until a deterministic step has consumed it. | Business policy | CR seed §7 Constraints #12 |
 
 ---
 
@@ -154,6 +169,9 @@ does not.
 | Every transform declares whether it is deterministic. | CR seed §8 Business Invariants #6 |
 | No transform has side effects. | CR seed §8 Business Invariants #7 |
 | Every step a molecule runs leaves one evidence record. | CR seed §8 Business Invariants #8 |
+| Every result a non-deterministic atom produced is recorded. | CR seed §8 Business Invariants #9 |
+| A replay reproduces the same result from the same inputs and recorded outcomes. | CR seed §8 Business Invariants #10 |
+| Nothing routes directly on a non-deterministic atom's result. | CR seed §8 Business Invariants #11 |
 
 ---
 
@@ -242,6 +260,9 @@ does not.
 | A molecule containing a non-deterministic step, and declared so, is admitted and runs. | CR seed §15 Acceptance Criteria #10 |
 | Every transform that ran before this change runs as it did, and each is declared deterministic. | CR seed §15 Acceptance Criteria #11 |
 | The end-to-end evidence is part of the platform's own conformance evidence. | CR seed §15 Acceptance Criteria #12 |
+| Every result a non-deterministic atom produces in a run is recorded. | CR seed §15 Acceptance Criteria #13 |
+| Replaying that run reproduces the same result without running the non-deterministic atom. | CR seed §15 Acceptance Criteria #14 |
+| A composition in which something routes directly on a non-deterministic atom's result is refused when it is built. | CR seed §15 Acceptance Criteria #15 |
 
 ---
 
@@ -272,6 +293,7 @@ does not.
 | Build a composition | A molecule's step or loop body cannot be run. | Every molecule in a composition can be run. | CR seed §18 Operation Refusals #1 |
 | Build a composition | A molecule contains itself, directly or through others. | Repetition with no stated bound. | CR seed §18 Operation Refusals #2 |
 | Build a composition | A molecule declared pure has a step that is not. | The declaration is what a reader relies on to see where determinism ends. | CR seed §18 Operation Refusals #3 |
+| Build a composition | Something routes directly on a non-deterministic atom's result. | Its results may be offered, never decided. | CR seed §18 Operation Refusals #4 |
 
 ---
 

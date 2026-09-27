@@ -78,6 +78,8 @@ build and run it. What was searched is recorded, not only what was found.
 | Nothing reads a transform's declared purity. | VERIFIED | No compiler, runtime or inspector source reads ct_purity. The renderer writes it and the compiler carries it into the declaration; nothing decides anything by it. | S1 system_beliefs #5 |
 | The constitution governing transforms requires every transform to be pure and deterministic, and nothing enforces determinism. | VERIFIED | capability_transforms::CONSTITUTION_CAPABILITY_TRANSFORMS_V0 states CT_PURITY: "CT MUST be a pure function; same inputs MUST always produce same outputs". Its enforcing invariant, capability_transforms::INVARIANT_ATOM_OUTPUT_PURITY_V0, is checked by an assertion that inspects an implementation for business outcomes raised rather than returned, and nothing else. | S1 system_beliefs #6 |
 | A repeated computation exists that hides its decisions inside one atom. | VERIFIED | workload::CT_PURE_COLLATZ_STEP_V0 computes a whole Collatz sequence for each input inside one atom. | S1 system_beliefs #7 |
+| The platform already admits a value not determined by its inputs, and records it where it is used. | VERIFIED | capability_side_effects::CS_CLOCK_V0 answers the current instant, differently every time; si.artifact.refs reports seven capability contracts in ai_governance and blockchain binding it, each writing the instant into the record it appends. It is admitted as a capability side effect, not as a transform. | S1 system_beliefs #8 |
+| Nothing replays a run from recorded values today. | VERIFIED | The compiler's evidence projection is described as a substrate for reconstructing a trace; no runtime or conformance source re-executes a run, from recorded values or otherwise. | S1 system_beliefs #9 |
 
 ---
 
@@ -109,6 +111,8 @@ build and run it. What was searched is recorded, not only what was found.
 | The runtime cannot run a composed step, at the top of a molecule or as a loop's body. | CRITICAL | No molecule runs. | OBSERVED | S2 belief_verification #4 |
 | No evidence is written for the steps inside a transform. | MAJOR | A decision made inside a molecule would be declared but not observable when it is made. | OBSERVED | S1 constraints #7 |
 | No conformance evidence exercises a molecule. | MAJOR | The path cannot be shown to hold, and the domain that found the gap must not supply the evidence. | OBSERVED | S1 constraints #9 |
+| Nothing records a non-deterministic transform's results, and nothing replays a run from recorded results. | CRITICAL | Declaring non-determinism without both would break the determinism and replay the standard requires. | OBSERVED | S2 belief_verification #9 |
+| Nothing refuses a composition in which something routes directly on a non-deterministic result. | MAJOR | Governance could reduce to recording whatever the non-deterministic step said. | OBSERVED | S1 constraints #12 |
 
 ---
 

@@ -27,6 +27,8 @@ transforms that already exist.
 | S2 gaps #7 | Evidence for a step inside a molecule is written by the runtime as the step runs, in the same form as a governed operation's step evidence. | The runtime extension carries it; no new evidence kind is declared. | INFERRED | HIGH | CLOSED | Carried forward to Stage 7: the runtime's evidence writer gains a record per molecule step. |
 | S2 gaps #8 | The end-to-end evidence is a composed transform with a loop whose body is itself a molecule, designed through the extended design language, constructed, compiled and run, as part of the platform's own conformance workloads. It uses no language model and belongs to no business domain. | The path is shown to hold by evidence independent of the domain that found the gap. | INFERRED | HIGH | CLOSED | Carried forward to Stage 7: its placement among the conformance workloads. |
 | S1 constraints #8 | The four halves land together: the governing rules, the compiler's checks, the runtime, and the design language with construction. | No partial state is delivered in which a molecule runs but cannot be designed, or can be designed but not run. | OBSERVED | HIGH | CLOSED | Stated by the business author at P0. |
+| S2 gaps #9 | The platform already admits a value that varies, the clock, and records it where it is used, so recording a non-deterministic atom's results applies an existing principle to transforms. Replay from recorded results is new: nothing re-executes a run today. The runtime records each result a non-deterministic atom produces, values included, as determining evidence, and a replay substitutes the recorded result for the atom. | Determinism holds for the governed state, proposal, closure and recorded outcomes together, as the standard requires. | OBSERVED | HIGH | CLOSED | capability_side_effects::CS_CLOCK_V0 is recorded where used by seven contracts; no source re-executes a run. |
+| S2 gaps #10 | A non-deterministic atom's results may be offered and never decided: the compiler refuses a composition in which anything routes on them before a deterministic step has consumed them. | Governance stays in the deterministic steps; the non-deterministic step only proposes. | INFERRED | HIGH | CLOSED | Carried forward to Stage 7: what counts as routing on a result, within a molecule and at the operation that runs it. |
 
 ---
 
@@ -43,6 +45,8 @@ transforms that already exist.
 | The constitution governing transforms requires every transform to be pure and deterministic, and nothing enforces determinism. | S2 belief_verification #6 | CONFIRMED | capability_transforms::INVARIANT_ATOM_OUTPUT_PURITY_V0 is checked for raised business outcomes only. |
 | A repeated computation exists that hides its decisions inside one atom. | S2 belief_verification #7 | CONFIRMED | workload::CT_PURE_COLLATZ_STEP_V0 computes a whole sequence inside one atom. |
 | The design language already anticipates a molecule by kind. | S2 architectural_observations #3 | CONFIRMED | Its implementation binding declares a kind of atom or molecule. |
+| The platform already admits a value not determined by its inputs, and records it where it is used. | S2 belief_verification #8 | CONFIRMED | capability_side_effects::CS_CLOCK_V0 is bound by seven contracts, each recording the instant. |
+| Nothing replays a run from recorded values today. | S2 belief_verification #9 | CONFIRMED | No runtime or conformance source re-executes a run. |
 
 ---
 
@@ -63,6 +67,7 @@ transforms that already exist.
 | The runtime's execution of transforms and its step evidence | Platform execution | EXTEND | Dispatches only single implementations and writes no evidence inside a transform. |
 | transformation::WF_P7_DESIGN_INTENT_ADMISSIBILITY_V0 and the renderer's transform builder | Design language | EXTEND | Anticipates a molecule by kind and cannot state or render its steps. |
 | A conformance workload exercising a molecule end to end | Conformance evidence | AUTHOR_NEW | No conformance evidence exercises a molecule. |
+| Recording a non-deterministic atom's results, and replaying a run from them | Platform execution | AUTHOR_NEW | Nothing records such results or re-executes a run. |
 
 ---
 
@@ -101,6 +106,8 @@ differently.
 | Write one evidence record per step a molecule runs, naming its results and not their values | EXTEND | The runtime already writes step evidence for governed operations. | One record per molecule was rejected at P0: a decision inside a molecule would not be observable when made. | S3 analysis_findings #7 |
 | State a molecule's steps, loop and emission in a design, and render them at full determinacy | EXTEND | The design language already anticipates a molecule by kind. | Hand-writing a molecule outside the design path was rejected: construction is the governed path. | S2 gaps #4 |
 | Show the path holds with a composed transform designed, constructed, compiled and run end to end | AUTHOR_NEW | No conformance evidence exercises a molecule, and the domain that found the gap must not supply it. | Using the domain's own molecule was rejected at P0. | S3 analysis_findings #8 |
+| Record every result a non-deterministic atom produces, and replay a run from the recorded results | AUTHOR_NEW | Declaring non-determinism must not break the determinism and replay the standard requires; the variation is observed once, recorded, and an input thereafter. | Leaving non-deterministic results unrecorded was rejected: the platform would contradict its own standard. Amending the standard was rejected: it is paused for validation, and the recorded outcome keeps the platform within it. | S3 analysis_findings #10 |
+| Refuse at build a composition in which anything routes on a non-deterministic atom's result before a deterministic step has consumed it | EXTEND | A non-deterministic step may propose and never decide. | Allowing it was rejected: governance would reduce to recording what the step said. | S3 analysis_findings #11 |
 
 ---
 
@@ -118,11 +125,11 @@ differently.
 <!-- register:saturation business_language=criterion -->
 | Criterion | Status (SATISFIED, NOT_SATISFIED) | Evidence |
 |-----------|--------|----------|
-| No unresolved CRITICAL gaps | SATISFIED | All six CRITICAL gaps carried from Stage 2 have an authoring decision: the molecule constitution, the non-deterministic atom constitution, placement and enforcement, the design language and construction, the compiler's checks, and the runtime. |
+| No unresolved CRITICAL gaps | SATISFIED | All seven CRITICAL gaps carried from Stage 2 have an authoring decision: the molecule constitution, the non-deterministic atom constitution, placement and enforcement, the design language and construction, the compiler's checks, the runtime, and recording and replay of non-deterministic results. |
 | No open analyst questions | SATISFIED | Stage 2 carried none. |
-| No dependency expansion in the last pass | SATISFIED | The dependency register closed at twelve entries — two existing, three reused, four extended, three authored — and re-reading the composition at this stage surfaced no further dependency. |
-| Verification pass complete, no OVERTURNED item unresolved | SATISFIED | Eight items re-verified against the composition, all CONFIRMED, none OVERTURNED. |
-| Every INFERRED finding promoted, accepted or carried forward with a reason | SATISFIED | Stage 2's two INFERRED concerns are re-grounded here as OBSERVED. Two findings raised here stay INFERRED and are carried forward to Stage 7: the runtime's evidence for molecule steps, and the placement of the conformance workload. |
+| No dependency expansion in the last pass | SATISFIED | The dependency register closed at thirteen entries — two existing, three reused, four extended, four authored — and re-reading the composition at this stage surfaced no further dependency. |
+| Verification pass complete, no OVERTURNED item unresolved | SATISFIED | Ten items re-verified against the composition, all CONFIRMED, none OVERTURNED. |
+| Every INFERRED finding promoted, accepted or carried forward with a reason | SATISFIED | Stage 2's two INFERRED concerns are re-grounded here as OBSERVED. Three findings raised here stay INFERRED and are carried forward to Stage 7: the runtime's evidence for molecule steps, the placement of the conformance workload, and what counts as routing on a non-deterministic result. |
 
 ---
 

@@ -77,6 +77,8 @@ the capability graph exactly as Stage 3 stated it.
 | Write one evidence record per step a molecule runs, naming its results and not their values | S3 authoring_decisions Write one evidence record per step a molecule runs, naming its results and not their values | MAJOR | GAP-06 | No evidence is written inside a transform. |
 | State a molecule's steps, loop and emission in a design, and render them at full determinacy | S3 authoring_decisions State a molecule's steps, loop and emission in a design, and render them at full determinacy | CRITICAL | GAP-07 | The design language anticipates a molecule by kind only. |
 | Show the path holds with a composed transform designed, constructed, compiled and run end to end | S3 authoring_decisions Show the path holds with a composed transform designed, constructed, compiled and run end to end | MAJOR | GAP-08 | No conformance evidence exercises a molecule. |
+| Record every result a non-deterministic atom produces, and replay a run from the recorded results | S3 authoring_decisions Record every result a non-deterministic atom produces, and replay a run from the recorded results | CRITICAL | GAP-09 | Nothing records such results or re-executes a run. |
+| Refuse at build a composition in which anything routes on a non-deterministic atom's result before a deterministic step has consumed it | S3 authoring_decisions Refuse at build a composition in which anything routes on a non-deterministic atom's result before a deterministic step has consumed it | MAJOR | GAP-10 | Nothing refuses routing on a non-deterministic result. |
 
 ---
 
@@ -92,6 +94,7 @@ the capability graph exactly as Stage 3 stated it.
 | capability_transforms | compiler | build check | GAP | S3 dependency_discoveries #9 |
 | capability_transforms | execution | execution | GAP | S3 dependency_discoveries #10 |
 | capability_transforms | design | design language | GAP | S3 dependency_discoveries #11 |
+| capability_transforms | execution | recording and replay | GAP | S3 dependency_discoveries #13 |
 
 The three gaps are carried by this change, in the order the business author stated: the rules first,
 then the compiler, the runtime and the design language, landing together.
@@ -117,6 +120,9 @@ then the compiler, the runtime and the design language, landing together.
 | 12 | The end-to-end evidence comes from the platform's own conformance evidence. | S1 constraints #9 | business policy |
 | 13 | No existing transform changes; the platform grows by adding. | S3 analysis_findings #1 | governance rule |
 | 14 | Each transform is governed by exactly one of the three constitutions, decided by its kind and declared purity. | S3 authoring_decisions Place every transform under exactly one of the three constitutions by its kind and declared purity | governance rule |
+| 15 | Every result a non-deterministic atom produced is recorded. | S1 business_invariants #9 | invariant |
+| 16 | A replay reproduces the same result from the same inputs and recorded outcomes, and never runs a non-deterministic atom. | S1 business_invariants #10 | invariant |
+| 17 | Nothing routes directly on a non-deterministic atom's result. | S1 business_invariants #11 | invariant |
 
 ---
 
@@ -133,6 +139,8 @@ then the compiler, the runtime and the design language, landing together.
 | GAP-06 | S3 authoring_decisions Write one evidence record per step a molecule runs, naming its results and not their values | Write one evidence record per step a molecule runs, naming its results and not their values | execution | EXTEND |
 | GAP-07 | S3 authoring_decisions State a molecule's steps, loop and emission in a design, and render them at full determinacy | State a molecule's steps, loop and emission in a design, and render them at full determinacy | design | EXTEND |
 | GAP-08 | S3 authoring_decisions Show the path holds with a composed transform designed, constructed, compiled and run end to end | Show the path holds with a composed transform designed, constructed, compiled and run end to end | workload | NEW |
+| GAP-09 | S3 authoring_decisions Record every result a non-deterministic atom produces, and replay a run from the recorded results | Record every result a non-deterministic atom produces, and replay a run from the recorded results | execution | NEW |
+| GAP-10 | S3 authoring_decisions Refuse at build a composition in which anything routes on a non-deterministic atom's result before a deterministic step has consumed it | Refuse at build a composition in which anything routes on a non-deterministic atom's result before a deterministic step has consumed it | compiler | EXTEND |
 
 ---
 
@@ -150,6 +158,8 @@ then the compiler, the runtime and the design language, landing together.
 | 7 | Every step a molecule runs leaves one evidence record naming its results, in the same form as a governed operation's steps. | S3 analysis_findings #7 | A decision inside a molecule is observable when made, with no new evidence kind. | Volume grows with passes; compared values do not. |
 | 8 | Rules, compiler, runtime and design language land together. | S3 analysis_findings #9 | No partial state in which a molecule runs but cannot be designed, or the reverse. | One delivery. |
 | 9 | The end-to-end evidence is a platform conformance workload with a loop whose body is itself a molecule, using no language model. | S3 analysis_findings #8 | Evidence independent of the domain that found the gap. | Its placement is decided at Stage 7. |
+| 10 | Determinism holds relative to recorded outcomes: every non-deterministic result is recorded when produced, and replay substitutes it. | S3 analysis_findings #10 | The standard requires determinism and replay; the clock already follows this principle. Agreed by the business owner. | The runtime records values, not only result names, for non-deterministic atoms. |
+| 11 | A non-deterministic atom's results may be offered, never decided. | S3 analysis_findings #11 | Governance stays in the deterministic steps. | The compiler refuses routing on such a result before a deterministic step has consumed it. |
 
 ---
 
@@ -167,6 +177,8 @@ then the compiler, the runtime and the design language, landing together.
 | Write one evidence record per step a molecule runs, naming its results and not their values | GAP-06 |
 | State a molecule's steps, loop and emission in a design, and render them at full determinacy | GAP-07 |
 | Show the path holds with a composed transform designed, constructed, compiled and run end to end | GAP-08 |
+| Record every result a non-deterministic atom produces, and replay a run from the recorded results | GAP-09 |
+| Refuse at build a composition in which anything routes on a non-deterministic atom's result before a deterministic step has consumed it | GAP-10 |
 
 ### Deferred — Future CR
 | Capability | Deferred Reason |

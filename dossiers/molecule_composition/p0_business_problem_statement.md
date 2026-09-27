@@ -61,6 +61,20 @@ is the place. So the requirement becomes a declaration: a transform declared det
 and a transform may instead declare that it is not. No transform gains a side effect by it; side
 effects remain the business of capability side effects.
 
+**Declaring non-determinism must not break the platform's determinism.** The standard states that
+the same governed state, proposal and closure determine the same result, and that replaying a sealed
+composition reproduces it. A step whose result varies breaks both, unless what it produced is kept.
+So every result a non-deterministic atom produces is recorded as evidence when it is produced, and a
+replay uses the recorded result instead of running the atom again. Determinism then holds for the
+governed state, the proposal, the closure and the recorded outcomes together: the variation is
+observed once, recorded, and treated as an input thereafter. The platform already admits a value of
+this kind — the clock, which answers differently every time it is asked and whose answer is recorded
+where it is used.
+
+And the variation must stay an input. A non-deterministic atom's results are consumed by a
+deterministic step before anything routes on them: they may be offered, never decided. Otherwise
+governance would reduce to recording whatever the atom said.
+
 **The limit on composition is not a rule anyone wrote.** The workflow constitution requires an act to be acyclic, and
 that is correct: repetition does not belong in an act. The molecule is where the platform already
 placed it. No constitution or invariant forbids a composed loop body. The schema declares one, and the
@@ -84,6 +98,10 @@ This change shall:
   full determinacy;
 - let a transform declare that its result is not determined by its inputs, and hold every
   transform not so declared to determinism;
+- record every result a non-deterministic atom produces, and replay a composition from the
+  recorded results rather than by running the atom again;
+- require that a non-deterministic atom's results pass through a deterministic step before anything
+  routes on them;
 - refuse, when the composition is built, a molecule whose steps or loop body cannot be run;
 - run a molecule's steps in their declared order, including a composed body once per pass of a loop;
 - show, by a composed transform designed, constructed, compiled and run end to end, that the path
@@ -107,7 +125,7 @@ Four repositories, in dependency order. Recorded so the scope is visible before 
 |---|---|---|
 | 1 | `software_governance` | A new version of the constitution governing transforms. It states what a molecule is and how it runs, which no constitution currently says: its steps run in declared order, a loop runs its body once per member of the stated collection, and the composition refuses a molecule it cannot run. It replaces "every transform is pure" with a declaration: determinism is required of a transform declared deterministic, a transform may declare that it is not, and no transform has side effects. Invariants hold a composition to both. |
 | 2 | `protocol_compiler` | Checks, when the composition is built, that every molecule's steps and every loop's body resolve to something the runtime can run, and refuses otherwise. |
-| 3 | `protocol_runtime` | Runs a molecule as a sequence of steps, both at the top of a transform and as a loop's body, carrying the loop's values between passes. |
+| 3 | `protocol_runtime` | Runs a molecule as a sequence of steps, both at the top of a transform and as a loop's body, carrying the loop's values between passes. Records every result a non-deterministic atom produces, and replays from those records. |
 | 4 | `transformation` | A design register for a molecule's steps, and the renderer that writes them, so a design can state a molecule and construction renders it. |
 
 **Amending the runtime alone would be a defect, not a partial fix.** A molecule could then run while no
