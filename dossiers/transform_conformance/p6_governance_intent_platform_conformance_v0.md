@@ -139,9 +139,11 @@ every build, and the design language's statement of vectors and refusal of a tra
 
 Gate 2 has no subject here: no mandate is drafted, so there is none to lock.
 
-**Status: OPEN.** Awaiting the business author's approval, as a body, against the composition
+**Status: CLOSED.** Approved by the business author, as a body, against the composition
 `54412f835e6d…` — the same composition every grounded register of this dossier was re-read against
-and attested to in `baseline.json`.
+and attested to in `baseline.json`. What approval authorizes is the authoring described above, and
+nothing else: a clause that appears in the governance surface beyond what this dossier argues for is
+an ungoverned change, and the dossier is what that statement points at.
 
 ---
 
@@ -150,4 +152,4 @@ and attested to in `baseline.json`.
 | Stage | Output | Status |
 |-------|--------|--------|
 | Stage 5 — Business Intent | Purpose, scope, invariants, actions | COMPLETE |
-| Stage 6 — Governance Intent | This document | COMPLETE — PENDING GATE 1 |
+| Stage 6 — Governance Intent | This document | COMPLETE — APPROVED |
