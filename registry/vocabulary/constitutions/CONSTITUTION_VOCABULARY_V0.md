@@ -64,7 +64,7 @@ This constitution does not govern:
 | Workflow | WF_ | WF_CREATE_WALLET_V0 | Domain constitution |
 | Intent | IN_ | IN_WALLET_CREATED_V0 | Domain constitution |
 | Capability Contract | CC_ | CC_WALLET_CREATE_V0 | Domain constitution |
-| Capability Transform | CT_ | CT_PURE_PROJECT_V0 | CONSTITUTION_CAPABILITY_TRANSFORMS_V0 |
+| Capability Transform | CT_ | CT_PURE_PROJECT_V0 | CONSTITUTION_DETERMINISTIC_ATOMS_V0 |
 | Capability Side-Effect | CS_ | CS_MUTABLE_JSON_V0 | CONSTITUTION_CAPABILITY_SIDE_EFFECTS_V0 |
 | Event | EV_ | EV_WALLET_CREATED_V0 | Domain constitution |
 | Actor | AC_ | AC_WALLET_HOLDER_V0 | Domain constitution |

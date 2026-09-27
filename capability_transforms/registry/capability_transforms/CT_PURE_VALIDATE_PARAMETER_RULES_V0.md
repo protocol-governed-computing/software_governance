@@ -66,7 +66,7 @@ unreachable.
 fqdn: capability_transforms::CT_PURE_VALIDATE_PARAMETER_RULES_V0
 artifact_kind: CAPABILITY_TRANSFORM
 version: v0
-governed_by: capability_transforms::CONSTITUTION_CAPABILITY_TRANSFORMS_V0
+governed_by: capability_transforms::CONSTITUTION_DETERMINISTIC_ATOMS_V0
 authority: pgc.platform
 concern: capability_transforms
 core:

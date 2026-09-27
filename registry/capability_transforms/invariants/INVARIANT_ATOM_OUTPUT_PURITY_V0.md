@@ -104,7 +104,7 @@ Scan CT atom code for:
 
 ## Related Artifacts
 
-- `capability_transforms::CONSTITUTION_CAPABILITY_TRANSFORMS_V0` - Defines pure transform behavior
+- `capability_transforms::CONSTITUTION_DETERMINISTIC_ATOMS_V0` - Defines pure transform behavior
 - `governance::CC_*_V0` - Declares required output structure
 
 ---

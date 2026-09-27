@@ -99,7 +99,7 @@ Scan execution layer code for:
 
 ## Related Artifacts
 
-- `capability_transforms::CONSTITUTION_CAPABILITY_TRANSFORMS_V0` - Defines pure atom behavior
+- `capability_transforms::CONSTITUTION_DETERMINISTIC_ATOMS_V0` - Defines pure atom behavior
 - `runtime_binding::CONSTITUTION_RUNTIME_BINDING_V0` - Defines executor boundaries
 
 ---

@@ -494,7 +494,7 @@ governance_surface_map:
       authority: constitution
     coverage:
       status: implemented
-  - artifact_code: CONSTITUTION_CAPABILITY_TRANSFORMS_V0
+  - artifact_code: CONSTITUTION_DETERMINISTIC_ATOMS_V0
     kind: CONSTITUTION
     family: capability_transforms
     concern: constitutions

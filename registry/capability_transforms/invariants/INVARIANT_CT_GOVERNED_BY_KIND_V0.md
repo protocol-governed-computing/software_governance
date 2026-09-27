@@ -26,7 +26,7 @@ Every transform is governed by exactly one of the three constitutions that gover
 For every `CT` artifact:
 
 1. An atom declaring `ct_pure` or `ct_exec` MUST be governed by
-   `capability_transforms::CONSTITUTION_CAPABILITY_TRANSFORMS_V0`.
+   `capability_transforms::CONSTITUTION_DETERMINISTIC_ATOMS_V0`.
 2. An atom declaring `ct_impure` MUST be governed by
    `capability_transforms::CONSTITUTION_NONDETERMINISTIC_ATOMS_V0`.
 3. A molecule MUST be governed by `capability_transforms::CONSTITUTION_MOLECULES_V0`.

@@ -80,7 +80,7 @@ Output contract matching ensures:
 
 ## Related Artifacts
 
-- `capability_transforms::CONSTITUTION_CAPABILITY_TRANSFORMS_V0` - Governs CT behavior
+- `capability_transforms::CONSTITUTION_DETERMINISTIC_ATOMS_V0` - Governs CT behavior
 - `capability_contracts::CONSTITUTION_CAPABILITY_CONTRACT_V0` - Defines CC schema
 
 ---

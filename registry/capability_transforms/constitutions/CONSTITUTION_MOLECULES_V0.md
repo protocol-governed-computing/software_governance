@@ -31,7 +31,7 @@ is declared as those decisions, each visible in the composition, rather than hid
 implementation.
 
 It governs molecules only. Deterministic atoms are governed by
-`capability_transforms::CONSTITUTION_CAPABILITY_TRANSFORMS_V0`, and atoms that declare their result
+`capability_transforms::CONSTITUTION_DETERMINISTIC_ATOMS_V0`, and atoms that declare their result
 is not determined by their inputs by `capability_transforms::CONSTITUTION_NONDETERMINISTIC_ATOMS_V0`.
 Each transform is governed by exactly one of the three, decided by its kind and declared purity.
 
