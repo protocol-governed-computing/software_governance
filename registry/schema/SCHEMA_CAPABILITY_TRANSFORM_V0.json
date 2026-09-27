@@ -123,6 +123,15 @@
             "type": "object"
           }
         },
+        "emit": {
+          "type": "object",
+          "minProperties": 1,
+          "maxProperties": 1,
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "The one value a molecule yields: output name -> the atom-stream step symbol it comes from (molecules only)"
+        },
         "inputs": {
           "type": "object",
           "description": "Molecule-level input declarations",

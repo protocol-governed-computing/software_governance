@@ -138,7 +138,7 @@ statement and rendering of a molecule.
 
 Gate 2 has no subject here: no mandate is drafted, so there is none to lock.
 
-**Status: OPEN.** Presented to the business author, as a body, against the composition
+**Status: CLOSED.** Approved by the business author, as a body, against the composition
 `1b0cfbd3d094…` — the same composition every grounded register of this dossier was re-read against
 and attested to in `baseline.json`. What approval authorizes is the authoring described above, and
 nothing else: a clause that appears in the governance surface beyond what this dossier argues for is
@@ -151,4 +151,4 @@ an ungoverned change, and the dossier is what that statement points at.
 | Stage | Output | Status |
 |-------|--------|--------|
 | Stage 5 — Business Intent | Purpose, scope, invariants, actions | COMPLETE |
-| Stage 6 — Governance Intent | This document | COMPLETE — AWAITING APPROVAL |
+| Stage 6 — Governance Intent | This document | COMPLETE — APPROVED |
