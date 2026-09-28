@@ -1,11 +1,11 @@
-# VOCAB_EVIDENCE_CONTENT_CLASSIFICATION_V0
+# VOCAB_EVIDENCE_CONTENT_CLASSIFICATION_V1
 
 ## Machine
 
 ```yaml
-fqdn: vocabulary::VOCAB_EVIDENCE_CONTENT_CLASSIFICATION_V0
+fqdn: vocabulary::VOCAB_EVIDENCE_CONTENT_CLASSIFICATION_V1
 artifact_kind: VOCABULARY
-version: v0
+version: v1
 governed_by: vocabulary::CONSTITUTION_VOCABULARY_V0
 authority: pgc.platform
 concern: vocabulary
@@ -28,6 +28,11 @@ observational_fields:
   entries:
   - trace_id
   - ts_ns
+observational_keys:
+  casing: lower_snake
+  domain_extensible: false
+  entries:
+  - record_id
 ```
 
 ---
@@ -50,6 +55,13 @@ that step reported.
 participate in any determination** (EV-7). `ts_ns` is a monotonic reading; `trace_id` carries a
 timestamp prefix and is documented as "not purely deterministic".
 
+**Observational keys are observational wherever they appear**, including inside a determinative
+field. A determinative field such as `detail` carries values a caller returned, and some of those
+are assigned by a store at the moment it writes: the identity an append-only store gives a record is
+read from the clock. Two faithful executions of one transition differ on it, and it determines
+nothing about the path or the outcome. Declaring the key here, rather than leaving each checker to
+skip it, is EV-5 applied inside a field.
+
 ---
 
 ## Where this is read
@@ -69,8 +81,22 @@ content is identical and that observational content is what differs.
 **That a field classified determinative carries only determinative content.** `detail` is
 caller-filled: a step that put a duration or a hostname in it would place observational content on
 the determinative side, and no check here would see it. The rule is that observational content goes
-in a declared observational field; the rule is stated and is not enforced per value.
+in a declared observational field, or is named by a declared observational key; the rule is stated
+and is not enforced per value. A new store-assigned value is a new key here, never a checker's
+exception.
 
 **That the classification is complete for evidence other than execution traces.** Construction
 produces no evidence record at all today, so it has none to classify — a separate finding, and this
 artifact does not pretend to cover it.
+
+---
+
+## Change from V0
+
+V0 classified trace content by top-level field only, so a store-assigned value inside `detail` was
+determinative by default. A replay of any act that appends a record disagreed with its original on
+that one value. The only way to accept such a replay was a checker that skipped the value by name:
+an exception held in a test, not in the composition. V1 adds `observational_keys`. The runtime
+writes the keys into each trace's classification header, and a replay comparison removes them from
+determinative content, reading them from the trace itself.
+

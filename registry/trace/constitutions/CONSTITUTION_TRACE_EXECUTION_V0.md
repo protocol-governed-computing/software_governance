@@ -65,18 +65,10 @@ execute(snapshot, payload, structure) → (result, trace_events)
 
 ## §3. Trace Event Contract
 
-All trace events MUST conform to `SCHEMA_TRACE_EVENT_V0`.
+Every line of a trace MUST conform to `SCHEMA_TRACE_EVENT_V1`: the classification header first,
+then events. The schema is the declaration — its fields and event types are not restated here.
 
-Required fields per event:
-- `event_type` — enumerated, schema-declared
-- `timestamp` — ISO-8601 UTC
-- `execution_id` — unique per execution
-- `sequence` — monotonically increasing from 1
-
-Optional (ADVANCED policy only):
-- `prev_hash` — SHA-256[:16] of previous event JSON
-
-Event types are declared exhaustively in `SCHEMA_TRACE_EVENT_V0`.
+Event types are declared exhaustively in `SCHEMA_TRACE_EVENT_V1`.
 No undeclared event types permitted.
 
 ---

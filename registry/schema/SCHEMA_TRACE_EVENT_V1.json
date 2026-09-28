@@ -1,0 +1,447 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "SCHEMA_TRACE_EVENT_V1",
+  "title": "Trace Event Schema",
+  "description": "One line of an execution trace, as the runtime writes it (JSONL). Governed by CONSTITUTION_TRACE_EXECUTION_V0. The first line is the classification header naming which content is determinative (VOCAB_EVIDENCE_CONTENT_CLASSIFICATION_V1); every other line is an event. V1 replaces V0, which described RI-0's trace format (execution_start, node_start, ...) and matched nothing the runtime writes. V1 also names places: CC_START and CC_COMPLETE carry the node key, and WF_ROUTE the node left and the node or declared ending reached, because one contract may run at several places and the contract alone does not say which ran.",
+  "oneOf": [
+    {
+      "$ref": "#/$defs/classification"
+    },
+    {
+      "$ref": "#/$defs/event"
+    }
+  ],
+  "$defs": {
+    "classification": {
+      "type": "object",
+      "required": [
+        "trace_schema_version",
+        "event_type",
+        "classified_by",
+        "snapshot_id",
+        "determinative",
+        "observational",
+        "observational_keys"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "trace_schema_version": {
+          "const": "v1"
+        },
+        "event_type": {
+          "const": "trace_classification"
+        },
+        "classified_by": {
+          "type": "string"
+        },
+        "snapshot_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "determinative": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "observational": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "observational_keys": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "event": {
+      "type": "object",
+      "required": [
+        "trace_schema_version",
+        "trace_id",
+        "event_type",
+        "domain",
+        "wf_addr",
+        "cc_addr",
+        "step_addr",
+        "step_op",
+        "result_status",
+        "detail",
+        "ts_ns"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "trace_schema_version": {
+          "const": "v1"
+        },
+        "trace_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "event_type": {
+          "enum": [
+            "WF_START",
+            "CC_START",
+            "CC_STEP",
+            "CT_STEP",
+            "CC_COMPLETE",
+            "WF_ROUTE",
+            "EVENT",
+            "ERROR",
+            "WF_COMPLETE"
+          ]
+        },
+        "domain": {
+          "type": "string",
+          "minLength": 1
+        },
+        "wf_addr": {
+          "type": "integer"
+        },
+        "cc_addr": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "step_addr": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "step_op": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "result_status": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "detail": {
+          "type": "object"
+        },
+        "ts_ns": {
+          "type": "integer"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "event_type": {
+                "const": "WF_START"
+              }
+            },
+            "required": [
+              "event_type"
+            ]
+          },
+          "then": {
+            "properties": {
+              "detail": {
+                "type": "object",
+                "required": [
+                  "wf_fqdn",
+                  "payload_keys"
+                ],
+                "properties": {
+                  "wf_fqdn": {
+                    "type": "string"
+                  },
+                  "payload_keys": {
+                    "type": "array"
+                  },
+                  "actor": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "event_type": {
+                "const": "CC_START"
+              }
+            },
+            "required": [
+              "event_type"
+            ]
+          },
+          "then": {
+            "properties": {
+              "detail": {
+                "type": "object",
+                "required": [
+                  "cc_fqdn",
+                  "node",
+                  "inputs"
+                ],
+                "properties": {
+                  "cc_fqdn": {
+                    "type": "string"
+                  },
+                  "node": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "inputs": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "event_type": {
+                "const": "CC_STEP"
+              }
+            },
+            "required": [
+              "event_type"
+            ]
+          },
+          "then": {
+            "properties": {
+              "detail": {
+                "type": "object",
+                "required": [
+                  "step_fqdn",
+                  "result_keys"
+                ],
+                "properties": {
+                  "step_fqdn": {
+                    "type": "string"
+                  },
+                  "result_keys": {
+                    "type": "array"
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "event_type": {
+                "const": "CT_STEP"
+              }
+            },
+            "required": [
+              "event_type"
+            ]
+          },
+          "then": {
+            "properties": {
+              "detail": {
+                "type": "object",
+                "required": [
+                  "path",
+                  "step_fqdn",
+                  "purity",
+                  "result_keys"
+                ],
+                "properties": {
+                  "path": {
+                    "type": "string"
+                  },
+                  "step_fqdn": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "purity": {
+                    "type": "string"
+                  },
+                  "result_keys": {
+                    "type": "array"
+                  },
+                  "outcome": {},
+                  "replayed": {
+                    "type": "boolean"
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "event_type": {
+                "const": "CC_COMPLETE"
+              }
+            },
+            "required": [
+              "event_type"
+            ]
+          },
+          "then": {
+            "properties": {
+              "detail": {
+                "type": "object",
+                "required": [
+                  "cc_fqdn",
+                  "node",
+                  "output_keys"
+                ],
+                "properties": {
+                  "cc_fqdn": {
+                    "type": "string"
+                  },
+                  "node": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "output_keys": {
+                    "type": "array"
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "event_type": {
+                "const": "WF_ROUTE"
+              }
+            },
+            "required": [
+              "event_type"
+            ]
+          },
+          "then": {
+            "properties": {
+              "detail": {
+                "type": "object",
+                "required": [
+                  "terminal",
+                  "from_node",
+                  "to_node"
+                ],
+                "properties": {
+                  "terminal": {
+                    "type": "boolean"
+                  },
+                  "from_node": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "to_node": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "event_type": {
+                "const": "EVENT"
+              }
+            },
+            "required": [
+              "event_type"
+            ]
+          },
+          "then": {
+            "properties": {
+              "detail": {
+                "type": "object",
+                "required": [
+                  "ev_fqdn",
+                  "payload"
+                ],
+                "properties": {
+                  "ev_fqdn": {
+                    "type": "string"
+                  },
+                  "payload": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "event_type": {
+                "const": "ERROR"
+              }
+            },
+            "required": [
+              "event_type"
+            ]
+          },
+          "then": {
+            "properties": {
+              "detail": {
+                "type": "object",
+                "required": [
+                  "message"
+                ],
+                "properties": {
+                  "message": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "event_type": {
+                "const": "WF_COMPLETE"
+              }
+            },
+            "required": [
+              "event_type"
+            ]
+          },
+          "then": {
+            "properties": {
+              "detail": {
+                "type": "object",
+                "required": [
+                  "wf_fqdn"
+                ],
+                "properties": {
+                  "wf_fqdn": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}
