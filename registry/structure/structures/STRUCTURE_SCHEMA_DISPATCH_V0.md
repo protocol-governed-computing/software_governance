@@ -25,6 +25,7 @@ core:
     SURFACE_CONTRACT: SCHEMA_SURFACE_CONTRACT_V0.json
     STRUCTURE: SCHEMA_STRUCTURE_V0.json
     TEST_DATA: SCHEMA_TEST_DATA_V1.json
+    EVENT: SCHEMA_EVENT_V1.json
   # Every kind the composition carries, and what was decided about describing it. A kind absent from
   # the dispatch above was absent for three different reasons and one representation — nobody wrote a
   # description, one exists and nobody named it, or the kind needs none — so a reader could not tell a
@@ -51,7 +52,6 @@ core:
   # dispatched; a row that stays is a debt that stays readable.
   description_pending:
     ACTOR: description expects a role and forbids the attributes every actor carries; owned by actor
-    EVENT: description forbids content twenty declarations carry; owned by event
     INTENT: description rejects a whole number as a type; owned by intent
     TRANSPORT_INGRESS: no description exists; owned by transport
     TRANSPORT_EGRESS: no description exists; owned by transport

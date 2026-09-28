@@ -1,8 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "pgs_governance.schemas.SCHEMA_EVENT_V0",
-  "title": "OmniBachi Event Schema V0",
-  "description": "JSON Schema for materialized event artifacts",
+  "$id": "SCHEMA_EVENT_V1",
+  "title": "Event Schema V1",
+  "description": "The machine block of an EVENT artifact: a governed occurrence a workflow announces, and the fields its record carries. V1 replaces V0, which was never applied, and which refused content the declarations carry: a governing constitution named by FQDN, a subdomain, a moment, an integer field, a field restricted to stated values. It was written from what EVENT artifacts declare.",
   "type": "object",
   "required": [
     "fqdn",
@@ -24,8 +24,8 @@
     },
     "governed_by": {
       "type": "string",
-      "const": "CONSTITUTION_EVENT_V0",
-      "description": "Governing constitution"
+      "const": "event::CONSTITUTION_EVENT_V0",
+      "description": "Governing constitution FQDN"
     },
     "core": {
       "type": "object",
@@ -49,6 +49,14 @@
             "$ref": "#/$defs/fieldDef"
           },
           "description": "Event payload schema"
+        },
+        "subdomain": {
+          "type": "string",
+          "description": "The subdomain of the owning domain the occurrence belongs to"
+        },
+        "moment": {
+          "type": "string",
+          "description": "What kind of occurrence this is, where the design declares one; `refusal` marks an event that announces a refusal"
         }
       }
     },
@@ -73,7 +81,7 @@
         "pattern": "^[a-z][a-z0-9_.]*::[A-Z][A-Z0-9_]*_V\\d+$"
       },
       "minItems": 1,
-      "description": "FQDNs of the artifacts that stand in this one's place. Several is the ordinary case \u2014 one act split in two retires one artifact and authors two. Its presence means the artifact is superseded: unreachable from the executable projections, retained in the canonical set as history."
+      "description": "FQDNs of the artifacts that stand in this one's place. Several is the ordinary case — one act split in two retires one artifact and authors two. Its presence means the artifact is superseded: unreachable from the executable projections, retained in the canonical set as history."
     },
     "authority": {
       "type": "string",
@@ -95,6 +103,7 @@
           "type": "string",
           "enum": [
             "string",
+            "integer",
             "number",
             "boolean",
             "object",
@@ -111,8 +120,14 @@
         },
         "description": {
           "type": "string"
+        },
+        "enum": {
+          "type": "array",
+          "minItems": 1,
+          "description": "The values the field may take"
         }
-      }
+      },
+      "additionalProperties": false
     }
   }
 }
