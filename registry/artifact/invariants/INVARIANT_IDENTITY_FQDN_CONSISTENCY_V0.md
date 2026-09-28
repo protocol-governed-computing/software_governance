@@ -15,7 +15,7 @@ core:
   - compiler_validation
   violation_response: FAIL_IMMEDIATELY
 assert_projection:
-  handler: pgs_governance.registry.handlers.assert_identity_fqdn_consistency
+  handler: pgc_governance.handlers.assert_identity_fqdn_consistency
   enforcement:
     order: 5
     scope: ALL_ARTIFACTS

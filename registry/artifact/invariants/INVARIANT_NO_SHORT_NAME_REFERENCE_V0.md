@@ -14,7 +14,7 @@ core:
   - compiler_assertion
   violation_response: FAIL_IMMEDIATELY
 assert_projection:
-  handler: pgs_governance.registry.handlers.assert_fqdn_only_references_v0
+  handler: pgc_governance.handlers.assert_fqdn_only_references_v0
   applies_to_kinds:
   - AC
   - CC

@@ -27,6 +27,8 @@ rules:
   enforced_by: artifact::INVARIANT_IDENTITY_FQDN_CONSISTENCY_V0
 - applies_to: ALL_ARTIFACTS
   enforced_by: artifact::INVARIANT_SUPERSEDED_NOT_REFERENCED_V0
+- applies_to: ALL_ARTIFACTS
+  enforced_by: artifact::INVARIANT_SUPERSEDED_NOT_IN_FORCE_V0
 - applies_to: INVARIANT
   enforced_by: artifact::INVARIANT_NO_SHORT_NAME_REFERENCE_V0
 - applies_to: INVARIANT

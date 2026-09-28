@@ -112,6 +112,7 @@ artifact_discovery:
   - RB
   - SURFACE
 output_configuration:
+  root: snapshot_mw
   artifacts:
     layer: PROTOCOL_BUILD_ROOT
     subpath: compiled/canonical

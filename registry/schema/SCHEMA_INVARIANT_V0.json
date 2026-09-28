@@ -106,6 +106,15 @@
             }
           }
         },
+        "in_force": {
+          "type": "object",
+          "description": "The predicate deciding whether an artifact confers effect. Declared once, by the invariant that makes presence and force distinct, so every path that asks it asks the same thing.",
+          "properties": {
+            "not_in_force_when": {"enum": ["superseded_by"]}
+          },
+          "required": ["not_in_force_when"],
+          "additionalProperties": false
+        },
         "enforced_by": {
           "type": "string",
           "description": "The mechanism carrying this obligation where the build does not. Required when enforcement_stage names a stage that routes the obligation elsewhere, refused otherwise. A delegation nobody can follow is indistinguishable from an absence, and absence is not permission."

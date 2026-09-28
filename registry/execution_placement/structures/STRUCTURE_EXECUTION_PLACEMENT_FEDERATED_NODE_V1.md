@@ -14,6 +14,7 @@ placement_mode: FEDERATED_NODE
 remote_execution_allowed: true
 cross_node_dispatch_allowed: true
 placement_target: node_group
+shared_store_requirement: posix_record_locks
 ```
 
 ---
@@ -43,6 +44,19 @@ Reachability, not count. Several workers in processes on one host are not addres
 reached from outside the host. Several nodes are addressable, and that is the whole difference — it
 is why an environment profile requiring separately addressable nodes can be met under this mode and
 cannot be met under the other, at any host count.
+
+## The store the nodes share honours POSIX record locks
+
+A capability that reads a store, decides and writes it back is correct only if no other writer acts
+between the read and the write. Nodes that share a store exclude one another with a POSIX record lock
+on it (`fcntl.lockf`). A store that does not honour such locks lets two nodes interleave, and a
+determination reached against it may rest on a record another node has already replaced.
+
+So a deployment of this mode places the shared store where record locks are honoured: a local
+filesystem, or a network filesystem that carries the locks to its server, such as NFSv4. An object
+store does not honour them and cannot carry a node group's store. The requirement is declared here
+rather than left to the implementation, because a reader choosing where to put the store reads the
+placement, not the code.
 
 ## Availability is not activity
 

@@ -60,6 +60,7 @@
     "role_artifact_rules": {},
     "scheduling_mode": {},
     "security_domain": {},
+    "shared_store_requirement": {},
     "snapshot_scope": {},
     "status": {},
     "structure_scope": {},

@@ -14,7 +14,7 @@ core:
   - compiler_assertion
   violation_response: FAIL_IMMEDIATELY
 assert_projection:
-  handler: pgs_governance.registry.handlers.assert_concern_not_authority_v0
+  handler: pgc_governance.handlers.assert_concern_not_authority_v0
   scope:
     applies_to:
     - PLATFORM

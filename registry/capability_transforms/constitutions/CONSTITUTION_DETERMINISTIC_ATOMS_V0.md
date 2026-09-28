@@ -17,12 +17,6 @@ rules:
   enforced_by: capability_transforms::INVARIANT_ATOM_OUTPUT_PURITY_V0
 - applies_to: CT
   enforced_by: capability_transforms::INVARIANT_ATOM_OUTPUT_PURITY_V0
-- applies_to: CT
-  enforced_by: execution::INVARIANT_IMPLEMENTATION_ADMISSIBLE_V0
-- applies_to: CT
-  enforced_by: capability_transforms::INVARIANT_CT_SURFACE_CLOSED_V1
-- applies_to: CT
-  enforced_by: capability_transforms::INVARIANT_CT_SURFACE_DERIVED_CLOSED_V1
 ```
 
 ---
@@ -42,12 +36,8 @@ decided by its kind and declared purity (`capability_transforms::INVARIANT_CT_GO
 | an atom declaring `ct_purity: ct_impure` | `capability_transforms::CONSTITUTION_NONDETERMINISTIC_ATOMS_V0` |
 | a molecule, composed of steps and naming no implementation | `capability_transforms::CONSTITUTION_MOLECULES_V0` |
 
-**It also carries rules common to every transform.** They are surface closure
-(`INVARIANT_CT_SURFACE_CLOSED_V1`), closure by derivation (`INVARIANT_CT_SURFACE_DERIVED_CLOSED_V1`)
-and implementation admissibility (`INVARIANT_IMPLEMENTATION_ADMISSIBLE_V0`). They concern molecules
-and non-deterministic atoms as much as the atoms named here. They sit here because this constitution
-predates its two siblings, from a time when every transform was a deterministic atom. They stay here
-unchanged; a home common to all three is a separate change.
+The rules common to every transform — surface closure, closure by derivation and implementation
+admissibility — are carried by `capability_transforms::CONSTITUTION_CAPABILITY_TRANSFORMS_V1`.
 
 ---
 
@@ -82,7 +72,7 @@ unchanged; a home common to all three is a separate change.
 ## What this realizes
 ```yaml
 core:
-  description: Governs deterministic atoms — purity, determinism, and explicit IO — and carries surface rules common to every transform
+  description: Governs deterministic atoms — purity, determinism, and explicit IO
 rules:
 - rule_id: CT_PURITY
   constraint: a deterministic atom MUST be a pure function; same inputs MUST always produce same outputs

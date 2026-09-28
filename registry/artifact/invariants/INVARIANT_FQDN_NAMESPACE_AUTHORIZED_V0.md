@@ -14,7 +14,7 @@ core:
   - compiler_validation
   violation_response: FAIL_IMMEDIATELY
 assert_projection:
-  handler: pgs_governance.registry.handlers.assert_fqdn_namespace_authorized_v0
+  handler: pgc_governance.handlers.assert_fqdn_namespace_authorized_v0
   enforcement:
     order: 6
   applies_to_kinds:

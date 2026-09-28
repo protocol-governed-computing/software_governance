@@ -96,7 +96,7 @@ core:
 placement_mode: FEDERATED_NODE
 scheduling_mode: SERIAL_SINGLE_WORKER
 security_domain: UNCLASSIFIED_LOCAL
-trust_mode: LOCAL_DEV_UNSIGNED
+trust_mode: SIGNED_SNAPSHOT
 artifact_discovery:
   search_layers:
   - GOVERNANCE
@@ -122,6 +122,7 @@ artifact_discovery:
   - RB
   - SURFACE
 output_configuration:
+  root: snapshot_fed
   artifacts:
     layer: PROTOCOL_BUILD_ROOT
     subpath: compiled/canonical
