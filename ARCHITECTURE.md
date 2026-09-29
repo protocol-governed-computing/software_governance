@@ -77,12 +77,12 @@ convention.
    ┌───────────────────────────────┬───────────────────────────────┐
    │  CAPABILITY TRANSFORM  (CT)   │  CAPABILITY SIDE EFFECT  (CS) │
    ├───────────────────────────────┼───────────────────────────────┤
-   │  pure computation             │  governed mutation            │
+   │  computation, no effects      │  governed mutation            │
    │                               │                               │
    │  inputs → outputs             │  changes something outside    │
-   │  same input, same output      │  itself: a store, the clock   │
-   │  no files, no network,        │                               │
-   │  no clock, no randomness      │  every change the platform    │
+   │  no files, no network,        │  itself: a store, the clock   │
+   │  no store, no clock           │                               │
+   │                               │  every change the platform    │
    │                               │  can make is one of these     │
    └───────────────────────────────┴───────────────────────────────┘
               open to extension              CLOSED — six of them
@@ -106,6 +106,23 @@ The six, and what each is for:
 
 The closure is not a comment — it is an invariant (`INVARIANT_CS_SURFACE_CLOSED_V1`) that names all
 six explicitly, and the compiler refuses a platform using anything else.
+
+### Three kinds of transform
+
+A transform touches nothing outside itself, but not every transform is determined by its inputs. Each
+is one of three kinds, and exactly one constitution governs it, placed by kind and declared purity
+(`INVARIANT_CT_GOVERNED_BY_KIND_V0`):
+
+| transform | governed by | what it owes |
+|---|---|---|
+| deterministic atom | `CONSTITUTION_DETERMINISTIC_ATOMS_V0` | the same inputs give the same result |
+| non-deterministic atom (`ct_impure`) | `CONSTITUTION_NONDETERMINISTIC_ATOMS_V0` | every result recorded where it is produced and substituted on replay; nothing routes on it before a deterministic step has judged it |
+| molecule | `CONSTITUTION_MOLECULES_V0` | no implementation — its declared steps are its specification |
+
+What every transform owes the composition, whatever its kind, is in
+`CONSTITUTION_CAPABILITY_TRANSFORMS_V1`: the surface is closed, closed by derivation in a domain, and
+every atom names an admissible implementation. A transform may also state the cases that prove it, as
+`TEST_DATA` beside it, and the runtime's conformance runs them.
 
 ## 5. Layout
 
