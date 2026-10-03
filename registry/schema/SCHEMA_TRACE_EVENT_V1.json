@@ -229,6 +229,40 @@
                   },
                   "result_keys": {
                     "type": "array"
+                  },
+                  "checks": {
+                    "description": "An admission step's evaluated checks, held or not: which declared check refused, never a payload value.",
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "required": [
+                        "field",
+                        "rule",
+                        "expected",
+                        "held"
+                      ],
+                      "additionalProperties": false,
+                      "properties": {
+                        "field": {
+                          "type": "string"
+                        },
+                        "rule": {
+                          "enum": [
+                            "required",
+                            "type"
+                          ]
+                        },
+                        "expected": {
+                          "type": [
+                            "string",
+                            "boolean"
+                          ]
+                        },
+                        "held": {
+                          "type": "boolean"
+                        }
+                      }
+                    }
                   }
                 }
               }
