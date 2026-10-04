@@ -65,10 +65,13 @@ execute(snapshot, payload, structure) → (result, trace_events)
 
 ## §3. Trace Event Contract
 
-Every line of a trace MUST conform to `SCHEMA_TRACE_EVENT_V1`: the classification header first,
+Every line of a trace MUST conform to `SCHEMA_TRACE_EVENT_V2`: the classification header first,
 then events. The schema is the declaration — its fields and event types are not restated here.
+A trace names its schema in `trace_schema_version`. `SCHEMA_TRACE_EVENT_V1` stays as the schema of
+the traces written under it, the composition published as v5 among them; a schema is a new
+identity when what it requires changes, never the same identity requiring more.
 
-Event types are declared exhaustively in `SCHEMA_TRACE_EVENT_V1`.
+Event types are declared exhaustively in `SCHEMA_TRACE_EVENT_V2`.
 No undeclared event types permitted.
 
 ---

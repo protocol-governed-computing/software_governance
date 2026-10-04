@@ -1,8 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "SCHEMA_TRACE_EVENT_V1",
+  "$id": "SCHEMA_TRACE_EVENT_V2",
   "title": "Trace Event Schema",
-  "description": "One line of an execution trace, as the runtime writes it (JSONL). Governed by CONSTITUTION_TRACE_EXECUTION_V0. The first line is the classification header naming which content is determinative (VOCAB_EVIDENCE_CONTENT_CLASSIFICATION_V1); every other line is an event. V1 replaces V0, which described RI-0's trace format (execution_start, node_start, ...) and matched nothing the runtime writes. V1 also names places: CC_START and CC_COMPLETE carry the node key, and WF_ROUTE the node left and the node or declared ending reached, because one contract may run at several places and the contract alone does not say which ran.",
+  "description": "One line of an execution trace, as the runtime writes it (JSONL). Governed by CONSTITUTION_TRACE_EXECUTION_V0. The first line is the classification header naming which content is determinative (VOCAB_EVIDENCE_CONTENT_CLASSIFICATION_V1); every other line is an event. V2 replaces V1, which the composition published as v5 declares and which stays as the schema of every trace written to it: V2 requires every CC_STEP to record the outcome the step ended with and the continuation it selected (`3e` EV-19). V1 had replaced V0, RI-0's format. Since V1, events also name places: CC_START and CC_COMPLETE carry the node key, and WF_ROUTE the node left and the node or declared ending reached, because one contract may run at several places and the contract alone does not say which ran.",
   "oneOf": [
     {
       "$ref": "#/$defs/classification"
@@ -26,7 +26,7 @@
       "additionalProperties": false,
       "properties": {
         "trace_schema_version": {
-          "const": "v1"
+          "const": "v2"
         },
         "event_type": {
           "const": "trace_classification"
@@ -76,7 +76,7 @@
       "additionalProperties": false,
       "properties": {
         "trace_schema_version": {
-          "const": "v1"
+          "const": "v2"
         },
         "trace_id": {
           "type": "string",
@@ -221,7 +221,9 @@
                 "type": "object",
                 "required": [
                   "step_fqdn",
-                  "result_keys"
+                  "result_keys",
+                  "outcome",
+                  "continuation"
                 ],
                 "properties": {
                   "step_fqdn": {
@@ -263,6 +265,18 @@
                         }
                       }
                     }
+                  },
+                  "outcome": {
+                    "description": "The outcome the step ended with (3e EV-19).",
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "continuation": {
+                    "description": "The continuation the outcome selected: continue or exit for a composed step, route for an admission (its route is the WF_ROUTE that follows), or null where the contract declares none and execution refused (3a EX-18, 3e EV-19).",
+                    "type": [
+                      "string",
+                      "null"
+                    ]
                   }
                 }
               }
