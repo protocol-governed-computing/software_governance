@@ -221,7 +221,9 @@
                 "type": "object",
                 "required": [
                   "step_fqdn",
-                  "result_keys"
+                  "result_keys",
+                  "outcome",
+                  "continuation"
                 ],
                 "properties": {
                   "step_fqdn": {
@@ -263,6 +265,18 @@
                         }
                       }
                     }
+                  },
+                  "outcome": {
+                    "description": "The outcome the step ended with (3e EV-19).",
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "continuation": {
+                    "description": "The continuation the outcome selected: continue or exit for a composed step, route for an admission (its route is the WF_ROUTE that follows), or null where the contract declares none and execution refused (3a EX-18, 3e EV-19).",
+                    "type": [
+                      "string",
+                      "null"
+                    ]
                   }
                 }
               }

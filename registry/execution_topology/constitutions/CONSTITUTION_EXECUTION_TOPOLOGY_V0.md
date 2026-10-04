@@ -217,8 +217,9 @@ rules:
   constraint: all step input references to prior step outputs MUST resolve to a declared step ID within
     the same pipeline; forward references and dangling references are constitutional violations
 - rule_id: TOPOLOGY_ROUTING_COMPLETE
-  constraint: every step MUST declare a result_surface and on_result MUST declare routing for every status
-    code in that step's result_surface; unrouted surface codes constitute ungoverned execution paths
+  constraint: every step MUST declare a result_surface holding every outcome the capability it dispatches
+    declares, and on_result MUST declare routing for every status code in that result_surface; a narrowed
+    surface and an unrouted surface code both constitute ungoverned execution paths (3d CP-13)
 - rule_id: TOPOLOGY_CONTRACT_CLOSED
   constraint: the union of all status codes that can exit the CC execution topology (via step exit routes,
     last-step continue routes, and evaluation outcomes) MUST exactly match result_status_contract.allowed;
