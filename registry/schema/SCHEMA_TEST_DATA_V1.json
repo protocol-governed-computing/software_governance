@@ -1,0 +1,102 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "software_governance.schemas.SCHEMA_TEST_DATA_V1",
+  "title": "PGC Test Vector Schema V1",
+  "description": "Closed machine-block contract for TEST_DATA artifacts: the transform a vector tests and its cases. Cases are governed content and live in the Machine block; prose around a vector declares nothing.",
+  "type": "object",
+  "required": [
+    "fqdn",
+    "artifact_kind",
+    "version",
+    "governed_by",
+    "target",
+    "cases"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "fqdn": {
+      "type": "string",
+      "pattern": "^[a-z0-9_.]+::TEST_DATA_[A-Z0-9_]+_V[0-9]+$"
+    },
+    "artifact_kind": {
+      "const": "TEST_DATA"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^V[0-9]+$"
+    },
+    "governed_by": {
+      "const": "conformance::CONSTITUTION_TEST_DATA_V2"
+    },
+    "authority": {
+      "type": "string"
+    },
+    "concern": {
+      "type": "string"
+    },
+    "core": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "summary": {
+          "type": "string"
+        }
+      }
+    },
+    "target": {
+      "description": "FQDN of the one capability transform this vector tests.",
+      "type": "string",
+      "pattern": "^[a-z0-9_.]+::CT_[A-Z0-9_]+_V[0-9]+$"
+    },
+    "cases": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "case_id",
+          "expected_outcome",
+          "bindings"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "case_id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*$"
+          },
+          "expected_outcome": {
+            "enum": [
+              "SUCCESS",
+              "VIOLATION"
+            ]
+          },
+          "bindings": {
+            "description": "The inputs the transform is handed, by its declared input names.",
+            "type": "object"
+          },
+          "expected": {
+            "description": "Outputs the transform must yield, by its declared output names, compared exactly.",
+            "type": "object"
+          },
+          "assertions": {
+            "description": "For an output whose value cannot be stated: the form it must take. Governed by conformance::INVARIANT_CONFORMANCE_ASSERTION_MODE_VALID_V1.",
+            "type": "object",
+            "additionalProperties": {
+              "type": "object",
+              "required": [
+                "mode"
+              ]
+            }
+          },
+          "recorded": {
+            "description": "For a molecule: the recorded result of each non-deterministic step, keyed by the path the runtime gives the step. Governed by conformance::INVARIANT_TEST_DATA_RECORDS_MATCH_PURITY_V0.",
+            "type": "object",
+            "additionalProperties": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    }
+  }
+}

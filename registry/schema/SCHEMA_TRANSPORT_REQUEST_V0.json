@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "pgc.schemas.SCHEMA_TRANSPORT_REQUEST_V0",
+  "title": "PGC Canonical Transport Request V0",
+  "description": "Protocol-neutral canonical transport request contract (Transport Standard V0 \u00a75.1). Representation-independent; JSON is one serialization and is not itself normative.",
+  "type": "object",
+  "required": [
+    "request_id",
+    "operation"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "request_id": {
+      "type": "string",
+      "description": "Caller-supplied request correlation handle."
+    },
+    "operation": {
+      "type": "string",
+      "description": "Operation Identity \u2014 the stable, protocol-neutral public name of a governed interaction. Never a Workflow Identity."
+    },
+    "actor": {
+      "type": "object",
+      "description": "Transport-carried governance input; delegated to the authority/context subsystem, not evaluated in V0."
+    },
+    "context": {
+      "type": "object",
+      "description": "Transport-carried governance input; delegated to the authority/context subsystem, not evaluated in V0."
+    },
+    "input": {
+      "type": "object",
+      "description": "Operation input, conforming to the TI's declared input contract."
+    },
+    "correlation_id": {
+      "type": "string",
+      "description": "Tracing/evidence identity; propagated in V0."
+    },
+    "idempotency_key": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Reserved and declared, not enforced in V0 (carrying the key does not imply idempotent behavior)."
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Open extension."
+    },
+    "authority": {
+      "type": "string",
+      "description": "The authority from which this artifact's jurisdiction derives (CA-1, CA-2). Declared, never inferred from namespace, path or kind."
+    },
+    "concern": {
+      "type": "string",
+      "description": "The semantic subject this artifact is about (GO-11, ID-12). A concern classification confers no authority and constitutes no boundary."
+    }
+  }
+}

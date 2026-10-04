@@ -1,0 +1,133 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "SCHEMA_EVENT_V1",
+  "title": "Event Schema V1",
+  "description": "The machine block of an EVENT artifact: a governed occurrence a workflow announces, and the fields its record carries. V1 replaces V0, which was never applied, and which refused content the declarations carry: a governing constitution named by FQDN, a subdomain, a moment, an integer field, a field restricted to stated values. It was written from what EVENT artifacts declare.",
+  "type": "object",
+  "required": [
+    "fqdn",
+    "artifact_kind",
+    "version",
+    "governed_by",
+    "core"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "artifact_kind": {
+      "const": "EVENT",
+      "description": "Canonical artifact kind discriminator (Kind Vocabulary)."
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^v[0-9]+$",
+      "description": "Version string"
+    },
+    "governed_by": {
+      "type": "string",
+      "const": "event::CONSTITUTION_EVENT_V0",
+      "description": "Governing constitution FQDN"
+    },
+    "core": {
+      "type": "object",
+      "required": [
+        "summary",
+        "schema"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "summary": {
+          "type": "string",
+          "description": "Short event name"
+        },
+        "description": {
+          "type": "string",
+          "description": "Detailed event description"
+        },
+        "schema": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/fieldDef"
+          },
+          "description": "Event payload schema"
+        },
+        "subdomain": {
+          "type": "string",
+          "description": "The subdomain of the owning domain the occurrence belongs to"
+        },
+        "moment": {
+          "type": "string",
+          "description": "What kind of occurrence this is, where the design declares one; `refusal` marks an event that announces a refusal"
+        }
+      }
+    },
+    "extensions": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "fqdn": {
+      "type": "string",
+      "pattern": "^[a-z0-9_.]+::[A-Z][A-Z0-9_]*_V[0-9]+$",
+      "description": "Authoritative declared identity (namespace::code). Folder location has no authority over identity."
+    },
+    "supersedes": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_.]*::[A-Z][A-Z0-9_]*_V\\d+$",
+      "description": "FQDN of the artifact this one stands in place of. A declared relation between two exact identities, not a resolution rule: references stay exact, and a superseded artifact is unreachable rather than absent."
+    },
+    "superseded_by": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9_.]*::[A-Z][A-Z0-9_]*_V\\d+$"
+      },
+      "minItems": 1,
+      "description": "FQDNs of the artifacts that stand in this one's place. Several is the ordinary case — one act split in two retires one artifact and authors two. Its presence means the artifact is superseded: unreachable from the executable projections, retained in the canonical set as history."
+    },
+    "authority": {
+      "type": "string",
+      "description": "The authority from which this artifact's jurisdiction derives (CA-1, CA-2). Declared, never inferred from namespace, path or kind."
+    },
+    "concern": {
+      "type": "string",
+      "description": "The semantic subject this artifact is about (GO-11, ID-12). A concern classification confers no authority and constitutes no boundary."
+    }
+  },
+  "$defs": {
+    "fieldDef": {
+      "type": "object",
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "string",
+            "integer",
+            "number",
+            "boolean",
+            "object",
+            "array"
+          ]
+        },
+        "format": {
+          "type": "string",
+          "description": "Format hint (e.g., date-time)"
+        },
+        "required": {
+          "type": "boolean",
+          "default": false
+        },
+        "description": {
+          "type": "string"
+        },
+        "enum": {
+          "type": "array",
+          "minItems": 1,
+          "description": "The values the field may take"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}
