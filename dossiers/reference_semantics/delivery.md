@@ -23,7 +23,7 @@ Four places decided what a reference is, and they disagreed:
 
 V1 keeps V0's two groups and adds five:
 
-- **`reference`:** 23 parts. A full name at or beneath one is a reference.
+- **`reference`:** 24 parts. A full name at or beneath one is a reference.
 - **`reference_keyed`:** `bindings`. A full-name key is a reference.
 - **`full_name_required`:** `consults`, `governed_by`, `runtime_binding`, `side_effects`,
   `structure`, `transform`, `transforms` and `vocabulary_id`. A short code there is refused.
@@ -81,3 +81,12 @@ new declaration was sealed `v0`, and so were two book_library_mgmt `_V1` artifac
 - **The compiler names V1 exactly.** When V1 is replaced, `compiler/atoms/representation.py` is
   re-pointed by hand. It is the only caller outside the composition.
 - **A vocabulary's meanings are not sealed.** The rules are entries for that reason.
+
+---
+
+## Amended after delivery
+
+`code` was added to the `reference` group, in V1 and in this dossier's P7, as a recorded exception:
+V1 has never been published. A workflow names the contract a place runs by short code in `code`, and
+a re-point must be able to move it. `code` appears only in workflow places, and names an artifact
+in every one.

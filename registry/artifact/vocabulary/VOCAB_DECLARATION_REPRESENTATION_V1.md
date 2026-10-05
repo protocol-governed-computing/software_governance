@@ -45,6 +45,7 @@ reference:
   - allowed_capability_side_effects
   - allowed_capability_transforms
   - atom
+  - code
   - consults
   - disposition_vocabulary
   - emit
