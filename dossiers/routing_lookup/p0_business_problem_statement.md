@@ -16,10 +16,11 @@ built that routes to a condition.
 
 Nothing runs a condition. Execution reads any answer it does not know as "go on", so a contract that
 routes to one ends with the outcome of its last step, whatever the condition would have said. Two
-contracts the platform holds do this today:
+contracts the platform holds route to a condition today:
 
-- The licence cap is never enforced. Counting the licences assigned routes to "is the count below the
-  cap"; the contract always succeeds, and "cap reached" never happens.
+- The licence cap contract routes the count of licences assigned to "is the count below the cap".
+  Nothing runs it: the contract is named by no workflow, and the cap is enforced by the eligibility
+  check instead.
 - The Collatz gate cannot fail. Checking termination routes to "did every sequence terminate"; the
   contract succeeds even when one did not.
 
@@ -28,7 +29,7 @@ contracts the platform holds do this today:
 ## 2. Problem Statement
 
 **The platform's two rules disagree about what routing may say, and the one the compiler follows
-admits an answer nothing performs, so two contracts succeed where their declarations say they fail.**
+admits an answer nothing performs, so a contract succeeds where its declaration says it fails.**
 
 This change shall:
 
@@ -54,3 +55,15 @@ These are settled and are not reopened by this change:
   capability makes the decision the condition stated.
 - **Is execution given a way to run conditions?** No. That would put an expression into routing,
   which the governing rule forbids.
+
+---
+
+## Amended before build
+
+The first version of this statement said the licence cap is never enforced, and Stage 2 said both
+contracts run on live routes. Both were counted from the compiled routing answers without asking
+whether anything runs the contract. It does not: `ai_governance::CC_ENFORCE_LICENSE_CAP_V0` is named
+by no artifact, and the cap is enforced by `ai_governance::CC_VALIDATE_ELIGIBILITY_V0`, whose quota
+check refuses at the cap. The business deleted the unreachable contract by hand, so the composition
+holds one contract routing to a condition, the Collatz gate, which its own change replaced. Where a
+later stage says the licence cap contract is replaced by its own change, it was deleted instead.

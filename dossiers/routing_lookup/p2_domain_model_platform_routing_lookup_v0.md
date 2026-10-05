@@ -51,7 +51,7 @@ counted, and execution's handling of each answer was read.
 | The rule governing how contracts are built allows only going on and ending. | NOT_FOUND | execution_topology::CONSTITUTION_EXECUTION_TOPOLOGY_V0 contradicts itself. Its §4 says routing maps each outcome to exactly two answers, continue or exit, and must not use evaluation logic, conditions or expressions. Its §1 says every outcome is routed to continue, exit or an evaluation target, and its §3 counts evaluation outcomes among a contract's exits. | S1 system_beliefs #1 |
 | The rule that a contract's outcomes are all reachable admits evaluation targets, and the compiler follows it. | VERIFIED | execution_topology::INVARIANT_TOPOLOGY_CONTRACT_CLOSED_V0 counts both outcomes of every evaluation target as reachable. Its check does the same and accepts any routing answer; it is the only compiler check that reads an evaluation block. No schema declares one. | S1 system_beliefs #2 |
 | Execution reads an unknown routing answer as going on. | VERIFIED | The runtime's step loop refuses an outcome the routing does not list, ends on exit, and otherwise runs the next step. Nothing in the runtime reads an evaluation block. A contract routing to one ends with the outcome of its last step. | S1 system_beliefs #3 |
-| Exactly two contracts route to an evaluation target: the licence cap and the Collatz gate. | VERIFIED | Across every compiled pipeline, 441 routing answers: exit 316, continue 123, evaluate_cap 1, evaluate_conjecture 1. ai_governance::CC_ENFORCE_LICENSE_CAP_V0 routes SUCCESS to evaluate_cap, assigned_count below cap; workload::CC_VERIFY_TERMINATION_V0 routes SUCCESS to evaluate_conjecture, all_terminate true. Both run on live routes, in licence provisioning and the Collatz workflow. | S1 system_beliefs #4 |
+| Exactly two contracts route to an evaluation target: the licence cap and the Collatz gate. | VERIFIED | Across every compiled pipeline, 441 routing answers: exit 316, continue 123, evaluate_cap 1, evaluate_conjecture 1. ai_governance::CC_ENFORCE_LICENSE_CAP_V0 routes SUCCESS to evaluate_cap, assigned_count below cap; workload::CC_VERIFY_TERMINATION_V0 routes SUCCESS to evaluate_conjecture, all_terminate true. The Collatz gate runs on a live route. The licence cap contract is named by no artifact and runs nowhere; the cap is enforced by ai_governance::CC_VALIDATE_ELIGIBILITY_V0, whose quota check refuses at the cap. | S1 system_beliefs #4 |
 
 ## 4. PPS Baseline — What Already Exists
 
@@ -67,7 +67,7 @@ counted, and execution's handling of each answer was read.
 <!-- register:gaps business_language -->
 | Gap | Severity | Impact | Evidence Status | Source Finding |
 |-----|----------|--------|-----------------|----------------|
-| Building a composition admits a routing answer nothing performs. | CRITICAL | Two contracts succeed where their declarations say they fail: the licence cap is never enforced and the Collatz gate cannot fail. | OBSERVED | S2 belief_verification #4 |
+| Building a composition admits a routing answer nothing performs. | CRITICAL | The Collatz gate cannot fail, and a contract nothing runs carries a condition no build refuses. | OBSERVED | S2 belief_verification #4 |
 | The governing rule contradicts itself about what routing may say. | MAJOR | The invariant followed the sections that admit evaluation targets; aligning only the invariant would leave the governing rule admitting them. | OBSERVED | S2 belief_verification #1 |
 | Execution goes on past a routing answer it does not know. | MAJOR | A routing answer the build missed would be read as going on, without a trace of it. | OBSERVED | S2 belief_verification #3 |
 
@@ -87,7 +87,7 @@ counted, and execution's handling of each answer was read.
 | Concern | Evidence | Severity | Evidence Status | Source Finding |
 |---------|----------|----------|-----------------|----------------|
 | Replacing the governing rule reaches the twenty artifacts that name it. | Each names it as the rule that governs it or the rule it enforces; each must name the successor. | MAJOR | OBSERVED | S2 architectural_observations #2 |
-| Building this change before the two contracts are replaced refuses two compositions. | Both route to an evaluation target today. | MAJOR | OBSERVED | S2 belief_verification #4 |
+| Building this change before the two contracts are replaced refuses two compositions. | Both route to an evaluation target today; the licence cap contract is unreachable and is deleted rather than replaced. | MAJOR | OBSERVED | S2 belief_verification #4 |
 
 ## 8. Open Questions
 
