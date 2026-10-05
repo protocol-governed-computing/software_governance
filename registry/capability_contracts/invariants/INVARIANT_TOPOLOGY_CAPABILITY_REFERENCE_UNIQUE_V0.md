@@ -6,7 +6,7 @@
 fqdn: capability_contracts::INVARIANT_TOPOLOGY_CAPABILITY_REFERENCE_UNIQUE_V0
 artifact_kind: INVARIANT
 version: V0
-governed_by: execution_topology::CONSTITUTION_EXECUTION_TOPOLOGY_V0
+governed_by: execution_topology::CONSTITUTION_EXECUTION_TOPOLOGY_V1
 authority: pgc.platform
 concern: capability_contracts
 core:

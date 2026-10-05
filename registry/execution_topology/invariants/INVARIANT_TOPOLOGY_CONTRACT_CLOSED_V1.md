@@ -1,14 +1,13 @@
-# INVARIANT_TOPOLOGY_CONTRACT_CLOSED_V0
+# INVARIANT_TOPOLOGY_CONTRACT_CLOSED_V1
 
 ## Machine
 
 ```yaml
-fqdn: execution_topology::INVARIANT_TOPOLOGY_CONTRACT_CLOSED_V0
-superseded_by:
-- execution_topology::INVARIANT_TOPOLOGY_CONTRACT_CLOSED_V1
+fqdn: execution_topology::INVARIANT_TOPOLOGY_CONTRACT_CLOSED_V1
+supersedes: execution_topology::INVARIANT_TOPOLOGY_CONTRACT_CLOSED_V0
 artifact_kind: INVARIANT
-version: V0
-governed_by: execution_topology::CONSTITUTION_EXECUTION_TOPOLOGY_V0
+version: V1
+governed_by: execution_topology::CONSTITUTION_EXECUTION_TOPOLOGY_V1
 authority: pgc.platform
 concern: execution_topology
 core:
@@ -32,18 +31,25 @@ declared outcome, and cannot deliver any undeclared one.
 
 CONTRACT_CLOSED verifies that the topology fulfills the contract — not just that routing is
 locally complete per step (ROUTING_COMPLETE), but that the full CC exit surface matches the
-declared contract exactly.
+declared contract exactly. A contract's exits come from its steps, and a step's outcomes come from
+the capability it runs: routing is a lookup with two answers, and a decision is a capability's.
 
 ## What this realizes
 For every CC:
 
-1. **No uncontracted exits**: every status code that can exit the CC topology (via `exit`,
-   last-step `continue`, or evaluation `on_true`/`on_false`) MUST appear in
-   `result_status_contract.allowed`
+1. **No uncontracted exits**: every status code that can exit the CC topology (via `exit` or
+   last-step `continue`) MUST appear in `result_status_contract.allowed`
 2. **No unreachable contract codes**: every code in `result_status_contract.allowed` MUST
    be reachable as a CC exit — there MUST exist at least one execution path that exits
    with that code
 3. The contract is closed when `reachable_exits == allowed` exactly
+4. **Two routing answers**: every value in a step's `on_result` MUST be `continue` or `exit`.
+   Anything else is a routing answer nothing performs, refused by contract, step and answer
+5. **No conditions**: a CC MUST NOT declare an `evaluation` block. A decision a condition would
+   state is made by a capability, which answers with an outcome the step routes on
+
+A contract that is not in force (`INVARIANT_SUPERSEDED_NOT_IN_FORCE_V0`) is not checked: it runs
+nowhere, and it stays in the record as it was sealed.
 
 ## Exit Reachability
 
@@ -51,16 +57,13 @@ A status code is reachable as a CC exit when ANY of the following hold:
 
 - A step routes that code as `exit` in `on_result` (and the code is in the step's `result_surface`)
 - The LAST step in the pipeline routes that code as `continue` (last-step `continue` exits the CC)
-- An `evaluation` block's `on_true` or `on_false` names that code as the evaluation outcome
 
 Codes routed as `continue` in non-last steps remain in-pipeline — they do not exit the CC.
-Codes routed to an evaluation target (e.g., `SUCCESS: evaluate_cap`) exit via evaluation
-outcome — the evaluation's `on_true`/`on_false` codes are the actual exits.
 
 ## Where it applies
 - **Artifact Types**: CC
 - **Validation Phase**: compile_time
-- **Enforced By**: ASSERT_TOPOLOGY_CONTRACT_CLOSED_V0
+- **Enforced By**: ASSERT_TOPOLOGY_CONTRACT_CLOSED_V1
 
 ## Relationship to ROUTING_COMPLETE
 
@@ -90,9 +93,11 @@ reading individual steps — it requires aggregating all exit paths across the f
 ## What this realizes
 ```yaml
 core:
-  rule: For every CC, the set of status codes that can actually exit the topology (via step exit routes,
-    last-step continue routes, and evaluation outcomes) must equal exactly the set declared in result_status_contract.allowed
-    — no uncontracted exits, no unreachable contract codes
-  summary: the union of all codes that can exit a CC execution topology must exactly match result_status_contract.allowed;
-    uncontracted exits and unreachable contract codes are compile-time violations
+  rule: For every CC in force, every routing answer is continue or exit, no evaluation block is declared,
+    and the set of status codes that can exit the topology (via step exit routes and last-step continue
+    routes) equals exactly the set declared in result_status_contract.allowed — no uncontracted exits,
+    no unreachable contract codes
+  summary: routing has two answers and a CC declares no condition; the union of all codes that can exit
+    a CC execution topology must exactly match result_status_contract.allowed; any other routing answer,
+    an evaluation block, uncontracted exits and unreachable contract codes are compile-time violations
 ```

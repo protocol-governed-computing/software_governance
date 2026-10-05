@@ -1,12 +1,11 @@
-# CONSTITUTION_EXECUTION_TOPOLOGY_V0
+# CONSTITUTION_EXECUTION_TOPOLOGY_V1
 
 ## Machine
 ```yaml
-fqdn: execution_topology::CONSTITUTION_EXECUTION_TOPOLOGY_V0
-superseded_by:
-- execution_topology::CONSTITUTION_EXECUTION_TOPOLOGY_V1
+fqdn: execution_topology::CONSTITUTION_EXECUTION_TOPOLOGY_V1
+supersedes: execution_topology::CONSTITUTION_EXECUTION_TOPOLOGY_V0
 artifact_kind: CONSTITUTION
-version: V0
+version: V1
 governed_by: capability_contracts::CONSTITUTION_CAPABILITY_CONTRACT_V0
 authority: pgc.platform
 concern: execution_topology
@@ -24,7 +23,7 @@ rules:
 - applies_to: CC
   enforced_by: execution_topology::INVARIANT_TOPOLOGY_ROUTING_COMPLETE_V0
 - applies_to: CC
-  enforced_by: execution_topology::INVARIANT_TOPOLOGY_CONTRACT_CLOSED_V0
+  enforced_by: execution_topology::INVARIANT_TOPOLOGY_CONTRACT_CLOSED_V1
 - applies_to: CC
   enforced_by: execution_topology::INVARIANT_TOPOLOGY_STEP_ID_UNIQUE_V0
 - applies_to: CC
@@ -94,7 +93,7 @@ Step structure is self-describing. Each step declares:
 3. **Input contracts** — all inputs explicitly bound to CC inputs or prior step outputs
 4. **Output contracts** — all outputs explicitly mapped from capability result
 5. **Capability surface** — `result_surface` declares the codes this step's capability can produce
-6. **Routing** — all surface codes explicitly routed (continue, exit, or evaluation target)
+6. **Routing** — all surface codes explicitly routed, each to continue or exit
 
 ---
 
@@ -119,7 +118,7 @@ All execution paths must exist before runtime begins. This means:
 
 - All step IDs referenced in `$.results.*` bindings must resolve to declared steps
 - All status codes in a step's `result_surface` must appear in that step's `on_result`
-- The union of all CC exit codes (step exits, last-step continues, evaluation outcomes) must equal `result_status_contract.allowed`
+- The union of all CC exit codes (step exits and last-step continues) must equal `result_status_contract.allowed`
 - No step may reference a step declared after it in sequence (no forward references to results)
 - No step may be unreachable (all topology closure validated at compile time)
 
@@ -140,6 +139,9 @@ outcomes: `continue` (next step) or `exit` (terminate CC with that status).
 - Use dynamic predicates or runtime-evaluated values
 
 Routing is bounded. It is a lookup table, not an expression evaluator.
+
+A decision is made by a capability, which answers with an outcome the step routes on. A CC declares
+no condition over a step's result: no `evaluation` block, and no routing answer naming one.
 
 ---
 
@@ -182,15 +184,16 @@ The following constitute execution topology violations:
 - Authority-semantic field names inside steps (`role`, `permissions`, `authorized_by`, `on_role`)
 - Transport-semantic field names inside steps (`http_method`, `endpoint`, `transport_target`)
 - Expression evaluators or scripting constructs inside `on_result`
+- A routing answer other than `continue` or `exit`, or an `evaluation` block on a CC
 - `result_surface` that differs from the canonical_surface declared by the governing SURFACE_CONTRACT
 
 ---
 
-## §7. V0 Scope
+## §7. Scope
 
-V0 topology governance formalizes existing practice. It does not introduce new topology
+Topology governance formalizes existing practice. It does not introduce new topology
 primitives. Current execution topology features (single-capability steps, explicit JSONPath
-bindings, declarative on_result routing) are the complete V0 surface.
+bindings, declarative on_result routing with two answers) are the complete surface.
 
 Future topology evolution (molecules as step primitives, loop steps, parallel step groups,
 topology fingerprints) is explicitly deferred to future versions. V0 governs current reality.
@@ -223,9 +226,10 @@ rules:
     declares, and on_result MUST declare routing for every status code in that result_surface; a narrowed
     surface and an unrouted surface code both constitute ungoverned execution paths (3d CP-13)
 - rule_id: TOPOLOGY_CONTRACT_CLOSED
-  constraint: the union of all status codes that can exit the CC execution topology (via step exit routes,
-    last-step continue routes, and evaluation outcomes) MUST exactly match result_status_contract.allowed;
-    uncontracted exits and unreachable contract codes are constitutional violations
+  constraint: every on_result value MUST be continue or exit and no CC declares an evaluation block; the
+    union of all status codes that can exit the CC execution topology (via step exit routes and last-step
+    continue routes) MUST exactly match result_status_contract.allowed; uncontracted exits and unreachable
+    contract codes are constitutional violations
 - rule_id: TOPOLOGY_STEP_ID_UNIQUE
   constraint: step IDs MUST be unique within a CC execution topology; duplicate step IDs create ambiguous
     dataflow identity and are constitutional violations
