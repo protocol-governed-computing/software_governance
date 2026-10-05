@@ -6,7 +6,7 @@
 fqdn: workflow::INVARIANT_WF_ROUTING_CLOSED_V0
 artifact_kind: INVARIANT
 version: V0
-governed_by: workflow::CONSTITUTION_WORKFLOW_V0
+governed_by: execution_topology::CONSTITUTION_EXECUTION_TOPOLOGY_V1
 authority: pgc.platform
 concern: workflow
 core:
@@ -50,7 +50,7 @@ stays in the canonical record as evidence, and the record does not run.
 
 ## Relationship to the step-level invariants
 
-`execution_topology::INVARIANT_TOPOLOGY_ROUTING_COMPLETE_V0` closes a contract's steps against the
+`execution_topology::INVARIANT_TOPOLOGY_ROUTING_COMPLETE_V1` closes a contract's steps against the
 capabilities they dispatch. `execution_topology::INVARIANT_TOPOLOGY_CONTRACT_CLOSED_V0` closes what a
 contract can end with against what it declares. This closes the workflow against both. Closing an
 outcome at the step adds it to what the contract can end with, which opens a gap here unless the

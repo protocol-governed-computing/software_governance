@@ -25,8 +25,6 @@ rules:
   enforced_by: artifact::INVARIANT_FQDN_ONLY_REFERENCES_V0
 - applies_to: WF
   enforced_by: workflow::INVARIANT_WF_ANNOUNCEMENT_DISTINCT_V0
-- applies_to: WF
-  enforced_by: workflow::INVARIANT_WF_ROUTING_CLOSED_V0
 ```
 
 ---
@@ -122,7 +120,4 @@ rules:
   constraint: all artifact references in workflow MUST use FQDN
 - rule_id: WF_ANNOUNCEMENT_DISTINCT
   constraint: a terminal node announces each moment at most once, by FQDN, in a declared order
-- rule_id: WF_ROUTING_CLOSED
-  constraint: every node a workflow can reach MUST declare a route or an ending for every outcome the
-    contract or intent it runs declares; construction refuses an unanswered outcome (4a GC-15)
 ```

@@ -21,7 +21,7 @@ rules:
 - applies_to: CC
   enforced_by: capability_contracts::INVARIANT_TOPOLOGY_INPUT_REFERENCE_DECLARED_V0
 - applies_to: CC
-  enforced_by: execution_topology::INVARIANT_TOPOLOGY_ROUTING_COMPLETE_V0
+  enforced_by: execution_topology::INVARIANT_TOPOLOGY_ROUTING_COMPLETE_V1
 - applies_to: CC
   enforced_by: execution_topology::INVARIANT_TOPOLOGY_CONTRACT_CLOSED_V1
 - applies_to: CC
@@ -40,6 +40,8 @@ rules:
   enforced_by: capability_transforms::INVARIANT_CT_TEST_DATA_OUTCOME_DECLARED_V0
 - applies_to: WF
   enforced_by: workflow::INVARIANT_WF_NODE_KEY_BINDING_UNIQUE_V0
+- applies_to: WF
+  enforced_by: workflow::INVARIANT_WF_ROUTING_CLOSED_V0
 ```
 
 ---
@@ -230,6 +232,9 @@ rules:
     union of all status codes that can exit the CC execution topology (via step exit routes and last-step
     continue routes) MUST exactly match result_status_contract.allowed; uncontracted exits and unreachable
     contract codes are constitutional violations
+- rule_id: WF_ROUTING_CLOSED
+  constraint: every node a workflow can reach MUST declare a route or an ending for every outcome the
+    contract or intent it runs declares; construction refuses an unanswered outcome (4a GC-15)
 - rule_id: TOPOLOGY_STEP_ID_UNIQUE
   constraint: step IDs MUST be unique within a CC execution topology; duplicate step IDs create ambiguous
     dataflow identity and are constitutional violations
