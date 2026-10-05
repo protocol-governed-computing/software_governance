@@ -4,6 +4,8 @@
 
 ```yaml
 fqdn: artifact::VOCAB_DECLARATION_REPRESENTATION_V0
+superseded_by:
+- artifact::VOCAB_DECLARATION_REPRESENTATION_V1
 artifact_kind: VOCABULARY
 version: v0
 governed_by: vocabulary::CONSTITUTION_VOCABULARY_V0
