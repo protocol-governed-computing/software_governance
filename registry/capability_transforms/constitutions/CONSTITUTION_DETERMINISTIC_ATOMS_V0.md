@@ -37,7 +37,7 @@ decided by its kind and declared purity (`capability_transforms::INVARIANT_CT_GO
 | a molecule, composed of steps and naming no implementation | `capability_transforms::CONSTITUTION_MOLECULES_V0` |
 
 The rules common to every transform — surface closure, closure by derivation and implementation
-admissibility — are carried by `capability_transforms::CONSTITUTION_CAPABILITY_TRANSFORMS_V1`.
+admissibility — are carried by `capability_transforms::CONSTITUTION_CAPABILITY_TRANSFORMS_V2`.
 
 ---
 

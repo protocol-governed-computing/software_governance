@@ -1,13 +1,12 @@
-# INVARIANT_CT_SURFACE_CLOSED_V1
+# INVARIANT_CT_SURFACE_CLOSED_V2
 
 ## Machine
 
 ```yaml
-fqdn: capability_transforms::INVARIANT_CT_SURFACE_CLOSED_V1
-superseded_by:
-- capability_transforms::INVARIANT_CT_SURFACE_CLOSED_V2
+fqdn: capability_transforms::INVARIANT_CT_SURFACE_CLOSED_V2
+supersedes: capability_transforms::INVARIANT_CT_SURFACE_CLOSED_V1
 artifact_kind: INVARIANT
-version: V1
+version: V2
 governed_by: governance::CONSTITUTION_INVARIANTS_V0
 authority: pgc.platform
 concern: capability_transforms
@@ -30,6 +29,7 @@ assert_projection:
   - capability_transforms::CT_PURE_LOOKUP_V0
   - capability_transforms::CT_PURE_MAP_RESULT_TO_HTTP_V0
   - capability_transforms::CT_PURE_PASSTHROUGH_V0
+  - capability_transforms::CT_PURE_REQUIRE_TRUE_V0
   - capability_transforms::CT_PURE_VALIDATE_PARAMETER_RULES_V0
   - capability_transforms::CT_PURE_VALIDATE_RECORD_STRUCTURE_V0
   - capability_transforms::CT_PURE_VALIDATE_SET_MEMBERSHIP_V0

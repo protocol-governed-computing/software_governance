@@ -30,7 +30,7 @@ It governs such atoms only. Deterministic atoms are governed by
 `capability_transforms::CONSTITUTION_DETERMINISTIC_ATOMS_V0`; molecules are governed by
 `capability_transforms::CONSTITUTION_MOLECULES_V0`. Each transform is governed by exactly one of the
 three, decided by its kind and declared purity. The rules common to
-all three are carried by `capability_transforms::CONSTITUTION_CAPABILITY_TRANSFORMS_V1`.
+all three are carried by `capability_transforms::CONSTITUTION_CAPABILITY_TRANSFORMS_V2`.
 
 ---
 

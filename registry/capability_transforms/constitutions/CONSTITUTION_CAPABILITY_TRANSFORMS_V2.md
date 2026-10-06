@@ -1,12 +1,11 @@
-# CONSTITUTION_CAPABILITY_TRANSFORMS_V1
+# CONSTITUTION_CAPABILITY_TRANSFORMS_V2
 
 ## Machine
 ```yaml
-fqdn: capability_transforms::CONSTITUTION_CAPABILITY_TRANSFORMS_V1
-superseded_by:
-- capability_transforms::CONSTITUTION_CAPABILITY_TRANSFORMS_V2
+fqdn: capability_transforms::CONSTITUTION_CAPABILITY_TRANSFORMS_V2
+supersedes: capability_transforms::CONSTITUTION_CAPABILITY_TRANSFORMS_V1
 artifact_kind: CONSTITUTION
-version: V1
+version: V2
 governed_by: vocabulary::CONSTITUTION_VOCABULARY_V0
 authority: pgc.platform
 concern: capability_transforms
@@ -16,11 +15,13 @@ core:
   - CT
 rules:
 - applies_to: CT
-  enforced_by: capability_transforms::INVARIANT_CT_SURFACE_CLOSED_V1
+  enforced_by: capability_transforms::INVARIANT_CT_SURFACE_CLOSED_V2
 - applies_to: CT
   enforced_by: capability_transforms::INVARIANT_CT_SURFACE_DERIVED_CLOSED_V1
 - applies_to: CT
   enforced_by: execution::INVARIANT_IMPLEMENTATION_ADMISSIBLE_V0
+- applies_to: CT
+  enforced_by: capability_transforms::INVARIANT_CT_INPUT_TYPED_V0
 ```
 
 ---
@@ -47,7 +48,7 @@ composition it belongs to.
 
 ## 2. The rules
 
-- **Surface closure** (`INVARIANT_CT_SURFACE_CLOSED_V1`). The platform's transform surface is an
+- **Surface closure** (`INVARIANT_CT_SURFACE_CLOSED_V2`). The platform's transform surface is an
   enumerated set: every executable transform is declared, every declared transform has a runtime
   implementation, and no undeclared transform executes.
 - **Closure by derivation** (`INVARIANT_CT_SURFACE_DERIVED_CLOSED_V1`). A domain's surface is closed
@@ -56,6 +57,8 @@ composition it belongs to.
 - **Implementation admissibility** (`INVARIANT_IMPLEMENTATION_ADMISSIBLE_V0`). An atom, deterministic
   or not, declares its implementation with a non-empty module and callable. A molecule names none;
   what it runs is its steps, and each of those is held to the same rule.
+- **Typed inputs** (`INVARIANT_CT_INPUT_TYPED_V0`). A transform is given only values of the types it
+  declares. Each input a contract binds to a transform step has the declared type.
 
 ---
 
@@ -70,10 +73,18 @@ rules common to every transform, and nothing else. The deterministic atom's own 
 
 ---
 
+## Change from V1
+
+V2 closes the platform's surface with `INVARIANT_CT_SURFACE_CLOSED_V2`, whose list adds
+`CT_PURE_REQUIRE_TRUE_V0`, and adds the rule that a transform is given only values of the types it
+declares.
+
+---
+
 ## What this realizes
 ```yaml
 core:
-  description: Carries the rules common to every capability transform — surface closure, closure by derivation and implementation admissibility
+  description: Carries the rules common to every capability transform — surface closure, closure by derivation, implementation admissibility and typed inputs
 rules:
 - rule_id: CT_SURFACE_CLOSED
   constraint: every executable transform MUST be declared and implemented, and no undeclared transform MAY execute
@@ -81,4 +92,6 @@ rules:
   constraint: every transform a domain declares MUST be invoked by its contracts, and every transform they invoke MUST be declared
 - rule_id: CT_IMPLEMENTATION_ADMISSIBLE
   constraint: every atom MUST declare an implementation with a non-empty module and callable
+- rule_id: CT_INPUT_TYPED
+  constraint: every input a contract binds to a transform step MUST have the type the transform declares
 ```

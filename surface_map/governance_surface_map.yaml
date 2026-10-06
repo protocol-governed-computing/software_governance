@@ -1,7 +1,7 @@
 governance_surface_map:
   note: family and concern are read from the semantic registry tree (registry/<family>/<concern>/); identity
     (fqdn) is declared per-artifact and independent of this path.
-  artifact_count: 204
+  artifact_count: 207
   families:
     actor:
       constitutions: 1
@@ -19,8 +19,8 @@ governance_surface_map:
       constitutions: 1
       invariants: 4
     capability_transforms:
-      constitutions: 4
-      invariants: 9
+      constitutions: 5
+      invariants: 11
       structures: 1
     compiler:
       constitutions: 1
@@ -120,12 +120,12 @@ governance_surface_map:
       constitutions: 1
       invariants: 6
   by_enforcement_locus:
-    compile_composition: 193
+    compile_composition: 196
     snapshot_declaration: 5
     runtime_execution: 3
     meta_process: 3
   by_coverage_status:
-    implemented: 174
+    implemented: 177
     process_enforced: 3
     declaration_substrate: 27
   coverage_ledger:
@@ -527,6 +527,17 @@ governance_surface_map:
       authority: constitution
     coverage:
       status: implemented
+  - artifact_code: CONSTITUTION_CAPABILITY_TRANSFORMS_V2
+    kind: CONSTITUTION
+    family: capability_transforms
+    concern: constitutions
+    semantic:
+      property: capability_transforms
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
   - artifact_code: CONSTITUTION_DETERMINISTIC_ATOMS_V0
     kind: CONSTITUTION
     family: capability_transforms
@@ -582,6 +593,17 @@ governance_surface_map:
       authority: constitution
     coverage:
       status: implemented
+  - artifact_code: INVARIANT_CT_INPUT_TYPED_V0
+    kind: INVARIANT
+    family: capability_transforms
+    concern: invariants
+    semantic:
+      property: ct_input_typed
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
   - artifact_code: INVARIANT_CT_OUTPUT_CONTRACT_MATCH_V0
     kind: INVARIANT
     family: capability_transforms
@@ -594,6 +616,17 @@ governance_surface_map:
     coverage:
       status: implemented
   - artifact_code: INVARIANT_CT_SURFACE_CLOSED_V1
+    kind: INVARIANT
+    family: capability_transforms
+    concern: invariants
+    semantic:
+      property: ct_surface_closed
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: INVARIANT_CT_SURFACE_CLOSED_V2
     kind: INVARIANT
     family: capability_transforms
     concern: invariants
