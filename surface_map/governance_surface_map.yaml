@@ -1,13 +1,14 @@
 governance_surface_map:
   note: family and concern are read from the semantic registry tree (registry/<family>/<concern>/); identity
     (fqdn) is declared per-artifact and independent of this path.
-  artifact_count: 197
+  artifact_count: 204
   families:
     actor:
       constitutions: 1
       invariants: 2
     artifact:
       invariants: 8
+      vocabulary: 1
     authority:
       constitutions: 1
       invariants: 7
@@ -49,8 +50,8 @@ governance_surface_map:
       invariants: 1
       structures: 1
     execution_topology:
-      constitutions: 1
-      invariants: 10
+      constitutions: 2
+      invariants: 12
     federation:
       constitutions: 1
       invariants: 2
@@ -88,6 +89,7 @@ governance_surface_map:
       SCHEMA_SURFACE_CONTRACT_V0.json: 1
       SCHEMA_TEST_DATA_V1.json: 1
       SCHEMA_TRACE_EVENT_V1.json: 1
+      SCHEMA_TRACE_EVENT_V2.json: 1
       SCHEMA_TRANSPORT_REQUEST_V0.json: 1
       SCHEMA_TRANSPORT_RESPONSE_V0.json: 1
       SCHEMA_VOCABULARY_V0.json: 1
@@ -105,7 +107,7 @@ governance_surface_map:
       invariants: 2
       surface_contracts: 8
     trace:
-      constitutions: 1
+      constitutions: 2
     transport:
       constitutions: 4
       invariants: 8
@@ -116,16 +118,16 @@ governance_surface_map:
       structures: 1
     workflow:
       constitutions: 1
-      invariants: 5
+      invariants: 6
   by_enforcement_locus:
-    compile_composition: 187
+    compile_composition: 193
     snapshot_declaration: 5
-    runtime_execution: 2
+    runtime_execution: 3
     meta_process: 3
   by_coverage_status:
-    implemented: 168
+    implemented: 174
     process_enforced: 3
-    declaration_substrate: 26
+    declaration_substrate: 27
   coverage_ledger:
     transport:
       status: intentionally_deferred
@@ -256,6 +258,17 @@ governance_surface_map:
     concern: invariants
     semantic:
       property: unique_artifact_id
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: VOCAB_DECLARATION_REPRESENTATION_V0
+    kind: VOCABULARY
+    family: artifact
+    concern: vocabulary
+    semantic:
+      property: declaration_representation
       lifecycle: compile
       enforcement_locus: compile_composition
       authority: constitution
@@ -1064,6 +1077,17 @@ governance_surface_map:
       authority: constitution
     coverage:
       status: implemented
+  - artifact_code: CONSTITUTION_EXECUTION_TOPOLOGY_V1
+    kind: CONSTITUTION
+    family: execution_topology
+    concern: constitutions
+    semantic:
+      property: execution_topology
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
   - artifact_code: INVARIANT_NO_RUNTIME_TOPOLOGY_SYNTHESIS_V0
     kind: INVARIANT
     family: execution_topology
@@ -1108,6 +1132,17 @@ governance_surface_map:
       authority: constitution
     coverage:
       status: implemented
+  - artifact_code: INVARIANT_TOPOLOGY_CONTRACT_CLOSED_V1
+    kind: INVARIANT
+    family: execution_topology
+    concern: invariants
+    semantic:
+      property: topology_contract_closed
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
   - artifact_code: INVARIANT_TOPOLOGY_IMMUTABLE_AFTER_COMPILATION_V0
     kind: INVARIANT
     family: execution_topology
@@ -1120,6 +1155,17 @@ governance_surface_map:
     coverage:
       status: implemented
   - artifact_code: INVARIANT_TOPOLOGY_ROUTING_COMPLETE_V0
+    kind: INVARIANT
+    family: execution_topology
+    concern: invariants
+    semantic:
+      property: topology_routing_complete
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: INVARIANT_TOPOLOGY_ROUTING_COMPLETE_V1
     kind: INVARIANT
     family: execution_topology
     concern: invariants
@@ -1636,6 +1682,17 @@ governance_surface_map:
       authority: constitution
     coverage:
       status: declaration_substrate
+  - artifact_code: SCHEMA_TRACE_EVENT_V2
+    kind: SCHEMA
+    family: schema
+    concern: SCHEMA_TRACE_EVENT_V2.json
+    semantic:
+      property: trace_event
+      lifecycle: declare
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: declaration_substrate
   - artifact_code: SCHEMA_TRANSPORT_REQUEST_V0
     kind: SCHEMA
     family: schema
@@ -2021,6 +2078,17 @@ governance_surface_map:
       authority: constitution
     coverage:
       status: implemented
+  - artifact_code: CONSTITUTION_TRACE_EXECUTION_V1
+    kind: CONSTITUTION
+    family: trace
+    concern: constitutions
+    semantic:
+      property: trace_execution
+      lifecycle: execute
+      enforcement_locus: runtime_execution
+      authority: constitution
+    coverage:
+      status: implemented
   - artifact_code: CONSTITUTION_ADMISSION_V0
     kind: CONSTITUTION
     family: transport
@@ -2302,6 +2370,17 @@ governance_surface_map:
     concern: invariants
     semantic:
       property: wf_node_key_binding_unique
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: INVARIANT_WF_ROUTING_CLOSED_V0
+    kind: INVARIANT
+    family: workflow
+    concern: invariants
+    semantic:
+      property: wf_routing_closed
       lifecycle: compile
       enforcement_locus: compile_composition
       authority: constitution
