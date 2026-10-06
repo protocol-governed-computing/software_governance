@@ -16,7 +16,7 @@ produce VIOLATION (COUNT takes no input that can be invalid). These two outcomes
 fqdn: surface_contract::SURFACE_CONTRACT_REGISTRY_COUNT_V0
 artifact_kind: SURFACE_CONTRACT
 version: V0
-governed_by: execution_topology::CONSTITUTION_EXECUTION_TOPOLOGY_V0
+governed_by: execution_topology::CONSTITUTION_EXECUTION_TOPOLOGY_V1
 authority: pgc.platform
 concern: surface_contract
 governs:

@@ -6,7 +6,7 @@
 fqdn: execution_topology::INVARIANT_TOPOLOGY_IMMUTABLE_AFTER_COMPILATION_V0
 artifact_kind: INVARIANT
 version: V0
-governed_by: execution_topology::CONSTITUTION_EXECUTION_TOPOLOGY_V0
+governed_by: execution_topology::CONSTITUTION_EXECUTION_TOPOLOGY_V1
 authority: pgc.platform
 concern: execution_topology
 core:
