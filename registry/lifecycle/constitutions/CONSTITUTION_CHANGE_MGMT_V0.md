@@ -3,6 +3,8 @@
 ## Machine
 ```yaml
 fqdn: lifecycle::CONSTITUTION_CHANGE_MGMT_V0
+superseded_by:
+- lifecycle::CONSTITUTION_CHANGE_MGMT_V1
 artifact_kind: CONSTITUTION
 version: V0
 governed_by: governance::CONSTITUTION_GOVERNANCE_V0
