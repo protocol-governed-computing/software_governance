@@ -1,7 +1,7 @@
 governance_surface_map:
   note: family and concern are read from the semantic registry tree (registry/<family>/<concern>/); identity
     (fqdn) is declared per-artifact and independent of this path.
-  artifact_count: 207
+  artifact_count: 227
   families:
     actor:
       constitutions: 1
@@ -63,6 +63,7 @@ governance_surface_map:
       invariants: 3
     lifecycle:
       constitutions: 2
+      invariants: 20
     runtime_binding:
       constitutions: 1
       invariants: 7
@@ -120,13 +121,13 @@ governance_surface_map:
       constitutions: 1
       invariants: 6
   by_enforcement_locus:
-    compile_composition: 196
+    compile_composition: 218
     snapshot_declaration: 5
     runtime_execution: 3
-    meta_process: 3
+    meta_process: 1
   by_coverage_status:
-    implemented: 177
-    process_enforced: 3
+    implemented: 199
+    process_enforced: 1
     declaration_substrate: 27
   coverage_ledger:
     transport:
@@ -263,7 +264,7 @@ governance_surface_map:
       authority: constitution
     coverage:
       status: implemented
-  - artifact_code: VOCAB_DECLARATION_REPRESENTATION_V0
+  - artifact_code: VOCAB_DECLARATION_REPRESENTATION_V1
     kind: VOCABULARY
     family: artifact
     concern: vocabulary
@@ -1363,28 +1364,248 @@ governance_surface_map:
       authority: constitution
     coverage:
       status: implemented
-  - artifact_code: CONSTITUTION_CHANGE_MGMT_V0
+  - artifact_code: CONSTITUTION_CHANGE_MGMT_V1
     kind: CONSTITUTION
     family: lifecycle
     concern: constitutions
     semantic:
       property: change_mgmt
-      lifecycle: evolve
-      enforcement_locus: meta_process
-      authority: process
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
     coverage:
-      status: process_enforced
-  - artifact_code: CONSTITUTION_CONSTRUCTION_V0
+      status: implemented
+  - artifact_code: CONSTITUTION_CONSTRUCTION_V1
     kind: CONSTITUTION
     family: lifecycle
     concern: constitutions
     semantic:
       property: construction
-      lifecycle: evolve
-      enforcement_locus: meta_process
-      authority: process
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
     coverage:
-      status: process_enforced
+      status: implemented
+  - artifact_code: INVARIANT_ANNOUNCEMENT_FROM_COMPLETING_ENDING_V0
+    kind: INVARIANT
+    family: lifecycle
+    concern: invariants
+    semantic:
+      property: announcement_from_completing_ending
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: INVARIANT_BUILD_ORDER_TOPOLOGICAL_V0
+    kind: INVARIANT
+    family: lifecycle
+    concern: invariants
+    semantic:
+      property: build_order_topological
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: INVARIANT_BUSINESS_REFUSAL_DISCHARGED_V0
+    kind: INVARIANT
+    family: lifecycle
+    concern: invariants
+    semantic:
+      property: business_refusal_discharged
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: INVARIANT_CONTENT_ENTERS_AT_OWNING_PHASE_V0
+    kind: INVARIANT
+    family: lifecycle
+    concern: invariants
+    semantic:
+      property: content_enters_at_owning_phase
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: INVARIANT_DECLARED_ARTIFACT_FULLY_STATED_V0
+    kind: INVARIANT
+    family: lifecycle
+    concern: invariants
+    semantic:
+      property: declared_artifact_fully_stated
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: INVARIANT_DESIGN_NAMES_RESOLVE_V0
+    kind: INVARIANT
+    family: lifecycle
+    concern: invariants
+    semantic:
+      property: design_names_resolve
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: INVARIANT_DESIGN_UNIQUELY_DETERMINES_ARTIFACT_V0
+    kind: INVARIANT
+    family: lifecycle
+    concern: invariants
+    semantic:
+      property: design_uniquely_determines_artifact
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: INVARIANT_EXISTING_ARTIFACT_OBSERVED_V0
+    kind: INVARIANT
+    family: lifecycle
+    concern: invariants
+    semantic:
+      property: existing_artifact_observed
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: INVARIANT_MEANING_CHANGE_IS_NEW_IDENTITY_V0
+    kind: INVARIANT
+    family: lifecycle
+    concern: invariants
+    semantic:
+      property: meaning_change_is_new_identity
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: INVARIANT_NEW_IDENTITY_UNUSED_V0
+    kind: INVARIANT
+    family: lifecycle
+    concern: invariants
+    semantic:
+      property: new_identity_unused
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: INVARIANT_NO_QUESTION_LEFT_OPEN_V0
+    kind: INVARIANT
+    family: lifecycle
+    concern: invariants
+    semantic:
+      property: no_question_left_open
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: INVARIANT_ONE_PRODUCER_PER_ARTIFACT_V0
+    kind: INVARIANT
+    family: lifecycle
+    concern: invariants
+    semantic:
+      property: one_producer_per_artifact
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: INVARIANT_PHASE_SPEAKS_ITS_RUNG_V0
+    kind: INVARIANT
+    family: lifecycle
+    concern: invariants
+    semantic:
+      property: phase_speaks_its_rung
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: INVARIANT_REACH_DECLARED_AND_USED_V0
+    kind: INVARIANT
+    family: lifecycle
+    concern: invariants
+    semantic:
+      property: reach_declared_and_used
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: INVARIANT_RENDER_INVENTS_NOTHING_V0
+    kind: INVARIANT
+    family: lifecycle
+    concern: invariants
+    semantic:
+      property: render_invents_nothing
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: INVARIANT_RESTATEMENT_MATCHES_SOURCE_V0
+    kind: INVARIANT
+    family: lifecycle
+    concern: invariants
+    semantic:
+      property: restatement_matches_source
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: INVARIANT_REUSE_FROM_PERMITTING_DOMAIN_V0
+    kind: INVARIANT
+    family: lifecycle
+    concern: invariants
+    semantic:
+      property: reuse_from_permitting_domain
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: INVARIANT_ROW_PROVENANCE_CITED_V0
+    kind: INVARIANT
+    family: lifecycle
+    concern: invariants
+    semantic:
+      property: row_provenance_cited
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: INVARIANT_TOUCHED_SUBDOMAIN_DECLARED_V0
+    kind: INVARIANT
+    family: lifecycle
+    concern: invariants
+    semantic:
+      property: touched_subdomain_declared
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: INVARIANT_UPSTREAM_COMMITMENT_CARRIED_V0
+    kind: INVARIANT
+    family: lifecycle
+    concern: invariants
+    semantic:
+      property: upstream_commitment_carried
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
   - artifact_code: CONSTITUTION_RUNTIME_BINDING_V0
     kind: CONSTITUTION
     family: runtime_binding

@@ -30,7 +30,14 @@
     "classification_level": {},
     "conformance": {},
     "contract": {},
-    "core": {},
+    "core": {
+      "properties": {
+        "json_schema": {
+          "type": "object",
+          "description": "A JSON Schema. A capability field that names this structure with `structure` holds a value that conforms to it."
+        }
+      }
+    },
     "cross_domain_transfer_allowed": {},
     "cross_node_dispatch_allowed": {},
     "deterministic_join_required": {},
