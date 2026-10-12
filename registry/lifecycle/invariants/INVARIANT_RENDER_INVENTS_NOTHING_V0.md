@@ -13,7 +13,7 @@ core:
   enforcement_stage:
   - enforced_elsewhere
   violation_response: FAIL_IMMEDIATELY
-  enforced_by: the construction compiler, measuring each design it renders (CT_PURE_ATTRIBUTE_PROVENANCE_V0)
+  enforced_by: the construction compiler, measuring each design it renders (CT_PURE_ATTRIBUTE_PROVENANCE_V1)
 assert_projection:
   applies_to_kinds:
   - AC
@@ -40,4 +40,4 @@ A value with no source in the design or in a constitution was invented by the re
 
 ## 3. How it is checked
 
-Enforced by the construction compiler: `CT_PURE_ATTRIBUTE_PROVENANCE_V0` runs on every design construction renders.
+Enforced by the construction compiler: `CT_PURE_ATTRIBUTE_PROVENANCE_V1` runs on every design construction renders.
