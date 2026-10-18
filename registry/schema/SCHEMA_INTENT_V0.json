@@ -90,15 +90,6 @@
       "pattern": "^[a-z][a-z0-9_.]*::[A-Z][A-Z0-9_]*_V\\d+$",
       "description": "FQDN of the artifact this one stands in place of. A declared relation between two exact identities, not a resolution rule: references stay exact, and a superseded artifact is unreachable rather than absent."
     },
-    "superseded_by": {
-      "type": "array",
-      "items": {
-        "type": "string",
-        "pattern": "^[a-z][a-z0-9_.]*::[A-Z][A-Z0-9_]*_V\\d+$"
-      },
-      "minItems": 1,
-      "description": "FQDNs of the artifacts that stand in this one's place. Several is the ordinary case \u2014 one act split in two retires one artifact and authors two. Its presence means the artifact is superseded: unreachable from the executable projections, retained in the canonical set as history."
-    },
     "authority": {
       "type": "string",
       "description": "The authority from which this artifact's jurisdiction derives (CA-1, CA-2). Declared, never inferred from namespace, path or kind."

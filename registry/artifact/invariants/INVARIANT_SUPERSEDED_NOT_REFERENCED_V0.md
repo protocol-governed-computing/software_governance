@@ -40,7 +40,7 @@ assert_projection:
 
 Make supersession mean something.
 
-An artifact declares `superseded_by` and stops being reachable. Without this invariant that
+An artifact names its predecessor in `supersedes`, and the predecessor stops being reachable. Without this invariant that
 declaration is a comment: the artifact stays in the composition, stays compiled, stays dispatchable,
 and everything that referenced it goes on reaching it. A change can then stand a workflow down,
 report success, and leave the composition executing the workflow it retired.
@@ -54,13 +54,13 @@ to it. A caller crossing either boundary would have reached the workflow the des
 ## How it is checked
 ### Rule: nothing live references a superseded artifact
 
-Where `X` declares `supersedes: Y` — equivalently, where `Y` declares `superseded_by` — no artifact
-in the composition may reference `Y`.
+Where `X` declares `supersedes: Y`, no artifact in the composition may reference `Y` other than that
+declaration.
 
 **Violation**:
 
 ```yaml
-# WF_RECORD_VERIFICATION_DECISION_V0 declares superseded_by: [WF_ACCEPT_ACTOR_V0, WF_REJECT_ACTOR_V0]
+# WF_ACCEPT_ACTOR_V0 and WF_REJECT_ACTOR_V0 declare supersedes: WF_RECORD_VERIFICATION_DECISION_V0
 fqdn: blockchain::TI_ACCEPT_ACTOR_V0
 handler:
   workflow: blockchain::WF_RECORD_VERIFICATION_DECISION_V0   # reaches a retired artifact
@@ -73,11 +73,13 @@ history — an entry intent and the workflow it dispatched are stood down togeth
 what it said. Refusing that would oblige a change to rewrite the records it is retiring, which is the
 opposite of retaining them.
 
-### Rule: a successor exists
+### Rule: the relation is declared once, on the successor
 
-`superseded_by` carries at least one identity. "Superseded" with nothing standing in the artifact's
-place is a deletion wearing a softer word, and deletion is a human act with a `git rm`, not something
-a design declares.
+An artifact is superseded only when an artifact present names it in `supersedes`, so a superseded
+artifact always has a successor. The predecessor declares nothing about its own retirement, and a
+second declaration on its side would be a second reference to it. "Superseded" with nothing standing
+in the artifact's place is a deletion, and deletion is a human act recorded in the retirement ledger,
+not something a design declares.
 
 ---
 

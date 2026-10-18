@@ -25,119 +25,76 @@ rules:
 
 ## §1. Purpose
 
-Admission is the **pre-DAG enforcement gate** for workflow preconditions.
+Admission decides whether a workflow MAY proceed past its entrance. It does not decide how the
+workflow executes.
 
-Admission determines whether a workflow MAY execute, not how it executes.
+An **IN gate** is the point of admission. It is a node of the workflow, so admission is part of the
+declared topology rather than a phase beside it.
 
-Admission is **read-only**. It SHALL NOT:
-- Mutate payload
-- Emit side effects
-- Dispatch capabilities
-- Invoke the node router
-
-Admission scans existing event logs to verify that declared preconditions hold.
-
----
-
-## §2. Rule Types
-
-Admission supports exactly two rule types:
-
-| Rule | Semantics |
-|------|-----------|
-| `requires` | Events that MUST exist in the event log before execution may proceed |
-| `forbids` | Events that MUST NOT exist in the event log before execution may proceed |
-
-Both rule types evaluate against the module's event log (JSONL files in the module data root).
+Admission is **read-only**. An IN gate SHALL NOT:
+- mutate the payload;
+- emit side effects;
+- dispatch capabilities.
 
 ---
 
-## §3. Binding Semantics
+## §2. What an IN gate determines
 
-Bindings map event fields to payload fields for filtered matching.
+An IN gate judges the payload against its **declared input contract** and nothing else.
 
-Declaration form:
-```json
-"bindings": {
-  "EVENT_CODE": {
-    "event_field": "payload_field"
-  }
-}
-```
+| Contract term | The gate refuses when |
+|---|---|
+| `required: true` | the field is absent |
+| `type` | the field is present and does not have the declared type |
 
-Resolution rules:
-1. Each `payload_field` is looked up in the workflow payload
-2. If a referenced payload field is absent, derivation MAY be attempted using declared deterministic functions (e.g., `actor_id` from `actor_record`)
-3. Only successfully resolved bindings are applied as match filters
-4. When a `forbids` event has no explicit binding, it inherits the identity context from all resolved bindings — forbids are scoped to the same entity
+Any failed check is NACK. Every check passing is ACK. Prose on the gate, such as
+`extensions.admission_rules`, determines nothing (MB-1). Where a gate must enforce more than its
+contract states, the contract is what must say so.
+
+A gate that declares no input contract refuses. A declared admission point that determines nothing
+would behave like one that permits (AI-6).
 
 ---
 
-## §4. Execution Timing
+## §3. Outcome and routing
 
-Admission runs:
-- AFTER protocol loading (workflow spec, intents, contracts are loaded)
-- AFTER DAG construction and validation
-- BEFORE DAG node dispatch
-
-Admission is the ADMIT phase in the execution lifecycle (see execution::CONSTITUTION_EXECUTION_V0 §2).
+ACK and NACK are outcomes, and the workflow routes them as it routes any other outcome. A refusal
+is therefore carried by the topology, not raised past it. An outcome with no declared routing and no
+declared ending refuses (EX-5).
 
 ---
 
-## §5. Failure Semantics
+## §4. Evidence
 
-Admission denial is a **Governed Denial**, not an execution failure.
-
-- Denial means preconditions are not met — the workflow is structurally valid but contextually inadmissible
-- Denial emits an error trace with `error_code: ADMISSION_DENIED`
-- Denial terminates execution with `exit_reason_code: ADMISSION_DENIED`
-- Denial does not indicate a bug, schema violation, or system error
+The runtime records every check the gate evaluated, held or not, with the outcome. A reader can see
+which check refused, and an admission is evidenced as fully as a refusal (EN-12). The checks name
+fields and declared types, never payload values.
 
 ---
 
-## §6. Declaration Site
+## §5. Declaration site
 
-Admission rules are declared in the workflow artifact under:
-
-```
-core.admission
-```
-
-The `admission` block contains:
-- `requires`: list of event codes
-- `forbids`: list of event codes
-- `bindings`: map of event code to field bindings
-
-Workflows without an `admission` block are unconditionally admitted.
+An IN gate's input contract is its intent's `core.inputs`: each field's `type` and whether it is
+`required`. The compiler projects it into the snapshot's dispatch table. The runtime reads the
+compiled contract and nothing else.
 
 ---
 
-## §7. Schema Authority (Documentation)
+## §6. Versioning
 
-The admission block structure is governed by SCHEMA_WORKFLOW_V0.json, specifically the `admission` object within the `core` section.
-
----
-
-## §8. Versioning
-
-Changes to this constitution require:
-- New version (CONSTITUTION_ADMISSION_V1)
-- Migration path documented
-- All dependent schemas updated
-
-No backward compatibility assumed.
+A change to this constitution's semantics requires a new version.
 
 ---
 
 ## What this realizes
 ```yaml
 core:
-  description: Governs the pre-DAG admission gate declared within workflow artifacts
+  description: Governs admission at a workflow's IN gate, determined from the gate's declared input contract
 rules:
 - rule_id: ADMISSION_READ_ONLY
-  constraint: admission phase MUST NOT mutate payload or emit side effects
-- rule_id: ADMISSION_PRECONDITION_ONLY
-  constraint: admission determines workflow admissibility only; it MUST NOT influence execution behavior
-- rule_id: ADMISSION_DENIAL_IS_GOVERNED
-  constraint: admission denial MUST emit trace with error_code ADMISSION_DENIED and exit_reason_code ADMISSION_DENIED
+  constraint: an IN gate MUST NOT mutate the payload, emit side effects or dispatch capabilities
+- rule_id: ADMISSION_FROM_CONTRACT_ONLY
+  constraint: an IN gate MUST determine admission from its declared input contract alone, and a gate with no contract MUST refuse
+- rule_id: ADMISSION_OUTCOME_IS_ROUTED
+  constraint: ACK and NACK MUST be routed by the workflow, and every evaluated check MUST be recorded in the trace
 ```

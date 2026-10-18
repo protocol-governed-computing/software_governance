@@ -47,19 +47,6 @@
         }
       ]
     },
-    "superseded_by": {
-      "anyOf": [
-        {
-          "type": "string"
-        },
-        {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        }
-      ]
-    },
     "core": {
       "type": "object"
     },
@@ -72,7 +59,7 @@
     }
   },
   "patternProperties": {
-    "^(?!fqdn$)(?!artifact_kind$)(?!version$)(?!governed_by$)(?!authority$)(?!concern$)(?!supersedes$)(?!superseded_by$)(?!core$)(?!extensions$)(?!extends$)[a-z][a-z0-9_]*$": {
+    "^(?!fqdn$)(?!artifact_kind$)(?!version$)(?!governed_by$)(?!authority$)(?!concern$)(?!supersedes$)(?!core$)(?!extensions$)(?!extends$)[a-z][a-z0-9_]*$": {
       "type": "object",
       "description": "One declared vocabulary. Its name is the symbol class it governs.",
       "required": [

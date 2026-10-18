@@ -31,7 +31,6 @@ unordered:
   - canonical_surface
   - applies_to_kinds
   - governs
-  - superseded_by
   - requires
   - forbids
   - consults
@@ -83,7 +82,6 @@ supersession:
   casing: lower_snake
   entries:
   - supersedes
-  - superseded_by
 data:
   casing: lower_snake
   entries:

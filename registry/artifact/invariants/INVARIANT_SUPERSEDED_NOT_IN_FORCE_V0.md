@@ -17,7 +17,7 @@ core:
   enforced_by: the build's verification stage, over the dispatch it sealed and the assertions it ran
   violation_response: FAIL_IMMEDIATELY
   in_force:
-    not_in_force_when: superseded_by
+    not_in_force_when: named_in_supersedes
 assert_projection:
   applies_to_kinds:
   - WF
@@ -46,8 +46,8 @@ has an entry. This invariant covers those.
 
 ## How it is checked
 
-The predicate is one: an artifact is in force unless it declares `superseded_by`. The build asks it
-wherever presence would confer effect:
+The predicate is one: an artifact is in force unless an artifact in the composition names it in
+`supersedes`. The build asks it wherever presence would confer effect:
 
 | Path | What a superseded artifact loses |
 |---|---|

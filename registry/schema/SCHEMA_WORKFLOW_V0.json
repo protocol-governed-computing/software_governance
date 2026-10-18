@@ -60,31 +60,6 @@
           "type": "string",
           "description": "Human-readable summary of workflow purpose"
         },
-        "admission": {
-          "type": "object",
-          "additionalProperties": true,
-          "properties": {
-            "requires": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              },
-              "description": "Events that must have occurred before workflow can execute"
-            },
-            "forbids": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              },
-              "description": "Events that must NOT have occurred"
-            },
-            "bindings": {
-              "type": "object",
-              "additionalProperties": true,
-              "description": "Field bindings from admission events to payload"
-            }
-          }
-        },
         "start_node": {
           "type": "string",
           "description": "Entry node code (must be an intent node)"
@@ -112,15 +87,6 @@
       "type": "string",
       "pattern": "^[a-z][a-z0-9_.]*::[A-Z][A-Z0-9_]*_V\\d+$",
       "description": "FQDN of the artifact this one stands in place of. A declared relation between two exact identities, not a resolution rule: references stay exact, and a superseded artifact is unreachable rather than absent."
-    },
-    "superseded_by": {
-      "type": "array",
-      "items": {
-        "type": "string",
-        "pattern": "^[a-z][a-z0-9_.]*::[A-Z][A-Z0-9_]*_V\\d+$"
-      },
-      "minItems": 1,
-      "description": "FQDNs of the artifacts that stand in this one's place. Several is the ordinary case \u2014 one act split in two retires one artifact and authors two. Its presence means the artifact is superseded: unreachable from the executable projections, retained in the canonical set as history."
     },
     "authority": {
       "type": "string",

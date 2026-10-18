@@ -52,7 +52,7 @@ All workflow execution proceeds through exactly five phases:
 | Phase | Responsibility | Governance |
 |-------|---------------|------------|
 | INTERPRET | Parse DAG from workflow artifact | SCHEMA_EXECUTION_DAG_V0 |
-| ADMIT | Enforce pre-DAG preconditions | transport::CONSTITUTION_ADMISSION_V0 |
+| ADMIT | The IN gate determines admission against its input contract | transport::CONSTITUTION_ADMISSION_V0 |
 | DISPATCH | Route nodes to capability executors | execution::CONSTITUTION_EXECUTION_V0 |
 | EVALUATE | Execute capability and collect result | Capability Contract |
 | EXIT | Terminate with success/failure + trace | CONSTITUTION_TRACE_EXECUTION_V0 |
