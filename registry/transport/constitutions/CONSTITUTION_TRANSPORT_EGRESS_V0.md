@@ -109,4 +109,7 @@ rules:
   constraint: a Result Class MUST carry no external-protocol semantics
 - rule_id: TE_PROJECTION_EXTERNAL
   constraint: Result Class to external representation mapping MUST live in the adapter, never in TE
+- rule_id: TE_OUTPUT_FIELD_OWED
+  constraint: every output field is owed unless it declares `required: false`; an owed field the result
+    does not carry is refused, an optional one is omitted, and neither is supplied as null
 ```
