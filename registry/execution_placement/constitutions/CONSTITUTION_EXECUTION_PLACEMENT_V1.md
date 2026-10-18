@@ -189,10 +189,9 @@ where a retired declaration's evidence belongs. A snapshot built under V0 is una
 `LOCAL_SINGLE_NODE` in its federation profile, that remains true of it, and nothing here reaches
 backwards to change what it claimed.
 
-**What V1 changes.** Placement stops being a property of a surface's inventory and becomes a
-property of the composition being built. The mode `LOCAL_SINGLE_NODE` means exactly what it meant
-before; `LOCAL_MULTI_WORKER` is newly authorized; and the mark that used to select a mode no longer
-exists, because selection moved to the build configuration.
+**What V1 holds.** Placement is a property of the composition being built, not of a surface's
+inventory. The mode `LOCAL_SINGLE_NODE` means what V0 declared. `LOCAL_MULTI_WORKER` is authorized
+alongside it. The build configuration selects the mode, and no structure marks itself selected.
 
 **Rationale.** Two profiles came into force over one governance surface — one requiring no
 particular arrangement, one requiring several workers. Under V0 the second could not be built

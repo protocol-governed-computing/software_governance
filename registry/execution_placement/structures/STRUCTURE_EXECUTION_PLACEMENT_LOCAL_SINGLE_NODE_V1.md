@@ -25,8 +25,8 @@ Declares that one process on one host is an available placement arrangement.
 Execution runs in a single process on the local host. No worker pool is consulted and no
 dispatch occurs, because there is nothing to dispatch to.
 
-This is the same mode V0 declared and it means the same thing. What changed is how a build reaches
-it: the structure no longer marks itself active, and a build configuration names it.
+This is the same mode V0 declared and it means the same thing. A build reaches it when its build
+configuration names it; the structure does not mark itself active.
 
 ## Availability is not activity
 

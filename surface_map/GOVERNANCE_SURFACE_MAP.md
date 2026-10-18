@@ -93,9 +93,7 @@ Two dispositions are explicit, not gaps:
 - **transport** — `intentionally_deferred`. Distinct from *absent*: the concern is named and its governance is scheduled for the transport phase.
 - **state / entity (platform)** — `not_applicable`. `ENTITY` governance is domain-owned; the platform does not govern domain state. This is a scope boundary, not a missing capability. Its first concrete instance arrives with the blockchain domain.
 
-One finding previously recorded in the ledger, now resolved:
-
-- **trace / observability** — `implemented`. `CONSTITUTION_TRACE_EXECUTION` formerly sat inside the `fb.topology` composite, a misplaced boundary (execution semantics, not composition). The namespace rename moved it to `trace`, its own concern.
+**trace / observability** is `implemented`. `CONSTITUTION_TRACE_EXECUTION` is in `trace`, its own concern: it governs execution semantics, not composition.
 
 ---
 
@@ -134,15 +132,10 @@ registry/workflow                 → workflow(5)
 registry/schema                   → (no namespace — 25 JSON schemas, declaration substrate)
 ```
 
-The former `FB_*` composites are retired: `fb.constitution` (29 artifacts across three unrelated
-families) and `fb.topology` (66 spanning composition and execution semantics) no longer exist. Each
-artifact is now classified under its true architectural concern, which is the point of separating
-the semantic layer from the identity layer.
-
-The directory realignment that produced this one-to-one correspondence was **purely physical** — it
-moved 167 files and changed no FQDN, so the `snapshot_id` was byte-identical before and after. The
-correspondence is therefore a convenience the layout currently honours, not a rule identity depends
-on. `registry/schema/` is the one directory with no namespace at all.
+Each artifact is classified under its architectural concern, which is the point of separating the
+semantic layer from the identity layer. The one-to-one correspondence is **purely physical**: moving
+a file changes no FQDN and no `snapshot_id`. It is a convenience the layout honours, not a rule
+identity depends on. `registry/schema/` is the one directory with no namespace at all.
 
 ---
 

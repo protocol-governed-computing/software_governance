@@ -40,7 +40,7 @@ and nothing consumed it, so it could disagree with the policies indefinitely wit
 A machine-block census flagged it as a key with no detected consumer, which is exactly what an
 undetected drift looks like.
 
-Two directions of disagreement, both silent before this invariant:
+Two directions of disagreement, both silent without this invariant:
 
 - A template with **no declared parameter** is an undeclared runtime requirement: the binding
   depends on a value its own contract never announces, so provisioning it correctly relies on

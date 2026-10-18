@@ -28,8 +28,8 @@ traces. Trust is implicit, which is right for local development and a single ope
 constitution confines it there: a composition declaring this mode is not deployed to non-local
 execution substrates.
 
-This is the mode V0 declared, and it means the same thing. What changed is how a build reaches it:
-the structure no longer marks itself active, and a build configuration names it in `trust_mode`.
+This is the mode V0 declared, and it means the same thing. A build reaches it by naming it in
+`trust_mode`; the structure does not mark itself active.
 
 ## Availability is not activity
 
