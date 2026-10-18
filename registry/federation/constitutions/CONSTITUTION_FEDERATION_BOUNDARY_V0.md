@@ -33,46 +33,54 @@ rules:
 
 **Header Block (Documentation)**
 - **Constitution ID:** CONSTITUTION_FEDERATION_BOUNDARY_V0
-- **Tier:** Sovereign Authority
-- **Applies To:** All federation boundaries in the PGS governance model
+- **Applies To:** Every federation boundary in a PGC composition
 - **Dependencies:** CONSTITUTION_GOVERNANCE_V0
 
 ---
 
 ## Foundational Doctrine
 
-**A federation boundary is a semantic sovereignty construct, not an implementation packaging construct.**
+**A federation boundary represents a governance authority, never a concern.**
 
-A federation boundary declares that a distinct governance authority exists — one with jurisdiction over a named set of protocol semantics. The boundary is not a folder, not a package, not a deployment unit, and not a repository. It is a declaration of semantic sovereignty.
+A federation boundary declares that a distinct governance authority exists, one with jurisdiction over
+a named set of protocol semantics. The boundary is not a folder, a package, a deployment unit, a
+repository or a topic. It is a declaration of authority.
 
-This distinction is critical. If boundaries proliferate to mirror organizational structure, repository topology, or implementation convenience, the governance model corrupts. Boundaries become arbitrary. Placement decisions lose meaning. The semantic clarity of the registry erodes.
+An artifact states both facts separately. `authority:` names who governs it. `concern:` and the
+namespace of its FQDN classify what it is about. A concern may be organized, indexed and governed
+without constituting a boundary. One authority may govern many concerns.
 
-**The anti-sprawl rule:** A federation boundary exists only when a distinct governance authority exists.
+**The anti-sprawl rule:** a federation boundary exists only when a distinct governance authority
+exists.
 
 ---
 
 ## §1. Sovereignty Model
 
-### 1.1 Two Levels of Sovereignty
+### 1.1 Root and Delegated Authority
 
-The PGS federation model has exactly two sovereignty levels:
+A composition has exactly one root authority. Every other authority is delegated from it.
 
-| Level | Boundary | Description |
-|-------|----------|-------------|
-| Sovereign | FB_CONSTITUTION | Root authority. Governs all other boundaries. One only. |
-| Delegated | All others | Authority derived from FB_CONSTITUTION. Governs within declared scope. |
+| Level | Authority | Description |
+|-------|-----------|-------------|
+| Root | `pgc.platform` | Governs the platform and every composition built on it. One only. |
+| Delegated | any other declared authority | Derives from the root and governs only within its declared jurisdiction. |
 
-FB_CONSTITUTION is the one sovereign boundary. It cannot be superseded, replicated, or distributed. All other federation boundaries are delegated — they derive authority from FB_CONSTITUTION and MUST NOT exceed that delegation.
-
-A second sovereign boundary is a constitutional violation.
+A second root authority is a constitutional violation.
 
 ### 1.2 Delegated Authority Limits
 
-A delegated boundary:
-- MAY declare constitutions, invariants, and assertions within its governance scope
-- MAY reference artifacts from other boundaries via declared cross-boundary references
-- MAY NOT override or supersede FB_CONSTITUTION rules
-- MAY NOT claim governance authority over artifacts owned by another boundary without explicit delegation
+A delegated authority:
+- MAY declare constitutions, invariants and assertions within its jurisdiction
+- MAY reference artifacts governed by another authority, by declared reference
+- MAY NOT override or supersede a rule of the root authority
+- MAY NOT claim authority over artifacts another authority governs without explicit delegation
+
+### 1.3 Authority Independence
+
+The authority that constitutes and exercises a boundary MUST be distinguishable from the authority
+whose jurisdiction the boundary claims. An authority governing its own constituting artifacts is
+exercising self-governance. That is a concern of that authority, not a second boundary.
 
 ---
 
@@ -88,32 +96,37 @@ A federation boundary MUST NOT be created speculatively. It MUST NOT be created:
 
 A boundary is created when and only when:
 
-> The first governance artifact (constitution, invariant, or assertion) that belongs within that boundary's authority is authored.
+> The first governance artifact (constitution, invariant, or assertion) declaring that authority is
+> authored.
 
 The governance law creates the boundary. The boundary does not precede the law.
 
-### 2.2 What Constitutes A Distinct Governance Authority
+### 2.2 What A Boundary Must Answer
 
-A distinct governance authority exists when a named set of protocol semantics:
-1. Has rules that apply universally across that semantic domain
-2. Cannot be subsumed within an existing boundary without semantic confusion
-3. Requires its own constitution to define its scope and constraints
+A boundary answers these questions from declared artifacts alone:
+1. Who the authority is
+2. What constituting act created it
+3. What subjects fall within its jurisdiction
+4. What governance decision it may make that no other authority may
+5. How it relates to the authorities above and beside it
+
+A purported boundary that cannot answer them has not shown a distinct governance authority, and it
+MUST NOT be admitted.
 
 ---
 
-## §3. Open-Ended vs Closed Structures
+## §3. Boundaries and Concerns
 
-Federation boundaries are **open-ended**. The current set (FB_CONSTITUTION, FB_TOPOLOGY, FB_TRANSPORT, FB_AUTHORITY, FB_VOCABULARY, FB_CONFORMANCE, FB_IDENTITY, FB_BLOCKCHAIN, FB_AI_GOVERNANCE, FB_CHANGE_MGMT) is not fixed. New boundaries emerge as distinct governance authorities emerge.
-
-This contrasts with:
+Federation boundaries are **open-ended**. No list of permitted boundaries is defined: the condition
+under which a boundary may exist is defined, and the number follows from the semantics.
 
 | Structure | Membership |
 |-----------|------------|
-| Federation Boundaries | Open-ended — new boundaries emerge as governance matures |
-| Functional Layers | Closed — defined in STRUCTURE_DISCOVERY_V0 |
-| Execution Concerns | Closed — defined in FB_TOPOLOGY constitutions |
+| Federation boundaries | Open-ended — one per distinct governance authority |
+| Concerns and namespaces | Open-ended — one per subject an artifact is classified by |
+| Functional layers | Closed — defined in STRUCTURE_DISCOVERY_V0 |
 
-The open-ended nature of federation boundaries is a feature, not a gap. It allows governance to grow with the protocol without requiring upfront declaration of all possible governance authorities.
+A concern classification alone is never grounds for a boundary.
 
 ---
 
@@ -129,9 +142,14 @@ The open-ended nature of federation boundaries is a feature, not a gap. It allow
 | Domain orchestration policy | domain repository |
 | Domain execution rules | domain repository |
 
-The test for central placement is strict: **a governance artifact belongs in the governance surface if and only if it governs every PGC composition universally.**
+The test for central placement is strict: **a governance artifact belongs in the governance surface if
+and only if it governs every PGC composition universally.**
 
-If a governance rule exists because blockchain needs it, or AI governance needs it, or any specific domain needs it — it belongs in that domain's repository.
+If a governance rule exists because blockchain needs it, or AI governance needs it, or any specific
+domain needs it — it belongs in that domain's repository.
+
+Locality is placement, not authority. A domain repository's artifacts are governed by the authority
+they declare, wherever they sit.
 
 ### 4.2 Domain Governance Capability
 
@@ -140,14 +158,16 @@ Domain repositories are governance-capable. A domain repository MAY contain:
 - Local invariants (domain-specific constraints)
 - Local assertions (domain build-time checks)
 
-Domain governance artifacts are introduced when the first domain-specific governance law exists — not before.
+Domain governance artifacts are introduced when the first domain-specific governance law exists — not
+before.
 
 ### 4.3 Domain Governance Escalation
 
-A governance rule that begins domain-local MAY be escalated to central governance if it is determined to apply universally. Escalation requires:
+A governance rule that begins domain-local MAY be escalated to central governance if it is determined
+to apply universally. Escalation requires:
 1. Evidence that the rule governs every PGC composition, not just one domain
 2. Removal from the domain repository
-3. Introduction into the appropriate federation boundary in the governance surface
+3. Introduction into the governance surface, under the namespace of the concern it governs
 
 Escalation is explicit and versioned. It is not automatic.
 
@@ -157,16 +177,16 @@ Escalation is explicit and versioned. It is not automatic.
 
 ### 5.1 What Is Permitted
 
-A governance artifact in one boundary MAY reference an artifact from another boundary when:
+A governance artifact under one authority MAY reference an artifact under another when:
 - The reference is to a universally applicable governance law
-- The reference direction is delegated → sovereign (not sovereign → delegated)
+- The reference direction is delegated → root (not root → delegated)
 - The reference is declared explicitly in the artifact's `governed_by` or dependency fields
 
 ### 5.2 What Is Prohibited
 
 - Circular cross-boundary governance references
 - Implicit authority inheritance across boundaries
-- A delegated boundary overriding a sovereign boundary's rules
+- A delegated authority overriding a rule of the root authority
 - Ambient governance (rules that apply across boundaries without explicit declaration)
 
 ---
@@ -176,14 +196,16 @@ A governance artifact in one boundary MAY reference an artifact from another bou
 Federation boundaries MUST NOT proliferate to mirror:
 
 - **Organizational structure** — teams, squads, or product groups do not constitute governance authorities
-- **Repository topology** — having a separate repo does not entitle a domain to a separate boundary in the governance surface
+- **Repository topology** — a separate repository does not entitle a domain to a separate boundary
 - **Deployment units** — service boundaries, microservices, or infrastructure boundaries are not governance boundaries
 - **Runtime packaging** — how code is packaged or deployed is irrelevant to governance placement
+- **Concerns** — a subject several artifacts share is a classification, not a jurisdiction
 - **Implementation convenience** — grouping artifacts for discoverability or tooling reasons is not a governance justification
 
 The question to ask before creating a boundary is:
 
-> **Does a distinct semantic governance authority exist here — one with jurisdiction over a named set of protocol semantics that cannot be expressed within existing boundaries?**
+> **Does a distinct governance authority exist here — one with jurisdiction over a named set of
+> protocol semantics that no existing authority holds?**
 
 If the answer is no, the boundary MUST NOT be created.
 
@@ -193,54 +215,38 @@ If the answer is no, the boundary MUST NOT be created.
 
 ### 7.1 Boundaries Are Stable Once Created
 
-A federation boundary that has been created with governance content is stable. Its governance artifacts are immutable (new versions for changes). The boundary itself persists.
+A federation boundary that has been created with governance content is stable. Its governance
+artifacts are immutable (new versions for changes). The boundary itself persists.
 
-### 7.2 Boundaries Are Not Reorganized Freely
+### 7.2 Artifacts Are Not Reorganized Freely
 
-Moving governance artifacts between boundaries is a governance-visible change. It changes FQDNs, which are immutable references in artifacts across the system. Such moves require:
-- New versioned artifacts at the new FQDN
-- Explicit deprecation of old FQDNs
-- Cross-repo reference updates
-
-Boundary reorganization is high-cost. Invest in correct placement at authoring time.
+Moving a governance artifact to another namespace changes its FQDN, which artifacts across the system
+reference. Such a move is a new identity that supersedes the old one, and every reference to the old
+identity is accounted for. Invest in correct placement at authoring time.
 
 ### 7.3 Future Boundaries Are Anticipated But Not Pre-Created
 
-The federation model anticipates future boundaries as protocol complexity grows. Examples that may emerge:
-
-- Boundaries governing cryptographic trust
-- Boundaries governing execution placement policy
-- Boundaries governing classified or restricted execution
-
-These are anticipated but MUST NOT be pre-created. They come into existence when governance law demands them.
+A new authority may emerge as compositions grow — for example, a party governing a domain under its
+own jurisdiction. Such a boundary MUST NOT be pre-created. It comes into existence when governance law
+declaring that authority is authored.
 
 ---
 
-## §8. Current Boundary Inventory
+## §8. Current Boundaries
 
-As of V0, the declared federation boundaries are:
+Every artifact in the composition declares `authority: pgc.platform`. The composition therefore has one
+federation boundary: the root authority. It governs every concern and namespace in the composition,
+the platform's and each domain's.
 
-| Boundary | Authority | Governance Scope |
-|----------|-----------|-----------------|
-| FB_CONSTITUTION | Sovereign | Root protocol semantics, governance meta-rules, artifact identity, FQDN |
-| FB_TOPOLOGY | Delegated | Execution topology, WF/CC legality, CT/CS surface closure, routing, binding |
-| FB_TRANSPORT | Delegated | Ingress/egress semantics, transport boundary rules, admission |
-| FB_AUTHORITY | Delegated | Actor authority, execution admissibility, authority state |
-| FB_VOCABULARY | Delegated | Protocol terminology, execution state vocabulary |
-| FB_CONFORMANCE | Delegated | Test data, conformance assertion rules |
-| FB_IDENTITY | Delegated | Actor identity semantics, identity/authority separation |
-| FB_BLOCKCHAIN | Delegated | Blockchain domain build configuration |
-| FB_AI_GOVERNANCE | Delegated | AI governance domain build configuration |
-| FB_CHANGE_MGMT | Delegated | Governed SDLC change management pipeline — Change Request through Authoring Manifest |
-
-Note: FB_BLOCKCHAIN and FB_AI_GOVERNANCE currently contain only build configuration structures. They represent domain boundaries within the governance surface's build system. Domain-specific governance laws for these domains reside in their respective domain repositories. FB_CHANGE_MGMT governs the protocol authoring lifecycle itself — the governed pipeline from human intent to admissible protocol artifact.
+The namespaces (`execution`, `capability_transforms`, `lifecycle`, `blockchain`, `ai_governance` and
+the rest) are concerns. They organize the registry, and none is a boundary.
 
 ---
 
 ## §9. Closing Principle
 
 Federation boundaries are not discovered by looking at the filesystem.
-They are not inferred from repository structure.
+They are not inferred from repository structure or from namespaces.
 They are not assigned by organizational mandate.
 
 They emerge when governance authority emerges.
@@ -256,41 +262,41 @@ Boundaries do not justify governance authority.
 
 ## What this realizes
 ```yaml
-doctrine: 'A federation boundary is a semantic sovereignty construct, not an implementation packaging
-  construct. A boundary exists only when a distinct governance authority exists.
+doctrine: 'A federation boundary represents a governance authority, never a concern. A boundary exists
+  only when a distinct governance authority exists.
 
   '
 core:
   description: 'Governs the existence, semantics, and placement rules of federation boundaries. Defines
-    sovereign vs delegated authority, governance locality doctrine, cross-boundary legality, and the anti-sprawl
+    root and delegated authority, governance locality doctrine, cross-boundary legality, and the anti-sprawl
     rule that prevents boundary proliferation.
 
     '
 rules:
 - rule_id: BOUNDARY_SEMANTIC_SOVEREIGNTY
-  constraint: 'A federation boundary MUST correspond to a distinct, named semantic governance authority.
-    A boundary MUST NOT be introduced to represent a packaging unit, deployment boundary, runtime unit,
-    or repository boundary. The existence of a boundary is justified only by the existence of governance
+  constraint: 'A federation boundary MUST correspond to a distinct, named governance authority. A boundary
+    MUST NOT be introduced to represent a concern, a packaging unit, a deployment boundary, a runtime unit,
+    or a repository boundary. The existence of a boundary is justified only by the existence of governance
     authority, not by implementation convenience.
 
     '
 - rule_id: BOUNDARY_EXISTS_WHEN_AUTHORITY_EXISTS
   constraint: 'A federation boundary MUST NOT be created unless at least one governance artifact (constitution,
-    invariant, or assertion) exists within it. Empty or placeholder boundaries are constitutional violations.
-    The first governance law triggers boundary creation; boundary creation does not precede governance
-    law.
+    invariant, or assertion) declares its authority. Empty or placeholder boundaries are constitutional
+    violations. The first governance law triggers boundary creation; boundary creation does not precede
+    governance law.
 
     '
 - rule_id: BOUNDARY_SOVEREIGNTY_LEVELS
-  constraint: 'Exactly one sovereign boundary exists: FB_CONSTITUTION. All other boundaries are delegated.
-    Delegated boundaries derive authority from FB_CONSTITUTION and MUST NOT exceed that delegation. A
-    second sovereign boundary is a constitutional violation.
+  constraint: 'Exactly one root authority exists: pgc.platform. Every other authority is delegated from
+    it and MUST NOT exceed that delegation. The authority that constitutes a boundary MUST be distinguishable
+    from the authority whose jurisdiction it claims. A second root authority is a constitutional violation.
 
     '
 - rule_id: BOUNDARY_OPEN_ENDED
   constraint: 'Federation boundaries are open-ended. New boundaries MAY be introduced as distinct governance
-    authorities emerge. There is no fixed or closed set of federation boundaries. This contrasts with
-    Functional Layers (closed) and Execution Concerns (closed), which have fixed membership.
+    authorities emerge. No list of permitted boundaries is defined. A concern classification alone is
+    never grounds for a boundary.
 
     '
 - rule_id: BOUNDARY_GOVERNANCE_LOCALITY
@@ -301,26 +307,22 @@ rules:
 
     '
 - rule_id: BOUNDARY_NO_CROSS_OWNERSHIP
-  constraint: 'No federation boundary MAY declare governance authority over artifacts owned by another
-    boundary without explicit delegation. Cross-boundary references MUST be declared. Implicit authority
-    inheritance and ambient cross-boundary governance are prohibited.
+  constraint: 'No authority MAY declare governance over artifacts another authority governs without explicit
+    delegation. Cross-boundary references MUST be declared. Implicit authority inheritance and ambient
+    cross-boundary governance are prohibited.
 
     '
 - rule_id: BOUNDARY_ANTI_SPRAWL
   constraint: 'Boundaries MUST NOT be introduced to mirror: organizational structure, repository topology,
-    deployment units, runtime packaging, or implementation convenience. The only valid justification for
-    a new boundary is a new distinct semantic governance authority that cannot be expressed within existing
-    boundaries.
+    deployment units, runtime packaging, concerns, or implementation convenience. The only valid justification
+    for a new boundary is a new distinct governance authority that no existing authority holds.
 
     '
-- rule_id: BOUNDARY_ONBOARDING_REQUIRED
-  constraint: 'Every new FB_* introduced into PGC MUST complete four onboarding steps before the boundary
-    is considered compiler-admissible: (1) governance registration — directory created under the governance surface''s registry/;
-    (2) namespace derivation rule declared in STRUCTURE_IDENTITY_V0 mapping the registry module path to
-    a fb.* namespace; (3) all governed artifacts within the boundary contain a valid ## Machine declaration
-    parseable by S1_EXTRACT; (4) governance compilation succeeds without errors for all affected build
-    structures. Omitting any step is a constitutional violation — the compiler will fail with E901 or
-    E101 and the boundary is not admissible until all steps are satisfied.
+- rule_id: BOUNDARY_ADMISSION_REQUIRED
+  constraint: 'A new boundary is admitted only when declared artifacts answer: who the authority is; what
+    constituting act created it; what subjects fall within its jurisdiction; what governance decision it
+    may make that no other authority may; and how it relates to the authorities above and beside it. A
+    purported boundary that cannot answer these MUST NOT be admitted.
 
     '
 ```

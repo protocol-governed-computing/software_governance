@@ -13,8 +13,10 @@ authority: pgc.platform
 concern: capability_transforms
 core:
   enforcement_stage:
-  - compiler_assertion
+  - enforced_elsewhere
   violation_response: FAIL_IMMEDIATELY
+  enforced_by: transform conformance, which every build runs after it compiles; a completed case fails
+    when the result carries a key the transform does not declare or lacks one it does
 assert_projection:
   applies_to_kinds:
   - CT
@@ -22,31 +24,40 @@ assert_projection:
 
 ## Summary
 
-Every Capability Transform (CT) must produce outputs that exactly match the keys declared in its governing Capability Contract (CC).
+A Capability Transform's result carries exactly the outputs the transform declares in
+`core.outputs`: no fewer, and no others.
 
 ## What this realizes
-For every CT artifact:
-1. CT must declare `governed_by` binding to a CC artifact
-2. CC must declare `output` section with explicit keys
-3. CT implementation must return dict with EXACTLY those keys
-4. Extra keys, missing keys, or mismatched types are violations
+For every CT:
+1. `core.outputs` declares each output by name and type
+2. A completed run returns a result carrying exactly those outputs
+3. A missing output or an extra key is a violation
+
+Two checks hold this together, and neither alone is enough:
+- **At compile time**, `conformance::INVARIANT_TEST_DATA_MATCH_CT_OUTPUT_V0` requires every case
+  that expects SUCCESS to state each declared output, and nothing else.
+- **At conformance**, each case runs the implementation and fails when the result differs from the
+  declared outputs in any key, before its values are compared.
+
+The vector ties the declaration to stated values. Conformance ties the implementation to both.
 
 ## Where it applies
 - **Artifact Types**: CT
-- **Validation Phase**: Phase 5 (ASSERT)
-- **Enforcement**: MANDATORY (build fails on violation)
+- **Enforcement**: transform conformance, in every build (`runtime conformance`)
 
 ## Examples
 
 ### ✅ VALID
 
-**CC Declaration:**
+**CT declaration:**
 ```yaml
-output:
-  seed_bytes: hex_string
+outputs:
+  seed_bytes:
+    type: hex_string
+    required: true
 ```
 
-**CT Implementation:**
+**CT implementation:**
 ```python
 def execute(inputs, context=None):
     return {
@@ -65,7 +76,7 @@ return {}  # ❌ Missing "seed_bytes"
 ```python
 return {
     "seed_bytes": "0x123abc...",
-    "extra_field": "value"  # ❌ Not in contract
+    "result_status": "SUCCESS"  # ❌ Not declared; a CT step's outcome is SUCCESS unless it refuses
 }
 ```
 
@@ -73,7 +84,6 @@ return {
 
 Output contract matching ensures:
 - Predictable transform behavior
-- Type safety at compilation
 - Explicit interface contracts
 - No hidden outputs
 - Traceable data flow
@@ -81,13 +91,13 @@ Output contract matching ensures:
 ## Related Artifacts
 
 - `capability_transforms::CONSTITUTION_DETERMINISTIC_ATOMS_V0` - Governs CT behavior
-- `capability_contracts::CONSTITUTION_CAPABILITY_CONTRACT_V0` - Defines CC schema
+- `conformance::INVARIANT_TEST_DATA_MATCH_CT_OUTPUT_V0` - The compile-time half
 
 ---
 
 ## What this realizes
 ```yaml
 core:
-  rule: All CT artifacts must produce outputs matching their CC declaration keys and types
-  summary: CT output structure must match declared capability contract
+  rule: A completed CT run returns exactly the outputs its declaration names
+  summary: CT output structure must match the transform's declared outputs
 ```

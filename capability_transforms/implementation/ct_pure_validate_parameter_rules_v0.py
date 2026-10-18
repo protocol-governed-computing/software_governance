@@ -58,7 +58,6 @@ def execute(inputs: Dict[str, Any], context: Any = None) -> Dict[str, Any]:
             )
 
     return {
-        "result_status": "SUCCESS",
         "valid": True,
         "failed_rule": None,
     }

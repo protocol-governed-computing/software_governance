@@ -1,7 +1,7 @@
 governance_surface_map:
   note: family and concern are read from the semantic registry tree (registry/<family>/<concern>/); identity
     (fqdn) is declared per-artifact and independent of this path.
-  artifact_count: 227
+  artifact_count: 226
   families:
     actor:
       constitutions: 1
@@ -102,7 +102,7 @@ governance_surface_map:
     structure:
       constitutions: 1
       invariants: 2
-      structures: 13
+      structures: 12
       vocabulary: 1
     surface_contract:
       invariants: 2
@@ -121,12 +121,12 @@ governance_surface_map:
       constitutions: 1
       invariants: 6
   by_enforcement_locus:
-    compile_composition: 218
+    compile_composition: 217
     snapshot_declaration: 5
     runtime_execution: 3
     meta_process: 1
   by_coverage_status:
-    implemented: 199
+    implemented: 198
     process_enforced: 1
     declaration_substrate: 27
   coverage_ledger:
@@ -2140,17 +2140,6 @@ governance_surface_map:
     concern: structures
     semantic:
       property: identity
-      lifecycle: compile
-      enforcement_locus: compile_composition
-      authority: constitution
-    coverage:
-      status: implemented
-  - artifact_code: STRUCTURE_MODULE_DATA_ROOTS_V0
-    kind: STRUCTURE
-    family: structure
-    concern: structures
-    semantic:
-      property: module_data_roots
       lifecycle: compile
       enforcement_locus: compile_composition
       authority: constitution

@@ -9,7 +9,7 @@ Purpose:
 Implementation:
     - Generic record validator — no domain words
     - Schema defines field rules (type, required, pattern, min, max, etc.)
-    - Returns result_status and violations list
+    - Returns the violations list
 """
 
 import re

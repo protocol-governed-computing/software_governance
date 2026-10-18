@@ -85,7 +85,7 @@ TEST_DATA contract matching ensures:
 
 ## Related Artifacts
 
-- `governance::INVARIANT_CT_OUTPUT_CONTRACT_MATCH_V0` - Complementary check
+- `capability_transforms::INVARIANT_CT_OUTPUT_CONTRACT_MATCH_V0` - Complementary check
 - `conformance::CONSTITUTION_TEST_DATA_V0` - Governs TEST_DATA structure
 
 ---

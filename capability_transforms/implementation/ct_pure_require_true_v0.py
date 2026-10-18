@@ -31,6 +31,5 @@ def execute(inputs: Dict[str, Any], context: Any = None) -> Dict[str, Any]:
         raise CTExecutionError("CT_PURE_REQUIRE_TRUE_V0: value is false")
 
     return {
-        "result_status": "SUCCESS",
         "held": True,
     }

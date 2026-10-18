@@ -13,8 +13,10 @@ authority: pgc.platform
 concern: capability_transforms
 core:
   enforcement_stage:
-  - compiler_assertion
+  - enforced_elsewhere
   violation_response: FAIL_IMMEDIATELY
+  enforced_by: the runtime's CT executor, which treats anything an atom raises other than CTExecutionError
+    as a fault that ends the run, and transform conformance, which fails a case on a fault
 assert_projection:
   applies_to_kinds:
   - CT
@@ -22,96 +24,79 @@ assert_projection:
 
 ## Summary
 
-CT atom implementations must be pure functions that return explicit output dictionaries in ALL execution paths. Exceptions may only be raised for INPUT VALIDATION (missing required inputs, wrong types), never for business logic or "failure" states.
+An atom answers in one of two ways. It returns a dict of its declared outputs, or it raises
+`CTExecutionError`, which the contract reads as VIOLATION. Anything else it raises is a fault, not an
+answer.
 
 ## What this realizes
-For all CT atom implementations:
-1. `execute()` must return dict in ALL business logic paths
-2. Exceptions allowed ONLY for input validation (missing keys, wrong types)
-3. Business logic "failures" must return explicit outputs (e.g., `{"is_eligible": false}`)
-4. NO exceptions for quota exhaustion, training incomplete, etc.
-5. Output structure must match CC contract in success AND "failure" cases
+For every CT atom:
+1. `execute()` returns a dict of its declared outputs, or raises `CTExecutionError`
+2. Every atom raises `CTExecutionError` on missing or malformed input
+3. `core.refusal` declares how it judges its subject (`SCHEMA_CAPABILITY_TRANSFORM_V0`): `raises`
+   refuses by raising `CTExecutionError`; `returns` yields the judgement as an output, so the step
+   succeeds whatever it found; `never` makes no judgement
+4. A judgement that is not a refusal is an output (e.g., `{"is_eligible": false}`)
+5. Any other exception, or a `None` result, is a fault: the run ends, it is never routed, and a
+   conformance case fails on it whatever the case expected
+
+The refusal is recognised by its class name, `CTExecutionError`, so an atom may define its own class
+of that name without importing the runtime.
 
 ## Where it applies
 - **Artifact Types**: CT
-- **Code Layer**: capability transform implementations (atoms)
-- **Validation Phase**: Phase 5 (ASSERT)
-- **Enforcement**: MANDATORY (build fails on violation)
+- **Enforcement**:
+  - the CT executor at every run (`CTFault`);
+  - conformance at every build.
 
 ## Examples
 
-### ✅ VALID - Pure Function
+### ✅ VALID - A finding as an output
 
 ```python
 def execute(inputs: dict, context=None) -> dict:
-    # Input validation (exceptions OK)
-    if "training_completed" not in inputs:
-        raise ValueError("Missing required input 'training_completed'")
-
-    if not isinstance(inputs["training_completed"], bool):
-        raise TypeError("training_completed must be bool")
-
-    # Business logic (explicit outputs)
-    is_eligible = inputs["training_completed"]
-
-    return {
-        "is_eligible": is_eligible  # ✅ Explicit output in ALL cases
-    }
+    return {"is_eligible": inputs["training_completed"]}
 ```
 
-### ❌ INVALID - Exception for Business Logic
+### ✅ VALID - A declared refusal (`refusal: raises`)
 
 ```python
+class CTExecutionError(RuntimeError):
+    """The inputs do not form a book identity."""
+
 def execute(inputs: dict, context=None) -> dict:
-    training_completed = inputs["training_completed"]
-
-    if not training_completed:
-        raise ValueError("Training not completed")  # ❌ VIOLATION
-
-    return {"is_eligible": True}
+    title = " ".join(inputs["title"].split())
+    if not title:
+        raise CTExecutionError("a book carries a title")
+    return {"identity_key": title.casefold()}
 ```
 
-### ❌ INVALID - Missing "Failure" Output
+### ❌ INVALID - A fault where an answer belongs
 
 ```python
 def execute(inputs: dict, context=None) -> dict:
-    quota = inputs["quota"]
-    assigned = inputs["assigned_count"]
-
-    if assigned >= quota:
-        raise ValueError("Quota exhausted")  # ❌ VIOLATION
-
+    if inputs["assigned_count"] >= inputs["quota"]:
+        raise ValueError("Quota exhausted")  # ❌ fault: not a refusal, and not an output
     return {"quota_available": True}
-    # ❌ No explicit output for quota exhausted case
 ```
 
 ## Rationale
 
-Output purity ensures:
-- Predictable execution (no exception-based control flow)
-- Explicit state modeling (all outcomes are data)
-- Testability (all paths return data)
-- Traceability (no hidden execution paths)
-- Constitutional principle: Line 105 of CC contract requires explicit outputs
-
-## Detection Strategy
-
-Scan CT atom code for:
-- `raise` statements outside input validation block
-- Exception raises after business logic starts
-- Missing return statement in conditional branches
-- Try/except blocks that re-raise business exceptions
+Two answers keep execution explicit:
+- every outcome a workflow routes on is declared: SUCCESS, or VIOLATION from `CTExecutionError`;
+- a defect is never mistaken for a judgement, because a fault is refused rather than routed;
+- a run or a build names the atom that broke instead of answering.
 
 ## Related Artifacts
 
 - `capability_transforms::CONSTITUTION_DETERMINISTIC_ATOMS_V0` - Defines pure transform behavior
-- `governance::CC_*_V0` - Declares required output structure
+- `capability_transforms::INVARIANT_CT_TEST_DATA_OUTCOME_DECLARED_V0` - Every vector case states its outcome
 
 ---
 
 ## What this realizes
 ```yaml
 core:
-  rule: CT atom execute() functions must return dict outputs for all code paths including error states
-  summary: Atoms must return explicit outputs in ALL cases, never raise exceptions for business logic
+  rule: A CT atom returns its declared outputs or raises CTExecutionError; anything else it raises is a
+    fault
+  summary: An atom answers with outputs or CTExecutionError, never with an exception of another kind
 ```

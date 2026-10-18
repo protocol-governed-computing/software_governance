@@ -43,6 +43,5 @@ def execute(inputs: Dict[str, Any], context: Any = None) -> Dict[str, Any]:
         )
 
     return {
-        "result_status": "SUCCESS",
         "is_member": True,
     }
