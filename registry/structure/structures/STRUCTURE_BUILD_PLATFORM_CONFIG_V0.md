@@ -1,15 +1,4 @@
-# STRUCTURE_BUILD_PLATFORM_MULTIWORKER_CONFIG_V2
-
-The same governance surface, composed for multi-worker placement.
-
-A build configuration names exactly one arrangement per selectable boundary, so two
-compositions differing in placement are two configurations. That is the shape rather than a
-duplication to be factored away: a configuration *is* the definition of a composition, and the
-surface it draws from is identical — what differs is one named mode, visible on one line.
-
-Everything else here is deliberately the same as `STRUCTURE_BUILD_PLATFORM_CONFIG_V2`. Where the
-two diverge in anything but placement, that divergence is a defect: it would mean two
-compositions claiming one surface and drawing different artifacts from it.
+# STRUCTURE_BUILD_PLATFORM_CONFIG_V0
 
 **Artifact Type**: STRUCTURE
 **Version**: V2
@@ -32,7 +21,7 @@ This STRUCTURE governs:
 A domain's capabilities, and conformance against a domain's implementations, are not
 platform-owned and are built where the domain lives. The platform's own transforms are: this build
 compiles the platform's test vectors (`TEST_DATA`) and declares where their runnable cases are
-written, so the platform's build proves its own transforms (`conformance::CONSTITUTION_TEST_DATA_V2`
+written, so the platform's build proves its own transforms (`conformance::CONSTITUTION_TEST_DATA_V0`
 §4). It never proves a domain's.
 
 ---
@@ -54,22 +43,22 @@ No fallback or implicit behavior is permitted.
 ## Machine
 
 ```yaml
-fqdn: structure::STRUCTURE_BUILD_PLATFORM_MULTIWORKER_CONFIG_V2
+fqdn: structure::STRUCTURE_BUILD_PLATFORM_CONFIG_V0
 artifact_kind: STRUCTURE
-version: V2
+version: V0
 governed_by: structure::CONSTITUTION_STRUCTURE_V0
 authority: pgc.platform
 concern: structure
 structure_scope: platform
 reuse_visibility: substrate
 core:
-  summary: Build-time STRUCTURE configuration, multi-worker placement (PGC normative-platform scope)
+  summary: Build-time STRUCTURE configuration (PGC normative-platform scope)
   description: 'Defines artifact discovery and output paths for PGC normative-platform compilation. Domain
     layers and conformance against a domain''s implementations are out of scope; the platform''s
     own transforms are proven against their vectors.
 
     '
-placement_mode: LOCAL_MULTI_WORKER
+placement_mode: LOCAL_SINGLE_NODE
 scheduling_mode: SERIAL_SINGLE_WORKER
 security_domain: UNCLASSIFIED_LOCAL
 trust_mode: LOCAL_DEV_UNSIGNED
@@ -98,7 +87,7 @@ artifact_discovery:
   - RB
   - SURFACE
 output_configuration:
-  root: snapshot_mw
+  root: snapshot
   artifacts:
     layer: PROTOCOL_BUILD_ROOT
     subpath: compiled/canonical

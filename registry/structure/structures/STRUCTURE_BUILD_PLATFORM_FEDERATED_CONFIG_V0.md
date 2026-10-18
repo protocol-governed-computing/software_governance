@@ -1,4 +1,4 @@
-# STRUCTURE_BUILD_PLATFORM_FEDERATED_CONFIG_V2
+# STRUCTURE_BUILD_PLATFORM_FEDERATED_CONFIG_V0
 
 The same governance surface, composed for a node group.
 
@@ -7,7 +7,7 @@ met under. `LOCAL_MULTI_WORKER` cannot meet such a profile at any host count: wo
 processes are not addressable, and the mode forbids cross-node dispatch outright. The
 difference between the two configurations is reachability, and it is one line.
 
-Everything else is deliberately identical to `STRUCTURE_BUILD_PLATFORM_CONFIG_V2`. Where they
+Everything else is deliberately identical to `STRUCTURE_BUILD_PLATFORM_CONFIG_V0`. Where they
 diverge in anything but placement, that divergence is a defect.
 
 The same governance surface, composed for multi-worker placement.
@@ -17,7 +17,7 @@ compositions differing in placement are two configurations. That is the shape ra
 duplication to be factored away: a configuration *is* the definition of a composition, and the
 surface it draws from is identical — what differs is one named mode, visible on one line.
 
-Everything else here is deliberately the same as `STRUCTURE_BUILD_PLATFORM_CONFIG_V2`. Where the
+Everything else here is deliberately the same as `STRUCTURE_BUILD_PLATFORM_CONFIG_V0`. Where the
 two diverge in anything but placement, that divergence is a defect: it would mean two
 compositions claiming one surface and drawing different artifacts from it.
 
@@ -42,7 +42,7 @@ This STRUCTURE governs:
 A domain's capabilities, and conformance against a domain's implementations, are not
 platform-owned and are built where the domain lives. The platform's own transforms are: this build
 compiles the platform's test vectors (`TEST_DATA`) and declares where their runnable cases are
-written, so the platform's build proves its own transforms (`conformance::CONSTITUTION_TEST_DATA_V2`
+written, so the platform's build proves its own transforms (`conformance::CONSTITUTION_TEST_DATA_V0`
 §4). It never proves a domain's.
 
 ---
@@ -64,9 +64,9 @@ No fallback or implicit behavior is permitted.
 ## Machine
 
 ```yaml
-fqdn: structure::STRUCTURE_BUILD_PLATFORM_FEDERATED_CONFIG_V2
+fqdn: structure::STRUCTURE_BUILD_PLATFORM_FEDERATED_CONFIG_V0
 artifact_kind: STRUCTURE
-version: V2
+version: V0
 governed_by: structure::CONSTITUTION_STRUCTURE_V0
 authority: pgc.platform
 concern: structure

@@ -6,7 +6,7 @@
 fqdn: lifecycle::INVARIANT_REUSE_FROM_PERMITTING_DOMAIN_V0
 artifact_kind: INVARIANT
 version: V0
-governed_by: lifecycle::CONSTITUTION_CHANGE_MGMT_V1
+governed_by: lifecycle::CONSTITUTION_CHANGE_MGMT_V0
 authority: pgc.platform
 concern: lifecycle
 core:

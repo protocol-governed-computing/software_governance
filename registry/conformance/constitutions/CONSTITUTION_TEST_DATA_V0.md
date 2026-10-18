@@ -1,10 +1,10 @@
-# CONSTITUTION_TEST_DATA_V2
+# CONSTITUTION_TEST_DATA_V0
 
 ## Machine
 ```yaml
-fqdn: conformance::CONSTITUTION_TEST_DATA_V2
+fqdn: conformance::CONSTITUTION_TEST_DATA_V0
 artifact_kind: CONSTITUTION
-version: V2
+version: V0
 governed_by: governance::CONSTITUTION_GOVERNANCE_V0
 authority: pgc.platform
 concern: conformance
@@ -18,7 +18,7 @@ rules:
 - applies_to: TEST_DATA
   enforced_by: artifact::INVARIANT_FQDN_ONLY_REFERENCES_V0
 - applies_to: TEST_DATA
-  enforced_by: conformance::INVARIANT_CONFORMANCE_ASSERTION_MODE_VALID_V1
+  enforced_by: conformance::INVARIANT_CONFORMANCE_ASSERTION_MODE_VALID_V0
 - applies_to: TEST_DATA
   enforced_by: conformance::INVARIANT_TEST_DATA_RECORDS_MATCH_PURITY_V0
 ```
@@ -33,9 +33,9 @@ the composition vouches for the declaration and cannot vouch for the code. A vec
 stated inputs, and what the transform must produce from them, run against the transform exactly as the
 composition sealed it.
 
-It replaces `conformance::CONSTITUTION_TEST_DATA_V1`, which placed every vector in a domain's build,
-never in the platform's, and required every vector to come from a design. The platform supplies
-transforms of its own, authored as the rest of its surface is, and V1 left them provable nowhere.
+A vector may sit in the platform's build as well as a domain's, and need not come from a design. The
+platform supplies transforms of its own, authored as the rest of its surface is, and they must be
+provable too.
 
 ---
 
@@ -96,16 +96,6 @@ declaration, and the design language refuses a transform authored or amended wit
 platform's transforms are authored by hand under the dossier that gates them, as the rest of the
 governance surface is, and so are their vectors. Either way a vector is gated; a vector written beside
 the code and gated by nobody proves nothing.
-
----
-
-## 6. What became of V1
-
-**V1 was deleted, not superseded.** A superseded version stays compiled, and V1 would have kept "never
-in the platform's own build" in the surface beside a version that says the opposite. Nothing compiled
-named V1: no vector existed under it. Its declaration remains in this repository's history and in every
-composition deposited under it. V0 was deleted before it, with the invariant that claimed enforcement
-by a compiler phase that does not exist.
 
 ---
 

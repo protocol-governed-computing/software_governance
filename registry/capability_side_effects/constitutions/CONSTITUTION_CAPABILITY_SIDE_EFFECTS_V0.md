@@ -14,7 +14,7 @@ core:
   - CS
 rules:
 - applies_to: CS
-  enforced_by: capability_side_effects::INVARIANT_CS_SURFACE_CLOSED_V1
+  enforced_by: capability_side_effects::INVARIANT_CS_SURFACE_CLOSED_V0
 - applies_to: CS
   enforced_by: execution::INVARIANT_IMPLEMENTATION_ADMISSIBLE_V0
 - applies_to: CS

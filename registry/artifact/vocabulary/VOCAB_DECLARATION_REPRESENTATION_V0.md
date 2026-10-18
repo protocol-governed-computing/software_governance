@@ -1,12 +1,11 @@
-# VOCAB_DECLARATION_REPRESENTATION_V1
+# VOCAB_DECLARATION_REPRESENTATION_V0
 
 ## Machine
 
 ```yaml
-fqdn: artifact::VOCAB_DECLARATION_REPRESENTATION_V1
-supersedes: artifact::VOCAB_DECLARATION_REPRESENTATION_V0
+fqdn: artifact::VOCAB_DECLARATION_REPRESENTATION_V0
 artifact_kind: VOCABULARY
-version: v1
+version: v0
 governed_by: vocabulary::CONSTITUTION_VOCABULARY_V0
 authority: pgc.platform
 concern: artifact
@@ -106,5 +105,4 @@ How every reader of a declaration tells a name from a value. A full name at or b
 beneath it is read for references, whatever it looks like. A full name anywhere else is refused as
 undeclared.
 
-V1 adds the `data` group and declares a test vector's `cases` data. The transform a vector tests,
-its `target`, sits outside its cases and stays a reference.
+A test vector's `cases` are data. The transform a vector tests, its `target`, sits outside its cases and stays a reference.

@@ -1,12 +1,11 @@
-# CONSTITUTION_CHANGE_MGMT_V1
+# CONSTITUTION_CHANGE_MGMT_V0
 
 ## Machine
 
 ```yaml
-fqdn: lifecycle::CONSTITUTION_CHANGE_MGMT_V1
-supersedes: lifecycle::CONSTITUTION_CHANGE_MGMT_V0
+fqdn: lifecycle::CONSTITUTION_CHANGE_MGMT_V0
 artifact_kind: CONSTITUTION
-version: V1
+version: V0
 governed_by: governance::CONSTITUTION_GOVERNANCE_V0
 authority: pgc.platform
 concern: lifecycle
@@ -60,7 +59,7 @@ rules:
 This constitution governs the design half of the transformation lifecycle: phases P0 to P8, from a
 business problem statement to the Authoring Mandate. It establishes what makes a phase document
 admissible, and it hands an admissible mandate to construction, which
-`CONSTITUTION_CONSTRUCTION_V1` governs.
+`CONSTITUTION_CONSTRUCTION_V0` governs.
 
 ## 2. What it governs
 

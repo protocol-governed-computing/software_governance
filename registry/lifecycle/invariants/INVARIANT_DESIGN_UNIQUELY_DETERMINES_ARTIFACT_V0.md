@@ -6,7 +6,7 @@
 fqdn: lifecycle::INVARIANT_DESIGN_UNIQUELY_DETERMINES_ARTIFACT_V0
 artifact_kind: INVARIANT
 version: V0
-governed_by: lifecycle::CONSTITUTION_CONSTRUCTION_V1
+governed_by: lifecycle::CONSTITUTION_CONSTRUCTION_V0
 authority: pgc.platform
 concern: lifecycle
 core:

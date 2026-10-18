@@ -1,7 +1,7 @@
 governance_surface_map:
   note: family and concern are read from the semantic registry tree (registry/<family>/<concern>/); identity
     (fqdn) is declared per-artifact and independent of this path.
-  artifact_count: 226
+  artifact_count: 219
   families:
     actor:
       constitutions: 1
@@ -19,8 +19,8 @@ governance_surface_map:
       constitutions: 1
       invariants: 4
     capability_transforms:
-      constitutions: 5
-      invariants: 11
+      constitutions: 4
+      invariants: 10
       structures: 1
     compiler:
       constitutions: 1
@@ -50,8 +50,8 @@ governance_surface_map:
       invariants: 1
       structures: 1
     execution_topology:
-      constitutions: 2
-      invariants: 12
+      constitutions: 1
+      invariants: 10
     federation:
       constitutions: 1
       invariants: 2
@@ -78,7 +78,7 @@ governance_surface_map:
       SCHEMA_CC_PIPELINE_STEP_V0.json: 1
       SCHEMA_CONSTITUTION_V0.json: 1
       SCHEMA_CT_IR_V0.json: 1
-      SCHEMA_EVENT_V1.json: 1
+      SCHEMA_EVENT_V0.json: 1
       SCHEMA_EXECUTION_DAG_V0.json: 1
       SCHEMA_EXECUTION_NODE_V0.json: 1
       SCHEMA_EXECUTION_POLICY_V0.json: 1
@@ -88,9 +88,8 @@ governance_surface_map:
       SCHEMA_RUNTIME_BINDING_V0.json: 1
       SCHEMA_STRUCTURE_V0.json: 1
       SCHEMA_SURFACE_CONTRACT_V0.json: 1
-      SCHEMA_TEST_DATA_V1.json: 1
-      SCHEMA_TRACE_EVENT_V1.json: 1
-      SCHEMA_TRACE_EVENT_V2.json: 1
+      SCHEMA_TEST_DATA_V0.json: 1
+      SCHEMA_TRACE_EVENT_V0.json: 1
       SCHEMA_TRANSPORT_REQUEST_V0.json: 1
       SCHEMA_TRANSPORT_RESPONSE_V0.json: 1
       SCHEMA_VOCABULARY_V0.json: 1
@@ -108,7 +107,7 @@ governance_surface_map:
       invariants: 2
       surface_contracts: 8
     trace:
-      constitutions: 2
+      constitutions: 1
     transport:
       constitutions: 4
       invariants: 8
@@ -121,14 +120,14 @@ governance_surface_map:
       constitutions: 1
       invariants: 6
   by_enforcement_locus:
-    compile_composition: 217
+    compile_composition: 211
     snapshot_declaration: 5
-    runtime_execution: 3
+    runtime_execution: 2
     meta_process: 1
   by_coverage_status:
-    implemented: 198
+    implemented: 192
     process_enforced: 1
-    declaration_substrate: 27
+    declaration_substrate: 26
   coverage_ledger:
     transport:
       status: intentionally_deferred
@@ -264,7 +263,7 @@ governance_surface_map:
       authority: constitution
     coverage:
       status: implemented
-  - artifact_code: VOCAB_DECLARATION_REPRESENTATION_V1
+  - artifact_code: VOCAB_DECLARATION_REPRESENTATION_V0
     kind: VOCABULARY
     family: artifact
     concern: vocabulary
@@ -484,7 +483,7 @@ governance_surface_map:
       authority: constitution
     coverage:
       status: implemented
-  - artifact_code: INVARIANT_CS_SURFACE_CLOSED_V1
+  - artifact_code: INVARIANT_CS_SURFACE_CLOSED_V0
     kind: INVARIANT
     family: capability_side_effects
     concern: invariants
@@ -517,18 +516,7 @@ governance_surface_map:
       authority: constitution
     coverage:
       status: implemented
-  - artifact_code: CONSTITUTION_CAPABILITY_TRANSFORMS_V1
-    kind: CONSTITUTION
-    family: capability_transforms
-    concern: constitutions
-    semantic:
-      property: capability_transforms
-      lifecycle: compile
-      enforcement_locus: compile_composition
-      authority: constitution
-    coverage:
-      status: implemented
-  - artifact_code: CONSTITUTION_CAPABILITY_TRANSFORMS_V2
+  - artifact_code: CONSTITUTION_CAPABILITY_TRANSFORMS_V0
     kind: CONSTITUTION
     family: capability_transforms
     concern: constitutions
@@ -616,7 +604,7 @@ governance_surface_map:
       authority: constitution
     coverage:
       status: implemented
-  - artifact_code: INVARIANT_CT_SURFACE_CLOSED_V1
+  - artifact_code: INVARIANT_CT_SURFACE_CLOSED_V0
     kind: INVARIANT
     family: capability_transforms
     concern: invariants
@@ -627,18 +615,7 @@ governance_surface_map:
       authority: constitution
     coverage:
       status: implemented
-  - artifact_code: INVARIANT_CT_SURFACE_CLOSED_V2
-    kind: INVARIANT
-    family: capability_transforms
-    concern: invariants
-    semantic:
-      property: ct_surface_closed
-      lifecycle: compile
-      enforcement_locus: compile_composition
-      authority: constitution
-    coverage:
-      status: implemented
-  - artifact_code: INVARIANT_CT_SURFACE_DERIVED_CLOSED_V1
+  - artifact_code: INVARIANT_CT_SURFACE_DERIVED_CLOSED_V0
     kind: INVARIANT
     family: capability_transforms
     concern: invariants
@@ -770,7 +747,7 @@ governance_surface_map:
       authority: constitution
     coverage:
       status: implemented
-  - artifact_code: CONSTITUTION_TEST_DATA_V2
+  - artifact_code: CONSTITUTION_TEST_DATA_V0
     kind: CONSTITUTION
     family: conformance
     concern: constitutions
@@ -814,7 +791,7 @@ governance_surface_map:
       authority: constitution
     coverage:
       status: implemented
-  - artifact_code: INVARIANT_CONFORMANCE_ASSERTION_MODE_VALID_V1
+  - artifact_code: INVARIANT_CONFORMANCE_ASSERTION_MODE_VALID_V0
     kind: INVARIANT
     family: conformance
     concern: invariants
@@ -869,7 +846,7 @@ governance_surface_map:
       authority: constitution
     coverage:
       status: implemented
-  - artifact_code: CONSTITUTION_CRYPTOGRAPHIC_TRUST_V1
+  - artifact_code: CONSTITUTION_CRYPTOGRAPHIC_TRUST_V0
     kind: CONSTITUTION
     family: cryptographic_trust
     concern: constitutions
@@ -880,7 +857,7 @@ governance_surface_map:
       authority: constitution
     coverage:
       status: implemented
-  - artifact_code: INVARIANT_CRYPTOGRAPHIC_TRUST_DECLARED_V1
+  - artifact_code: INVARIANT_CRYPTOGRAPHIC_TRUST_DECLARED_V0
     kind: INVARIANT
     family: cryptographic_trust
     concern: invariants
@@ -891,7 +868,7 @@ governance_surface_map:
       authority: snapshot
     coverage:
       status: implemented
-  - artifact_code: STRUCTURE_CRYPTOGRAPHIC_TRUST_LOCAL_DEV_UNSIGNED_V1
+  - artifact_code: STRUCTURE_CRYPTOGRAPHIC_TRUST_LOCAL_DEV_UNSIGNED_V0
     kind: STRUCTURE
     family: cryptographic_trust
     concern: structures
@@ -902,7 +879,7 @@ governance_surface_map:
       authority: constitution
     coverage:
       status: implemented
-  - artifact_code: STRUCTURE_CRYPTOGRAPHIC_TRUST_SIGNED_SNAPSHOT_V1
+  - artifact_code: STRUCTURE_CRYPTOGRAPHIC_TRUST_SIGNED_SNAPSHOT_V0
     kind: STRUCTURE
     family: cryptographic_trust
     concern: structures
@@ -1012,7 +989,7 @@ governance_surface_map:
       authority: constitution
     coverage:
       status: implemented
-  - artifact_code: CONSTITUTION_EXECUTION_PLACEMENT_V1
+  - artifact_code: CONSTITUTION_EXECUTION_PLACEMENT_V0
     kind: CONSTITUTION
     family: execution_placement
     concern: constitutions
@@ -1023,7 +1000,7 @@ governance_surface_map:
       authority: constitution
     coverage:
       status: implemented
-  - artifact_code: INVARIANT_EXECUTION_PLACEMENT_DECLARED_V1
+  - artifact_code: INVARIANT_EXECUTION_PLACEMENT_DECLARED_V0
     kind: INVARIANT
     family: execution_placement
     concern: invariants
@@ -1034,7 +1011,7 @@ governance_surface_map:
       authority: snapshot
     coverage:
       status: implemented
-  - artifact_code: STRUCTURE_EXECUTION_PLACEMENT_FEDERATED_NODE_V1
+  - artifact_code: STRUCTURE_EXECUTION_PLACEMENT_FEDERATED_NODE_V0
     kind: STRUCTURE
     family: execution_placement
     concern: structures
@@ -1045,7 +1022,7 @@ governance_surface_map:
       authority: constitution
     coverage:
       status: implemented
-  - artifact_code: STRUCTURE_EXECUTION_PLACEMENT_LOCAL_MULTI_WORKER_V1
+  - artifact_code: STRUCTURE_EXECUTION_PLACEMENT_LOCAL_MULTI_WORKER_V0
     kind: STRUCTURE
     family: execution_placement
     concern: structures
@@ -1056,7 +1033,7 @@ governance_surface_map:
       authority: constitution
     coverage:
       status: implemented
-  - artifact_code: STRUCTURE_EXECUTION_PLACEMENT_LOCAL_SINGLE_NODE_V1
+  - artifact_code: STRUCTURE_EXECUTION_PLACEMENT_LOCAL_SINGLE_NODE_V0
     kind: STRUCTURE
     family: execution_placement
     concern: structures
@@ -1111,17 +1088,6 @@ governance_surface_map:
       authority: constitution
     coverage:
       status: implemented
-  - artifact_code: CONSTITUTION_EXECUTION_TOPOLOGY_V1
-    kind: CONSTITUTION
-    family: execution_topology
-    concern: constitutions
-    semantic:
-      property: execution_topology
-      lifecycle: compile
-      enforcement_locus: compile_composition
-      authority: constitution
-    coverage:
-      status: implemented
   - artifact_code: INVARIANT_NO_RUNTIME_TOPOLOGY_SYNTHESIS_V0
     kind: INVARIANT
     family: execution_topology
@@ -1166,17 +1132,6 @@ governance_surface_map:
       authority: constitution
     coverage:
       status: implemented
-  - artifact_code: INVARIANT_TOPOLOGY_CONTRACT_CLOSED_V1
-    kind: INVARIANT
-    family: execution_topology
-    concern: invariants
-    semantic:
-      property: topology_contract_closed
-      lifecycle: compile
-      enforcement_locus: compile_composition
-      authority: constitution
-    coverage:
-      status: implemented
   - artifact_code: INVARIANT_TOPOLOGY_IMMUTABLE_AFTER_COMPILATION_V0
     kind: INVARIANT
     family: execution_topology
@@ -1189,17 +1144,6 @@ governance_surface_map:
     coverage:
       status: implemented
   - artifact_code: INVARIANT_TOPOLOGY_ROUTING_COMPLETE_V0
-    kind: INVARIANT
-    family: execution_topology
-    concern: invariants
-    semantic:
-      property: topology_routing_complete
-      lifecycle: compile
-      enforcement_locus: compile_composition
-      authority: constitution
-    coverage:
-      status: implemented
-  - artifact_code: INVARIANT_TOPOLOGY_ROUTING_COMPLETE_V1
     kind: INVARIANT
     family: execution_topology
     concern: invariants
@@ -1364,7 +1308,7 @@ governance_surface_map:
       authority: constitution
     coverage:
       status: implemented
-  - artifact_code: CONSTITUTION_CHANGE_MGMT_V1
+  - artifact_code: CONSTITUTION_CHANGE_MGMT_V0
     kind: CONSTITUTION
     family: lifecycle
     concern: constitutions
@@ -1375,7 +1319,7 @@ governance_surface_map:
       authority: constitution
     coverage:
       status: implemented
-  - artifact_code: CONSTITUTION_CONSTRUCTION_V1
+  - artifact_code: CONSTITUTION_CONSTRUCTION_V0
     kind: CONSTITUTION
     family: lifecycle
     concern: constitutions
@@ -1804,10 +1748,10 @@ governance_surface_map:
       authority: constitution
     coverage:
       status: declaration_substrate
-  - artifact_code: SCHEMA_EVENT_V1
+  - artifact_code: SCHEMA_EVENT_V0
     kind: SCHEMA
     family: schema
-    concern: SCHEMA_EVENT_V1.json
+    concern: SCHEMA_EVENT_V0.json
     semantic:
       property: event
       lifecycle: declare
@@ -1914,10 +1858,10 @@ governance_surface_map:
       authority: constitution
     coverage:
       status: declaration_substrate
-  - artifact_code: SCHEMA_TEST_DATA_V1
+  - artifact_code: SCHEMA_TEST_DATA_V0
     kind: SCHEMA
     family: schema
-    concern: SCHEMA_TEST_DATA_V1.json
+    concern: SCHEMA_TEST_DATA_V0.json
     semantic:
       property: test_data
       lifecycle: declare
@@ -1925,21 +1869,10 @@ governance_surface_map:
       authority: constitution
     coverage:
       status: declaration_substrate
-  - artifact_code: SCHEMA_TRACE_EVENT_V1
+  - artifact_code: SCHEMA_TRACE_EVENT_V0
     kind: SCHEMA
     family: schema
-    concern: SCHEMA_TRACE_EVENT_V1.json
-    semantic:
-      property: trace_event
-      lifecycle: declare
-      enforcement_locus: compile_composition
-      authority: constitution
-    coverage:
-      status: declaration_substrate
-  - artifact_code: SCHEMA_TRACE_EVENT_V2
-    kind: SCHEMA
-    family: schema
-    concern: SCHEMA_TRACE_EVENT_V2.json
+    concern: SCHEMA_TRACE_EVENT_V0.json
     semantic:
       property: trace_event
       lifecycle: declare
@@ -2079,7 +2012,7 @@ governance_surface_map:
       authority: constitution
     coverage:
       status: implemented
-  - artifact_code: STRUCTURE_BUILD_PLATFORM_CONFIG_V2
+  - artifact_code: STRUCTURE_BUILD_PLATFORM_CONFIG_V0
     kind: STRUCTURE
     family: structure
     concern: structures
@@ -2090,7 +2023,7 @@ governance_surface_map:
       authority: constitution
     coverage:
       status: implemented
-  - artifact_code: STRUCTURE_BUILD_PLATFORM_FEDERATED_CONFIG_V2
+  - artifact_code: STRUCTURE_BUILD_PLATFORM_FEDERATED_CONFIG_V0
     kind: STRUCTURE
     family: structure
     concern: structures
@@ -2101,7 +2034,7 @@ governance_surface_map:
       authority: constitution
     coverage:
       status: implemented
-  - artifact_code: STRUCTURE_BUILD_PLATFORM_MULTIWORKER_CONFIG_V2
+  - artifact_code: STRUCTURE_BUILD_PLATFORM_MULTIWORKER_CONFIG_V0
     kind: STRUCTURE
     family: structure
     concern: structures
@@ -2321,17 +2254,6 @@ governance_surface_map:
       authority: constitution
     coverage:
       status: implemented
-  - artifact_code: CONSTITUTION_TRACE_EXECUTION_V1
-    kind: CONSTITUTION
-    family: trace
-    concern: constitutions
-    semantic:
-      property: trace_execution
-      lifecycle: execute
-      enforcement_locus: runtime_execution
-      authority: constitution
-    coverage:
-      status: implemented
   - artifact_code: CONSTITUTION_ADMISSION_V0
     kind: CONSTITUTION
     family: transport
@@ -2486,7 +2408,7 @@ governance_surface_map:
       authority: constitution
     coverage:
       status: implemented
-  - artifact_code: VOCAB_EVIDENCE_CONTENT_CLASSIFICATION_V1
+  - artifact_code: VOCAB_EVIDENCE_CONTENT_CLASSIFICATION_V0
     kind: VOCABULARY
     family: vocabulary
     concern: reserved

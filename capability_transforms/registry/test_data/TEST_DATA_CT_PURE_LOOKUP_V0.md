@@ -6,7 +6,7 @@
 fqdn: capability_transforms::TEST_DATA_CT_PURE_LOOKUP_V0
 artifact_kind: TEST_DATA
 version: V0
-governed_by: conformance::CONSTITUTION_TEST_DATA_V2
+governed_by: conformance::CONSTITUTION_TEST_DATA_V0
 authority: pgc.platform
 concern: capability_transforms
 core:

@@ -1,11 +1,11 @@
-# INVARIANT_CS_SURFACE_CLOSED_V1
+# INVARIANT_CS_SURFACE_CLOSED_V0
 
 ## Machine
 
 ```yaml
-fqdn: capability_side_effects::INVARIANT_CS_SURFACE_CLOSED_V1
+fqdn: capability_side_effects::INVARIANT_CS_SURFACE_CLOSED_V0
 artifact_kind: INVARIANT
-version: V1
+version: V0
 governed_by: governance::CONSTITUTION_INVARIANTS_V0
 authority: pgc.platform
 concern: capability_side_effects

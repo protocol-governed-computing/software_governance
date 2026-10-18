@@ -1,11 +1,11 @@
-# INVARIANT_CONFORMANCE_ASSERTION_MODE_VALID_V1
+# INVARIANT_CONFORMANCE_ASSERTION_MODE_VALID_V0
 
 ## Machine
 
 ```yaml
-fqdn: conformance::INVARIANT_CONFORMANCE_ASSERTION_MODE_VALID_V1
+fqdn: conformance::INVARIANT_CONFORMANCE_ASSERTION_MODE_VALID_V0
 artifact_kind: INVARIANT
-version: V1
+version: V0
 governed_by: governance::CONSTITUTION_INVARIANTS_V0
 authority: pgc.platform
 concern: conformance

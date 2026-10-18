@@ -1,13 +1,13 @@
-# STRUCTURE_EXECUTION_PLACEMENT_LOCAL_MULTI_WORKER_V1
+# STRUCTURE_EXECUTION_PLACEMENT_LOCAL_MULTI_WORKER_V0
 
 ## Machine
 
 ```yaml
-fqdn: execution_placement::STRUCTURE_EXECUTION_PLACEMENT_LOCAL_MULTI_WORKER_V1
-artifact_code: STRUCTURE_EXECUTION_PLACEMENT_LOCAL_MULTI_WORKER_V1
+fqdn: execution_placement::STRUCTURE_EXECUTION_PLACEMENT_LOCAL_MULTI_WORKER_V0
+artifact_code: STRUCTURE_EXECUTION_PLACEMENT_LOCAL_MULTI_WORKER_V0
 artifact_kind: STRUCTURE
-version: V1
-governed_by: execution_placement::CONSTITUTION_EXECUTION_PLACEMENT_V1
+version: V0
+governed_by: execution_placement::CONSTITUTION_EXECUTION_PLACEMENT_V0
 authority: pgc.platform
 concern: execution_placement
 placement_mode: LOCAL_MULTI_WORKER
@@ -38,7 +38,7 @@ worker is a permitted arrangement.
 
 This structure carries no `status`. It states that the mode is **available** to a build, never that
 it is **active** in one — activity is named by a build configuration and recorded in the snapshot
-that results (`CONSTITUTION_EXECUTION_PLACEMENT_V1` §2).
+that results (`CONSTITUTION_EXECUTION_PLACEMENT_V0` §2).
 
 The same artifact is available to a build that selects it and to a build that does not. An artifact
 asserting its own activity could not be both, which is why V0's `status: active` could not survive

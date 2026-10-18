@@ -1,11 +1,11 @@
-# INVARIANT_CRYPTOGRAPHIC_TRUST_DECLARED_V1
+# INVARIANT_CRYPTOGRAPHIC_TRUST_DECLARED_V0
 
 ## Machine
 
 ```yaml
-fqdn: cryptographic_trust::INVARIANT_CRYPTOGRAPHIC_TRUST_DECLARED_V1
+fqdn: cryptographic_trust::INVARIANT_CRYPTOGRAPHIC_TRUST_DECLARED_V0
 artifact_kind: INVARIANT
-version: V1
+version: V0
 governed_by: governance::CONSTITUTION_INVARIANTS_V0
 authority: pgc.platform
 concern: cryptographic_trust
@@ -50,13 +50,6 @@ For every compiled snapshot:
 - `no_trust_structure`: a composition carrying no trust structure, so declaring no trust mode
 - `several_trust_structures`: a composition carrying more than one, so declaring two answers
 - `runtime_trust_negotiation`: a runtime selecting or upgrading the trust mode at execution time
-
-## Change from V0
-
-V0 selected the trust contract by `status: active` on the structure, so the trust mode was a
-property of the surface's inventory. A surface declaring two modes was malformed, even when two
-compositions built from it each wanted one. V1 counts what the composition carries, the same change
-`INVARIANT_EXECUTION_PLACEMENT_DECLARED_V1` made for placement.
 
 ## Enforcement
 

@@ -209,7 +209,7 @@ pipeline:
 ```
 
 **Search roots** are declared in STRUCTURE artifacts:
-- Platform build: `STRUCTURE_BUILD_PLATFORM_CONFIG_V2`
+- Platform build: `STRUCTURE_BUILD_PLATFORM_CONFIG_V0`
 - Domain build: `STRUCTURE_BUILD_DOMAINS_CONFIG_V0`
 - Runtime execution: `STRUCTURE_RUNTIME_EXECUTION_V0`
 
@@ -242,7 +242,7 @@ def bootstrap_discover_structure_artifact(structure_code: str):
 
 **Bootstrap-eligible STRUCTURE codes**:
 - `STRUCTURE_RUNTIME_EXECUTION_V0`
-- `STRUCTURE_BUILD_PLATFORM_CONFIG_V2`
+- `STRUCTURE_BUILD_PLATFORM_CONFIG_V0`
 - `STRUCTURE_BUILD_DOMAINS_CONFIG_V0`
 - `STRUCTURE_ARTIFACT_IDENTITY_V0` (this artifact)
 
@@ -398,7 +398,7 @@ core:
   resolution:
     bootstrap_exception:
     - STRUCTURE_RUNTIME_EXECUTION_V0
-    - STRUCTURE_BUILD_PLATFORM_CONFIG_V2
+    - STRUCTURE_BUILD_PLATFORM_CONFIG_V0
     - STRUCTURE_BUILD_DOMAINS_CONFIG_V0
     - STRUCTURE_ARTIFACT_IDENTITY_V0
     search_scope_source: STRUCTURE_*_CONFIG_V0

@@ -1,11 +1,11 @@
-# CONSTITUTION_CRYPTOGRAPHIC_TRUST_V1
+# CONSTITUTION_CRYPTOGRAPHIC_TRUST_V0
 
 ## Machine
 
 ```yaml
-fqdn: cryptographic_trust::CONSTITUTION_CRYPTOGRAPHIC_TRUST_V1
+fqdn: cryptographic_trust::CONSTITUTION_CRYPTOGRAPHIC_TRUST_V0
 artifact_kind: CONSTITUTION
-version: V1
+version: V0
 governed_by: governance::CONSTITUTION_GOVERNANCE_V0
 authority: pgc.platform
 concern: cryptographic_trust
@@ -13,7 +13,7 @@ core:
   enforcement_model: process_and_compiler_enforced
 rules:
 - applies_to: compiled_snapshot
-  enforced_by: cryptographic_trust::INVARIANT_CRYPTOGRAPHIC_TRUST_DECLARED_V1
+  enforced_by: cryptographic_trust::INVARIANT_CRYPTOGRAPHIC_TRUST_DECLARED_V0
 - applies_to: compiled_snapshot
   enforced_by: PROCESS_ENFORCED
 - applies_to: compiled_snapshot
@@ -89,8 +89,8 @@ its `trust_mode`.
 
 | Mode | Structure | What it requires |
 |---|---|---|
-| `LOCAL_DEV_UNSIGNED` | `STRUCTURE_CRYPTOGRAPHIC_TRUST_LOCAL_DEV_UNSIGNED_V1` | nothing: no signature over the snapshot, payloads or traces |
-| `SIGNED_SNAPSHOT` | `STRUCTURE_CRYPTOGRAPHIC_TRUST_SIGNED_SNAPSHOT_V1` | a signature over the snapshot's identity, verified by every executing node against a trust anchor it holds |
+| `LOCAL_DEV_UNSIGNED` | `STRUCTURE_CRYPTOGRAPHIC_TRUST_LOCAL_DEV_UNSIGNED_V0` | nothing: no signature over the snapshot, payloads or traces |
+| `SIGNED_SNAPSHOT` | `STRUCTURE_CRYPTOGRAPHIC_TRUST_SIGNED_SNAPSHOT_V0` | a signature over the snapshot's identity, verified by every executing node against a trust anchor it holds |
 
 `LOCAL_DEV_UNSIGNED` is the posture for local development and a single operator. It is explicitly
 declared, not assumed, which is the important distinction. `SIGNED_SNAPSHOT` is the posture for a
@@ -103,7 +103,7 @@ One governance surface serves compositions with different postures. A multi-node
 executed from a signed snapshot and a local one built for development come from the same surface,
 and neither may change what the other is permitted. So the surface declares every authorized mode,
 and a build configuration selects one. The compiler materializes only the selected structure, and
-the composition carries exactly one (`INVARIANT_CRYPTOGRAPHIC_TRUST_DECLARED_V1`).
+the composition carries exactly one (`INVARIANT_CRYPTOGRAPHIC_TRUST_DECLARED_V0`).
 
 ## §2. What "Trust" Means in PGC
 
@@ -159,22 +159,15 @@ declares resolves to nothing when a build names it, and the build is refused.
 
 Changes to trust semantics require a new constitution version and migration rationale.
 
-## §7. What became of V0
+## §7. Why selection belongs to the build
 
-**V0 was deleted, not superseded**, as the placement constitution's V0 was. Its invariant and its
-one structure are gone from this surface, replaced by V1 counterparts. A superseded structure would
-stay in the composition beside its successor, two structures declaring one mode, and a superseded
-invariant would go on requiring the `status: active` that V1 structures do not carry. The V0
-declarations are carried by the compositions built under them and by this repository's history.
+A trust mode marked active on its structure is a property of the surface. With one mode, a
+composition executed across nodes from a signed snapshot would declare `LOCAL_DEV_UNSIGNED` and
+contradict its own `UNSIGNED_SNAPSHOTS_LOCAL_ONLY` rule. So `SIGNED_SNAPSHOT` is authorized beside
+it, and the build configuration selects between them.
 
-**What V1 changes.** V0 authorized one mode and marked its structure active, so the trust mode was a
-property of the surface. A composition executed across nodes from a signed snapshot declared
-`LOCAL_DEV_UNSIGNED`, because that was the only mode there was, and so contradicted its own
-`UNSIGNED_SNAPSHOTS_LOCAL_ONLY` rule. V1 authorizes `SIGNED_SNAPSHOT` beside it and moves selection
-to the build configuration. `LOCAL_DEV_UNSIGNED` means what it meant before.
-
-**What V1 does not change.** The runtime still does not branch on the mode, and verification is
-still what an anchored node does. The difference is that a signed composition now says it is one.
+The runtime does not branch on the mode, and verification is what an anchored node does. A signed
+composition says it is one.
 
 ---
 
@@ -190,7 +183,7 @@ core:
     execute under the declared trust posture rather than negotiating it.
 
 
-    V1 authorizes LOCAL_DEV_UNSIGNED and SIGNED_SNAPSHOT, and a build configuration
+    It authorizes LOCAL_DEV_UNSIGNED and SIGNED_SNAPSHOT, and a build configuration
 
     selects one for the composition it builds.
 

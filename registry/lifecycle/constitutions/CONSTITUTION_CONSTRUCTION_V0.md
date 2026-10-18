@@ -1,12 +1,11 @@
-# CONSTITUTION_CONSTRUCTION_V1
+# CONSTITUTION_CONSTRUCTION_V0
 
 ## Machine
 
 ```yaml
-fqdn: lifecycle::CONSTITUTION_CONSTRUCTION_V1
-supersedes: lifecycle::CONSTITUTION_CONSTRUCTION_V0
+fqdn: lifecycle::CONSTITUTION_CONSTRUCTION_V0
 artifact_kind: CONSTITUTION
-version: V1
+version: V0
 governed_by: governance::CONSTITUTION_GOVERNANCE_V0
 authority: pgc.platform
 concern: lifecycle
@@ -32,7 +31,7 @@ rules:
 ## 1. Purpose
 
 This constitution governs the construction half of the transformation lifecycle: rendering the
-artifacts an admissible Authoring Mandate schedules. `CONSTITUTION_CHANGE_MGMT_V1` governs the
+artifacts an admissible Authoring Mandate schedules. `CONSTITUTION_CHANGE_MGMT_V0` governs the
 design that construction reads.
 
 ## 2. What it governs

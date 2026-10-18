@@ -6,14 +6,14 @@
 fqdn: lifecycle::INVARIANT_RENDER_INVENTS_NOTHING_V0
 artifact_kind: INVARIANT
 version: V0
-governed_by: lifecycle::CONSTITUTION_CONSTRUCTION_V1
+governed_by: lifecycle::CONSTITUTION_CONSTRUCTION_V0
 authority: pgc.platform
 concern: lifecycle
 core:
   enforcement_stage:
   - enforced_elsewhere
   violation_response: FAIL_IMMEDIATELY
-  enforced_by: the construction compiler, measuring each design it renders (CT_PURE_ATTRIBUTE_PROVENANCE_V1)
+  enforced_by: the construction compiler, measuring each design it renders (CT_PURE_ATTRIBUTE_PROVENANCE_V0)
 assert_projection:
   applies_to_kinds:
   - AC
@@ -40,4 +40,4 @@ A value with no source in the design or in a constitution was invented by the re
 
 ## 3. How it is checked
 
-Enforced by the construction compiler: `CT_PURE_ATTRIBUTE_PROVENANCE_V1` runs on every design construction renders.
+Enforced by the construction compiler: `CT_PURE_ATTRIBUTE_PROVENANCE_V0` runs on every design construction renders.

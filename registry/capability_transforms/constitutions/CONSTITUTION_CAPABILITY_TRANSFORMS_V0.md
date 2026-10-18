@@ -1,11 +1,10 @@
-# CONSTITUTION_CAPABILITY_TRANSFORMS_V2
+# CONSTITUTION_CAPABILITY_TRANSFORMS_V0
 
 ## Machine
 ```yaml
-fqdn: capability_transforms::CONSTITUTION_CAPABILITY_TRANSFORMS_V2
-supersedes: capability_transforms::CONSTITUTION_CAPABILITY_TRANSFORMS_V1
+fqdn: capability_transforms::CONSTITUTION_CAPABILITY_TRANSFORMS_V0
 artifact_kind: CONSTITUTION
-version: V2
+version: V0
 governed_by: vocabulary::CONSTITUTION_VOCABULARY_V0
 authority: pgc.platform
 concern: capability_transforms
@@ -15,9 +14,9 @@ core:
   - CT
 rules:
 - applies_to: CT
-  enforced_by: capability_transforms::INVARIANT_CT_SURFACE_CLOSED_V2
+  enforced_by: capability_transforms::INVARIANT_CT_SURFACE_CLOSED_V0
 - applies_to: CT
-  enforced_by: capability_transforms::INVARIANT_CT_SURFACE_DERIVED_CLOSED_V1
+  enforced_by: capability_transforms::INVARIANT_CT_SURFACE_DERIVED_CLOSED_V0
 - applies_to: CT
   enforced_by: execution::INVARIANT_IMPLEMENTATION_ADMISSIBLE_V0
 - applies_to: CT
@@ -48,10 +47,10 @@ composition it belongs to.
 
 ## 2. The rules
 
-- **Surface closure** (`INVARIANT_CT_SURFACE_CLOSED_V2`). The platform's transform surface is an
+- **Surface closure** (`INVARIANT_CT_SURFACE_CLOSED_V0`). The platform's transform surface is an
   enumerated set: every executable transform is declared, every declared transform has a runtime
   implementation, and no undeclared transform executes.
-- **Closure by derivation** (`INVARIANT_CT_SURFACE_DERIVED_CLOSED_V1`). A domain's surface is closed
+- **Closure by derivation** (`INVARIANT_CT_SURFACE_DERIVED_CLOSED_V0`). A domain's surface is closed
   by derivation rather than by a list: every transform it declares is invoked by one of its
   contracts, and every transform its contracts invoke is declared where it can be resolved.
 - **Implementation admissibility** (`INVARIANT_IMPLEMENTATION_ADMISSIBLE_V0`). An atom, deterministic
@@ -59,25 +58,6 @@ composition it belongs to.
   what it runs is its steps, and each of those is held to the same rule.
 - **Typed inputs** (`INVARIANT_CT_INPUT_TYPED_V0`). A transform is given only values of the types it
   declares. Each input a contract binds to a transform step has the declared type.
-
----
-
-## Change from V0
-
-`CONSTITUTION_CAPABILITY_TRANSFORMS_V0` governed every transform, from a time when every transform
-was a deterministic atom. When non-deterministic atoms and molecules gained constitutions of their
-own, it was renamed `CONSTITUTION_DETERMINISTIC_ATOMS_V0`, and it kept these three rules although
-they concern all three kinds. This version takes the name back for what the name describes: the
-rules common to every transform, and nothing else. The deterministic atom's own rules stay with
-`CONSTITUTION_DETERMINISTIC_ATOMS_V0`.
-
----
-
-## Change from V1
-
-V2 closes the platform's surface with `INVARIANT_CT_SURFACE_CLOSED_V2`, whose list adds
-`CT_PURE_REQUIRE_TRUE_V0`, and adds the rule that a transform is given only values of the types it
-declares.
 
 ---
 

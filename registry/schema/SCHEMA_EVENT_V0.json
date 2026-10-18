@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "SCHEMA_EVENT_V1",
+  "$id": "SCHEMA_EVENT_V0",
   "title": "Event Schema V1",
   "description": "The machine block of an EVENT artifact: a governed occurrence a workflow announces, and the fields its record carries. V1 replaces V0, which was never applied, and which refused content the declarations carry: a governing constitution named by FQDN, a subdomain, a moment, an integer field, a field restricted to stated values. It was written from what EVENT artifacts declare.",
   "type": "object",

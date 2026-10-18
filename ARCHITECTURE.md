@@ -104,7 +104,7 @@ The six, and what each is for:
 | `CS_SNAPSHOT_QUERY_V0` | reads the sealed platform itself |
 | `CS_TEXT_ARTIFACT_V0` | reads and writes text artifacts |
 
-The closure is not a comment — it is an invariant (`INVARIANT_CS_SURFACE_CLOSED_V1`) that names all
+The closure is not a comment — it is an invariant (`INVARIANT_CS_SURFACE_CLOSED_V0`) that names all
 six explicitly, and the compiler refuses a platform using anything else.
 
 ### Three kinds of transform
@@ -120,7 +120,7 @@ is one of three kinds, and exactly one constitution governs it, placed by kind a
 | molecule | `CONSTITUTION_MOLECULES_V0` | no implementation — its declared steps are its specification |
 
 What every transform owes the composition, whatever its kind, is in
-`CONSTITUTION_CAPABILITY_TRANSFORMS_V1`: the surface is closed, closed by derivation in a domain, and
+`CONSTITUTION_CAPABILITY_TRANSFORMS_V0`: the surface is closed, closed by derivation in a domain, and
 every atom names an admissible implementation. A transform may also state the cases that prove it, as
 `TEST_DATA` beside it, and the runtime's conformance runs them.
 

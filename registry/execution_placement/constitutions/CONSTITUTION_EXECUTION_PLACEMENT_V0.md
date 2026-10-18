@@ -1,11 +1,11 @@
-# CONSTITUTION_EXECUTION_PLACEMENT_V1
+# CONSTITUTION_EXECUTION_PLACEMENT_V0
 
 ## Machine
 
 ```yaml
-fqdn: execution_placement::CONSTITUTION_EXECUTION_PLACEMENT_V1
+fqdn: execution_placement::CONSTITUTION_EXECUTION_PLACEMENT_V0
 artifact_kind: CONSTITUTION
-version: V1
+version: V0
 governed_by: governance::CONSTITUTION_GOVERNANCE_V0
 authority: pgc.platform
 concern: execution_placement
@@ -13,9 +13,9 @@ core:
   enforcement_model: process_and_compiler_enforced
 rules:
 - applies_to: compiled_snapshot
-  enforced_by: execution_placement::INVARIANT_EXECUTION_PLACEMENT_DECLARED_V1
+  enforced_by: execution_placement::INVARIANT_EXECUTION_PLACEMENT_DECLARED_V0
 - applies_to: build_configuration
-  enforced_by: execution_placement::INVARIANT_EXECUTION_PLACEMENT_DECLARED_V1
+  enforced_by: execution_placement::INVARIANT_EXECUTION_PLACEMENT_DECLARED_V0
 - applies_to: federation_boundary
   enforced_by: PROCESS_ENFORCED
 - applies_to: runtime
@@ -43,19 +43,13 @@ a configuration.
 
 ## §2. Placement belongs to a composition, not to a surface
 
-**This is what V1 changes, and the reason it exists.**
-
-V0 held that a governance surface carries exactly one placement declaration marked `status: active`,
-and that the compiler finds it by that mark. That was adequate while a surface served one
-composition. It is incoherent once a surface serves more than one: an inventory cannot hold two
+A surface cannot hold the active placement. Marking one declaration `status: active` works while a
+surface serves one composition. It is incoherent once a surface serves more than one: an inventory cannot hold two
 answers to where execution runs, and two compositions built from one surface may legitimately differ
 in placement without either being wrong.
 
-V0 §2 already said the compiler discovers *"the active placement contract in this boundary."* A
-boundary is a build. V0 read it as a repository, because for one composition the two could not be
-told apart.
-
-Under V1:
+The boundary in which the compiler discovers the active placement is a build, not a repository. For
+one composition the two cannot be told apart. So:
 
 - **the surface declares what is available** — one structure per authorized mode, none of which
   claims to be active;
@@ -167,30 +161,10 @@ anonymous.
 
 Changes to placement semantics require a new constitution version and migration rationale.
 
-## §8. What became of V0
+## §8. What placement holds
 
-**V0 was deleted, not superseded.** `CONSTITUTION_EXECUTION_PLACEMENT_V0`, its invariant, and its
-single-node structure are gone from this surface, and this constitution supersedes nothing.
-
-That distinction is deliberate. Supersession deletes nothing: it declares a relation between two
-identities, keeps the predecessor compiled so the relation is readable, and obliges nothing live to
-reference the retired artifact. It is right where a claim discharged under the predecessor must
-remain evaluable.
-
-Here it was wrong in three ways at once. A superseded placement structure stays in the composition,
-so a composition would carry two structures declaring one mode and the cardinality rule could not
-distinguish them. A superseded invariant is still enforced, so V0's check would go on requiring a
-`status: active` that V1 structures deliberately do not carry. And a successor naming a predecessor
-that selection had excluded would leave a reference resolving to nothing.
-
-Deletion has none of those consequences and loses nothing that matters: the V0 declarations are
-carried by the deposited composition built under them and by this repository's history, which is
-where a retired declaration's evidence belongs. A snapshot built under V0 is unaffected — it records
-`LOCAL_SINGLE_NODE` in its federation profile, that remains true of it, and nothing here reaches
-backwards to change what it claimed.
-
-**What V1 holds.** Placement is a property of the composition being built, not of a surface's
-inventory. The mode `LOCAL_SINGLE_NODE` means what V0 declared. `LOCAL_MULTI_WORKER` is authorized
+Placement is a property of the composition being built, not of a surface's
+inventory. `LOCAL_MULTI_WORKER` is authorized
 alongside it. The build configuration selects the mode, and no structure marks itself selected.
 
 **Rationale.** Two profiles came into force over one governance surface — one requiring no

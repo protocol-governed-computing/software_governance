@@ -1,11 +1,11 @@
-# VOCAB_EVIDENCE_CONTENT_CLASSIFICATION_V1
+# VOCAB_EVIDENCE_CONTENT_CLASSIFICATION_V0
 
 ## Machine
 
 ```yaml
-fqdn: vocabulary::VOCAB_EVIDENCE_CONTENT_CLASSIFICATION_V1
+fqdn: vocabulary::VOCAB_EVIDENCE_CONTENT_CLASSIFICATION_V0
 artifact_kind: VOCABULARY
-version: v1
+version: v0
 governed_by: vocabulary::CONSTITUTION_VOCABULARY_V0
 authority: pgc.platform
 concern: vocabulary
@@ -88,15 +88,4 @@ exception.
 **That the classification is complete for evidence other than execution traces.** Construction
 produces no evidence record at all today, so it has none to classify — a separate finding, and this
 artifact does not pretend to cover it.
-
----
-
-## Change from V0
-
-V0 classified trace content by top-level field only, so a store-assigned value inside `detail` was
-determinative by default. A replay of any act that appends a record disagreed with its original on
-that one value. The only way to accept such a replay was a checker that skipped the value by name:
-an exception held in a test, not in the composition. V1 adds `observational_keys`. The runtime
-writes the keys into each trace's classification header, and a replay comparison removes them from
-determinative content, reading them from the trace itself.
 

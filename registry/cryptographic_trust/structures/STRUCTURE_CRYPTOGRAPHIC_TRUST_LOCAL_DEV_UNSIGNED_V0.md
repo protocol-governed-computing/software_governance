@@ -1,13 +1,13 @@
-# STRUCTURE_CRYPTOGRAPHIC_TRUST_LOCAL_DEV_UNSIGNED_V1
+# STRUCTURE_CRYPTOGRAPHIC_TRUST_LOCAL_DEV_UNSIGNED_V0
 
 ## Machine
 
 ```yaml
-fqdn: cryptographic_trust::STRUCTURE_CRYPTOGRAPHIC_TRUST_LOCAL_DEV_UNSIGNED_V1
-artifact_code: STRUCTURE_CRYPTOGRAPHIC_TRUST_LOCAL_DEV_UNSIGNED_V1
+fqdn: cryptographic_trust::STRUCTURE_CRYPTOGRAPHIC_TRUST_LOCAL_DEV_UNSIGNED_V0
+artifact_code: STRUCTURE_CRYPTOGRAPHIC_TRUST_LOCAL_DEV_UNSIGNED_V0
 artifact_kind: STRUCTURE
-version: V1
-governed_by: cryptographic_trust::CONSTITUTION_CRYPTOGRAPHIC_TRUST_V1
+version: V0
+governed_by: cryptographic_trust::CONSTITUTION_CRYPTOGRAPHIC_TRUST_V0
 authority: pgc.platform
 concern: cryptographic_trust
 trust_mode: LOCAL_DEV_UNSIGNED
@@ -28,12 +28,11 @@ traces. Trust is implicit, which is right for local development and a single ope
 constitution confines it there: a composition declaring this mode is not deployed to non-local
 execution substrates.
 
-This is the mode V0 declared, and it means the same thing. A build reaches it by naming it in
-`trust_mode`; the structure does not mark itself active.
+A build reaches this mode by naming it in `trust_mode`; the structure does not mark itself active.
 
 ## Availability is not activity
 
 This structure carries no `status`. It states that the mode is **available** to a build, never that
 it is **active** in one. Activity is named by a build configuration, and the composition that
 results carries this structure and no other trust structure
-(`INVARIANT_CRYPTOGRAPHIC_TRUST_DECLARED_V1`).
+(`INVARIANT_CRYPTOGRAPHIC_TRUST_DECLARED_V0`).

@@ -1,13 +1,13 @@
-# STRUCTURE_CRYPTOGRAPHIC_TRUST_SIGNED_SNAPSHOT_V1
+# STRUCTURE_CRYPTOGRAPHIC_TRUST_SIGNED_SNAPSHOT_V0
 
 ## Machine
 
 ```yaml
-fqdn: cryptographic_trust::STRUCTURE_CRYPTOGRAPHIC_TRUST_SIGNED_SNAPSHOT_V1
-artifact_code: STRUCTURE_CRYPTOGRAPHIC_TRUST_SIGNED_SNAPSHOT_V1
+fqdn: cryptographic_trust::STRUCTURE_CRYPTOGRAPHIC_TRUST_SIGNED_SNAPSHOT_V0
+artifact_code: STRUCTURE_CRYPTOGRAPHIC_TRUST_SIGNED_SNAPSHOT_V0
 artifact_kind: STRUCTURE
-version: V1
-governed_by: cryptographic_trust::CONSTITUTION_CRYPTOGRAPHIC_TRUST_V1
+version: V0
+governed_by: cryptographic_trust::CONSTITUTION_CRYPTOGRAPHIC_TRUST_V0
 authority: pgc.platform
 concern: cryptographic_trust
 trust_mode: SIGNED_SNAPSHOT
@@ -46,4 +46,4 @@ peers would accept.
 This structure carries no `status`. It states that the mode is **available** to a build, never that
 it is **active** in one. Activity is named by a build configuration, and the composition that
 results carries this structure and no other trust structure
-(`INVARIANT_CRYPTOGRAPHIC_TRUST_DECLARED_V1`).
+(`INVARIANT_CRYPTOGRAPHIC_TRUST_DECLARED_V0`).

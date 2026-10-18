@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "software_governance.schemas.SCHEMA_TEST_DATA_V1",
+  "$id": "software_governance.schemas.SCHEMA_TEST_DATA_V0",
   "title": "PGC Test Vector Schema V1",
   "description": "Closed machine-block contract for TEST_DATA artifacts: the transform a vector tests and its cases. Cases are governed content and live in the Machine block; prose around a vector declares nothing.",
   "type": "object",
@@ -26,7 +26,7 @@
       "pattern": "^V[0-9]+$"
     },
     "governed_by": {
-      "const": "conformance::CONSTITUTION_TEST_DATA_V2"
+      "const": "conformance::CONSTITUTION_TEST_DATA_V0"
     },
     "authority": {
       "type": "string"
@@ -79,7 +79,7 @@
             "type": "object"
           },
           "assertions": {
-            "description": "For an output whose value cannot be stated: the form it must take. Governed by conformance::INVARIANT_CONFORMANCE_ASSERTION_MODE_VALID_V1.",
+            "description": "For an output whose value cannot be stated: the form it must take. Governed by conformance::INVARIANT_CONFORMANCE_ASSERTION_MODE_VALID_V0.",
             "type": "object",
             "additionalProperties": {
               "type": "object",

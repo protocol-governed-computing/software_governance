@@ -4,8 +4,6 @@
 
 ```yaml
 fqdn: trace::CONSTITUTION_TRACE_EXECUTION_V0
-superseded_by:
-- trace::CONSTITUTION_TRACE_EXECUTION_V1
 artifact_kind: CONSTITUTION
 version: V0
 governed_by: execution::CONSTITUTION_EXECUTION_V0
@@ -67,10 +65,12 @@ execute(snapshot, payload, structure) → (result, trace_events)
 
 ## §3. Trace Event Contract
 
-Every line of a trace MUST conform to `SCHEMA_TRACE_EVENT_V1`: the classification header first,
+Every line of a trace MUST conform to `SCHEMA_TRACE_EVENT_V0`: the classification header first,
 then events. The schema is the declaration — its fields and event types are not restated here.
+A trace names its schema in `trace_schema_version`. A schema is a new identity when what it
+requires changes, never the same identity requiring more.
 
-Event types are declared exhaustively in `SCHEMA_TRACE_EVENT_V1`.
+Event types are declared exhaustively in `SCHEMA_TRACE_EVENT_V0`.
 No undeclared event types permitted.
 
 ---
