@@ -49,7 +49,7 @@ Loaded by artifact discovery during build:
 
 1. Discovery reads `STRUCTURE_LAYER_AUTHORITY_V0` → enumerates layers
 2. For GOVERNANCE layer → loads this artifact
-3. Extracts `registry_module: pgs_governance.governance`
+3. Extracts `registry_module: software_governance.registry`
 4. Scans that module for protocol artifacts
 
 ---

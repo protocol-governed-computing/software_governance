@@ -39,7 +39,7 @@ All canonicalization must happen inside atom implementations.
 
 ## Where it applies
 - **Artifact Types**: CS (Capability Side Effects - executors)
-- **Code Layer**: pgs_execution
+- **Code Layer**: the runtime's execution layer
 - **Validation Phase**: Phase 5 (ASSERT)
 - **Enforcement**: MANDATORY (build fails on violation)
 

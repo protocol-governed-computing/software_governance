@@ -2,7 +2,7 @@
 backend.py — Persistence backend for CS_REGISTRY_V0.
 
 Path resolution:
-- Entity-based (preferred): __pgs_store_entity__ → storage_structure_artifact.entity_stores[entity].path
+- Entity-based (preferred): __store_entity__ → storage_structure_artifact.entity_stores[entity].path
   Used when RB declares storage_structure: and CC step declares store: field.
 - Legacy (fallback): config["path"] — used for existing callers with explicit path policy.
 Both modes are supported; entity-based takes precedence when store_entity is provided.

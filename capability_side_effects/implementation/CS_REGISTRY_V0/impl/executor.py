@@ -22,7 +22,7 @@ class RegistryExecutor:
         """Register a new symbolic key with optional value enrichment."""
         if "key" not in payload:
             return {"result_status": "VIOLATION"}
-        store_entity = payload.get("__pgs_store_entity__")
+        store_entity = payload.get("__store_entity__")
         try:
             address = self._backend.register(
                 key=payload["key"],
@@ -41,7 +41,7 @@ class RegistryExecutor:
         """Resolve a symbolic key or registry address."""
         if "key_or_address" not in payload:
             return {"result_status": "VIOLATION"}
-        store_entity = payload.get("__pgs_store_entity__")
+        store_entity = payload.get("__store_entity__")
         try:
             target_cs, target_ref = self._backend.resolve(payload["key_or_address"], store_entity=store_entity)
             return {"result_status": "SUCCESS", "target_cs": target_cs, "target_ref": target_ref}
@@ -54,7 +54,7 @@ class RegistryExecutor:
         """Check existence of a registry key or address."""
         if "key_or_address" not in payload:
             return {"result_status": "VIOLATION"}
-        store_entity = payload.get("__pgs_store_entity__")
+        store_entity = payload.get("__store_entity__")
         try:
             exists = self._backend.exists(payload["key_or_address"], store_entity=store_entity)
             return {"result_status": "SUCCESS", "exists": exists}
@@ -63,7 +63,7 @@ class RegistryExecutor:
 
     def count(self, payload: Dict[str, Any]) -> Dict[str, Any]:
         """Count active (non-tombstoned) registry entries."""
-        store_entity = payload.get("__pgs_store_entity__")
+        store_entity = payload.get("__store_entity__")
         try:
             count = self._backend.count(store_entity=store_entity)
             return {"result_status": "SUCCESS", "count": count}
@@ -74,7 +74,7 @@ class RegistryExecutor:
         """Deregister a registry entry (tombstone, does not delete storage)."""
         if "key_or_address" not in payload:
             return {"result_status": "VIOLATION"}
-        store_entity = payload.get("__pgs_store_entity__")
+        store_entity = payload.get("__store_entity__")
         try:
             removed = self._backend.deregister(payload["key_or_address"], store_entity=store_entity)
             if not removed:

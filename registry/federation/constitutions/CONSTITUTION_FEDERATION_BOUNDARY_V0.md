@@ -123,13 +123,13 @@ The open-ended nature of federation boundaries is a feature, not a gap. It allow
 
 | Governance Type | Correct Location |
 |-----------------|-----------------|
-| Universal platform governance law | pgs_governance |
-| Reusable cross-domain governance | pgs_governance |
+| Universal platform governance law | the governance surface |
+| Reusable cross-domain governance | the governance surface |
 | Domain-specific governance law | domain repository |
 | Domain orchestration policy | domain repository |
 | Domain execution rules | domain repository |
 
-The test for central placement is strict: **a governance artifact belongs in pgs_governance if and only if it governs all PGS systems universally.**
+The test for central placement is strict: **a governance artifact belongs in the governance surface if and only if it governs every PGC composition universally.**
 
 If a governance rule exists because blockchain needs it, or AI governance needs it, or any specific domain needs it — it belongs in that domain's repository.
 
@@ -145,9 +145,9 @@ Domain governance artifacts are introduced when the first domain-specific govern
 ### 4.3 Domain Governance Escalation
 
 A governance rule that begins domain-local MAY be escalated to central governance if it is determined to apply universally. Escalation requires:
-1. Evidence that the rule governs all PGS systems, not just one domain
+1. Evidence that the rule governs every PGC composition, not just one domain
 2. Removal from the domain repository
-3. Introduction into the appropriate federation boundary in pgs_governance
+3. Introduction into the appropriate federation boundary in the governance surface
 
 Escalation is explicit and versioned. It is not automatic.
 
@@ -176,7 +176,7 @@ A governance artifact in one boundary MAY reference an artifact from another bou
 Federation boundaries MUST NOT proliferate to mirror:
 
 - **Organizational structure** — teams, squads, or product groups do not constitute governance authorities
-- **Repository topology** — having a separate repo does not entitle a domain to a separate boundary in pgs_governance
+- **Repository topology** — having a separate repo does not entitle a domain to a separate boundary in the governance surface
 - **Deployment units** — service boundaries, microservices, or infrastructure boundaries are not governance boundaries
 - **Runtime packaging** — how code is packaged or deployed is irrelevant to governance placement
 - **Implementation convenience** — grouping artifacts for discoverability or tooling reasons is not a governance justification
@@ -233,7 +233,7 @@ As of V0, the declared federation boundaries are:
 | FB_AI_GOVERNANCE | Delegated | AI governance domain build configuration |
 | FB_CHANGE_MGMT | Delegated | Governed SDLC change management pipeline — Change Request through Authoring Manifest |
 
-Note: FB_BLOCKCHAIN and FB_AI_GOVERNANCE currently contain only build configuration structures. They represent domain boundaries within pgs_governance's build system. Domain-specific governance laws for these domains reside in their respective domain repositories. FB_CHANGE_MGMT governs the protocol authoring lifecycle itself — the governed pipeline from human intent to admissible protocol artifact.
+Note: FB_BLOCKCHAIN and FB_AI_GOVERNANCE currently contain only build configuration structures. They represent domain boundaries within the governance surface's build system. Domain-specific governance laws for these domains reside in their respective domain repositories. FB_CHANGE_MGMT governs the protocol authoring lifecycle itself — the governed pipeline from human intent to admissible protocol artifact.
 
 ---
 
@@ -294,8 +294,8 @@ rules:
 
     '
 - rule_id: BOUNDARY_GOVERNANCE_LOCALITY
-  constraint: 'A governance artifact belongs in pgs_governance (central) if and only if it governs all
-    PGS systems universally. A governance artifact belongs in a domain repository (local) if it exists
+  constraint: 'A governance artifact belongs in the governance surface (central) if and only if it governs
+    every PGC composition universally. A governance artifact belongs in a domain repository (local) if it exists
     because of domain-specific semantics. Placing domain-specific governance centrally is a governance
     locality violation. Placing universal governance locally is also a violation.
 
@@ -314,8 +314,8 @@ rules:
 
     '
 - rule_id: BOUNDARY_ONBOARDING_REQUIRED
-  constraint: 'Every new FB_* introduced into PGS MUST complete four onboarding steps before the boundary
-    is considered compiler-admissible: (1) governance registration — directory created under pgs_governance/registry/FB_*/;
+  constraint: 'Every new FB_* introduced into PGC MUST complete four onboarding steps before the boundary
+    is considered compiler-admissible: (1) governance registration — directory created under the governance surface''s registry/;
     (2) namespace derivation rule declared in STRUCTURE_IDENTITY_V0 mapping the registry module path to
     a fb.* namespace; (3) all governed artifacts within the boundary contain a valid ## Machine declaration
     parseable by S1_EXTRACT; (4) governance compilation succeeds without errors for all affected build

@@ -50,7 +50,7 @@ Loaded by artifact discovery during build:
 
 1. Discovery reads `STRUCTURE_LAYER_AUTHORITY_V0` → enumerates layers
 2. For REUSABLE_TRANSFORMS layer → loads this artifact
-3. Extracts `registry_module: pgs_transforms.registry`
+3. Extracts `registry_module: capability_transforms.registry`
 4. Scans that module for protocol artifacts
 
 ---

@@ -5,7 +5,7 @@ Entity-based storage resolution:
 - Paths resolved from STRUCTURE using store entity metadata
 - storage_structure_artifact injected by RuntimeLoader from the RB's storage_structure reference
 - module_data_root injected by RuntimeLoader from workflow context
-- __pgs_store_entity__ injected per-operation by capability_pipeline from CC step store: field
+- __store_entity__ injected per-operation by capability_pipeline from CC step store: field
 """
 
 import json
@@ -48,10 +48,10 @@ class AppendOnlyJsonlEngine:
 
         PROTOCOL: Store entity is injected by capability_pipeline from CC step metadata.
         """
-        store_entity = payload.get("__pgs_store_entity__")
+        store_entity = payload.get("__store_entity__")
         if not store_entity:
             raise ValueError(
-                "PROTOCOL VIOLATION: Missing __pgs_store_entity__ in payload. "
+                "PROTOCOL VIOLATION: Missing __store_entity__ in payload. "
                 "CC step must declare store: field for entity-based storage."
             )
 

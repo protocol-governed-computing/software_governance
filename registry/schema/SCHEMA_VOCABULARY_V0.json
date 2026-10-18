@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "pgs_governance/registry/schema/SCHEMA_VOCABULARY_V0.json",
+  "$id": "software_governance.schemas.SCHEMA_VOCABULARY_V0",
   "title": "VOCABULARY artifact machine block",
   "description": "A VOCABULARY artifact declares one or more named, closed sets of symbols. The envelope is the universal one; everything beyond it is a vocabulary group, whose name is the vocabulary being declared. Envelope keys are excluded from the group pattern by name, so a key is validated as an envelope field or as a vocabulary group, never as both. The surface is closed: a group name must be lower_snake and a group must carry exactly casing, entries and optionally domain_extensible, so nothing undeclared can appear while the set of group names stays open (KV-2, MB-5, MB-11).",
   "type": "object",

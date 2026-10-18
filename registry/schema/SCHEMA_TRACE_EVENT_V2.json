@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "SCHEMA_TRACE_EVENT_V2",
   "title": "Trace Event Schema",
-  "description": "One line of an execution trace, as the runtime writes it (JSONL). Governed by CONSTITUTION_TRACE_EXECUTION_V0. The first line is the classification header naming which content is determinative (VOCAB_EVIDENCE_CONTENT_CLASSIFICATION_V1); every other line is an event. V2 replaces V1, which the composition published as v5 declares and which stays as the schema of every trace written to it: V2 requires every CC_STEP to record the outcome the step ended with and the continuation it selected (`3e` EV-19). V1 had replaced V0, RI-0's format. Since V1, events also name places: CC_START and CC_COMPLETE carry the node key, and WF_ROUTE the node left and the node or declared ending reached, because one contract may run at several places and the contract alone does not say which ran.",
+  "description": "One line of an execution trace, as the runtime writes it (JSONL). Governed by CONSTITUTION_TRACE_EXECUTION_V0. The first line is the classification header naming which content is determinative (VOCAB_EVIDENCE_CONTENT_CLASSIFICATION_V1); every other line is an event. Every CC_STEP records the outcome the step ended with and the continuation it selected. Events name places: CC_START and CC_COMPLETE carry the node key, and WF_ROUTE the node left and the node or declared ending reached, because one contract may run at several places and the contract alone does not say which ran.",
   "oneOf": [
     {
       "$ref": "#/$defs/classification"

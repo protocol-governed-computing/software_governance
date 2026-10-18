@@ -34,7 +34,7 @@ For all CT atom implementations:
 
 ## Where it applies
 - **Artifact Types**: CT
-- **Code Layer**: pgs_transforms/implementation/transforms/atoms/
+- **Code Layer**: capability transform implementations (atoms)
 - **Validation Phase**: Phase 5 (ASSERT)
 - **Enforcement**: MANDATORY (build fails on violation)
 

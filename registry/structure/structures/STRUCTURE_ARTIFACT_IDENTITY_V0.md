@@ -229,7 +229,7 @@ def bootstrap_discover_structure_artifact(structure_code: str):
     This is the ONLY hardcoded path in the system.
     All other artifacts use STRUCTURE-driven resolution.
     """
-    bootstrap_root = Path("pgs_governance/registry/structures")
+    bootstrap_root = platform_root() / "registry" / "structure" / "structures"
     artifact_path = bootstrap_root / f"{structure_code}.md"
 
     artifact = parse_artifact(artifact_path)

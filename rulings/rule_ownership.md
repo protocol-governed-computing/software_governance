@@ -17,7 +17,7 @@ and so the compiler stays a generic evaluator rather than drifting into a rule o
 | Concern | What it is | Where it lives |
 |---------|-----------|----------------|
 | **Meaning** (the rule) | An `ASSERT` / `INVARIANT` **artifact** — data declaring *what must hold* and *over what scope* | The authoring boundary: `fb.*` for constitutional rules; the domain repo (e.g. `blockchain::`) for domain rules |
-| **Mechanism** (the evaluator) | A handler function — trusted code that *checks* a rule, parameterized by the artifact | `pgs_governance` handler registry (closed, statically imported) |
+| **Mechanism** (the evaluator) | A handler function — trusted code that *checks* a rule, parameterized by the artifact | the compiler's handler registry (closed, statically imported) |
 
 Adding a rule's **meaning** (a new `ASSERT`/`INVARIANT` artifact) never requires a
 code change — it is compiled into the snapshot and discovered generically. Adding a
@@ -123,12 +123,12 @@ invariants.
      `enforcement_stage: [runtime_outcome]` and a `runtime_binding` to the CC
      outcome that enforces it. Stop.
    - Structural → continue.
-2. **Is it true of every valid PGS protocol, or specific to one domain?**
-   - Every protocol → constitutional `INVARIANT`/`ASSERT` artifact in `pgs_governance` (`fb.*`).
+2. **Is it true of every valid PGC protocol, or specific to one domain?**
+   - Every protocol → constitutional `INVARIANT`/`ASSERT` artifact in the governance surface.
    - One domain → `INVARIANT`/`ASSERT` artifact in that domain repo, `governed_by` a constitutional invariant, `scope.applies_to` the domain.
 3. **Does an existing handler already evaluate this shape of rule?**
    - Yes → reuse it; supply the rule's meaning as artifact data.
-   - No → author a new handler in the `pgs_governance` closed registry (governance-reviewed).
+   - No → author a new handler in the compiler's closed registry (governance-reviewed).
 
 The compiler is never edited to add a rule. If it is, domain knowledge has leaked
 into the evaluator — fix it as a generic mechanism, not a special case.

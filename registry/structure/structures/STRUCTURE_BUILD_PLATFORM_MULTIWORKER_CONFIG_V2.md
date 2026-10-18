@@ -30,24 +30,11 @@ This STRUCTURE governs:
 
 **Scope**: PGC normative platform surface only.
 
-**Change from V0 (first PGC normative divergence from the faithful RI-0 harvest):**
-V0 encoded RI-0's platform scope, which is wider than the PGC platform. V1 narrows it to
-the PGC normative surface by removing concerns that are **not** platform-owned:
-
-* `CAPABILITIES` layer — the `name_service` registry is a **domain** capability (`pgs::`),
-  excluded from the PGC platform (the 150). Returns later as a `pgs::` domain extension.
-* `TEST_DATA` layer + `conformance_generate` / `conformance_execute` phases — **implementation-
-  layer conformance**. Per the capability-ownership decision, capability *implementations*
-  (and therefore conformance against them) are not platform-owned; they are enforced where
-  the implementations live, not in the normative-surface compile.
-
-
-**Change from V1:** V1 kept all implementation-layer conformance out of the platform's build, on
-the ground that capability implementations are not platform-owned. That holds for a domain's
-implementations and not for the platform's own transforms, which the platform supplies. V2 compiles
-the platform's test vectors (`TEST_DATA`) and declares where their runnable cases are written, so the
-platform's build proves its own transforms (`conformance::CONSTITUTION_TEST_DATA_V2` §4). It never
-proves a domain's.
+A domain's capabilities, and conformance against a domain's implementations, are not
+platform-owned and are built where the domain lives. The platform's own transforms are: this build
+compiles the platform's test vectors (`TEST_DATA`) and declares where their runnable cases are
+written, so the platform's build proves its own transforms (`conformance::CONSTITUTION_TEST_DATA_V2`
+§4). It never proves a domain's.
 
 ---
 

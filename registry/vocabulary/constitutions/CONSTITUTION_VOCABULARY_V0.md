@@ -78,7 +78,7 @@ This constitution does not govern:
 
 Reserved words are declared in:
 ```
-pgs_governance/governance/vocabulary/reserved/{namespace}.txt
+registry/vocabulary/reserved/VOCAB_*.md
 ```
 
 ### 3.2 Reserved Word Immutability
@@ -158,7 +158,7 @@ The version suffix (_V0, _V1, ...) is:
 
 Vocabulary files are located at:
 ```
-pgs_governance/governance/vocabulary/reserved/{namespace}.txt
+registry/vocabulary/reserved/VOCAB_*.md
 ```
 
 ### 6.2 Vocabulary Changes
@@ -206,9 +206,9 @@ CT_OLD_TRANSFORM_V0
 
 ### 8.1 Index Location
 
-The semantic index is located at:
+The semantic index is compiled into each domain's vocabulary projection:
 ```
-pgs_governance/governance/vocabulary/vocabulary_semantic_index.json
+compiled/vocabulary/{domain}/forward.json, reverse.json
 ```
 
 ### 8.2 Index Purpose
