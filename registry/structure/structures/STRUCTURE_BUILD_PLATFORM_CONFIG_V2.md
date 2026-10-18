@@ -2,7 +2,6 @@
 
 **Artifact Type**: STRUCTURE
 **Version**: V2
-**Status**: CANONICAL
 **Governed By**: structure::CONSTITUTION_STRUCTURE_V0
 
 ---

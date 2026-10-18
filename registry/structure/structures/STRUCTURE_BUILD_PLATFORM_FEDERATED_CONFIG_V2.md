@@ -23,7 +23,6 @@ compositions claiming one surface and drawing different artifacts from it.
 
 **Artifact Type**: STRUCTURE
 **Version**: V2
-**Status**: CANONICAL
 **Governed By**: structure::CONSTITUTION_STRUCTURE_V0
 
 ---

@@ -2,7 +2,6 @@
 
 **Artifact Type**: STRUCTURE
 **Version**: V0
-**Status**: CANONICAL
 **Authority**: CONSTITUTIONAL
 
 ---

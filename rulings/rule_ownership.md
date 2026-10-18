@@ -1,7 +1,7 @@
 # Rule Ownership & Invariant Classes
 
-**Status:** Doctrine. Constitutional principle for how rules are owned, located, and
-evaluated across the PGS ecosystem.
+Doctrine: the constitutional principle for how rules are owned, located, and evaluated across
+PGC.
 
 This note records two findings established by audit (2026-06-13) and the principle
 they imply. It exists so that future rules land in the right place by construction,
