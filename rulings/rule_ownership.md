@@ -3,8 +3,8 @@
 Doctrine: the constitutional principle for how rules are owned, located, and evaluated across
 PGC.
 
-This note records two findings established by audit (2026-06-13) and the principle
-they imply. It exists so that future rules land in the right place by construction,
+This note states two findings and the principle they imply. It exists so that future
+rules land in the right place by construction,
 and so the compiler stays a generic evaluator rather than drifting into a rule owner.
 
 ---
@@ -40,9 +40,9 @@ produces *decorative governance*: the artifact implies enforcement that does not
 happen. This is the least defensible state (artifact exists, effect is none) and is
 forbidden. Handlers read the allowed surface and scope from
 `current_assert_artifact`, and filter the governed set by the artifact's
-`scope.applies_to`. (Fixed 2026-06-13 for both surface-closure handlers —
-`assert_ct_surface_closed_v0` and `assert_cs_surface_closed_v0`; the platform
-`ASSERT_CS_SURFACE_CLOSED_V0` gained an explicit `scope: [PLATFORM]` to match.)
+`scope.applies_to`. Both surface-closure handlers — `assert_ct_surface_closed_v0` and
+`assert_cs_surface_closed_v0` — do so, and the platform `ASSERT_CS_SURFACE_CLOSED_V0` declares
+`scope: [PLATFORM]`.
 
 ---
 
