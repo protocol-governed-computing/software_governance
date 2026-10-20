@@ -22,7 +22,7 @@ dependencies = []
 [project.urls]
 Homepage = "https://omnibachi.org/"
 Repository = "https://github.com/protocol-governed-computing/software_governance"
-Standard = "https://doi.org/10.5281/zenodo.22150616"
+Standard = "https://doi.org/10.5281/zenodo.22150615"
 
 # The sealed snapshot binds capability implementations by fully qualified module
 # path — `capability_side_effects.implementation.CS_CLOCK_V0.runtime` and the
