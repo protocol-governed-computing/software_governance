@@ -1,14 +1,15 @@
 governance_surface_map:
   note: family and concern are read from the semantic registry tree (registry/<family>/<concern>/); identity
     (fqdn) is declared per-artifact and independent of this path.
-  artifact_count: 219
+  artifact_count: 222
   families:
     actor:
       constitutions: 1
       invariants: 2
     artifact:
-      invariants: 8
-      vocabulary: 1
+      constitutions: 1
+      invariants: 9
+      vocabulary: 2
     authority:
       constitutions: 1
       invariants: 7
@@ -120,12 +121,12 @@ governance_surface_map:
       constitutions: 1
       invariants: 6
   by_enforcement_locus:
-    compile_composition: 211
+    compile_composition: 214
     snapshot_declaration: 5
     runtime_execution: 2
     meta_process: 1
   by_coverage_status:
-    implemented: 192
+    implemented: 195
     process_enforced: 1
     declaration_substrate: 26
   coverage_ledger:
@@ -175,6 +176,17 @@ governance_surface_map:
       authority: constitution
     coverage:
       status: implemented
+  - artifact_code: CONSTITUTION_GOVERNANCE_ONTOLOGY_V0
+    kind: CONSTITUTION
+    family: artifact
+    concern: constitutions
+    semantic:
+      property: governance_ontology
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
   - artifact_code: INVARIANT_FQDN_NAMESPACE_AUTHORIZED_V0
     kind: INVARIANT
     family: artifact
@@ -192,6 +204,17 @@ governance_surface_map:
     concern: invariants
     semantic:
       property: fqdn_only_references
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: INVARIANT_GOVERNANCE_ONTOLOGY_AGREES_V0
+    kind: INVARIANT
+    family: artifact
+    concern: invariants
+    semantic:
+      property: governance_ontology_agrees
       lifecycle: compile
       enforcement_locus: compile_composition
       authority: constitution
@@ -269,6 +292,17 @@ governance_surface_map:
     concern: vocabulary
     semantic:
       property: declaration_representation
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: VOCAB_GOVERNANCE_ONTOLOGY_V0
+    kind: VOCABULARY
+    family: artifact
+    concern: vocabulary
+    semantic:
+      property: governance_ontology
       lifecycle: compile
       enforcement_locus: compile_composition
       authority: constitution
