@@ -43,6 +43,7 @@ reference:
   - allowed_capability_side_effects
   - allowed_capability_transforms
   - atom
+  - bootstrap_exception
   - code
   - consults
   - disposition_vocabulary
@@ -82,6 +83,14 @@ full_name_required:
   - transform
   - transforms
   - vocabulary_id
+named_in_full:
+  casing: lower_snake
+  entries:
+  - bootstrap_exception
+  - event_code
+  - event_type
+  - governs
+  - target_cs
 supersession:
   casing: lower_snake
   entries:
@@ -110,6 +119,7 @@ undeclared.
 A part that carries an artifact's name as a value is a reference part like any other: a claim's
 `target_cs`, an audit record's `event_code` or `event_type`, a surface contract's `governs`. Only a
 value written as a full name is a reference. A kind token or a path under the same part is a value,
-so none of these parts requires a full name.
+so these parts are `named_in_full`, not `full_name_required`: a value written as an artifact's code
+is refused, and a value of any other shape is not a name.
 
 A test vector's `cases` are data. The transform a vector tests, its `target`, sits outside its cases and stays a reference.

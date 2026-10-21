@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "software_governance.schemas.SCHEMA_VOCABULARY_V0",
   "title": "VOCABULARY artifact machine block",
-  "description": "A VOCABULARY artifact declares one or more named, closed sets of symbols. The envelope is the universal one; everything beyond it is a vocabulary group, whose name is the vocabulary being declared. Envelope keys are excluded from the group pattern by name, so a key is validated as an envelope field or as a vocabulary group, never as both. The surface is closed: a group name must be lower_snake and a group must carry exactly casing, entries and optionally domain_extensible, so nothing undeclared can appear while the set of group names stays open (KV-2, MB-5, MB-11).",
+  "description": "A VOCABULARY artifact declares one or more named, closed sets of symbols. The envelope is the universal one; everything beyond it is a vocabulary group, whose name is the vocabulary being declared. Envelope keys are excluded from the group pattern by name, so a key is validated as an envelope field or as a vocabulary group, never as both. The surface is closed: a group name must be lower_snake and a group must carry exactly casing, entries and optionally domain_extensible and names_kind, so nothing undeclared can appear while the set of group names stays open (KV-2, MB-5, MB-11).",
   "type": "object",
   "required": [
     "fqdn",
@@ -89,6 +89,11 @@
             "minLength": 1
           },
           "description": "The declared symbols. An empty vocabulary declares nothing and is refused; emptiness, where meant, is a declared sentinel rather than an absent list."
+        },
+        "names_kind": {
+          "type": "string",
+          "pattern": "^[A-Z][A-Z0-9_]*$",
+          "description": "The artifact kind every entry names by its code. Absent means the entries are symbols only. Declared, each entry must be the code of an artifact of that kind the build can see, so a renamed or retired artifact cannot leave a stale symbol behind."
         }
       }
     }

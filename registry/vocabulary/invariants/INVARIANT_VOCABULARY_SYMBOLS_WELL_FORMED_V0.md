@@ -57,6 +57,12 @@ Every workflow node `type` MUST appear in `VOCAB_PROTOCOL_KINDS_V0.node_types.en
 
 Every status in a capability contract's `core.result_status_contract.allowed` MUST appear in `VOCAB_EXECUTION_STATES_V0.result_status.entries`.
 
+### Rule 6: A vocabulary that names artifacts names ones that exist
+
+A vocabulary group that declares `names_kind` lists artifacts by code. Every entry MUST be the code of an artifact of that kind that the build can see, in its own artifacts or in the surface it imports.
+
+Rules 4 and 5 govern extension and are stated in `vocabulary::CONSTITUTION_VOCABULARY_V0` §9.1.
+
 Rules 2 and 3 are evaluated only where the vocabulary artifact is present in the compiled set; a build that carries no vocabulary cannot be measured against one.
 
 ---
