@@ -1,8 +1,8 @@
-# VOCAB_PROTOCOL_KINDS_V0 — Protocol Ontology
+# VOCAB_PROTOCOL_KINDS_V1 — Protocol Ontology
 
 **Governance Header**
-- Vocabulary ID: vocabulary::VOCAB_PROTOCOL_KINDS_V0
-- Version: v0
+- Vocabulary ID: vocabulary::VOCAB_PROTOCOL_KINDS_V1
+- Version: v1
 - Governed By: vocabulary::CONSTITUTION_VOCABULARY_V0
 - Status: Active
 
@@ -29,9 +29,8 @@ Defines what things ARE in the protocol: node type prefixes and artifact kind na
   authorable artifact; `EXIT` is structural and has no artifact kind.
 - Artifact kinds are globally unique UPPER_SNAKE names, and are exactly the canonical values of the
   Kind Vocabulary. A kind absent from that vocabulary is invalid for this revision.
-- An artifact kind MAY have a governing JSON Schema. Twelve of the sixteen kinds do; `ASSERT`,
-  `VOCABULARY`, `TRANSPORT_INGRESS`, and `TRANSPORT_EGRESS` are governed by their constitutions
-  without a separate schema.
+- An artifact kind MAY have a governing JSON Schema. `structure::STRUCTURE_SCHEMA_DISPATCH_V0`
+  declares which kinds have one, and why each of the others has none.
 - `TRANSPORT_INGRESS` and `TRANSPORT_EGRESS` are first-class kinds, not aliases of `EVENT` / `INTENT`.
 
 ### Domain extension
@@ -46,9 +45,10 @@ only if the platform compiler or runtime interprets it.
 ## Machine
 
 ```yaml
-fqdn: vocabulary::VOCAB_PROTOCOL_KINDS_V0
+fqdn: vocabulary::VOCAB_PROTOCOL_KINDS_V1
 artifact_kind: VOCABULARY
-version: v0
+version: v1
+supersedes: vocabulary::VOCAB_PROTOCOL_KINDS_V0
 governed_by: vocabulary::CONSTITUTION_VOCABULARY_V0
 authority: pgc.platform
 concern: vocabulary
@@ -81,6 +81,7 @@ artifact_kinds:
   - RUNTIME_BINDING
   - STRUCTURE
   - SURFACE_CONTRACT
+  - TEST_DATA
   - TRANSPORT_EGRESS
   - TRANSPORT_INGRESS
   - VOCABULARY

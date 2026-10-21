@@ -2486,7 +2486,7 @@ governance_surface_map:
       authority: constitution
     coverage:
       status: implemented
-  - artifact_code: VOCAB_PROTOCOL_KINDS_V0
+  - artifact_code: VOCAB_PROTOCOL_KINDS_V1
     kind: VOCABULARY
     family: vocabulary
     concern: reserved

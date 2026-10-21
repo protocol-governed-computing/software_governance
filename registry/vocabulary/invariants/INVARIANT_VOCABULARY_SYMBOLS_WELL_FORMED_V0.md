@@ -51,7 +51,7 @@ Every artifact code MUST match `^[A-Z][A-Z0-9_]*_V[0-9]+$`.
 
 ### Rule 2: Node types are declared
 
-Every workflow node `type` MUST appear in `VOCAB_PROTOCOL_KINDS_V0.node_types.entries`.
+Every workflow node `type` MUST appear in `VOCAB_PROTOCOL_KINDS_V1.node_types.entries`.
 
 ### Rule 3: Result statuses are declared
 
