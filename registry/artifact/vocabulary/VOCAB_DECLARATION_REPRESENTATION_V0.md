@@ -48,9 +48,12 @@ reference:
   - disposition_vocabulary
   - emit
   - enforced_by
+  - event_code
+  - event_type
   - extends
   - fqdn_id
   - governed_by
+  - governs
   - molecule
   - phase_workflows
   - runtime_binding
@@ -59,6 +62,7 @@ reference:
   - storage_structure
   - structure
   - target
+  - target_cs
   - transform
   - transforms
   - vocabulary_id
@@ -102,5 +106,10 @@ How every reader of a declaration tells a name from a value. A full name at or b
 `supersession` part names an artifact without reaching it. A `data` part holds values: nothing
 beneath it is read for references, whatever it looks like. A full name anywhere else is refused as
 undeclared.
+
+A part that carries an artifact's name as a value is a reference part like any other: a claim's
+`target_cs`, an audit record's `event_code` or `event_type`, a surface contract's `governs`. Only a
+value written as a full name is a reference. A kind token or a path under the same part is a value,
+so none of these parts requires a full name.
 
 A test vector's `cases` are data. The transform a vector tests, its `target`, sits outside its cases and stays a reference.

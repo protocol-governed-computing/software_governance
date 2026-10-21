@@ -20,8 +20,7 @@ governed_by: execution_topology::CONSTITUTION_EXECUTION_TOPOLOGY_V0
 authority: pgc.platform
 concern: surface_contract
 governs:
-- CS_MUTABLE_JSON_V0
-- CS_NAME_REGISTRY_V0
+- capability_side_effects::CS_MUTABLE_JSON_V0
 op: WRITE
 canonical_surface:
 - SUCCESS

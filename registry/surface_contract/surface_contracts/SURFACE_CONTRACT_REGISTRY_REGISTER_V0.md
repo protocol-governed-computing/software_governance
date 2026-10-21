@@ -21,7 +21,7 @@ governed_by: execution_topology::CONSTITUTION_EXECUTION_TOPOLOGY_V0
 authority: pgc.platform
 concern: surface_contract
 governs:
-- CS_REGISTRY_V0
+- capability_side_effects::CS_REGISTRY_V0
 op: REGISTER
 canonical_surface:
 - SUCCESS

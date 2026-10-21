@@ -1,8 +1,8 @@
-# VOCAB_PROTOCOL_KINDS_V1 — Protocol Ontology
+# VOCAB_PROTOCOL_KINDS_V0 — Protocol Ontology
 
 **Governance Header**
-- Vocabulary ID: vocabulary::VOCAB_PROTOCOL_KINDS_V1
-- Version: v1
+- Vocabulary ID: vocabulary::VOCAB_PROTOCOL_KINDS_V0
+- Version: v0
 - Governed By: vocabulary::CONSTITUTION_VOCABULARY_V0
 - Status: Active
 
@@ -45,10 +45,9 @@ only if the platform compiler or runtime interprets it.
 ## Machine
 
 ```yaml
-fqdn: vocabulary::VOCAB_PROTOCOL_KINDS_V1
+fqdn: vocabulary::VOCAB_PROTOCOL_KINDS_V0
 artifact_kind: VOCABULARY
-version: v1
-supersedes: vocabulary::VOCAB_PROTOCOL_KINDS_V0
+version: v0
 governed_by: vocabulary::CONSTITUTION_VOCABULARY_V0
 authority: pgc.platform
 concern: vocabulary
