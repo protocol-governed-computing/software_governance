@@ -1,0 +1,141 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "software_governance.schemas.SCHEMA_TRANSPORT_EGRESS_V0",
+  "title": "Transport Egress Schema V0",
+  "description": "The machine block of a TE artifact (Transport Standard V0 §7): the classification of PGC outcomes into protocol-neutral Result Classes, the output contract and the evidence exposure policy. It carries no protocol semantics (TE_RESULT_CLASS_PROTOCOL_INDEPENDENT).",
+  "type": "object",
+  "required": [
+    "fqdn",
+    "artifact_kind",
+    "version",
+    "governed_by",
+    "operation",
+    "result_classification",
+    "default_result_class",
+    "output_contract",
+    "evidence_policy"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "artifact_kind": {
+      "const": "TRANSPORT_EGRESS",
+      "description": "Canonical artifact kind discriminator (Kind Vocabulary)."
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^v[0-9]+$",
+      "description": "Version string"
+    },
+    "governed_by": {
+      "type": "string",
+      "const": "transport::CONSTITUTION_TRANSPORT_EGRESS_V0",
+      "description": "Governing constitution FQDN"
+    },
+    "fqdn": {
+      "type": "string",
+      "pattern": "^[a-z0-9_.]+::[A-Z][A-Z0-9_]*_V[0-9]+$",
+      "description": "Authoritative declared identity (namespace::code). Folder location has no authority over identity."
+    },
+    "supersedes": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_.]*::[A-Z][A-Z0-9_]*_V\\d+$",
+      "description": "FQDN of the artifact this one stands in place of. A declared relation between two exact identities, not a resolution rule: references stay exact, and a superseded artifact is unreachable rather than absent."
+    },
+    "authority": {
+      "type": "string",
+      "description": "The authority from which this artifact's jurisdiction derives (CA-1, CA-2). Declared, never inferred from namespace, path or kind."
+    },
+    "concern": {
+      "type": "string",
+      "description": "The semantic subject this artifact is about (GO-11, ID-12). A concern classification confers no authority and constitutes no boundary."
+    },
+    "operation": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]*(\\.[a-z][a-z0-9_]*)+$",
+      "description": "The Operation Identity whose results this contract projects"
+    },
+    "core": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "summary": {
+          "type": "string"
+        }
+      }
+    },
+    "result_classification": {
+      "type": "object",
+      "minProperties": 1,
+      "propertyNames": {
+        "pattern": "^[A-Z][A-Z0-9_]*$"
+      },
+      "additionalProperties": {
+        "$ref": "#/$defs/resultClass"
+      },
+      "description": "Each PGC outcome and the Result Class it is classified as (standard §7)"
+    },
+    "default_result_class": {
+      "$ref": "#/$defs/resultClass",
+      "description": "The Result Class of an outcome the classification does not name"
+    },
+    "output_contract": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "field",
+          "from"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "field": {
+            "type": "string",
+            "pattern": "^[a-z_][a-z0-9_]*$"
+          },
+          "from": {
+            "type": "string",
+            "pattern": "^(surface|input)(\\.\\$?[a-z_][a-z0-9_]*)+$",
+            "description": "Where the value is read: the result surface or the admitted input. A `$name` segment is replaced by the input field of that name."
+          },
+          "op": {
+            "type": "string",
+            "enum": [
+              "identity",
+              "length",
+              "length_minus_one",
+              "max",
+              "min"
+            ]
+          },
+          "required": {
+            "type": "boolean",
+            "description": "False makes the field optional (TE_OUTPUT_FIELD_OWED)"
+          }
+        }
+      },
+      "description": "The result payload exposed, field by field; raw passthrough is forbidden (TE_PROJECTION_NORMALIZED)"
+    },
+    "evidence_policy": {
+      "type": "string",
+      "enum": [
+        "none",
+        "reference_only"
+      ],
+      "description": "Which evidence references leave the boundary"
+    }
+  },
+  "$defs": {
+    "resultClass": {
+      "type": "string",
+      "enum": [
+        "SUCCESS",
+        "VIOLATION",
+        "UNAUTHORIZED",
+        "NOT_FOUND",
+        "OPERATION_NOT_FOUND",
+        "EXECUTION_FAILURE"
+      ]
+    }
+  }
+}

@@ -1,8 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "software_governance.schemas.SCHEMA_INTENT_V0",
-  "title": "OmniBachi Intent Schema V0",
-  "description": "JSON Schema for materialized intent artifacts",
+  "title": "Intent Schema V0",
+  "description": "The machine block of an INTENT artifact: the workflow a request starts, the inputs it takes and the outcomes it answers with. Written from what INTENT artifacts declare; it replaces a description that rejected a whole number as a type and named its constitution by short code.",
   "type": "object",
   "required": [
     "fqdn",
@@ -24,61 +24,8 @@
     },
     "governed_by": {
       "type": "string",
-      "const": "CONSTITUTION_INTENT_V0",
-      "description": "Governing constitution"
-    },
-    "core": {
-      "type": "object",
-      "required": [
-        "summary",
-        "workflow",
-        "inputs",
-        "outcomes"
-      ],
-      "additionalProperties": false,
-      "properties": {
-        "summary": {
-          "type": "string",
-          "description": "Human-readable summary of intent purpose"
-        },
-        "workflow": {
-          "type": "string",
-          "pattern": "^WF_[A-Z0-9_]+_V[0-9]+$",
-          "description": "Workflow that processes this intent"
-        },
-        "inputs": {
-          "type": "object",
-          "additionalProperties": {
-            "$ref": "#/$defs/inputField"
-          },
-          "description": "Input field definitions"
-        },
-        "outcomes": {
-          "type": "object",
-          "additionalProperties": {
-            "type": "object",
-            "required": [
-              "description"
-            ],
-            "properties": {
-              "description": {
-                "type": "string"
-              }
-            }
-          },
-          "description": "Possible outcomes (ACK/NACK)"
-        }
-      }
-    },
-    "extensions": {
-      "type": "object",
-      "additionalProperties": true,
-      "properties": {
-        "domain": {
-          "type": "string",
-          "description": "Domain namespace"
-        }
-      }
+      "const": "intent::CONSTITUTION_INTENT_V0",
+      "description": "Governing constitution FQDN"
     },
     "fqdn": {
       "type": "string",
@@ -97,6 +44,64 @@
     "concern": {
       "type": "string",
       "description": "The semantic subject this artifact is about (GO-11, ID-12). A concern classification confers no authority and constitutes no boundary."
+    },
+    "core": {
+      "type": "object",
+      "required": [
+        "summary",
+        "workflow",
+        "inputs",
+        "outcomes"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "summary": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Human-readable summary of the intent"
+        },
+        "workflow": {
+          "type": "string",
+          "pattern": "^([a-z][a-z0-9_.]*::)?WF_[A-Z0-9_]+_V[0-9]+$",
+          "description": "The workflow this intent starts"
+        },
+        "inputs": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/inputField"
+          },
+          "description": "Input field definitions"
+        },
+        "outcomes": {
+          "type": "object",
+          "propertyNames": {
+            "pattern": "^[A-Z][A-Z0-9_]*$"
+          },
+          "additionalProperties": {
+            "type": "object",
+            "required": [
+              "description"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "description": {
+                "type": "string"
+              }
+            }
+          },
+          "description": "The outcomes the intent answers with"
+        }
+      }
+    },
+    "extensions": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "domain": {
+          "type": "string",
+          "description": "Domain namespace"
+        }
+      }
     }
   },
   "$defs": {
@@ -105,12 +110,14 @@
       "required": [
         "type"
       ],
+      "additionalProperties": false,
       "properties": {
         "type": {
           "type": "string",
           "enum": [
             "string",
             "number",
+            "integer",
             "boolean",
             "object",
             "array"
@@ -119,11 +126,10 @@
         },
         "required": {
           "type": "boolean",
-          "default": false,
-          "description": "Whether field is required"
+          "description": "Whether the field must be present"
         },
         "default": {
-          "description": "Default value if not provided"
+          "description": "Value used when the field is absent"
         },
         "description": {
           "type": "string",

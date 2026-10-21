@@ -1,7 +1,7 @@
 governance_surface_map:
   note: family and concern are read from the semantic registry tree (registry/<family>/<concern>/); identity
     (fqdn) is declared per-artifact and independent of this path.
-  artifact_count: 222
+  artifact_count: 224
   families:
     actor:
       constitutions: 1
@@ -91,6 +91,8 @@ governance_surface_map:
       SCHEMA_SURFACE_CONTRACT_V0.json: 1
       SCHEMA_TEST_DATA_V0.json: 1
       SCHEMA_TRACE_EVENT_V0.json: 1
+      SCHEMA_TRANSPORT_EGRESS_V0.json: 1
+      SCHEMA_TRANSPORT_INGRESS_V0.json: 1
       SCHEMA_TRANSPORT_REQUEST_V0.json: 1
       SCHEMA_TRANSPORT_RESPONSE_V0.json: 1
       SCHEMA_VOCABULARY_V0.json: 1
@@ -121,14 +123,14 @@ governance_surface_map:
       constitutions: 1
       invariants: 6
   by_enforcement_locus:
-    compile_composition: 214
+    compile_composition: 216
     snapshot_declaration: 5
     runtime_execution: 2
     meta_process: 1
   by_coverage_status:
     implemented: 195
     process_enforced: 1
-    declaration_substrate: 26
+    declaration_substrate: 28
   coverage_ledger:
     transport:
       status: intentionally_deferred
@@ -1909,6 +1911,28 @@ governance_surface_map:
     concern: SCHEMA_TRACE_EVENT_V0.json
     semantic:
       property: trace_event
+      lifecycle: declare
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: declaration_substrate
+  - artifact_code: SCHEMA_TRANSPORT_EGRESS_V0
+    kind: SCHEMA
+    family: schema
+    concern: SCHEMA_TRANSPORT_EGRESS_V0.json
+    semantic:
+      property: transport_egress
+      lifecycle: declare
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: declaration_substrate
+  - artifact_code: SCHEMA_TRANSPORT_INGRESS_V0
+    kind: SCHEMA
+    family: schema
+    concern: SCHEMA_TRANSPORT_INGRESS_V0.json
+    semantic:
+      property: transport_ingress
       lifecycle: declare
       enforcement_locus: compile_composition
       authority: constitution

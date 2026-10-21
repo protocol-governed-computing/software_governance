@@ -26,6 +26,10 @@ core:
     STRUCTURE: SCHEMA_STRUCTURE_V0.json
     TEST_DATA: SCHEMA_TEST_DATA_V0.json
     EVENT: SCHEMA_EVENT_V0.json
+    ACTOR: SCHEMA_ACTOR_V0.json
+    INTENT: SCHEMA_INTENT_V0.json
+    TRANSPORT_INGRESS: SCHEMA_TRANSPORT_INGRESS_V0.json
+    TRANSPORT_EGRESS: SCHEMA_TRANSPORT_EGRESS_V0.json
   # Every kind the composition carries, and what was decided about describing it. A kind absent from
   # the dispatch above was absent for three different reasons and one representation — nobody wrote a
   # description, one exists and nobody named it, or the kind needs none — so a reader could not tell a
@@ -47,14 +51,6 @@ core:
     TRANSPORT_INGRESS: described
     TRANSPORT_EGRESS: described
     TEST_DATA: described
-  # Where a kind is described and its description is not yet dispatched, the ground is recorded here
-  # rather than left as an absence. Removing a row means the description was corrected and the kind
-  # dispatched; a row that stays is a debt that stays readable.
-  description_pending:
-    ACTOR: description expects a role and forbids the attributes every actor carries; owned by actor
-    INTENT: description rejects a whole number as a type; owned by intent
-    TRANSPORT_INGRESS: no description exists; owned by transport
-    TRANSPORT_EGRESS: no description exists; owned by transport
 ```
 
 ---

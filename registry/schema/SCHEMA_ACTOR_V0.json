@@ -1,8 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "software_governance.schemas.SCHEMA_ACTOR_V0",
-  "title": "OmniBachi Actor Schema V0",
-  "description": "JSON Schema for materialized actor artifacts",
+  "title": "Actor Schema V0",
+  "description": "The machine block of an ACTOR artifact: a declared identity and its typed attributes. Written from what ACTOR artifacts declare; it replaces a description that expected a role and forbade the attributes every actor carries.",
   "type": "object",
   "required": [
     "fqdn",
@@ -24,50 +24,8 @@
     },
     "governed_by": {
       "type": "string",
-      "const": "CONSTITUTION_GOVERNANCE_V0",
-      "description": "Governing constitution"
-    },
-    "core": {
-      "type": "object",
-      "required": [
-        "summary",
-        "role"
-      ],
-      "additionalProperties": false,
-      "properties": {
-        "summary": {
-          "type": "string",
-          "description": "Human-readable summary of actor type"
-        },
-        "role": {
-          "type": "string",
-          "enum": [
-            "enduser",
-            "system",
-            "service",
-            "operator"
-          ],
-          "description": "Actor role category"
-        },
-        "permissions": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "description": "Permitted actions for this actor type"
-        },
-        "constraints": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "description": "Constraints on this actor type"
-        }
-      }
-    },
-    "extensions": {
-      "type": "object",
-      "additionalProperties": true
+      "const": "actor::CONSTITUTION_ACTOR_IDENTITY_V0",
+      "description": "Governing constitution FQDN"
     },
     "fqdn": {
       "type": "string",
@@ -86,6 +44,80 @@
     "concern": {
       "type": "string",
       "description": "The semantic subject this artifact is about (GO-11, ID-12). A concern classification confers no authority and constitutes no boundary."
+    },
+    "core": {
+      "type": "object",
+      "required": [
+        "summary",
+        "type",
+        "attributes"
+      ],
+      "additionalProperties": false,
+      "description": "An actor declares identity and attributes only (AC_IDENTITY_ONLY). It carries no permissions, authority or execution rights (AC_NO_AUTHORITY_SEMANTICS).",
+      "properties": {
+        "summary": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Human-readable summary of the actor"
+        },
+        "description": {
+          "type": "string",
+          "description": "Longer account of the actor"
+        },
+        "type": {
+          "type": "string",
+          "minLength": 1,
+          "description": "The actor's type (AC_TYPE_REQUIRED)"
+        },
+        "attributes": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/attribute"
+          },
+          "description": "Identity attributes, each explicitly typed (AC_ATTRIBUTES_TYPED)"
+        }
+      }
+    },
+    "extensions": {
+      "type": "object",
+      "additionalProperties": true
+    }
+  },
+  "$defs": {
+    "attribute": {
+      "type": "object",
+      "required": [
+        "type"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "string",
+            "number",
+            "integer",
+            "boolean",
+            "object",
+            "array"
+          ],
+          "description": "Field type"
+        },
+        "required": {
+          "type": "boolean",
+          "description": "Whether the field must be present"
+        },
+        "default": {
+          "description": "Value used when the field is absent"
+        },
+        "description": {
+          "type": "string",
+          "description": "Human-readable description"
+        },
+        "value": {
+          "description": "The attribute's literal value. Identity is a compile-time fact, so it is never a runtime path."
+        }
+      }
     }
   }
 }
