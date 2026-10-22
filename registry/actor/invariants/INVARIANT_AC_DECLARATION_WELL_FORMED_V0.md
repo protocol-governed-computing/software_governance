@@ -30,9 +30,9 @@ An actor declares who execution runs as. It is an identity declaration and nothi
 ---
 
 ## How it is checked
-### Rule 1: Type declared
+### Rule 1: Type declared and governed
 
-Every AC MUST declare a non-empty `core.type`.
+Every AC MUST declare a `core.type` that is an entry of `actor::VOCAB_ACTOR_TYPES_V0.actor_type`: `agent`, `human` or `system`. A build with actors in it that cannot see that vocabulary is refused, because no type could be checked against it.
 
 ### Rule 2: Attributes typed
 

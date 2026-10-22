@@ -1,11 +1,12 @@
 governance_surface_map:
   note: family and concern are read from the semantic registry tree (registry/<family>/<concern>/); identity
     (fqdn) is declared per-artifact and independent of this path.
-  artifact_count: 224
+  artifact_count: 225
   families:
     actor:
       constitutions: 1
       invariants: 2
+      vocabulary: 1
     artifact:
       constitutions: 1
       invariants: 9
@@ -123,12 +124,12 @@ governance_surface_map:
       constitutions: 1
       invariants: 6
   by_enforcement_locus:
-    compile_composition: 216
+    compile_composition: 217
     snapshot_declaration: 5
     runtime_execution: 2
     meta_process: 1
   by_coverage_status:
-    implemented: 195
+    implemented: 196
     process_enforced: 1
     declaration_substrate: 28
   coverage_ledger:
@@ -173,6 +174,17 @@ governance_surface_map:
     concern: invariants
     semantic:
       property: identity_authority_separation
+      lifecycle: compile
+      enforcement_locus: compile_composition
+      authority: constitution
+    coverage:
+      status: implemented
+  - artifact_code: VOCAB_ACTOR_TYPES_V0
+    kind: VOCABULARY
+    family: actor
+    concern: vocabulary
+    semantic:
+      property: actor_types
       lifecycle: compile
       enforcement_locus: compile_composition
       authority: constitution
