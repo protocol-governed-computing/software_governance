@@ -19,6 +19,8 @@ rules:
   enforced_by: RUNTIME_ENFORCED
 - applies_to: WF
   enforced_by: RUNTIME_ENFORCED
+- applies_to: WF
+  enforced_by: transport::INVARIANT_ADMISSION_COVERS_BINDINGS_V0
 ```
 
 ---
@@ -78,6 +80,11 @@ An IN gate's input contract is its intent's `core.inputs`: each field's `type` a
 `required`. The compiler projects it into the snapshot's dispatch table. The runtime reads the
 compiled contract and nothing else.
 
+The workflow behind the gate reads payload fields through its bindings (`$.payload.<field>`). Every
+field it binds is declared by the gate's contract, so nothing the workflow reads enters unchecked.
+The compiler enforces this (`transport::INVARIANT_ADMISSION_COVERS_BINDINGS_V0`). A field the gate
+declares and no node binds is allowed: the gate may require it for accountability.
+
 ---
 
 ## §6. Versioning
@@ -97,4 +104,6 @@ rules:
   constraint: an IN gate MUST determine admission from its declared input contract alone, and a gate with no contract MUST refuse
 - rule_id: ADMISSION_OUTCOME_IS_ROUTED
   constraint: ACK and NACK MUST be routed by the workflow, and every evaluated check MUST be recorded in the trace
+- rule_id: ADMISSION_COVERS_BINDINGS
+  constraint: a workflow MUST bind only payload fields its IN gate's input contract declares
 ```
