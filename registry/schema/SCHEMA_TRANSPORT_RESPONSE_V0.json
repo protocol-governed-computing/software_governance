@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "pgc.schemas.SCHEMA_TRANSPORT_RESPONSE_V0",
+  "title": "PGC Canonical Transport Response V0",
+  "description": "Protocol-neutral canonical transport response contract (Transport Standard V0 \u00a75.2). Representation-independent; JSON is one serialization and is not itself normative.",
+  "type": "object",
+  "required": [
+    "request_id",
+    "outcome",
+    "result_class"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "request_id": {
+      "type": "string",
+      "description": "Echoes the request's correlation handle."
+    },
+    "outcome": {
+      "type": "string",
+      "enum": [
+        "SUCCESS",
+        "FAILURE"
+      ],
+      "description": "Binary outcome."
+    },
+    "result_class": {
+      "type": "string",
+      "enum": [
+        "SUCCESS",
+        "VIOLATION",
+        "UNAUTHORIZED",
+        "EXECUTION_FAILURE",
+        "OPERATION_NOT_FOUND"
+      ],
+      "description": "Governed, protocol-neutral Result Class. Carries no external-protocol semantics."
+    },
+    "result": {
+      "description": "Projected result payload on success; null on failure."
+    },
+    "evidence": {
+      "type": "array",
+      "description": "Evidence references (e.g. trace ids)."
+    },
+    "errors": {
+      "type": "array",
+      "description": "Populated on failure."
+    },
+    "authority": {
+      "type": "string",
+      "description": "The authority from which this artifact's jurisdiction derives (CA-1, CA-2). Declared, never inferred from namespace, path or kind."
+    },
+    "concern": {
+      "type": "string",
+      "description": "The semantic subject this artifact is about (GO-11, ID-12). A concern classification confers no authority and constitutes no boundary."
+    }
+  }
+}

@@ -1,0 +1,123 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "software_governance.schemas.SCHEMA_ACTOR_V0",
+  "title": "Actor Schema V0",
+  "description": "The machine block of an ACTOR artifact: a declared identity and its typed attributes. Written from what ACTOR artifacts declare; it replaces a description that expected a role and forbade the attributes every actor carries.",
+  "type": "object",
+  "required": [
+    "fqdn",
+    "artifact_kind",
+    "version",
+    "governed_by",
+    "core"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "artifact_kind": {
+      "const": "ACTOR",
+      "description": "Canonical artifact kind discriminator (Kind Vocabulary)."
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^v[0-9]+$",
+      "description": "Version string"
+    },
+    "governed_by": {
+      "type": "string",
+      "const": "actor::CONSTITUTION_ACTOR_IDENTITY_V0",
+      "description": "Governing constitution FQDN"
+    },
+    "fqdn": {
+      "type": "string",
+      "pattern": "^[a-z0-9_.]+::[A-Z][A-Z0-9_]*_V[0-9]+$",
+      "description": "Authoritative declared identity (namespace::code). Folder location has no authority over identity."
+    },
+    "supersedes": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_.]*::[A-Z][A-Z0-9_]*_V\\d+$",
+      "description": "FQDN of the artifact this one stands in place of. A declared relation between two exact identities, not a resolution rule: references stay exact, and a superseded artifact is unreachable rather than absent."
+    },
+    "authority": {
+      "type": "string",
+      "description": "The authority from which this artifact's jurisdiction derives (CA-1, CA-2). Declared, never inferred from namespace, path or kind."
+    },
+    "concern": {
+      "type": "string",
+      "description": "The semantic subject this artifact is about (GO-11, ID-12). A concern classification confers no authority and constitutes no boundary."
+    },
+    "core": {
+      "type": "object",
+      "required": [
+        "summary",
+        "type",
+        "attributes"
+      ],
+      "additionalProperties": false,
+      "description": "An actor declares identity and attributes only (AC_IDENTITY_ONLY). It carries no permissions, authority or execution rights (AC_NO_AUTHORITY_SEMANTICS).",
+      "properties": {
+        "summary": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Human-readable summary of the actor"
+        },
+        "description": {
+          "type": "string",
+          "description": "Longer account of the actor"
+        },
+        "type": {
+          "type": "string",
+          "minLength": 1,
+          "description": "The actor's type (AC_TYPE_REQUIRED)"
+        },
+        "attributes": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/attribute"
+          },
+          "description": "Identity attributes, each explicitly typed (AC_ATTRIBUTES_TYPED)"
+        }
+      }
+    },
+    "extensions": {
+      "type": "object",
+      "additionalProperties": true
+    }
+  },
+  "$defs": {
+    "attribute": {
+      "type": "object",
+      "required": [
+        "type"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "string",
+            "number",
+            "integer",
+            "boolean",
+            "object",
+            "array"
+          ],
+          "description": "Field type"
+        },
+        "required": {
+          "type": "boolean",
+          "description": "Whether the field must be present"
+        },
+        "default": {
+          "description": "Value used when the field is absent"
+        },
+        "description": {
+          "type": "string",
+          "description": "Human-readable description"
+        },
+        "value": {
+          "description": "The attribute's literal value. Identity is a compile-time fact, so it is never a runtime path."
+        }
+      }
+    }
+  }
+}
